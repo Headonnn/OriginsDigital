@@ -1,7 +1,9 @@
+import Footer from "./components/Footer";
+
 function App() {
   return (
     <div className="App">
-      <p className="text-3xl font-bold underline">coucou</p>
+      <Footer />
     </div>
   );
 }
