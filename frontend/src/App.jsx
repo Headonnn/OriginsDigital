@@ -1,8 +1,13 @@
+import React from "react";
+import Router from "./navigation/Router";
+import NavBar from "./components/NavBar";
+
 function App() {
   return (
-    <div className="App">
-      <p className="text-3xl font-bold underline">coucou</p>
-    </div>
+    <>
+      <NavBar />
+      <Router />
+    </>
   );
 }
 
