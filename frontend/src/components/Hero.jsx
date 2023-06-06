@@ -6,19 +6,22 @@ import {
   BsInfoCircle,
 } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import img1 from "../assets/images/andhika-soreng-US06QF_sxu8-unsplash.jpg";
+import img2 from "../assets/images/jeremy-bishop-_CFv3bntQlQ-unsplash.jpg";
+import img3 from "../assets/images/michal-parzuchowski-LQsJUtKmPlg-unsplash.jpg";
 
 function Hero() {
   const test = [
     {
-      url: "https://images.unsplash.com/photo-1506316940527-4d1c138978a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW91bnRhaW4lMjBiaWtlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+      url: img1,
       name: "Magnifique video de velo",
     },
     {
-      url: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3VyZnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+      url: img2,
       name: "Magnifique video de surf",
     },
     {
-      url: "https://images.unsplash.com/photo-1595971649687-0901985665a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGV0YW5xdWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+      url: img3,
       name: "Magnifique video de petanque",
     },
   ];
@@ -42,41 +45,45 @@ function Hero() {
   }, [index]);
 
   return (
-    <div className="absolute left-0 right-0 h-[40vh] w-full m-auto  group ">
+    <div className=" h-[50vh] w-full m-auto  group ">
       <div
         style={{ backgroundImage: `url(${test[index].url})` }}
-        className="w-full h-full  bg-center bg-cover duration-500"
+        className="w-full h-full  bg-center bg-cover duration-500 p-[16px]"
       >
-        <div className="flex h-[85%] gap-[10%] justify-center items-end  ">
-          <div className=" flex gap-[16px] justify-around items-center py-2  bg-white text-black rounded-xl px-2 ">
-            <BsFillPlayFill /> Lecture
-          </div>
-          <div className=" py-2 gap-[16px] flex justify-around items-center bg-black/50 text-white rounded-xl px-2 ">
-            <BsInfoCircle />
-            Plus d'infos
-          </div>
-        </div>
-      </div>
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <BsChevronCompactLeft onClick={prevSlide} size={30} />
-      </div>
-      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-        <BsChevronCompactRight onClick={nextSlide} size={30} />
-      </div>
-      <div className="flex justify-center">
-        <div className=" py-2 absolute  bottom-0">
-          <div className="flex justify-center">
+        <div className="flex flex-col-reverse h-[100%]  ">
+          <div className="flex justify-center ">
             {test.map((e, i) => (
               <div
                 role="presentation"
                 key={test[i].url}
                 onClick={() => setIndex(i)}
                 onKeyDown={() => setIndex(i)}
-                className={index === i ? "text-white" : "text-black/20"}
+                className={
+                  index === i
+                    ? "text-white cursor-pointer"
+                    : "text-black/20 cursor-pointer"
+                }
               >
                 <RxDotFilled />
               </div>
             ))}
+          </div>
+          <div className="flex grow items-center justify-between">
+            <div className="  flex-none -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer ">
+              <BsChevronCompactLeft onClick={prevSlide} size={30} />
+            </div>
+            <div className="flex grow justify-center items-end h-[100%] gap-[20%]">
+              <div className=" flex   items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer">
+                <BsFillPlayFill /> Lecture
+              </div>
+              <div className="    flex items-center gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer">
+                <BsInfoCircle />
+                Plus d'infos
+              </div>
+            </div>
+            <div className=" flex-none -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer ">
+              <BsChevronCompactRight onClick={nextSlide} size={30} />
+            </div>
           </div>
         </div>
       </div>
