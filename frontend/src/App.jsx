@@ -1,8 +1,6 @@
-
+import React from "react";
 import Hero from "./components/Hero";
 
-
-import React from "react";
 import Router from "./navigation/Router";
 import NavBar from "./components/NavBar";
 import CarouselAll from "./components/CarouselAll";
@@ -17,7 +15,6 @@ function App() {
       <CarouselAll />
       <Footer />
     </>
-
   );
 }
 
