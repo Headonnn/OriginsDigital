@@ -1,11 +1,16 @@
+import React from "react";
+import Router from "./navigation/Router";
+import NavBar from "./components/NavBar";
 import CarouselAll from "./components/CarouselAll";
 
 function App() {
   return (
-    <div className="App">
-      <p className="text-3xl font-bold underline">coucou</p>
+    <>
+      <NavBar />
+      <Router />
       <CarouselAll />
-    </div>
+    </>
+
   );
 }
 
