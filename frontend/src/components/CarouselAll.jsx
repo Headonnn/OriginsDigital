@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
 import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll() {
@@ -40,15 +41,20 @@ function CarouselAll() {
           arrows
           draggable
           swipeable
-          infinite={false}
+          infinite
           keyBoardControl
           containerClass="carousel-container"
         >
           {dataVideo.map((video) => {
             return (
-              <div className="carousel-item relative m-4">
-                <img src={video.thumbnail} alt={video.title} />
-              </div>
+              <Link to="/description">
+                <div
+                  key={video.id}
+                  className="carousel-item relative m-4 hover:scale-105 transition"
+                >
+                  <img src={video.thumbnail} alt={video.title} />
+                </div>
+              </Link>
             );
           })}
         </Carousel>

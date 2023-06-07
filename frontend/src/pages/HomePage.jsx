@@ -14,6 +14,7 @@ function HomePage() {
         <div>
           <Hero />
           <CarouselAll />
+          <CarouselAll />
         </div>
       )}
       <Footer />
