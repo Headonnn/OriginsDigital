@@ -5,7 +5,7 @@ CREATE TABLE `user` (
 	password VARCHAR(100) NOT NULL,
 	firstname VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
-	is_admin TINYINT
+	is_admin TINYINT DEFAULT 0
 );
 
 CREATE TABLE `video` (
@@ -15,9 +15,9 @@ CREATE TABLE `video` (
 	description VARCHAR(500) NOT NULL,
 	thumbnail VARCHAR(500) NOT NULL,
 	date DATE,
-	length TIMESTAMP,
-	is_freemium TINYINT,
-	is_in_hero TINYINT
+	length TIME,
+	is_freemium TINYINT DEFAULT 0,
+	is_in_hero TINYINT DEFAULT 0
 );
 
 CREATE TABLE `favorite` (
@@ -95,12 +95,12 @@ VALUES
 ("Escalade"),
 ("Ski");
 
-INSERT INTO video (title, url, description)
+INSERT INTO video (title, url, description, thumbnail)
 VALUES
-("Video de ski", "https://www.pexels.com/fr-fr/video/ski-montagne-skieur-piste-de-ski-4274798/", "uUn mec qui fait du ski"),
-("Video de surf", "https://www.pexels.com/fr-fr/video/homme-surf-856132/", "Un mec qui fait du surf"),
-("Video d'escalade", "https://www.pexels.com/fr-fr/video/homme-montagne-corde-falaise-4162881/", "Un mec qui fait de la grimpette"),
-("Video de pétanque", "https://www.pexels.com/fr-fr/video/gens-amis-jouer-jeu-10071090/", "des gens qui jouent à la pétanque");
+("Video de skate", "https://www.pexels.com/fr-fr/video/ski-montagne-skieur-piste-de-ski-4274798/", "uUn mec qui fait du ski", "https://www.pexels.com/fr-fr/photo/photographie-de-mise-au-point-selective-de-chat-tigre-orange-1170986/"),
+("Video de surf", "https://www.pexels.com/fr-fr/video/homme-surf-856132/", "Un mec qui fait du surf", "https://www.pexels.com/fr-fr/photo/personne-tenant-un-chaton-blanc-avec-collier-de-fleurs-1643457/"),
+("Video d'escalade", "https://www.pexels.com/fr-fr/video/homme-montagne-corde-falaise-4162881/", "Un mec qui fait de la grimpette", "https://www.pexels.com/fr-fr/photo/photo-de-chat-tigre-3777622/"),
+("Video de pétanque", "https://www.pexels.com/fr-fr/video/gens-amis-jouer-jeu-10071090/", "des gens qui jouent à la pétanque", "https://www.pexels.com/fr-fr/photo/photo-de-chat-tigre-3777622/");
 
 --   ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

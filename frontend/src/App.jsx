@@ -8,7 +8,11 @@ function App() {
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <VideoContext.Provider value={{ currentUrl, setCurrentUrl }}>
       <Router />
+
     </VideoContext.Provider>
+
+    </>
+
   );
 }
 
