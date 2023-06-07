@@ -1,28 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import VideoContext from "../../contexts/VideoContext";
 
 function DescriptionVideo() {
+  const { currentVideo } = useContext(VideoContext);
   return (
     <div className="description-video-container bg-black h-auto flex flex-col justify-center items-start px-4 md:px-20 lg:px-40 max-w-full overflow-hidden">
       {/* Titre */}
       <div className="text-white font-poppins mb-6">
         <h1 className="text-2xl md:text-3xl font-bold mt-10">
-          L'ile d'Oahu, le paradis du surf
+          {currentVideo.title}
         </h1>
       </div>
       {/* Description */}
       <div className="text-white font-poppins mb-8">
         <h2 className="text-base md:text-lg overflow-y-auto">
-          L'île d'Oahu est l'une des îles principales de l'archipel d'Hawaï et
-          est réputée pour être le paradis du surf. Située dans l'océan
-          Pacifique, elle offre des conditions de surf exceptionnelles tout au
-          long de l'année, attirant des surfeurs du monde entier. La côte nord
-          d'Oahu est célèbre pour ses vagues spectaculaires, en particulier
-          pendant la saison hivernale, lorsque des swells massifs génèrent des
-          conditions de surf épiques. Des spots légendaires tels que Waimea Bay,
-          Pipeline et Sunset Beach sont réputés pour leurs vagues puissantes et
-          creuses, attirant les surfeurs professionnels et les passionnés de
-          surf. La côte sud d'Oahu offre également de belles opportunités de
-          surf, .......
+          {currentVideo.description}
         </h2>
       </div>
       {/* Catégorie */}
