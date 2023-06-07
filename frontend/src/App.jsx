@@ -1,20 +1,8 @@
 import React from "react";
-import Hero from "./components/Hero";
-import Router from "./navigation/Router";
-import NavBar from "./components/NavBar";
-import CarouselAll from "./components/CarouselAll";
-import Footer from "./components/Footer";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <>
-      <NavBar />
-      <Hero />
-      <Router />
-      <CarouselAll />
-      <Footer />
-    </>
-  );
+  return <Login />;
 }
 
 export default App;
