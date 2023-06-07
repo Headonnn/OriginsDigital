@@ -34,7 +34,9 @@ function Header() {
         </h2>
       </div>
       <div className="flex w-screen items-center top-0 h-24 justify-end gap-5 bg-black text-white pr-8">
-        <h2 className="text-white border text-xl font-poppins hidden md:block tracking-wide p-2 rounded"> Se connecter
+        <h2 className="text-white border text-xl font-poppins hidden md:block tracking-wide p-2 rounded">
+          {" "}
+          Se connecter
         </h2>
         <VscAccount size={56} className="block md:hidden" />
         <CiBurger size={72} className="block md:hidden" />
