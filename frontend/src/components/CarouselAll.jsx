@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import skate from "../assets/videos/skate.mp4";
 import surf from "../assets/videos/surf.mp4";
@@ -6,6 +6,17 @@ import parapente from "../assets/videos/parapente.mp4";
 import "react-multi-carousel/lib/styles.css";
 
 function CarouselAll() {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    fetch(`http://localhost:5002/video`)
+      .then((res) => res.json())
+      .then((res) => setData(res))
+      .catch((error) => console.error(error));
+  }, []);
+
+  console.warn(data);
+
   const arr = [
     {
       title: "Surfing is cool",
