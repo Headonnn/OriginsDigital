@@ -1,20 +1,20 @@
 import React from "react";
-import Hero from "../components/Hero";
-import Router from "../navigation/Router";
+
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import DescriptionVideo from "../components/DescriptionVideo";
+import SmallPlayer from "../components/SmallPlayer";
 
-function App() {
+function VideoDescription() {
   return (
     <>
       <NavBar />
-      <Hero />
-      <Router />
+      <SmallPlayer />
+
       <DescriptionVideo />
       <Footer />
     </>
   );
 }
 
-export default App;
+export default VideoDescription;
