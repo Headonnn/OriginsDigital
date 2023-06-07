@@ -1,19 +1,14 @@
-import React from "react";
-import Hero from "./components/Hero";
+import React, { useState } from "react";
+import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
-import NavBar from "./components/NavBar";
-import CarouselAll from "./components/CarouselAll";
-import Footer from "./components/Footer";
 
 function App() {
+  const [currentUrl, setCurrentUrl] = useState("");
   return (
-    <>
-      <NavBar />
-      <Hero />
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <VideoContext.Provider value={{ currentUrl, setCurrentUrl }}>
       <Router />
-      <CarouselAll />
-      <Footer />
-    </>
+    </VideoContext.Provider>
   );
 }
 
