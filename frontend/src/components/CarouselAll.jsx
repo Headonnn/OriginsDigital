@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
-import skate from "../assets/videos/skate.mp4";
-import surf from "../assets/videos/surf.mp4";
-import parapente from "../assets/videos/parapente.mp4";
 import "react-multi-carousel/lib/styles.css";
 
 function CarouselAll() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:5002/video`)
@@ -16,63 +13,6 @@ function CarouselAll() {
   }, []);
 
   console.warn(data);
-
-  const arr = [
-    {
-      title: "Surfing is cool",
-      source: surf,
-      thumbnail:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti",
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      thumbnail:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti",
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Paraglide is cool",
-      source: parapente,
-      thumbnail:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti",
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      thumbnail:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti",
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      thumbnail:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti",
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      thumbnail:
-        "https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti",
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-  ];
 
   const responsive = {
     largeDesktop: {
@@ -111,7 +51,7 @@ function CarouselAll() {
         keyBoardControl
         containerClass="carousel-container"
       >
-        {arr.map((video) => {
+        {data.map((video) => {
           return (
             <div className="carousel-item relative m-4">
               <img src={video.thumbnail} alt={video.title} />
