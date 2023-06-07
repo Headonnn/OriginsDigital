@@ -1,5 +1,4 @@
 import React from "react";
-import ReactPlayer from "react-player";
 import Carousel from "react-multi-carousel";
 import skate from "../assets/videos/skate.mp4";
 import surf from "../assets/videos/surf.mp4";
@@ -65,9 +64,14 @@ function CarouselAll() {
   ];
 
   const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+    largeDesktop: {
+      breakpoint: { max: 4000, min: 2000 },
       items: 5,
+      partialVisibilityGutter: 40,
+    },
+    desktop: {
+      breakpoint: { max: 2000, min: 1024 },
+      items: 4,
       partialVisibilityGutter: 40,
     },
     tablet: {
@@ -83,8 +87,10 @@ function CarouselAll() {
   };
 
   return (
-    <div className="carousel mx-auto">
-      <h2 className="text-2xl font-semibold mb-6 ml-4">Toutes les videos</h2>
+    <div className="carousel mx-auto bg-neutral-950">
+      <h2 className="Poppins text-2xl text-white font-light py-6 ml-4">
+        Toutes les videos
+      </h2>
       <Carousel
         responsive={responsive}
         arrows
@@ -92,21 +98,12 @@ function CarouselAll() {
         swipeable
         infinite={false}
         keyBoardControl
-        autoPlay={false}
-        autoPlaySpeed={3000}
         containerClass="carousel-container"
       >
         {arr.map((video) => {
           return (
             <div className="carousel-item relative m-4">
-              <ReactPlayer
-                url={video.source}
-                light={video.thumbnail}
-                controls
-                playing
-                width="384px"
-                height="216px"
-              />
+              <img src={video.thumbnail} alt={video.title} />
             </div>
           );
         })}
