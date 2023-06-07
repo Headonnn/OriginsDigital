@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:5002/video`)
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch((error) => console.error(error));
-  }, []);
-
-  console.warn(data);
+  const { dataVideo } = useContext(VideoContext);
 
   const responsive = {
     largeDesktop: {
@@ -36,30 +28,32 @@ function CarouselAll() {
       partialVisibilityGutter: 30,
     },
   };
-
+  console.warn(dataVideo.thumbnail);
   return (
-    <div className="carousel mx-auto bg-neutral-950">
-      <h2 className="Poppins text-2xl text-white font-light py-6 ml-4">
-        Toutes les videos
-      </h2>
-      <Carousel
-        responsive={responsive}
-        arrows
-        draggable
-        swipeable
-        infinite={false}
-        keyBoardControl
-        containerClass="carousel-container"
-      >
-        {data.map((video) => {
-          return (
-            <div className="carousel-item relative m-4">
-              <img src={video.thumbnail} alt={video.title} />
-            </div>
-          );
-        })}
-      </Carousel>
-    </div>
+    dataVideo.length > 0 && (
+      <div className="carousel mx-auto bg-neutral-950">
+        <h2 className="Poppins text-2xl text-white font-light py-6 ml-4">
+          Toutes les videos
+        </h2>
+        <Carousel
+          responsive={responsive}
+          arrows
+          draggable
+          swipeable
+          infinite={false}
+          keyBoardControl
+          containerClass="carousel-container"
+        >
+          {dataVideo.map((video) => {
+            return (
+              <div className="carousel-item relative m-4">
+                <img src={video.thumbnail} alt={video.title} />
+              </div>
+            );
+          })}
+        </Carousel>
+      </div>
+    )
   );
 }
 

@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
 
 function App() {
   const [currentUrl, setCurrentUrl] = useState("");
+  const [dataVideo, setDataVideo] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5002/video`)
+      .then((res) => res.json())
+      .then((result) => setDataVideo(result))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <VideoContext.Provider value={{ currentUrl, setCurrentUrl }}>
+    <VideoContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{ dataVideo, setDataVideo, currentUrl, setCurrentUrl }}
+    >
       <Router />
-
     </VideoContext.Provider>
-
-    </>
-
   );
 }
 
