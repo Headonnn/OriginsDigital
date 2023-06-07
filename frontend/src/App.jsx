@@ -3,7 +3,8 @@ import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
 
 function App() {
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentVideo, setCurrentVideo] = useState(undefined);
+
   const [dataVideo, setDataVideo] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5002/video`)
@@ -16,7 +17,7 @@ function App() {
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <VideoContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ dataVideo, setDataVideo, currentUrl, setCurrentUrl }}
+      value={{ dataVideo, setDataVideo, currentVideo, setCurrentVideo }}
     >
       <Router />
     </VideoContext.Provider>

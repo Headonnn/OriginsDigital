@@ -97,10 +97,10 @@ VALUES
 
 INSERT INTO video (title, url, description, thumbnail)
 VALUES
-("Video de skate", "https://www.pexels.com/fr-fr/video/ski-montagne-skieur-piste-de-ski-4274798/", "uUn mec qui fait du ski", "https://cdn.pixabay.com/photo/2014/10/22/08/38/skateboard-497706_1280.jpg"),
-("Video de surf", "https://www.pexels.com/fr-fr/video/homme-surf-856132/", "Un mec qui fait du surf", "https://cdn.pixabay.com/photo/2020/08/04/13/28/man-5462849_1280.jpg"),
-("Video d'escalade", "https://www.pexels.com/fr-fr/video/homme-montagne-corde-falaise-4162881/", "Un mec qui fait de la grimpette", "https://cdn.pixabay.com/photo/2013/02/10/00/02/bear-79838_1280.jpg"),
-("Video de pétanque", "https://www.pexels.com/fr-fr/video/gens-amis-jouer-jeu-10071090/", "des gens qui jouent à la pétanque", "https://cdn.pixabay.com/photo/2015/09/13/05/05/bmx-937725_1280.jpg");
+("Video de skate", "https://www.youtube.com/watch?v=t_9i6vCOwtE&ab_channel=Lucas-WCS", "uUn mec qui fait du ski", "https://cdn.pixabay.com/photo/2014/10/22/08/38/skateboard-497706_1280.jpg"),
+("Video de surf", "https://www.youtube.com/watch?v=gfxAZIX8hC4&list=PLDzslQtErjzjJs4Y5Te7kVoA3OwXGT2Td&ab_channel=BlitzstreamFacile/", "Un mec qui fait du surf", "https://cdn.pixabay.com/photo/2020/08/04/13/28/man-5462849_1280.jpg"),
+("Video d'escalade", "https://www.youtube.com/watch?v=JgWU5Ou6SPU&ab_channel=EurosportFrance", "Un mec qui fait de la grimpette", "https://cdn.pixabay.com/photo/2013/02/10/00/02/bear-79838_1280.jpg"),
+("Video de pétanque", "https://www.youtube.com/watch?v=v9ft_84aOjw&ab_channel=MeilleursMomentsdeP%C3%A9tanque", "des gens qui jouent à la pétanque", "https://cdn.pixabay.com/photo/2015/09/13/05/05/bmx-937725_1280.jpg");
 
 --   ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
