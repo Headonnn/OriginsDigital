@@ -12,6 +12,7 @@ function App() {
       <Hero />
       <Router />
       <CarouselAll />
+      <CarouselAll />
       <Footer />
     </>
   );
