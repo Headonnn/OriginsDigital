@@ -9,9 +9,11 @@ function VideoDescription() {
   return (
     <>
       <NavBar />
-      <SmallPlayer />
+      <div className=" bg-black ">
+        <SmallPlayer />
+        <DescriptionVideo />
+      </div>
 
-      <DescriptionVideo />
       <Footer />
     </>
   );
