@@ -26,6 +26,7 @@
   "author": "Wild Code School",
   "license": "MIT",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "husky": "^8.0.3",
