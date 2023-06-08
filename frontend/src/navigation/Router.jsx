@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import VideoDescription from "../pages/VideoDescription";
 import Watch from "../pages/Watch";
 import CreateAccountForm from "../components/CreateAccountForm";
+import CreationCompteMessage from "../components/CreationCompteMessage";
 
 function Router() {
   return (
@@ -16,6 +17,10 @@ function Router() {
       <Route path="/description/:id" element={<VideoDescription />} />
       <Route path="/watch/:id" element={<Watch />} />
       <Route path="/createaccountform" element={<CreateAccountForm />} />
+      <Route
+        path="/accountcreationmessage"
+        element={<CreationCompteMessage />}
+      />
     </Routes>
   );
 }
