@@ -10,7 +10,6 @@ function VideoDescription() {
     <>
       <NavBar />
       <SmallPlayer />
-
       <DescriptionVideo />
       <Footer />
     </>
