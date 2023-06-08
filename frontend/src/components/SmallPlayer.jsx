@@ -7,13 +7,8 @@ function SmallPlayer() {
   const { dataVideo } = useContext(VideoContext);
   const params = useParams();
   return (
-    <div>
-      <ReactPlayer
-        url={dataVideo[params.id].url}
-        controls
-        width="384px"
-        height="216px"
-      />
+    <div className="flex justify-center bg-black">
+      <ReactPlayer url={dataVideo[params.id].url} controls width="50%" />
     </div>
   );
 }

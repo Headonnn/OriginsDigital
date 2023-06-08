@@ -64,9 +64,11 @@ function Hero() {
                 <BsChevronCompactLeft onClick={prevSlide} size={30} />
               </div>
               <div className="flex grow justify-center items-end h-[100%] gap-[20%]">
-                <div className=" flex   items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer">
-                  <BsFillPlayFill /> Lecture
-                </div>
+                <Link to={`/watch/${index}`}>
+                  <div className=" flex   items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer">
+                    <BsFillPlayFill /> Lecture
+                  </div>
+                </Link>
                 <Link to={`/description/${index}`}>
                   <div className="    flex items-center gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer">
                     <BsInfoCircle />
