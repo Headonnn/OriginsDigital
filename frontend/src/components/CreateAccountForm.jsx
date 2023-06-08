@@ -1,11 +1,9 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 function CreateAccountForm() {
   return (
-
     <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
       <div
         className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute bottom-[-10px] left-[60px]"
@@ -153,7 +151,7 @@ function CreateAccountForm() {
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-m font-bold text-white font-poppins bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              <a href="/accountcreationmessage">Je m'inscris !</a>
+              <NavLink to="/CreateAccountMsg">Je m'inscris !</NavLink>
             </button>
           </div>
         </form>
