@@ -1,4 +1,5 @@
-import React from "react"; // Importation du module React
+import React from "react"; //
+import { NavLink } from "react-router-dom";
 import logo1 from "../assets/images/logo_nike_blanc.jpg"; // Importation de l'image pour le logo 1
 import logo2 from "../assets/images/logo-NVIDIA.jpg"; // Importation de l'image pour le logo 2
 import logo3 from "../assets/images/logo-puma.jpg"; // Importation de l'image pour le logo 3
@@ -17,7 +18,7 @@ function Footer() {
       {/* Div pour la partie supérieure du footer */}
       <div className="flex flex-col md:flex-row justify-center md:justify-start space-x-0 md:space-x-14">
         <p className="text-white font-poppins text-xs md:text-base mb-2 md:mb-0">
-          COOKIES
+          <NavLink>COOKIES</NavLink>
         </p>{" "}
         {/* Texte "COOKIES" */}
         <p className="text-white font-poppins text-xs md:text-base hidden md:inline mb-2 md:mb-0">
@@ -25,7 +26,7 @@ function Footer() {
         </p>{" "}
         {/* Barre verticale */}
         <p className="text-white font-poppins text-xs md:text-base mb-2 md:mb-0">
-          MENTIONS LEGALES
+          <NavLink>MENTIONS LEGALES </NavLink>
         </p>{" "}
         {/* Texte "MENTIONS LEGALES" */}
         <p className="text-white font-poppins text-xs md:text-base hidden md:inline mb-2 md:mb-0">
@@ -33,7 +34,7 @@ function Footer() {
         </p>{" "}
         {/* Barre verticale */}
         <p className="text-white font-poppins text-xs md:text-base mb-2 md:mb-0">
-          POLITIQUE DE CONFIDENTIALITE
+          <NavLink>POLITIQUE DE CONFIDENTIALITE </NavLink>
         </p>{" "}
         {/* Texte "POLITIQUE DE CONFIDENTIALITE" */}
       </div>
