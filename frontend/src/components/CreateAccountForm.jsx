@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 function CreateAccountForm() {
@@ -24,8 +25,12 @@ function CreateAccountForm() {
       />
 
       <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-20 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-        <FaTimes className="absolute top-8 right-8 cursor-pointer text-orange-500 w-10 h-10" />
-
+        <div>
+          <NavLink to="/login">
+            {" "}
+            <FaTimes className="absolute top-8 right-8 cursor-pointer text-orange-500 w-10 h-10" />{" "}
+          </NavLink>
+        </div>
         <h1 className="text-white text-3xl font-bold font-poppins text-center mt-15">
           Création de votre compte
         </h1>
@@ -33,7 +38,7 @@ function CreateAccountForm() {
           <div>
             <label
               htmlFor="email"
-              className="block text-xl font-bold text-white"
+              className="block text-xl font-bold font-poppins text-white"
             >
               Votre Username
             </label>
@@ -51,7 +56,7 @@ function CreateAccountForm() {
           <div>
             <label
               htmlFor="Prénom"
-              className="block text-xl font-bold text-white "
+              className="block text-xl font-bold font-poppins text-white "
             >
               Prénom
             </label>
@@ -66,7 +71,10 @@ function CreateAccountForm() {
             </div>
           </div>
           <div>
-            <label htmlFor="Nom" className="block text-xl font-bold text-white">
+            <label
+              htmlFor="Nom"
+              className="block text-xl font-bold font-poppins text-white"
+            >
               Nom
             </label>
             <div className="py-2">
@@ -82,7 +90,7 @@ function CreateAccountForm() {
           <div>
             <label
               htmlFor="mail"
-              className="block text-xl font-bold text-white"
+              className="block text-xl font-bold font-poppins text-white"
             >
               E-mail
             </label>
@@ -99,7 +107,7 @@ function CreateAccountForm() {
           <div>
             <label
               htmlFor="password"
-              className="block text-xl font-bold text-white"
+              className="block text-xl font-bold font-poppins text-white"
             >
               Password
             </label>
@@ -114,7 +122,7 @@ function CreateAccountForm() {
             </div>
           </div>
 
-          {/* <div className="flex pt-4 items-center ">
+          <div className="flex pt-4 items-center ">
             <input
               id="terms-and-privacy"
               name="terms-and-privacy"
@@ -126,22 +134,22 @@ function CreateAccountForm() {
               className="ml-2 block text-sm text-gray-900"
             >
               J'ai lu et j'accepte les
-              <a href="" className="text-indigo-600 hover:text-indigo-500">
+              <a href="/" className="text-indigo-600 hover:text-indigo-500">
                 Conditions
               </a>
               et la
-              <a href="" className="text-indigo-600 hover:text-indigo-500">
+              <a href="/" className="text-indigo-600 hover:text-indigo-500">
                 {" "}
                 Politique de Confidentialité{" "}
               </a>
               .
             </label>
-          </div> */}
+          </div>
 
-          <div className="">
+          <div className="mt-4">
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-m font-bold text-white font-poppins bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Je m'inscris !
             </button>

@@ -9,17 +9,17 @@ function BurgerMenu() {
 
   return (
     <div>
-      <nav>
+      <nav className="md:hidden">
         {openMenu === false ? (
           <GiHamburgerMenu
             className="hover:text-orange-600"
-            size={30}
+            size={50}
             onClick={() => setOpenMenu(!openMenu)}
           />
         ) : (
           <GoX
             className="hover:text-orange-600"
-            size={35}
+            size={50}
             onClick={() => setOpenMenu(!openMenu)}
           />
         )}
