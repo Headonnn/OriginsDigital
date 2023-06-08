@@ -1,20 +1,22 @@
 import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import VideoContext from "../../contexts/VideoContext";
 
 function DescriptionVideo() {
-  const { currentVideo } = useContext(VideoContext);
+  const { dataVideo } = useContext(VideoContext);
+  const params = useParams();
   return (
     <div className="description-video-container bg-black h-auto flex flex-col justify-center items-start px-4 md:px-20 lg:px-40 max-w-full overflow-hidden">
       {/* Titre */}
       <div className="text-white font-poppins mb-6">
         <h1 className="text-2xl md:text-3xl font-bold mt-10">
-          {currentVideo.title}
+          {dataVideo[params.id].title}
         </h1>
       </div>
       {/* Description */}
       <div className="text-white font-poppins mb-8">
         <h2 className="text-base md:text-lg overflow-y-auto">
-          {currentVideo.description}
+          {dataVideo[params.id].description}
         </h2>
       </div>
       {/* Catégorie */}

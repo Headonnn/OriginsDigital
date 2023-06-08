@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import ReactPlayer from "react-player";
+import { useParams } from "react-router-dom";
 import VideoContext from "../../contexts/VideoContext";
 
 function SmallPlayer() {
-  const { currentVideo } = useContext(VideoContext);
-
+  const { dataVideo } = useContext(VideoContext);
+  const params = useParams();
   return (
     <div>
       <ReactPlayer
-        url={currentVideo.url}
+        url={dataVideo[params.id].url}
         controls
         width="384px"
         height="216px"
