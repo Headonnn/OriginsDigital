@@ -151,7 +151,7 @@ function CreateAccountForm() {
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-m font-bold text-white font-poppins bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Je m'inscris !
+              <a href="/accountcreationmessage">Je m'inscris !</a>
             </button>
           </div>
         </form>
