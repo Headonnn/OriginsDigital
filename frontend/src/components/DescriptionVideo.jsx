@@ -6,6 +6,11 @@ import VideoContext from "../../contexts/VideoContext";
 function DescriptionVideo() {
   const { dataVideo } = useContext(VideoContext);
   const params = useParams();
+
+  if (!dataVideo || !dataVideo[params.id]) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex justify-center ">
       <div className="description-video-container  h-auto flex flex-col  items-start px-4 md:px-20 lg:px-40 max-w-full overflow-hidden">

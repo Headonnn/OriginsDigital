@@ -46,14 +46,14 @@ function CarouselAll() {
         >
           {dataVideo.map((video, index) => {
             return (
-              <Link to={`/description/${index}`}>
-                <div
-                  key={video.id}
-                  className="carousel-item relative m-4 hover:scale-105 transition"
-                >
+              <div
+                key={video.id}
+                className="carousel-item relative m-4 hover:scale-105 transition"
+              >
+                <Link to={`/description/${index}`}>
                   <img src={video.thumbnail} alt={video.title} />
-                </div>
-              </Link>
+                </Link>
+              </div>
             );
           })}
         </Carousel>
