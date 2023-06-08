@@ -11,7 +11,7 @@ import { RxDotFilled } from "react-icons/rx";
 import VideoContext from "../../contexts/VideoContext";
 
 function Hero() {
-  const { dataVideo, setCurrentVideo } = useContext(VideoContext);
+  const { dataVideo } = useContext(VideoContext);
 
   if (dataVideo === undefined) return null;
 
@@ -67,13 +67,8 @@ function Hero() {
                 <div className=" flex   items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer">
                   <BsFillPlayFill /> Lecture
                 </div>
-                <Link to="/description">
-                  <div
-                    className="    flex items-center gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer"
-                    onClick={() => setCurrentVideo(dataVideo[index])}
-                    onKeyDown={() => setCurrentVideo(dataVideo[index])}
-                    role="presentation"
-                  >
+                <Link to={`/description/${index}`}>
+                  <div className="    flex items-center gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer">
                     <BsInfoCircle />
                     Plus d'infos
                   </div>

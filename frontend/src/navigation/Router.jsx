@@ -9,7 +9,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/description" element={<VideoDescription />} />
+      <Route path="/description/:id" element={<VideoDescription />} />
     </Routes>
   );
 }
