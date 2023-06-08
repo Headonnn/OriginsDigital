@@ -29,7 +29,6 @@ function CarouselAll() {
       partialVisibilityGutter: 30,
     },
   };
-  console.warn(dataVideo.thumbnail);
   return (
     dataVideo.length > 0 && (
       <div className="carousel mx-auto bg-neutral-950">
@@ -45,9 +44,9 @@ function CarouselAll() {
           keyBoardControl
           containerClass="carousel-container"
         >
-          {dataVideo.map((video) => {
+          {dataVideo.map((video, index) => {
             return (
-              <Link to="/description">
+              <Link to={`/description/${index}`}>
                 <div
                   key={video.id}
                   className="carousel-item relative m-4 hover:scale-105 transition"
