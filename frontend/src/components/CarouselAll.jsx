@@ -30,6 +30,7 @@ function CarouselAll({ isFiltered }) {
       partialVisibilityGutter: 30,
     },
   };
+
   const handleDateNouv = (videodate) => {
     const test = new Date();
     const te = test.setDate(test.getDate() - 7);
@@ -61,6 +62,7 @@ function CarouselAll({ isFiltered }) {
           keyBoardControl
           containerClass="carousel-container"
         >
+
           {dataVideo
             .filter((e) => {
               if (isFiltered) {
@@ -69,17 +71,18 @@ function CarouselAll({ isFiltered }) {
               return e;
             })
             .map((video, index) => {
-              return (
+            return (
+              <div
+                key={video.id}
+                className="carousel-item relative m-4 hover:scale-105 transition"
+              >
                 <Link to={`/description/${index}`}>
-                  <div
-                    key={video.id}
-                    className="carousel-item relative m-4 hover:scale-105 transition"
-                  >
-                    <img src={video.thumbnail} alt={video.title} />
-                  </div>
+                  <img src={video.thumbnail} alt={video.title} />
                 </Link>
-              );
-            })}
+              </div>
+            );
+          })}
+
         </Carousel>
       </div>
     )

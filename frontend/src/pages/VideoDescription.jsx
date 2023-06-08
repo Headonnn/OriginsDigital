@@ -11,9 +11,9 @@ function VideoDescription() {
       <NavBar />
       <div className=" bg-black ">
         <SmallPlayer />
-
         <DescriptionVideo />
       </div>
+
       <Footer />
     </>
   );
