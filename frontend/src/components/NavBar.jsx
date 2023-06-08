@@ -30,7 +30,7 @@ function Header() {
           <NavLink>Catégories</NavLink>
         </h2>
         <h2 className="text-white  text-xl font-poppins hidden md:block tracking-wide  hover:text-orange-600">
-          <NavLink to="/login">Admin</NavLink>
+          <NavLink to="/admin">Admin</NavLink>
         </h2>
       </div>
       <div className="flex w-screen items-center top-0 h-24 justify-end gap-5 bg-black text-white pr-8">
