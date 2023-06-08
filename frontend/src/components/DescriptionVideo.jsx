@@ -6,6 +6,7 @@ import VideoContext from "../../contexts/VideoContext";
 function DescriptionVideo() {
   const { dataVideo } = useContext(VideoContext);
   const params = useParams();
+
   return (
     <div className="flex justify-center ">
       <div className="description-video-container  h-auto flex flex-col  items-start px-4 md:px-20 lg:px-40 max-w-full overflow-hidden">
@@ -34,7 +35,7 @@ function DescriptionVideo() {
         {/* Date de publication */}
         <div className="text-white font-poppins mb-1">
           <h6 className="text-sm md:text-base font-medium mb-6">
-            Date de publication : 01.01.23
+            Date de publication : {dataVideo[params.id].date}
           </h6>
         </div>
       </div>

@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import VideoContext from "../../contexts/VideoContext";
 
-function CarouselAll() {
+function CarouselAll({ isFiltered }) {
   const { dataVideo } = useContext(VideoContext);
 
   const responsive = {
@@ -29,12 +30,27 @@ function CarouselAll() {
       partialVisibilityGutter: 30,
     },
   };
-  console.warn(dataVideo.thumbnail);
+  const handleDateNouv = (videodate) => {
+    const test = new Date();
+    const te = test.setDate(test.getDate() - 7);
+    const dateParts = videodate.split("-");
+    const vid = new Date(
+      dateParts[0],
+      dateParts[1] - 1,
+      dateParts[2].substr(0, 2),
+      dateParts[2].substr(3, 2),
+      dateParts[2].substr(6, 2),
+      dateParts[2].substr(9, 2)
+    );
+    const vide = Date.parse(vid);
+    return te - vide <= 0;
+  };
+
   return (
     dataVideo.length > 0 && (
       <div className="carousel mx-auto bg-neutral-950">
         <h2 className="Poppins text-2xl text-white font-light py-6 ml-4">
-          Toutes les videos
+          {isFiltered ? "Nouveautés" : "Toutes les videos"}
         </h2>
         <Carousel
           responsive={responsive}
@@ -45,18 +61,25 @@ function CarouselAll() {
           keyBoardControl
           containerClass="carousel-container"
         >
-          {dataVideo.map((video, index) => {
-            return (
-              <Link to={`/description/${index}`}>
-                <div
-                  key={video.id}
-                  className="carousel-item relative m-4 hover:scale-105 transition"
-                >
-                  <img src={video.thumbnail} alt={video.title} />
-                </div>
-              </Link>
-            );
-          })}
+          {dataVideo
+            .filter((e) => {
+              if (isFiltered) {
+                return handleDateNouv(e.date);
+              }
+              return e;
+            })
+            .map((video, index) => {
+              return (
+                <Link to={`/description/${index}`}>
+                  <div
+                    key={video.id}
+                    className="carousel-item relative m-4 hover:scale-105 transition"
+                  >
+                    <img src={video.thumbnail} alt={video.title} />
+                  </div>
+                </Link>
+              );
+            })}
         </Carousel>
       </div>
     )
@@ -64,3 +87,6 @@ function CarouselAll() {
 }
 
 export default CarouselAll;
+CarouselAll.propTypes = {
+  isFiltered: PropTypes.bool.isRequired,
+};
