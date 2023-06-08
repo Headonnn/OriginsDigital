@@ -1,98 +1,65 @@
-import React from "react";
-import ReactPlayer from "react-player";
+import React, { useContext } from "react";
 import Carousel from "react-multi-carousel";
-import skate from "../assets/videos/skate.mp4";
-import surf from "../assets/videos/surf.mp4";
 import "react-multi-carousel/lib/styles.css";
+import { Link } from "react-router-dom";
+import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll() {
-  const arr = [
-    {
-      title: "Surfing is cool",
-      source: surf,
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-    {
-      title: "Skating is cool",
-      source: skate,
-      duration: 0.07,
-      description:
-        "The best Lorem Ipsum Generator in all the sea! Heave this scurvy copyfiller fer yar next adventure and cajol yar clients into walking the plank with ev'ry layout! Configure above, then get yer pirate ipsum...own the high seas, arg!",
-    },
-  ];
+  const { dataVideo } = useContext(VideoContext);
 
   const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+    largeDesktop: {
+      breakpoint: { max: 4000, min: 2000 },
       items: 5,
+      partialVisibilityGutter: 40,
+    },
+    desktop: {
+      breakpoint: { max: 2000, min: 1024 },
+      items: 4,
+      partialVisibilityGutter: 40,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 3,
+      partialVisibilityGutter: 30,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
       items: 1,
+      partialVisibilityGutter: 30,
     },
   };
-
+  console.warn(dataVideo.thumbnail);
   return (
-    <div className="carousel mx-auto">
-      <h2 className="text-2xl font-semibold mb-6 ml-4">Toutes les videos</h2>
-      <Carousel
-        responsive={responsive}
-        arrows
-        draggable
-        swipeable
-        infinite={false}
-        autoPlay={false}
-        autoPlaySpeed={3000}
-        containerClass="carousel-container"
-      >
-        {arr.map((video) => {
-          return (
-            <div className="carousel-item relative m-4">
-              <ReactPlayer
-                url={video.source}
-                controls
-                width="384px"
-                height="216px"
-              />
-            </div>
-          );
-        })}
-      </Carousel>
-    </div>
+    dataVideo.length > 0 && (
+      <div className="carousel mx-auto bg-neutral-950">
+        <h2 className="Poppins text-2xl text-white font-light py-6 ml-4">
+          Toutes les videos
+        </h2>
+        <Carousel
+          responsive={responsive}
+          arrows
+          draggable
+          swipeable
+          infinite
+          keyBoardControl
+          containerClass="carousel-container"
+        >
+          {dataVideo.map((video) => {
+            return (
+              <Link to="/description">
+                <div
+                  key={video.id}
+                  className="carousel-item relative m-4 hover:scale-105 transition"
+                >
+                  <img src={video.thumbnail} alt={video.title} />
+                </div>
+              </Link>
+            );
+          })}
+        </Carousel>
+      </div>
+    )
   );
 }
 

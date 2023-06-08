@@ -3,33 +3,45 @@ import React from "react";
 import { CiBurger } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import logolarge from "../assets/images/Logo_Origins-digital_White.png";
-import logosmall from "../assets/images/logo_simple.png";
+import logosmall from "../assets/fav-icon_OD.png";
 
 function Header() {
   return (
-    <span className="flex w-screen items-center inset-x-0 top-0 h-24">
+    <div className="flex w-screen items-center inset-x-0 top-0 h-24">
       <div className="flex w-screen items-center inset-x-0 top-0 h-24 justify-start pl-5 bg-black text-white">
         <a href="https://origins-digital.com">
           <img
-            className="h-22 w-60 hidden sm:block"
+            className="h-22 w-60 hidden md:block"
             src={logolarge}
             alt="Logo Origins-Digital"
           />
           <img
-            className="h-24 w-24 block sm:hidden"
+            className="h-20 w-20 block md:hidden"
             src={logosmall}
             alt="Logo Origins-Digital"
           />
         </a>
       </div>
-      <div className="flex w-screen items-center top-0 h-24 justify-end gap-5 pr-5 bg-black text-white ">
-        <h2 className="text-orange-600 text-xl font-poppins hidden sm:block">
-          Create Account
+      <div className="flex w-screen items-center top-0 h-24 justify-start gap-12 pr-5 bg-black text-white ">
+        <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide">
+          Accueil
         </h2>
-        <VscAccount size={56} className="block sm:hidden" />
-        <CiBurger size={72} />
+        <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide">
+          Catégories
+        </h2>
+        <h2 className="text-white  text-xl font-poppins hidden md:block tracking-wide">
+          Admin
+        </h2>
       </div>
-    </span>
+      <div className="flex w-screen items-center top-0 h-24 justify-end gap-5 bg-black text-white pr-8">
+        <h2 className="text-white border text-xl font-poppins hidden md:block tracking-wide p-2 rounded">
+          {" "}
+          Se connecter
+        </h2>
+        <VscAccount size={56} className="block md:hidden" />
+        <CiBurger size={72} className="block md:hidden" />
+      </div>
+    </div>
   );
 }
 
