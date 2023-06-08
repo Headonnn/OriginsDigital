@@ -34,7 +34,7 @@ function LoginId() {
       />
       <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-20 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
         <NavLink to="/">
-          <FaTimes className="absolute top-8 right-8 cursor-pointer text-orange-500 w-10 h-10" />
+           <FaTimes className="absolute top-8 right-8 cursor-pointer text-orange-500 w-10 h-10" />
         </NavLink>
         <h1 className="text-white text-5xl font-bold font-poppins text-center mt-15">
           LOGIN
