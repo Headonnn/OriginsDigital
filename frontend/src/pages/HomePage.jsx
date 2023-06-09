@@ -8,7 +8,11 @@ import VideoContext from "../../contexts/VideoContext";
 
 function HomePage() {
   const { dataVideo } = useContext(VideoContext);
-  const sections = ["Hero", "CarouselNouveautés", "CarouselAll"];
+  const sections = [
+    { id: 0, type: "Hero" },
+    { id: 1, type: "CarouselNouveautés" },
+    { id: 2, type: "CarouselAll" },
+  ];
   const [isFiltered, setIsFiltered] = useState(false);
   console.warn(isFiltered);
   return (
@@ -17,16 +21,16 @@ function HomePage() {
       {dataVideo.length > 0 && (
         <div>
           {sections.map((e) => {
-            if (e === "Hero") {
+            if (e.type === "Hero") {
               return (
-                <div>
+                <div key={e.id}>
                   <Hero />
                 </div>
               );
             }
-            if (e === "CarouselAll") {
+            if (e.type === "CarouselAll") {
               return (
-                <div>
+                <div key={e.id}>
                   <CarouselAll
                     isFiltered={false}
                     setIsFiltered={setIsFiltered}
@@ -35,7 +39,7 @@ function HomePage() {
               );
             }
             return (
-              <div>
+              <div key={e.id}>
                 <CarouselAll isFiltered setIsFiltered={setIsFiltered} />
               </div>
             );

@@ -7,7 +7,6 @@ function DescriptionVideo() {
   const { dataVideo } = useContext(VideoContext);
   const params = useParams();
 
-
   if (!dataVideo || !dataVideo[params.id]) {
     return <div>Loading...</div>;
   }
@@ -40,7 +39,7 @@ function DescriptionVideo() {
         {/* Date de publication */}
         <div className="text-white font-poppins mb-1">
           <h6 className="text-sm md:text-base font-medium mb-6">
-            Date de publication : {dataVideo[params.id].date}
+            Date de publication : {dataVideo[params.id].date.substring(0, 10)}
           </h6>
         </div>
       </div>

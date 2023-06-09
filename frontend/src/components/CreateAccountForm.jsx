@@ -5,7 +5,6 @@ import { FaTimes } from "react-icons/fa";
 
 function CreateAccountForm() {
   return (
-
     <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
       <div
         className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute bottom-[-10px] left-[60px]"
