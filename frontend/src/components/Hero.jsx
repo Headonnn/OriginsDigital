@@ -65,12 +65,12 @@ function Hero() {
               </div>
               <div className="flex grow justify-center items-end h-[100%] gap-[20%]">
                 <Link to={`/watch/${index}`}>
-                  <div className=" flex   items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer">
+                  <div className=" flex  hover:bg-gray-300 items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer transition">
                     <BsFillPlayFill /> Lecture
                   </div>
                 </Link>
                 <Link to={`/description/${index}`}>
-                  <div className="    flex items-center gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer">
+                  <div className="    flex items-center hover:bg-black/80 gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer transition">
                     <BsInfoCircle />
                     Plus d'infos
                   </div>

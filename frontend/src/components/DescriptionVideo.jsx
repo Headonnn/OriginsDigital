@@ -39,7 +39,7 @@ function DescriptionVideo() {
         {/* Date de publication */}
         <div className="text-white mb-[1rem]">
           <h6 className="text-sm md:text-base font-medium mb-6">
-            Date de publication : {dataVideo[params.id].date}
+            Date de publication : {dataVideo[params.id].date.substring(0, 10)}
           </h6>
         </div>
       </div>
