@@ -7,15 +7,15 @@ import SmallPlayer from "../components/SmallPlayer";
 
 function VideoDescription() {
   return (
-    <>
+    <div className="bg-black">
       <NavBar />
-      <div className=" bg-black ">
+      <div className="bg-black flex flex-col w-[50%] m-auto">
         <SmallPlayer />
         <DescriptionVideo />
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 
