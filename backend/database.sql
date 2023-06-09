@@ -102,5 +102,14 @@ INSERT INTO video (id, title, url, description, thumbnail, `date`)
 VALUES (7, 'Vidéo de skate', 'https://www.youtube.com/watch?v=vSBcrmx4aFw&ab_channel=JoshNeuman', 'Vidéo de skate', 'https://media.sudouest.fr/4233793/1000x500/thumbnail-img-7165.jpg?v=1627294930', '2023-05-25');
 
 INSERT INTO video (id, url, title, description, thumbnail, `date`, is_freemium, is_in_hero)
-VALUES (8, 'https://www.youtube.com/watch?v=uQITWbAaDx0&t=170s&ab_channel=GuillaumeN%C3%A9ry', 'Vidéo de free diving', 'Guillaume Néry fait de l''apnée', 'https://img.redbull.com/images/c_crop,x_0,y_125,h_1249,w_999/c_fill,w_400,h_540/q_auto:low,f_auto/redbullcom/2015/03/11/399ba4bb545e3ffdd188528081a12a32/freediving-cave', '2023-05-26', 0, 0);
+VALUES (8, 'https://www.youtube.com/watch?v=uQITWbAaDx0&t=170s&ab_channel=GuillaumeN%C3%A9ry', 'Vidéo de free diving', 'Guillaume Néry fait de l''apnée', 'https://apneatotalmalta.com/wp-content/uploads/2023/02/Apnea-Total-Malta-Freediving-School-Freediving-Explained-Featured.jpg', '2023-05-26', 0, 0);
+
+INSERT INTO video (id, title, url, description, thumbnail, `date`, is_freemium, is_in_hero)
+VALUES (9, 'Vidéo d''AMHE', 'https://www.youtube.com/watch?v=HdEkVKzuptA&ab_channel=Bj%C3%B6rnR%C3%BCther', 'Les AMHE c''est cool', 'https://pbs.twimg.com/media/CNfMDCUUAAAASjk.jpg:large', '2023-06-09', 0, 0);
+
+
+INSERT INTO video (id, title, url, description, thumbnail, `date`, is_freemium, is_in_hero)
+VALUES (10, 'Vidéo de Free Solo', 'https://www.youtube.com/watch?v=AqLAaDJFuiM&ab_channel=NatGeoFrance', 'Alex Honnold fait des trucs de zinzin', 'https://img.lemde.fr/2021/07/16/732/0/3648/2427/664/0/75/0/8d68ba4_554117786-freesolo-13-jpg.jpg', '2023-06-08', 0, 0);
+;
+
 
