@@ -7,7 +7,6 @@ function DescriptionVideo() {
   const { dataVideo } = useContext(VideoContext);
   const params = useParams();
 
-
   if (!dataVideo || !dataVideo[params.id]) {
     return <div>Loading...</div>;
   }
