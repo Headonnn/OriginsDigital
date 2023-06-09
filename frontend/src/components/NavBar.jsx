@@ -25,14 +25,12 @@ function Header() {
         </Link>
       </div>
       <div className="flex w-screen items-center top-0 h-24 justify-start gap-12 pr-5 bg-black text-white ">
-
         {location.pathname !== "/" && (
           <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide  hover:text-orange-600">
             <NavLink to="/">Accueil</NavLink>
           </h2>
         )}
         <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide  hover:text-orange-600">
-
           <NavLink>Catégories</NavLink>
         </h2>
         <h2 className="text-white  text-xl hidden md:block tracking-wide  hover:text-orange-600 transition">

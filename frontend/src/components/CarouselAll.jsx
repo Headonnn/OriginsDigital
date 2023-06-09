@@ -69,13 +69,13 @@ function CarouselAll({ isFiltered }) {
               }
               return e;
             })
-            .map((video, index) => {
+            .map((video) => {
               return (
                 <div
                   key={video.id}
                   className="carousel-item relative m-4 hover:scale-105 transition"
                 >
-                  <Link to={`/description/${index}`}>
+                  <Link to={`/description/${video.id - 1}`}>
                     <img src={video.thumbnail} alt={video.title} />
                   </Link>
                 </div>
