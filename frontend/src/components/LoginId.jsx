@@ -81,7 +81,7 @@ function LoginId() {
             type="button"
             className="bg-gradient-to-r from-red-600 to-orange-500 text-white font-regular text-base font-poppins rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700 w-full"
           >
-            <NavLink to="/createaccountform">Create account</NavLink>
+            <NavLink to="/accountcreation">Create account</NavLink>
           </button>
         </div>
       </div>

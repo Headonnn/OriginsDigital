@@ -9,6 +9,7 @@ import Watch from "../pages/Watch";
 import CreateAccountForm from "../components/CreateAccountForm";
 import CreateAccountMsg from "../components/CreateAccountMsg";
 import CreateAccountProfile from "../components/CreateAccountProfile";
+import AccountCreation from "../pages/AccountCreation";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/accountcreation" element={<AccountCreation />} />
       <Route path="/admin" element={<AdminMode />} />
       <Route path="/description/:id" element={<VideoDescription />} />
       <Route path="/watch/:id" element={<Watch />} />
