@@ -105,6 +105,6 @@ VALUES
 
 INSERT INTO category (name) VALUES ('skate', 'voltige', 'surf', 'wingsuit', 'apnée', 'sport de combat');
 
-INSERT INTO video_category (video_id, category_id) VALUES (1, 4), ()
+INSERT INTO video_category (video_id, category_id) VALUES (1, 4), (2, 6), (4, 2), (5, 3);
 
 
