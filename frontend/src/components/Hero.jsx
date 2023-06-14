@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import {
   BsFillVolumeMuteFill,
   BsFillVolumeUpFill,
@@ -8,68 +7,62 @@ import {
 } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
-import { RxDotFilled } from "react-icons/rx";
+
 import ReactPlayer from "react-player";
 import VideoContext from "../../contexts/VideoContext";
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
+
 function Hero() {
   const { dataVideo } = useContext(VideoContext);
-const [sound,setSound]=useState(true)
+  const [sound, setSound] = useState(true);
   if (dataVideo === undefined) return null;
 
-
-  console.log(dataVideo[0].url)
-
-  const [index, setIndex] = useState(0);
-
-
   return (
-    dataVideo.length > 0 && 
-<div className="w-full h-[80vh] relative shadow-inner">
-<ReactPlayer
-        url={dataVideo[2].url}
-        playing
-        loop
-        muted={!sound}
-        width="100%"
-        height="100%"
-        className=""
-      />
-      <div  className="absolute top-0 z-30 w-full ">
-      <NavBar />
-      </div>
-   
- 
-      <div className="absolute top-0 px-10 pb-10 w-full h-full">
-        <div className="h-full  flex justify-between  text-white">
-          <div className=" flex flex-col  justify-end">
-         
-            <h1 className="text-5xl mb-10">{dataVideo[2].title   }</h1>
-            <div className="flex flex-row w-full gap-4 ">
-              <Link to={`/watch/0`}>
-                <div className=" flex items-center  gap-[16px] border bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
-                  <BsFillPlayFill /> Lecture
-                </div>
+    dataVideo.length > 0 && (
+      <div className="w-full h-[80vh] relative shadow-inner">
+        <ReactPlayer
+          url={dataVideo[2].url}
+          playing
+          loop
+          muted={!sound}
+          width="100%"
+          height="100%"
+          className=""
+        />
+        <div className="absolute top-0 z-30 w-full ">
+          <NavBar />
+        </div>
 
-              </Link>
-              <Link to={`/description/0`}>
-                <div className=" flex items-center  gap-[16px] border bg-[#9ca3af]/80 text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-                  < BsInfoCircle /> Plus d'infos
-                </div>
-              </Link>
-        
-
+        <div className="absolute top-0 px-10 pb-10 w-full h-full">
+          <div className="h-full  flex justify-between  text-white">
+            <div className=" flex flex-col  justify-end">
+              <h1 className="text-5xl mb-10">{dataVideo[2].title}</h1>
+              <div className="flex flex-row w-full gap-4 ">
+                <Link to="/watch/0">
+                  <div className=" flex items-center  gap-[16px] border bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
+                    <BsFillPlayFill /> Lecture
+                  </div>
+                </Link>
+                <Link to="/description/0">
+                  <div className=" flex items-center  gap-[16px] border bg-[#9ca3af]/80 text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                    <BsInfoCircle /> Plus d'infos
+                  </div>
+                </Link>
+              </div>
             </div>
-       
-          </div>
-          <div className="flex h-full text-5xl cursor-pointer items-end m " onClick={()=>setSound(!sound)}>
-            {sound && <BsFillVolumeUpFill/> }
-            {!sound && <BsFillVolumeMuteFill/>}
+            <div
+              className="flex h-full text-5xl cursor-pointer items-end m "
+              onClick={() => setSound(!sound)}
+              onKeyDown={() => setSound(!sound)}
+              role="presentation"
+            >
+              {sound && <BsFillVolumeUpFill />}
+              {!sound && <BsFillVolumeMuteFill />}
+            </div>
           </div>
         </div>
       </div>
-
-</div>
+    )
   );
 }
 
