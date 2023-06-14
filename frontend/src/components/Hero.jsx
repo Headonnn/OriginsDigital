@@ -1,10 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  BsChevronCompactLeft,
-  BsChevronCompactRight,
-  BsFillPlayFill,
-  BsInfoCircle,
-} from "react-icons/bs";
+import React, { useState, useContext } from "react";
+import { BsFillPlayFill, BsInfoCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { RxDotFilled } from "react-icons/rx";
 
@@ -16,23 +11,6 @@ function Hero() {
   if (dataVideo === undefined) return null;
 
   const [index, setIndex] = useState(0);
-  const prevSlide = () => {
-    const isFirstSlide = index === 0;
-    const newIndex = isFirstSlide ? dataVideo.length - 1 : index - 1;
-    setIndex(newIndex);
-  };
-  const nextSlide = () => {
-    const isLastSlide = index === dataVideo.length - 1;
-    const newIndex = isLastSlide ? 0 : index + 1;
-    setIndex(newIndex);
-  };
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [index]);
 
   return (
     dataVideo.length > 0 && (
@@ -60,24 +38,18 @@ function Hero() {
               ))}
             </div>
             <div className="flex grow items-center justify-between">
-              <div className="  flex-none -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer ">
-                <BsChevronCompactLeft onClick={prevSlide} size={30} />
-              </div>
               <div className="flex grow justify-center items-end h-[100%] gap-[20%]">
                 <Link to={`/watch/${index}`}>
-                  <div className=" flex  hover:bg-gray-300 items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer transition">
+                  <div className=" flex hover:bg-gray-300 hidden md:block tracking-wide  items-center gap-[16px]  bg-white text-black rounded-xl  mb-[16px] py-3 px-5 cursor-pointer transition">
                     <BsFillPlayFill /> Lecture
                   </div>
                 </Link>
                 <Link to={`/description/${index}`}>
-                  <div className="    flex items-center hover:bg-black/80 gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer transition">
+                  <div className="flex items-center hidden md:block tracking-wide hover:bg-black/80 gap-[16px] bg-black/50 text-white rounded-xl  mb-[16px] py-3 px-5  cursor-pointer transition">
                     <BsInfoCircle />
                     Plus d'infos
                   </div>
                 </Link>
-              </div>
-              <div className=" flex-none -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer ">
-                <BsChevronCompactRight onClick={nextSlide} size={30} />
               </div>
             </div>
           </div>
