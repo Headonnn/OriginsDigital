@@ -50,7 +50,7 @@ function CarouselAll({ isFiltered }) {
   return (
     dataVideo.length > 0 && (
       <div className="carousel mx-auto bg-neutral-950">
-        <h2 className="Poppins text-lg text-white font-light py-6 ml-4">
+        <h2 className="text-lg text-white font-light py-6 ml-4">
           {isFiltered ? "Nouveautés" : "Toutes les videos"}
         </h2>
         <Carousel
