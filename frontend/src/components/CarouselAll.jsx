@@ -16,7 +16,7 @@ function CarouselAll({section,isFiltered}) {
     },
     desktop: {
       breakpoint: { max: 2000, min: 1024 },
-      items: 4,
+      items: 5,
       partialVisibilityGutter: 40,
     },
     tablet: {
@@ -50,8 +50,10 @@ function CarouselAll({section,isFiltered}) {
   return (
     dataVideo.length > 0 && (
       <div className="carousel mx-auto bg-neutral-950">
-        <h2 className="Poppins text-2xl text-white font-light py-6 ml-4">
-          {section.type}
+
+        <h2 className="text-lg text-white font-light py-6 ml-4">
+          {isFiltered ? "Nouveautés" : "Toutes les videos"}
+
         </h2>
         <Carousel
           responsive={responsive}
@@ -72,7 +74,11 @@ function CarouselAll({section,isFiltered}) {
                   className="carousel-item relative m-4 hover:scale-105 transition"
                 >
                   <Link to={`/description/${video.id - 1}`}>
-                    <img src={video.thumbnail} alt={video.title} />
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="h-52 w-88"
+                    />
                   </Link>
                 </div>
               );

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useContext } from "react";
 import {
   BsFillVolumeMuteFill,
@@ -5,6 +6,7 @@ import {
   BsFillPlayFill,
   BsInfoCircle,
 } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
 import { RxDotFilled } from "react-icons/rx";
 import ReactPlayer from "react-player";
@@ -15,7 +17,11 @@ function Hero() {
 const [sound,setSound]=useState(true)
   if (dataVideo === undefined) return null;
 
+
   console.log(dataVideo[0].url)
+
+  const [index, setIndex] = useState(0);
+
 
   return (
     dataVideo.length > 0 && 
@@ -44,6 +50,7 @@ const [sound,setSound]=useState(true)
                 <div className=" flex items-center  gap-[16px] border bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
                   <BsFillPlayFill /> Lecture
                 </div>
+
               </Link>
               <Link to={`/description/0`}>
                 <div className=" flex items-center  gap-[16px] border bg-[#9ca3af]/80 text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
@@ -51,6 +58,7 @@ const [sound,setSound]=useState(true)
                 </div>
               </Link>
         
+
             </div>
        
           </div>

@@ -1,51 +1,53 @@
 import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
 import BurgerMenu from "./BurgerMenu";
 import logolarge from "../assets/images/Logo_Origins-digital_White.png";
-import logosmall from "../assets/fav-icon_OD.png";
 
 function Header() {
   const location = useLocation();
 
   return (
-    <div className="flex w-screen items-center inset-x-0 top-0 h-24">
-      <div className="flex w-screen items-center inset-x-0 top-0 h-24 justify-start pl-5  text-white">
-        <Link to="/">
-          <img
-            className="h-22 w-60 hidden md:block"
-            src={logolarge}
-            alt="Logo Origins-Digital"
-          />
-          <img
-            className="h-20 w-20 block md:hidden"
-            src={logosmall}
-            alt="Logo Origins-Digital"
-          />
-        </Link>
-      </div>
-      <div className="flex w-screen items-center top-0 h-24 justify-start gap-12 pr-5  text-white ">
+
+    <nav className="flex justify-between items-center text-white inset-x-0 h-24">
+      <ul className="flex items-center gap-12">
+        <li>
+          <Link to="/">
+            <img className="w-48" src={logolarge} alt="Logo Origins-Digital" />
+          </Link>
+        </li>
+
         {location.pathname !== "/" && (
-          <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide  hover:text-orange-600">
+          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600">
             <NavLink to="/">Accueil</NavLink>
-          </h2>
+          </li>
         )}
-        <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide  hover:text-orange-600">
-          <NavLink>Catégories</NavLink>
-        </h2>
-        <h2 className="text-white  text-xl hidden md:block tracking-wide  hover:text-orange-600 transition">
+        <li className=" text-l hidden lg:block tracking-wide hover:text-orange-600">
+          <NavLink to="/decouvrir">Découvrir</NavLink>
+        </li>
+        <li className=" text-l hidden lg:block tracking-wide  hover:text-orange-600">
+          <NavLink>Contact</NavLink>
+        </li>
+        <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
+          <NavLink to="/admin">Ma Liste</NavLink>
+        </li>
+        <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
           <NavLink to="/admin">Admin</NavLink>
-        </h2>
+
+        </li>
+      </ul>
+      <div className="flex items-center pr-8 gap-8">
+        <NavLink to="/login">
+          <button
+            type="button"
+            className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
+          >
+            S'identifier
+          </button>
+        </NavLink>
+        <BurgerMenu className="block md:hidden" />
+
       </div>
-      <div className="flex w-screen items-center top-0 h-24 justify-end gap-5  text-white pr-8">
-        <h2 className="text-white border text-xl hidden md:block tracking-wide p-2 rounded-xl  hover:text-black hover:bg-white transition">
-          {" "}
-          <NavLink to="/login">Se connecter</NavLink>
-        </h2>
-        <VscAccount size={50} className="block md:hidden" />
-        <BurgerMenu size={60} className="block md:hidden" />
-      </div>
-    </div>
+    </nav>
   );
 }
 
