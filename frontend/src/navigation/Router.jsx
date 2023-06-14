@@ -24,8 +24,8 @@ function Router() {
       <Route path="/description/:id" element={<VideoDescription />} />
       <Route path="/watch/:id" element={<Watch />} />
       <Route path="/createaccountform" element={<CreateAccountForm />} />
-      <Route path="/CreateAccountMsg" element={<CreateAccountMsg />} />
-      <Route path="/CreateAccountProfile" element={<CreateAccountProfile />} />
+      <Route path="/createaccountmsg" element={<CreateAccountMsg />} />
+      <Route path="/createaccountprofile" element={<CreateAccountProfile />} />
     </Routes>
   );
 }

@@ -7,7 +7,7 @@ function App() {
   const [categorie, setCategorie] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/video`)
+    fetch(`http://localhost:5002/videos`)
       .then((res) => res.json())
       .then((result) => setDataVideo(result))
       .catch((error) => console.error(error));
