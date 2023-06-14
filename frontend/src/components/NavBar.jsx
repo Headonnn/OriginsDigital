@@ -7,13 +7,13 @@ function Header() {
   const location = useLocation();
 
   return (
-    <nav className="flex w-screen justify-between items-center text-white inset-x-0 bg-black h-24">
-      <div className="flex items-center">
-        <Link to="/">
-          <img className="w-48" src={logolarge} alt="Logo Origins-Digital" />
-        </Link>
-      </div>
+    <nav className="flex justify-between items-center text-white inset-x-0 bg-black h-24">
       <ul className="flex items-center gap-12">
+        <li>
+          <Link to="/">
+            <img className="w-48" src={logolarge} alt="Logo Origins-Digital" />
+          </Link>
+        </li>
         {location.pathname !== "/" && (
           <li className="text-l hidden lg:block tracking-wide hover:text-orange-600">
             <NavLink to="/">Accueil</NavLink>
