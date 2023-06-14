@@ -8,7 +8,7 @@ const browse = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).json({ error: "Internal Server Error" });
     });
 };
 
