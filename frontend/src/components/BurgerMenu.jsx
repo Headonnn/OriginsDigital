@@ -37,12 +37,14 @@ function BurgerMenu() {
               </li>
             </ul>
             <div className="flex flex-col p-2 justify-center mt-7">
-              <button
-                type="button"
-                className="border bg-white text-black rounded-xl py-1 transition"
-              >
-                <NavLink to="login">S'identifier</NavLink>
-              </button>
+              <div className="w-full flex justify-center">
+                <button
+                  type="button"
+                  className="border w-full md:w-60 hover:bg-gray-300 bg-white text-black rounded-xl py-1 transition w-50%"
+                >
+                  <NavLink to="login">S'identifier</NavLink>
+                </button>
+              </div>
               <p className="mt-3 text-sm text-center">
                 Première visite sur Origins Digital ?{" "}
                 <span className="font-bold">Inscrivez-vous</span>
