@@ -7,6 +7,7 @@ function Header() {
   const location = useLocation();
 
   return (
+
     <nav className="flex justify-between items-center text-white inset-x-0 h-24">
       <ul className="flex items-center gap-12">
         <li>
@@ -14,6 +15,7 @@ function Header() {
             <img className="w-48" src={logolarge} alt="Logo Origins-Digital" />
           </Link>
         </li>
+
         {location.pathname !== "/" && (
           <li className="text-l hidden lg:block tracking-wide hover:text-orange-600">
             <NavLink to="/">Accueil</NavLink>
@@ -30,6 +32,7 @@ function Header() {
         </li>
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
           <NavLink to="/admin">Admin</NavLink>
+
         </li>
       </ul>
       <div className="flex items-center pr-8 gap-8">
@@ -42,6 +45,7 @@ function Header() {
           </button>
         </NavLink>
         <BurgerMenu className="block md:hidden" />
+
       </div>
     </nav>
   );

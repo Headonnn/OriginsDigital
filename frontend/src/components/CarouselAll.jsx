@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import VideoContext from "../../contexts/VideoContext";
 
-function CarouselAll({ isFiltered }) {
+function CarouselAll({section,isFiltered}) {
   const { dataVideo } = useContext(VideoContext);
 
   const responsive = {
@@ -50,8 +50,10 @@ function CarouselAll({ isFiltered }) {
   return (
     dataVideo.length > 0 && (
       <div className="carousel mx-auto bg-neutral-950">
+
         <h2 className="text-lg text-white font-light py-6 ml-4">
           {isFiltered ? "Nouveautés" : "Toutes les videos"}
+
         </h2>
         <Carousel
           responsive={responsive}
@@ -63,12 +65,8 @@ function CarouselAll({ isFiltered }) {
           containerClass="carousel-container"
         >
           {dataVideo
-            .filter((e) => {
-              if (isFiltered) {
-                return handleDateNouv(e.date);
-              }
-              return e;
-            })
+            .filter((e) =>{if(isFiltered) {return handleDateNouv(e.date)}else{return e}}
+            )
             .map((video) => {
               return (
                 <div
@@ -92,6 +90,3 @@ function CarouselAll({ isFiltered }) {
 }
 
 export default CarouselAll;
-CarouselAll.propTypes = {
-  isFiltered: PropTypes.bool.isRequired,
-};

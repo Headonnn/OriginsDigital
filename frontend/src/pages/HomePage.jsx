@@ -8,19 +8,21 @@ import VideoContext from "../../contexts/VideoContext";
 
 function HomePage() {
   const { dataVideo } = useContext(VideoContext);
-  const sections = [
+const [isFiltered,setIsFiltered]=useState(true)
+  const [sections,setSections] = useState([
     { id: 0, type: "Hero" },
-    { id: 1, type: "CarouselNouveautés" },
+    { id: 1, type: "CarouselDate" },
     { id: 2, type: "CarouselAll" },
-  ];
-  const [isFiltered, setIsFiltered] = useState(false);
-  console.warn(isFiltered);
+  ]);
+  
+
   return (
     <>
-      <NavBar />
+ 
+      
       {dataVideo.length > 0 && (
         <div>
-          {sections.map((e) => {
+          {sections.map((e,i) => {  
             if (e.type === "Hero") {
               return (
                 <div key={e.id}>
@@ -28,19 +30,16 @@ function HomePage() {
                 </div>
               );
             }
-            if (e.type === "CarouselAll") {
+            if (e.type === "CarouselDate") {
               return (
                 <div key={e.id}>
-                  <CarouselAll
-                    isFiltered={false}
-                    setIsFiltered={setIsFiltered}
-                  />
+                  <CarouselAll isFiltered section={sections[i]}/>
                 </div>
               );
             }
             return (
               <div key={e.id}>
-                <CarouselAll isFiltered setIsFiltered={setIsFiltered} />
+                <CarouselAll isFiltered={false} section={sections[i]} />
               </div>
             );
           })}
