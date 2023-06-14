@@ -7,7 +7,7 @@ function Header() {
   const location = useLocation();
 
   return (
-    <nav className="flex justify-between items-center text-white inset-x-0 bg-black h-24">
+    <nav className="flex justify-between items-center text-white inset-x-0 h-24">
       <ul className="flex items-center gap-12">
         <li>
           <Link to="/">
@@ -20,7 +20,7 @@ function Header() {
           </li>
         )}
         <li className=" text-l hidden lg:block tracking-wide hover:text-orange-600">
-          <NavLink>Découvrir</NavLink>
+          <NavLink to="/decouvrir">Découvrir</NavLink>
         </li>
         <li className=" text-l hidden lg:block tracking-wide  hover:text-orange-600">
           <NavLink>Contact</NavLink>

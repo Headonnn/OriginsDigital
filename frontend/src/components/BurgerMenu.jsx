@@ -42,7 +42,9 @@ function BurgerMenu() {
                   type="button"
                   className="border w-full md:w-60 hover:bg-gray-300 bg-white text-black rounded-xl py-1 transition w-50%"
                 >
-                  <NavLink to="login">S'identifier</NavLink>
+                  <NavLink to="login" className="bg-white">
+                    S'identifier
+                  </NavLink>
                 </button>
               </div>
               <p className="mt-3 text-sm text-center">
