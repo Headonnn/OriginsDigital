@@ -9,33 +9,45 @@ function BurgerMenu() {
 
   return (
     <div>
-      <nav className="md:hidden">
+      <nav className="lg:hidden">
         {openMenu === false ? (
           <GiHamburgerMenu
             className="hover:text-orange-600"
-            size={50}
+            size={40}
             onClick={() => setOpenMenu(!openMenu)}
           />
         ) : (
           <GoX
             className="hover:text-orange-600"
-            size={50}
+            size={40}
             onClick={() => setOpenMenu(!openMenu)}
           />
         )}
         {openMenu === true && (
-          <div className="absolute w-55 py-4 px-4 bg-black right-0 top-20 rounded-md">
+          <div className="absolute w-full h-full py-4 px-4 bg-black right-0 top-20 rounded-md transition">
             <ul>
               <li className="p-2 hover:text-orange-600 font-medium">
-                <NavLink to="login">Login</NavLink>
+                <NavLink>Découvrir</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
-                <NavLink>Catégories</NavLink>
+                <NavLink>Ma Liste</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
                 <NavLink>Contact</NavLink>
               </li>
             </ul>
+            <div className="flex flex-col p-2 justify-center mt-7">
+              <button
+                type="button"
+                className="border bg-white text-black rounded-xl py-1 transition"
+              >
+                <NavLink to="login">S'identifier</NavLink>
+              </button>
+              <p className="mt-3 text-sm text-center">
+                Première visite sur Origins Digital ?{" "}
+                <span className="font-bold">Inscrivez-vous</span>
+              </p>
+            </div>
           </div>
         )}
       </nav>

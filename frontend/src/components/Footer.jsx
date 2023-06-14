@@ -1,7 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { SiNike, SiPuma, SiAdidas } from "react-icons/si";
-import { IoLogoTwitch } from "react-icons/io5";
 import { RiFacebookCircleLine, RiTwitterLine } from "react-icons/ri";
 import { FaTiktok } from "react-icons/fa";
 
@@ -46,16 +44,6 @@ function Footer() {
         className="flex items-center text-sm space-x-4 md:space-x-8 relative"
         style={{ marginTop: "20px" }}
       >
-        <SiNike
-          className="h-6 md:h-8 mb-2 md:mb-0"
-          size={30}
-          style={{ color: "white" }}
-        />
-        <SiAdidas
-          className="h-6 md:h-8 mb-2 md:mb-0"
-          size={30}
-          style={{ color: "white" }}
-        />
         <div
           className="w-12 md:w-20 h-6 md:h-12 rounded-b-full overflow-hidden transform rotate-180"
           style={{
@@ -65,22 +53,9 @@ function Footer() {
             transform: "translateY(56px) rotate(180deg)",
           }}
         />
-        <SiPuma
-          className="h-6 md:h-8 mb-2 md:mb-0"
-          size={30}
-          style={{ color: "white" }}
-        />
-        <IoLogoTwitch
-          className="h-7 md:h-9 mb-2 md:mb-0"
-          size={22}
-          style={{ color: "white" }}
-        />
       </div>
 
-      <div
-        className="ml-auto flex h-10 space-x-6 pr-8 pb-15"
-        style={{ justifySelf: "end" }}
-      >
+      <div className="ml-auto flex h-10 space-x-6 justify-center">
         <a
           href="https://www.facebook.com"
           target="_blank"
