@@ -10,7 +10,7 @@ function Header() {
 
   return (
     <div className="flex w-screen items-center inset-x-0 top-0 h-24">
-      <div className="flex w-screen items-center inset-x-0 top-0 h-24 justify-start pl-5 bg-black text-white">
+      <div className="flex w-screen items-center inset-x-0 top-0 h-24 justify-start pl-5  text-white">
         <Link to="/">
           <img
             className="h-22 w-60 hidden md:block"
@@ -24,7 +24,7 @@ function Header() {
           />
         </Link>
       </div>
-      <div className="flex w-screen items-center top-0 h-24 justify-start gap-12 pr-5 bg-black text-white ">
+      <div className="flex w-screen items-center top-0 h-24 justify-start gap-12 pr-5  text-white ">
         {location.pathname !== "/" && (
           <h2 className="text-white text-xl font-poppins hidden md:block tracking-wide  hover:text-orange-600">
             <NavLink to="/">Accueil</NavLink>
@@ -37,7 +37,7 @@ function Header() {
           <NavLink to="/admin">Admin</NavLink>
         </h2>
       </div>
-      <div className="flex w-screen items-center top-0 h-24 justify-end gap-5 bg-black text-white pr-8">
+      <div className="flex w-screen items-center top-0 h-24 justify-end gap-5  text-white pr-8">
         <h2 className="text-white border text-xl hidden md:block tracking-wide p-2 rounded-xl  hover:text-black hover:bg-white transition">
           {" "}
           <NavLink to="/login">Se connecter</NavLink>

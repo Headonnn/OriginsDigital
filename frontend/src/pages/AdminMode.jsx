@@ -10,8 +10,48 @@ function AdminMode() {
   const handleButtonClick = () => {
     // Logique du bouton ici
   };
+  const videoCar=[]
+  const [sections,setSections] = useState([
+    { id: 0, type: "Hero" },
+    { id: 1, type: "CarouselDate" },
+    { id: 2, type: "CarouselAll" },
+  ]);
+  
 
-  return (
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+   
+    const haha = Object.keys(formJson);
+    console.log(haha)
+    haha.forEach((e)=> videoCar.push({id_car:sections.length,id_vid:parseInt(e)}))
+    console.log(videoCar)
+  }
+
+  return (<>
+    <div>
+        <select id="add">
+          <option value="Hero">Hero</option>
+          <option  value="Carousel">CarouselFiltre</option>
+          <option  value="Carousel">Carousel All</option>
+          
+          
+          </select>
+        <button onClick={()=>{setSections([...sections,{id:sections.length,type : add.value}]);console.warn(sections)}}> +</button>
+      </div>
+      <form method="post" onSubmit={handleSubmit}>
+      {dataVideo.length > 0 && dataVideo.map((e)=>{return(
+<div>
+<label> {e.title}</label>
+<input type="checkbox" name={e.id} id={e.id}  />
+
+</div>)
+      })}
+<button className="bg-green-400"type="submit">ajouter une video</button>
+</form>
     <div className="loginid-container bg-black min-h-screen relative overflow-hidden">
       <NavBar />
       <div className="flex flex-col items-center justify-center pt-20 pb-10">
@@ -55,6 +95,7 @@ function AdminMode() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }
 

@@ -8,7 +8,7 @@ import { FaTiktok } from "react-icons/fa";
 function Footer() {
   return (
     <footer
-      className="bg-black flex flex-col items-center text-sm md:text-base h-auto max-w-full pt-5 relative"
+      className="bg-black flex flex-col items-center text-sm md:text-base h-auto max-w-full pt-5 "
       style={{ overflow: "hidden" }}
     >
       <div className="flex flex-col md:flex-row justify-center md:justify-start space-x-0 md:space-x-14">
