@@ -16,7 +16,7 @@ function CarouselAll({ isFiltered }) {
     },
     desktop: {
       breakpoint: { max: 2000, min: 1024 },
-      items: 4,
+      items: 5,
       partialVisibilityGutter: 40,
     },
     tablet: {
@@ -76,7 +76,11 @@ function CarouselAll({ isFiltered }) {
                   className="carousel-item relative m-4 hover:scale-105 transition"
                 >
                   <Link to={`/description/${video.id - 1}`}>
-                    <img src={video.thumbnail} alt={video.title} />
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="h-52 w-88"
+                    />
                   </Link>
                 </div>
               );

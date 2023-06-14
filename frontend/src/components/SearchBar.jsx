@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function SearchBar() {
+function SearchBar({ handleSearchChange }) {
   return (
     <div className="flex flex-col md:flex-row items-center md:gap-12 justify-center">
       <div className="w-80 md:w-1/3 my-8">
@@ -23,6 +24,7 @@ function SearchBar() {
           </div>
 
           <input
+            onChange={handleSearchChange}
             className="peer h-full w-full border-none pr-2"
             type="text"
             id="search"
@@ -36,5 +38,9 @@ function SearchBar() {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  handleSearchChange: PropTypes.func.isRequired,
+};
 
 export default SearchBar;

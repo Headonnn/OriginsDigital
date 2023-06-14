@@ -84,7 +84,7 @@ INSERT INTO video (id, title, url, description, thumbnail, `date`, is_freemium, 
 VALUES (1, 'Vidéo de wingsuit', 'https://www.youtube.com/watch?v=-C_jPcUkVrM&ab_channel=GoPro', 'Go-pro de zinzin en wingsuit', 'https://www.skydivecoastalcarolinas.com/wp-content/uploads/wingsuit-flying-what-you-need-to-know-1.jpg', '2023-03-09', 0, 0);
 
 INSERT INTO video (id, url, title, description, `date`, is_freemium, is_in_hero, thumbnail)
-VALUES (2, 'https://www.youtube.com/watch?v=TKEbws4QhEk&ab_channel=StuntsAmazing', 'Video de Taekwondo', 'Un sport de bagar', '2023-06-07', 0, 0, 'https://medias.paris2024.org/uploads/2020/11/GettyImages-150142201-Taekwondo-scaled.jpg?x-oss-process=image/resize,w_2560,h_1853,m_lfit/format,jpeg');
+VALUES (2, 'https://www.youtube.com/watch?v=TKEbws4QhEk&ab_channel=StuntsAmazing', 'Video de Taekwondo', 'Un sport de bagarre', '2023-06-07', 0, 0, 'https://medias.paris2024.org/uploads/2020/11/GettyImages-150142201-Taekwondo-scaled.jpg?x-oss-process=image/resize,w_2560,h_1853,m_lfit/format,jpeg');
 
 INSERT INTO video (id, url, title, description, `date`, is_freemium, is_in_hero, thumbnail)
 VALUES (3, 'https://www.youtube.com/watch?v=IS-5tBlSAoA&ab_channel=WorldChaseTag', 'Vidéo de WCT', 'Sport compétitif de zinzin', '2023-04-26', 0, 0, 'https://global-uploads.webflow.com/60dfb7bd2f950755e96a7caf/640f675be1cfcf91e87717e4_WCT6USA_11_Group%20A_Empire%20vs%20Apex%20Moon_Thumbnail.jpg');
@@ -111,5 +111,10 @@ VALUES (9, 'Vidéo d''AMHE', 'https://www.youtube.com/watch?v=HdEkVKzuptA&ab_cha
 INSERT INTO video (id, title, url, description, thumbnail, `date`, is_freemium, is_in_hero)
 VALUES (10, 'Vidéo de Free Solo', 'https://www.youtube.com/watch?v=AqLAaDJFuiM&ab_channel=NatGeoFrance', 'Alex Honnold fait des trucs de zinzin', 'https://img.lemde.fr/2021/07/16/732/0/3648/2427/664/0/75/0/8d68ba4_554117786-freesolo-13-jpg.jpg', '2023-06-08', 0, 0);
 ;
+
+
+INSERT INTO category (name) VALUES ('skate', 'voltige', 'surf', 'wingsuit', 'apnée', 'sport de combat');
+
+INSERT INTO video_category (video_id, category_id) VALUES (1, 4), ()
 
 
