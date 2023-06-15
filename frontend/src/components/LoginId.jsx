@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import "tailwindcss/tailwind.css";
-import { FaTimes } from "react-icons/fa";
 import { BsCheckCircle } from "react-icons/bs";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 
@@ -33,12 +31,9 @@ function LoginId() {
         style={{ clipPath: "circle(50% at 50% 50%)" }}
       /> */}
       <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 xl:p-0shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-        <NavLink to="/">
-          <FaTimes className="absolute top-8 right-8 cursor-pointer text-orange-500 w-6 h-6" />
-        </NavLink>
-        <h1 className="text-white text-lg text-center mt-15">
+        <p className="text-white text-xl text-center mt-15">
           Se connecter à Mon Compte
-        </h1>
+        </p>
         <div className="rounded-lg p-4 mt-16">
           <div className="relative">
             <input
