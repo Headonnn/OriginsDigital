@@ -53,9 +53,11 @@ function App() {
   );
 
   return (
-    <VideoContext.Provider value={contextValue}>
-      <Router />
-    </VideoContext.Provider>
+    <div className="max-w-screen-2xl m-auto">
+      <VideoContext.Provider value={contextValue}>
+        <Router />
+      </VideoContext.Provider>
+    </div>
   );
 }
 
