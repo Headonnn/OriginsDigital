@@ -8,7 +8,9 @@ class CategoryManager extends AbstractManager {
   insert(category) {
     const { name } = category;
 
-    return this.database.query(`INSERT INTO ${this.table} (name) VALUES ('?')`);
+    return this.database.query(
+      `INSERT INTO ${this.table} (name) VALUES ("${name}")`
+    );
   }
 
   update(category) {

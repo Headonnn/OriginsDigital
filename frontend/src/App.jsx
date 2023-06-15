@@ -29,7 +29,14 @@ function App() {
   }, []);
 
   const contextValue = useMemo(
-    () => ({ dataVideo, setDataVideo, categorie, setCategorie, dataUser, setDataUser }),
+    () => ({
+      dataVideo,
+      setDataVideo,
+      categorie,
+      setCategorie,
+      dataUser,
+      setDataUser,
+    }),
     [dataVideo, setDataVideo, categorie, setCategorie, dataUser, setDataUser]
   );
 

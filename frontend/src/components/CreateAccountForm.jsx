@@ -1,41 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 function CreateAccountForm() {
-
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-      method: 'post',
+      method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        {
-          username: username,
-          email: email,
-          firstname: firstname,
-          lastname: lastname,
-          password: password
-        }
-      ),
+      body: JSON.stringify({
+        username,
+        email,
+        firstname,
+        lastname,
+        password,
+      }),
     })
       .then((response) => {
         if (response.ok) {
-
+          console.warn(response);
         } else {
-          throw new Error('Error submitting form data');
+          throw new Error("Error submitting form data");
         }
       })
       .catch((error) => {
-        console.error('Error submitting form data:', error);
+        console.error("Error submitting form data:", error);
       });
   };
 
@@ -192,8 +188,8 @@ function CreateAccountForm() {
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-m font-bold text-white font-poppins bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
+              {" "}
               JE M'INSCRIS !
-              {/* <NavLink to="/CreateAccountMsg">Je m'inscris !</NavLink> */}
             </button>
           </div>
         </form>

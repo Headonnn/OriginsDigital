@@ -91,8 +91,10 @@ function CarouselAll({ isFiltered }) {
   );
 }
 
+
 CarouselAll.propTypes = {
   isFiltered: PropTypes.bool.isRequired,
 };
+
 
 export default CarouselAll;
