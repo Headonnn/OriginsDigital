@@ -6,20 +6,20 @@ class UserManager extends AbstractManager {
   }
 
   insert(user) {
-    const { username, email, password, firstname, lastname } = user;
+    const { username, email, hashedPassword, firstname, lastname } = user;
 
     return this.database.query(
-      `INSERT INTO ${this.table} (username, email, password, firstname, lastname) VALUES (?, ?, ?, ?, ?)`,
-      [username, email, password, firstname, lastname]
+      `INSERT INTO ${this.table} (username, email, hashedPassword, firstname, lastname) VALUES (?, ?, ?, ?, ?)`,
+      [username, email, hashedPassword, firstname, lastname]
     );
   }
 
   update(user) {
-    const { id, username, email, password, firstname, lastname } = user;
+    const { id, username, email, hashedPassword, firstname, lastname } = user;
 
     return this.database.query(
-      `UPDATE ${this.table} SET username=?, email=?, password=?, firstname=?, lastname=? WHERE id=?`,
-      [username, email, password, firstname, lastname, id]
+      `UPDATE ${this.table} SET username=?, email=?, hashedPassword=?, firstname=?, lastname=? WHERE id=?`,
+      [username, email, hashedPassword, firstname, lastname, id]
     );
   }
 }

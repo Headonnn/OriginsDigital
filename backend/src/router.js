@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const { hashPassword } = require("./auth");
+
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const videoControllers = require("./controllers/videoControllers");
@@ -17,8 +19,8 @@ router.delete("/items/:id", itemControllers.destroy);
 // User routes
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.put("/users/:id", userControllers.edit);
-router.post("/users", userControllers.add);
+router.put("/users/:id", hashPassword, userControllers.edit);
+router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 
 // Video routes
