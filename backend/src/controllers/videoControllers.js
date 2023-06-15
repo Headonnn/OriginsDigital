@@ -98,6 +98,8 @@ const filterCategory = (req, res) => {
           title: row.title,
           url: row.url,
           description: row.description,
+          thumbnail: row.thumbnail,
+          date: row.date,
         };
       });
 

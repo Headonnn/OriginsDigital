@@ -5,6 +5,7 @@ import Router from "./navigation/Router";
 function App() {
   const [dataVideo, setDataVideo] = useState([]);
   const [categorie, setCategorie] = useState([]);
+  const [videoCategorie, setVideoCategorie] = useState([]);
   const [dataUser, setDataUser] = useState([]);
 
   useEffect(() => {
@@ -36,8 +37,19 @@ function App() {
       setCategorie,
       dataUser,
       setDataUser,
+      videoCategorie,
+      setVideoCategorie,
     }),
-    [dataVideo, setDataVideo, categorie, setCategorie, dataUser, setDataUser]
+    [
+      dataVideo,
+      setDataVideo,
+      categorie,
+      setCategorie,
+      dataUser,
+      setDataUser,
+      videoCategorie,
+      setVideoCategorie,
+    ]
   );
 
   return (
