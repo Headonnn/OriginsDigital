@@ -170,12 +170,15 @@ function CreateAccountForm() {
               htmlFor="terms-and-privacy"
               className="ml-2 block text-sm text-white"
             >
-              J'ai lu et j'accepte les 
-              <a href="/" className="text-indigo-300 hover:text-indigo-500"> Conditions </a>
+              J'ai lu et j'accepte les
+              <a href="/" className="text-indigo-300 hover:text-indigo-500">
+                {" "}
+                Conditions{" "}
+              </a>
               et la
               <a href="/" className="text-indigo-300 hover:text-indigo-500">
                 {" "}
-                 Politique de Confidentialité{" "}
+                Politique de Confidentialité{" "}
               </a>
               .
             </label>
