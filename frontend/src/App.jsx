@@ -5,6 +5,8 @@ import Router from "./navigation/Router";
 function App() {
   const [dataVideo, setDataVideo] = useState([]);
   const [categorie, setCategorie] = useState([]);
+  const [videoCategorie, setVideoCategorie] = useState([]);
+  const [dataUser, setDataUser] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:5002/videos`)
@@ -14,21 +16,48 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/category`)
+    fetch(`http://localhost:5002/categories`)
       .then((res) => res.json())
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    fetch(`http://localhost:5002/users`)
+      .then((res) => res.json())
+      .then((result) => setDataUser(result))
+      .catch((error) => console.error(error));
+  }, []);
+
   const contextValue = useMemo(
-    () => ({ dataVideo, setDataVideo, categorie, setCategorie }),
-    [dataVideo, setDataVideo, categorie, setCategorie]
+    () => ({
+      dataVideo,
+      setDataVideo,
+      categorie,
+      setCategorie,
+      dataUser,
+      setDataUser,
+      videoCategorie,
+      setVideoCategorie,
+    }),
+    [
+      dataVideo,
+      setDataVideo,
+      categorie,
+      setCategorie,
+      dataUser,
+      setDataUser,
+      videoCategorie,
+      setVideoCategorie,
+    ]
   );
 
   return (
-    <VideoContext.Provider value={contextValue}>
-      <Router />
-    </VideoContext.Provider>
+    <div className="max-w-screen-2xl m-auto">
+      <VideoContext.Provider value={contextValue}>
+        <Router />
+      </VideoContext.Provider>
+    </div>
   );
 }
 

@@ -68,41 +68,44 @@ function AdminUpload() {
 
             <label htmlFor="videoTitle" className="text-white">
               Titre
+              <input
+                id="videoTitle"
+                type="text"
+                className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-4"
+                placeholder="Titre"
+                aria-label="Titre"
+              />
             </label>
-            <input
-              id="videoTitle"
-              type="text"
-              className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-4"
-              placeholder="Titre"
-              aria-label="Titre"
-            />
+
             <label htmlFor="videoCategories" className="text-white">
               Catégories
+              <input
+                id="videoCategories"
+                type="text"
+                className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-4"
+                placeholder="Catégories"
+                aria-label="Catégories"
+              />
             </label>
-            <input
-              id="videoCategories"
-              type="text"
-              className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-4"
-              placeholder="Catégories"
-              aria-label="Catégories"
-            />
+
             <label htmlFor="videoDescription" className="text-white">
               Description
+              <textarea
+                id="videoDescription"
+                className="bg-white text-black w-full md:w-80 h-40 px-4 py-2 rounded-md mb-4"
+                placeholder="Description"
+                aria-label="Description"
+              />
             </label>
-            <textarea
-              id="videoDescription"
-              className="bg-white text-black w-full md:w-80 h-40 px-4 py-2 rounded-md mb-4"
-              placeholder="Description"
-              aria-label="Description"
-            />
+
             <div
               className={`flex items-center ${
                 isPremium ? "text-green-500" : "text-red-500"
               }`}
             >
-              <h2 className="text-white font-poppins font-bold mr-2 underline">
+              <label htmlFor="togglePremium" className="text-white">
                 Vidéo premium ?
-              </h2>
+              </label>
               <div
                 role="button"
                 tabIndex={0}
@@ -116,16 +119,20 @@ function AdminUpload() {
                 aria-label="Toggle Premium"
               />
             </div>
+
             <button
               type="button"
               className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-6"
             >
               Ajouter
             </button>
+
             <hr className="bg-orange-500 h-1 w-full mt-6" />
+
             <h3 className="text-white text-center font-poppins underline pt-8">
               Supprimer une vidéo
             </h3>
+
             <AiFillDelete
               className={`text-white text-4xl mt-4 cursor-pointer h-20 ${
                 isPremium ? "text-green-500" : ""
