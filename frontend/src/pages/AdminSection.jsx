@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsArrowLeft, BsPlusCircle } from "react-icons/bs";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import NavBar from "../components/NavBar";
@@ -6,14 +6,14 @@ import Footer from "../components/Footer";
 import ButtonOrange from "../components/ButtonOrange";
 
 function AdminSection() {
-  const [sections] = useState([
-    { id: "hero", icon: AiFillEdit, type: "section" },
-    { id: "caroussel1", icon: AiFillEdit, type: "section" },
-    { id: "caroussel2", icon: AiFillEdit, type: "section" },
-    { id: "pub", icon: AiFillEdit, type: "section" },
-    { id: "caroussel_categorie", icon: AiFillEdit, type: "section" },
-  ]);
+  const [sections, setSections] = useState([]);
 
+  useEffect(() => {
+    fetch(`http://localhost:5002/sections`)
+      .then((res) => res.json())
+      .then((result) => setSections(result))
+      .catch((error) => console.error(error));
+  }, []);
   const handleDelete = () => {
     // Logique pour supprimer la section
   };
@@ -68,27 +68,39 @@ function AdminSection() {
           </div>
 
           <h1 className="text-white text-center font-poppins pt-6 underline">
-            Liste des sections par ordre
+            Liste des sections du site
           </h1>
           <div className="mt-10">
-            {sections.map((section) => (
-              <div key={section.id} className="flex items-center mt-4">
-                <input
-                  type="text"
-                  className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1"
-                  placeholder={section.id}
-                  aria-label={section.id}
-                />
+            <div className="flex flex-col mt-4">
+              <div className="flex items-center mt-4">
+                <div className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1">
+                  Hero
+                </div>
                 <AiFillEdit
                   className="text-blue-500 ml-2 cursor-pointer"
-                  onClick={() => handleEdit(section.id)}
-                />
-                <AiFillDelete
-                  className="text-red-500 ml-2 cursor-pointer"
-                  onClick={handleDelete}
+                  onClick={() => handleEdit()}
                 />
               </div>
-            ))}
+
+              {sections.map((section) => (
+                <div className="flex items-center mt-4">
+                  <div
+                    key={section.id}
+                    className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1"
+                  >
+                    {section.title}
+                  </div>
+                  <AiFillEdit
+                    className="text-blue-500 ml-2 cursor-pointer"
+                    onClick={() => handleEdit(section.id)}
+                  />
+                  <AiFillDelete
+                    className="text-red-500 ml-2 cursor-pointer"
+                    onClick={handleDelete}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
           <div className="flex justify-center">
             <BsPlusCircle className="text-white text-5xl mt-16 cursor-pointer" />
