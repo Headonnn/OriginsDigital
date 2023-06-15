@@ -8,7 +8,8 @@ function Header() {
 
   return (
 
-    <nav className="flex justify-between items-center text-white inset-x-0 h-24">
+    <nav className="flex justify-between items-center text-white inset-x-0 h-24 bg-black bg-opacity-60	shadow-[0px_20px_20px_10px_#00000024]">
+
       <ul className="flex items-center gap-12">
         <li>
           <Link to="/">
@@ -32,7 +33,6 @@ function Header() {
         </li>
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
           <NavLink to="/admin">Admin</NavLink>
-
         </li>
       </ul>
       <div className="flex items-center pr-8 gap-8">
@@ -45,7 +45,6 @@ function Header() {
           </button>
         </NavLink>
         <BurgerMenu className="block md:hidden" />
-
       </div>
     </nav>
   );

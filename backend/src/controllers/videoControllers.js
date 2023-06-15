@@ -82,10 +82,38 @@ const destroy = (req, res) => {
     });
 };
 
+const filterCategory = (req, res) => {
+  const categoryId = parseInt(req.params.categorie, 10);
+
+  if (Number.isNaN(categoryId)) {
+    res.sendStatus(400); // Bad request if the category ID is not a valid number
+    return;
+  }
+
+  models.video
+    .get(categoryId)
+    .then(([rows]) => {
+      const videoData = rows.map((row) => {
+        return {
+          title: row.title,
+          url: row.url,
+          description: row.description,
+        };
+      });
+
+      res.json(videoData);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  filterCategory,
 };
