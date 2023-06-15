@@ -5,6 +5,22 @@ class VideoManager extends AbstractManager {
     super({ table: "video" });
   }
 
+  get(id) {
+    const category = parseInt(id, 10);
+    return this.database
+      .query(
+        `SELECT title, url, description, thumbnail, date, is_freemium, is_in_hero FROM ${this.table}
+        INNER JOIN video_category ON video_id = ${this.table}.id 
+        INNER JOIN category ON category_id = category.id
+        WHERE category.id = ?`,
+        [category]
+      )
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to retrieve data from the database.");
+      });
+  }
+
   insert(video) {
     const {
       title,
