@@ -1,8 +1,5 @@
 import React from "react";
-import { FaTimes } from "react-icons/fa";
-import { BsCheckCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import BlueDiv from "../components/BlueDiv";
 import ButtonOrange from "../components/ButtonOrange";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -13,20 +10,11 @@ function AdminMode() {
   };
 
   return (
-    <div className="loginid-container bg-black min-h-screen relative overflow-hidden">
+    <div>
       <NavBar />
-      <div className="flex flex-col items-center justify-center pt-20 pb-10">
-        <div className="flex items-center space-x-6">
-          <FaTimes className="text-orange-500 w-6 h-6 md:w-8 md:h-8" />
-
-          <h1 className="text-white text-3xl md:text-5xl font-bold font-poppins">
-            Mode Admin
-          </h1>
-          <BsCheckCircle className="text-green-500 w-5 h-5 md:w-6 md:h-6" />
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <BlueDiv className="w-full">
+      <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 pb-16 mx-auto sm:max-w-md my-10 xl:p-0shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+        <p className="text-white text-2xl py-12">Mode Admin</p>
+        <div className="flex justify-center">
           <div className="flex flex-col items-center space-y-36 md:space-y-16 mx-5">
             <div className="w-full max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center relative">
               <Link to="/admin/upload">
@@ -57,7 +45,7 @@ function AdminMode() {
               </Link>
             </div>
           </div>
-        </BlueDiv>
+        </div>
       </div>
       <Footer />
     </div>
