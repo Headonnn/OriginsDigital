@@ -27,6 +27,7 @@ router.get("/videos/:id", videoControllers.read);
 router.put("/videos/:id", videoControllers.edit);
 router.post("/videos", videoControllers.add);
 router.delete("/videos/:id", videoControllers.destroy);
+router.get("/videos/filtre/:categorie", videoControllers.filterCategory);
 
 // Category routes
 router.get("/categories", categoryControllers.browse);

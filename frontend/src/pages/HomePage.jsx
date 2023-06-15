@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
-
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
 import Footer from "../components/Footer";
 import VideoContext from "../../contexts/VideoContext";
-// import LoginId from "../components/LoginId";
 
 function HomePage() {
   const { dataVideo } = useContext(VideoContext);
