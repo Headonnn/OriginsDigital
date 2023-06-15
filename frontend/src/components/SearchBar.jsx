@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import VideoContext from "../../contexts/VideoContext";
 
-function SearchBar({ handleSearchChange }) {
+function SearchBar({ handleSearchChange, handleChangeCategory }) {
   const { categorie } = useContext(VideoContext);
 
   return (
@@ -35,10 +35,12 @@ function SearchBar({ handleSearchChange }) {
           />
         </div>
       </div>
-      <select className="h-12 rounded-xl ">
+      <select className="h-12 rounded-xl " onChange={handleChangeCategory}>
         <option value="">Catégories</option>
         {categorie.map((category) => (
-          <option key={category.id}>{category.name}</option>
+          <option key={category.id} value={category.id}>
+            {category.name}
+          </option>
         ))}
       </select>
     </div>
@@ -47,6 +49,7 @@ function SearchBar({ handleSearchChange }) {
 
 SearchBar.propTypes = {
   handleSearchChange: PropTypes.func.isRequired,
+  handleChangeCategory: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
