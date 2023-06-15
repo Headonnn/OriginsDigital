@@ -102,8 +102,6 @@ VALUES
 
 ('Alex Honnold en Free Solo', 'https://www.youtube.com/watch?v=AqLAaDJFuiM&ab_channel=NatGeoFrance', 'Alex Honnold affonte El Capitan en free solo', 'https://img.lemde.fr/2021/07/16/732/0/3648/2427/664/0/75/0/8d68ba4_554117786-freesolo-13-jpg.jpg', '2023-06-14', 0, 0);
 
-
-
 INSERT INTO category (name)
 VALUES ('skate'), ('voltige'), ('surf'), ('wingsuit'), ('apnée'), ('arts martiaux');
 

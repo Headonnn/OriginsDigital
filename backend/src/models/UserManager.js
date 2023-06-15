@@ -7,6 +7,7 @@ class UserManager extends AbstractManager {
 
   insert(user) {
     const { username, email, password, firstname, lastname } = user;
+    console.log(username);
 
     return this.database.query(
       `INSERT INTO ${this.table} (username, email, password, firstname, lastname) VALUES (?, ?, ?, ?, ?)`,
