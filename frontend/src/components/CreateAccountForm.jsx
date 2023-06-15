@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 function CreateAccountForm() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/users`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        email,
+        firstname,
+        lastname,
+        password,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.warn(response);
+        } else {
+          throw new Error("Error submitting form data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting form data:", error);
+      });
+  };
+
   return (
     <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
       <div
@@ -34,7 +66,7 @@ function CreateAccountForm() {
         <h1 className="text-white text-3xl font-bold font-poppins text-center mt-15">
           Création de votre compte
         </h1>
-        <form className=" rounded-lg p-4 ">
+        <form onSubmit={handleSubmit} className=" rounded-lg p-4 ">
           <div>
             <label
               htmlFor="email"
@@ -44,6 +76,7 @@ function CreateAccountForm() {
             </label>
             <div className="py-2">
               <input
+                onChange={(e) => setUsername(e.target.value)}
                 id="Username"
                 name="Username"
                 type="text"
@@ -62,6 +95,7 @@ function CreateAccountForm() {
             </label>
             <div className="py-2">
               <input
+                onChange={(e) => setFirstname(e.target.value)}
                 id="Prénom"
                 name="Prénom"
                 type="text"
@@ -79,6 +113,7 @@ function CreateAccountForm() {
             </label>
             <div className="py-2">
               <input
+                onChange={(e) => setLastname(e.target.value)}
                 id="Nom"
                 name="Nom"
                 type="text"
@@ -96,6 +131,7 @@ function CreateAccountForm() {
             </label>
             <div className="py-2">
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 id="e-mail"
                 name="e-mail"
                 type="email"
@@ -113,6 +149,7 @@ function CreateAccountForm() {
             </label>
             <div className="py-2">
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 name="password"
                 type="password"
@@ -131,14 +168,15 @@ function CreateAccountForm() {
             />
             <label
               htmlFor="terms-and-privacy"
-              className="ml-2 block text-sm text-gray-900"
+              className="ml-2 block text-sm text-white"
             >
               J'ai lu et j'accepte les
-              <a href="/" className="text-indigo-600 hover:text-indigo-500">
-                Conditions
+              <a href="/" className="text-indigo-300 hover:text-indigo-500">
+                {" "}
+                Conditions{" "}
               </a>
               et la
-              <a href="/" className="text-indigo-600 hover:text-indigo-500">
+              <a href="/" className="text-indigo-300 hover:text-indigo-500">
                 {" "}
                 Politique de Confidentialité{" "}
               </a>
@@ -151,7 +189,8 @@ function CreateAccountForm() {
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-m font-bold text-white font-poppins bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              <NavLink to="/CreateAccountMsg">Je m'inscris !</NavLink>
+              {" "}
+              JE M'INSCRIS !
             </button>
           </div>
         </form>

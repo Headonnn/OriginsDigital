@@ -7,6 +7,7 @@ import {
 } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
+
 import ReactPlayer from "react-player";
 import VideoContext from "../../contexts/VideoContext";
 import NavBar from "./NavBar";

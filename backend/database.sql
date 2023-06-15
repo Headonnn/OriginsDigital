@@ -2,7 +2,7 @@ CREATE TABLE `user` (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	username VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
-	password VARCHAR(100) NOT NULL,
+	hashedPassword varchar(255) NOT NULL,
 	firstname VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
 	is_admin TINYINT DEFAULT 0
@@ -93,7 +93,7 @@ CREATE TABLE `advert` (
 
 
 
-INSERT INTO user (username, email, password, firstname, lastname) VALUES ('Camille', 'camille@camille.com', 'camille', 'Camille', 'Kamizuchi'), ('Chloé', 'chloe@chloe.com', 'chloé', 'Chloé', 'Peltier'), ('Thomas', 'tomtom@nana.com', 'thomas', 'Thomas', 'Thomasovich'), ('Emilie', 'emilie@emilie.com', 'emilie', 'Emilie', 'Nathan'), ('Jeremy', 'jeremy@jeremy.com', 'pizza', 'Jeremy', 'Herpanovski');
+INSERT INTO user (username, email, hashedPassword, firstname, lastname) VALUES ('Camille', 'camille@camille.com', '$argon2id$v=19$m=16,t=2,p=1$emVmZXpmemZlemVmZWR6ZXplZg$rqZkhxu5YbqCGHPNrjJZpQ', 'Camille', 'Kamizuchi'), ('Chloé', 'chloe@chloe.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZQ$eSetR6KPUNAGW+q+wDadcw', 'Chloé', 'Peltier'), ('Thomas', 'tomtom@nana.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZXphZGF6ZGQ$a0bg5DZB6H6v3jjQC81DXg', 'Thomas', 'Thomasovich'), ('Emilie', 'emilie@emilie.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZnpmemZlemFkYXpkZA$V1qAnJDyMuuWG7g9yoGYXA', 'Emilie', 'Nathan'), ('Jeremy', 'jeremy@jeremy.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$VCzq45PL9t8khtc44Kk5iw', 'Jeremy', 'Herpanovski');
 
 INSERT INTO video (title, url, description, thumbnail, date, is_freemium, is_in_hero)
 VALUES 
@@ -114,8 +114,6 @@ VALUES
 ('Les AMHE', 'https://www.youtube.com/watch?v=HdEkVKzuptA&ab_channel=Bj%C3%B6rnR%C3%BCther', 'A la découverte des Arts Martiaux Historiques Européens, un ensemble de pratiques martiales basées sur les sources historiques.', 'https://pbs.twimg.com/media/CNfMDCUUAAAASjk.jpg:large', '2023-06-13', 0, 0),
 
 ('Alex Honnold en Free Solo', 'https://www.youtube.com/watch?v=AqLAaDJFuiM&ab_channel=NatGeoFrance', 'Alex Honnold affonte El Capitan en free solo', 'https://img.lemde.fr/2021/07/16/732/0/3648/2427/664/0/75/0/8d68ba4_554117786-freesolo-13-jpg.jpg', '2023-06-14', 0, 0);
-
-
 
 INSERT INTO category (name)
 VALUES ('skate'), ('voltige'), ('surf'), ('wingsuit'), ('apnée'), ('arts martiaux');

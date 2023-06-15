@@ -7,7 +7,11 @@ function Header() {
   const location = useLocation();
 
   return (
-    <nav className="flex justify-between items-center text-white inset-x-0 h-24 bg-black bg-opacity-60	shadow-[0px_20px_20px_10px_#00000024]">
+
+    
+
+    <nav className=" flex justify-between items-center text-white inset-x-0 h-24 bg-black bg-opacity-60	shadow-[0px_20px_20px_10px_#00000024]">
+
       <ul className="flex items-center gap-12">
         <li>
           <Link to="/">
@@ -22,9 +26,6 @@ function Header() {
         )}
         <li className=" text-l hidden lg:block tracking-wide hover:text-orange-600">
           <NavLink to="/decouvrir">Découvrir</NavLink>
-        </li>
-        <li className=" text-l hidden lg:block tracking-wide  hover:text-orange-600">
-          <NavLink>Contact</NavLink>
         </li>
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
           <NavLink to="/admin">Ma Liste</NavLink>

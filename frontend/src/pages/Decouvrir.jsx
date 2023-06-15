@@ -8,22 +8,46 @@ import VideoContext from "../../contexts/VideoContext";
 function Decouvrir() {
   const [search, setSearch] = useState("");
   const [isFiltered, setIsFiltered] = useState([]);
-  const { dataVideo } = useContext(VideoContext);
+  const [filtreCategorie, setFiltreCategorie] = useState("");
+  const { dataVideo, setDataVideo } = useContext(VideoContext);
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
+
+  const handleChangeCategory = (e) => {
+    setFiltreCategorie(e.target.value);
+  };
+
   useEffect(() => {
     const filteredVideo = dataVideo.filter((el) =>
       el.title.toLowerCase().includes(search.toLowerCase())
     );
+
     setIsFiltered(filteredVideo);
-  }, [dataVideo, search]);
+  }, [dataVideo, search, filtreCategorie]);
+
+  useEffect(() => {
+    if (filtreCategorie === "") {
+      fetch(`http://localhost:5002/videos`)
+        .then((res) => res.json())
+        .then((result) => setDataVideo(result))
+        .catch((error) => console.error(error));
+    } else {
+      fetch(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
+        .then((res) => res.json())
+        .then((result) => setDataVideo(result))
+        .catch((error) => console.error(error));
+    }
+  }, [setDataVideo, filtreCategorie]);
 
   return (
     <div>
       <NavBar />
-      <SearchBar handleSearchChange={handleSearchChange} />
+      <SearchBar
+        handleSearchChange={handleSearchChange}
+        handleChangeCategory={handleChangeCategory}
+      />
       <div className="flex justify-center gap-12 flex-wrap my-5">
         {isFiltered.map((video) => {
           return (
@@ -54,6 +78,7 @@ function Decouvrir() {
           );
         })}
       </div>
+
       <Footer />
     </div>
   );
