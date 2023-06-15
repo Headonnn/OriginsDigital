@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/category`)
+    fetch(`http://localhost:5002/categories`)
       .then((res) => res.json())
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));

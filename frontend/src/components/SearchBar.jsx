@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import VideoContext from "../../contexts/VideoContext";
 
 function SearchBar({ handleSearchChange }) {
+  const { categorie } = useContext(VideoContext);
+
   return (
     <div className="flex flex-col md:flex-row items-center md:gap-12 justify-center">
       <div className="w-80 md:w-1/3 my-8">
@@ -34,6 +37,9 @@ function SearchBar({ handleSearchChange }) {
       </div>
       <select className="h-12 rounded-xl ">
         <option value="">Catégories</option>
+        {categorie.map((category) => (
+          <option value="">{category.name}</option>
+        ))}
       </select>
     </div>
   );
