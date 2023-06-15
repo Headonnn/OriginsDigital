@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { BsCheckCircle } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import BlueDiv from "../components/BlueDiv";
 import ButtonOrange from "../components/ButtonOrange";
 import NavBar from "../components/NavBar";
@@ -17,6 +18,7 @@ function AdminMode() {
       <div className="flex flex-col items-center justify-center pt-20 pb-10">
         <div className="flex items-center space-x-6">
           <FaTimes className="text-orange-500 w-6 h-6 md:w-8 md:h-8" />
+
           <h1 className="text-white text-3xl md:text-5xl font-bold font-poppins">
             Mode Admin
           </h1>
@@ -27,12 +29,14 @@ function AdminMode() {
         <BlueDiv className="w-full">
           <div className="flex flex-col items-center space-y-36 md:space-y-16 mx-5">
             <div className="w-full max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center relative">
-              <ButtonOrange
-                onClick={handleButtonClick}
-                className="w-full flex-grow"
-              >
-                Administration des vidéos
-              </ButtonOrange>
+              <Link to="/admin/upload">
+                <ButtonOrange
+                  onClick={handleButtonClick}
+                  className="w-full flex-grow"
+                >
+                  Administration des vidéos
+                </ButtonOrange>
+              </Link>
             </div>
             <div className="w-full max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center relative">
               <ButtonOrange
@@ -43,12 +47,14 @@ function AdminMode() {
               </ButtonOrange>
             </div>
             <div className="w-full max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center relative">
-              <ButtonOrange
-                onClick={handleButtonClick}
-                className="w-full flex-grow"
-              >
-                Administration des sections
-              </ButtonOrange>
+              <Link to="/admin/section">
+                <ButtonOrange
+                  onClick={handleButtonClick}
+                  className="w-full flex-grow"
+                >
+                  Administration des sections
+                </ButtonOrange>
+              </Link>
             </div>
           </div>
         </BlueDiv>
