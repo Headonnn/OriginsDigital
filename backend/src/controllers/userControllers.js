@@ -52,6 +52,7 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const user = req.body;
+  console.warn(user);
 
   // TODO validations (length, format...)
 
@@ -59,7 +60,6 @@ const add = (req, res) => {
     .insert(user)
     .then(([result]) => {
       res.location(`/users/${result.insertId}`).sendStatus(201);
-      console.log(result);
     })
     .catch((err) => {
       console.error(err);
