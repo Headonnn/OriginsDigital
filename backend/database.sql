@@ -2,7 +2,7 @@ CREATE TABLE `user` (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	username VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL,
-	password VARCHAR(100) NOT NULL,
+	hashedPassword varchar(255) NOT NULL,
 	firstname VARCHAR(100) NOT NULL,
 	lastname VARCHAR(100) NOT NULL,
 	is_admin TINYINT DEFAULT 0
@@ -80,7 +80,7 @@ CREATE TABLE `section` (
 	FOREIGN KEY (advert) REFERENCES `advert` (id)
 );
 
-INSERT INTO user (username, email, password, firstname, lastname) VALUES ('Camille', 'camille@camille.com', 'camille', 'Camille', 'Kamizuchi'), ('Chloé', 'chloe@chloe.com', 'chloé', 'Chloé', 'Peltier'), ('Thomas', 'tomtom@nana.com', 'thomas', 'Thomas', 'Thomasovich'), ('Emilie', 'emilie@emilie.com', 'emilie', 'Emilie', 'Nathan'), ('Jeremy', 'jeremy@jeremy.com', 'pizza', 'Jeremy', 'Herpanovski');
+INSERT INTO user (username, email, hashedPassword, firstname, lastname) VALUES ('Camille', 'camille@camille.com', '$argon2id$v=19$m=16,t=2,p=1$emVmZXpmemZlemVmZWR6ZXplZg$rqZkhxu5YbqCGHPNrjJZpQ', 'Camille', 'Kamizuchi'), ('Chloé', 'chloe@chloe.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZQ$eSetR6KPUNAGW+q+wDadcw', 'Chloé', 'Peltier'), ('Thomas', 'tomtom@nana.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZXphZGF6ZGQ$a0bg5DZB6H6v3jjQC81DXg', 'Thomas', 'Thomasovich'), ('Emilie', 'emilie@emilie.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZnpmemZlemFkYXpkZA$V1qAnJDyMuuWG7g9yoGYXA', 'Emilie', 'Nathan'), ('Jeremy', 'jeremy@jeremy.com', '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$VCzq45PL9t8khtc44Kk5iw', 'Jeremy', 'Herpanovski');
 
 INSERT INTO video (title, url, description, thumbnail, date, is_freemium, is_in_hero)
 VALUES 
