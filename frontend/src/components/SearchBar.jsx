@@ -38,7 +38,7 @@ function SearchBar({ handleSearchChange }) {
       <select className="h-12 rounded-xl ">
         <option value="">Catégories</option>
         {categorie.map((category) => (
-          <option value="">{category.name}</option>
+          <option key={category.id}>{category.name}</option>
         ))}
       </select>
     </div>
