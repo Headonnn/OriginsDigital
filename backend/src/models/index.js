@@ -33,14 +33,17 @@ const ItemManager = require("./ItemManager");
 const UserManager = require("./UserManager");
 const VideoManager = require("./VideoManager");
 const CategoryManager = require("./CategoryManager");
+const SectionsManager = require("./SectionsManager");
 
 models.item = new ItemManager();
 models.user = new UserManager();
 models.video = new VideoManager();
 models.category = new CategoryManager();
+models.section = new SectionsManager();
 models.user.setDatabase(pool);
 models.video.setDatabase(pool);
 models.category.setDatabase(pool);
+models.section.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

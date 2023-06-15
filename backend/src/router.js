@@ -7,6 +7,7 @@ const { hashPassword } = require("./auth");
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const videoControllers = require("./controllers/videoControllers");
+const sectionControllers = require("./controllers/sectionsControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 
 // Item routes
@@ -37,5 +38,8 @@ router.get("/categories/:id", categoryControllers.read);
 router.put("/categories/:id", categoryControllers.edit);
 router.post("/categories", categoryControllers.add);
 router.delete("/categories/:id", categoryControllers.destroy);
+
+// Sections routes
+router.get("/sections", sectionControllers.browse);
 
 module.exports = router;
