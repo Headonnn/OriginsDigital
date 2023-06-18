@@ -51,15 +51,29 @@ function Decouvrir() {
       <div className="flex justify-center gap-12 flex-wrap my-5">
         {isFiltered.map((video) => {
           return (
-            <div key={video.id} className="w-60 hover:scale-105 transition">
-              <h3 className="text-white">{video.title}</h3>
-              <Link to={`/description/${video.id - 1}`}>
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="rounded-lg h-44 w-68"
-                />
-              </Link>
+            <div className="group">
+              <div
+                key={video.id}
+                className="w-60 hover:scale-110 transition text-white "
+              >
+                <h3>{video.title}</h3>
+                <Link to={`/description/${video.id - 1}`}>
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="rounded-lg h-44 w-68"
+                  />
+                </Link>
+                <div className="hidden p-3 group-hover:block group-hover:absolute group-hover:bg-black">
+                  <div className="flex justify-between items-center">
+                    <p>Date : </p>
+                    {video.date}
+                    <p>Durée : </p>
+                    {video.length}
+                  </div>
+                  {video.description}
+                </div>
+              </div>
             </div>
           );
         })}

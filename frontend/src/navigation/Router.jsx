@@ -12,7 +12,9 @@ import CreateAccountProfile from "../components/CreateAccountProfile";
 import AccountCreation from "../pages/AccountCreation";
 import Decouvrir from "../pages/Decouvrir";
 import AdminSection from "../pages/AdminSection";
-import AdminUpload from "../pages/AdminUpload";
+import CreateVideo from "../components/AdminVideo/CreateVideo";
+import ListVideo from "../components/AdminVideo/ListVideo";
+import EditVideo from "../components/AdminVideo/EditVideo";
 
 function Router() {
   return (
@@ -22,8 +24,10 @@ function Router() {
       <Route path="/login" element={<Login />} />
       <Route path="/accountcreation" element={<AccountCreation />} />
       <Route path="/admin" element={<AdminMode />} />
+      <Route path="/admin/video_list" element={<ListVideo />} />
       <Route path="/admin/section" element={<AdminSection />} />
-      <Route path="/admin/upload" element={<AdminUpload />} />
+      <Route path="/admin/video_create" element={<CreateVideo />} />
+      <Route path="/admin/videos/:id/edit" element={<EditVideo />} />
       <Route path="/decouvrir" element={<Decouvrir />} />
       <Route path="/description/:id" element={<VideoDescription />} />
       <Route path="/watch/:id" element={<Watch />} />
