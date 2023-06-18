@@ -24,13 +24,16 @@ function BurgerMenu() {
           />
         )}
         {openMenu === true && (
-          <div className="absolute w-full h-full py-4 px-4 bg-black right-0 top-20 rounded-md transition">
+          <div className="absolute w-full z-50 h-full py-4 px-4 bg-black right-0 top-20 rounded-md transition">
             <ul>
               <li className="p-2 hover:text-orange-600 font-medium">
-                <NavLink>Découvrir</NavLink>
+                <NavLink to="/decouvrir">Découvrir</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
                 <NavLink>Ma Liste</NavLink>
+              </li>
+              <li className="p-2 hover:text-orange-600 font-medium">
+                <NavLink to="/admin">Admin</NavLink>
               </li>
             </ul>
             <div className="flex flex-col p-2 justify-center mt-7">

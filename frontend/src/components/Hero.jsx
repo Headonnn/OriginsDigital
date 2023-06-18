@@ -21,7 +21,7 @@ function Hero() {
     dataVideo.length > 0 && (
       <div className="w-full h-[80vh] relative shadow-inner">
         <ReactPlayer
-          url={dataVideo[2].url}
+          url={dataVideo[4].url}
           playing
           loop
           muted={!sound}
@@ -29,14 +29,14 @@ function Hero() {
           height="100%"
           className=""
         />
-        <div className="absolute top-0 z-30 w-full ">
+        <div className="absolute top-0 z-50 w-full ">
           <NavBar />
         </div>
 
         <div className="absolute top-0 px-10 pb-10 w-full h-full">
           <div className="h-full  flex justify-between  text-white">
             <div className=" flex flex-col  justify-end">
-              <h1 className="text-5xl mb-10">{dataVideo[2].title}</h1>
+              <h1 className="text-5xl mb-10">{dataVideo[4].title}</h1>
               <div className="flex flex-row w-full gap-4 ">
                 <Link to="/watch/0">
                   <div className=" flex items-center  gap-[16px] border bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
@@ -45,7 +45,7 @@ function Hero() {
                 </Link>
                 <Link to="/description/0">
                   <div className=" flex items-center  gap-[16px] border bg-[#9ca3af]/80 text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-                    <BsInfoCircle /> Plus d'infos
+                    <BsInfoCircle /> Infos
                   </div>
                 </Link>
               </div>

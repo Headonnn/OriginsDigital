@@ -32,19 +32,22 @@ function CarouselAll({ isFiltered }) {
   };
 
   const handleDateNouv = (videodate) => {
-    const test = new Date();
-    const te = test.setDate(test.getDate() - 7);
-    const dateParts = videodate.split("-");
-    const vid = new Date(
-      dateParts[0],
-      dateParts[1] - 1,
-      dateParts[2].substr(0, 2),
-      dateParts[2].substr(3, 2),
-      dateParts[2].substr(6, 2),
-      dateParts[2].substr(9, 2)
-    );
-    const vide = Date.parse(vid);
-    return te - vide <= 0;
+    if (videodate) {
+      const test = new Date();
+      const te = test.setDate(test.getDate() - 7);
+      const dateParts = videodate.split("-");
+      const vid = new Date(
+        dateParts[0],
+        dateParts[1] - 1,
+        dateParts[2].substr(0, 2),
+        dateParts[2].substr(3, 2),
+        dateParts[2].substr(6, 2),
+        dateParts[2].substr(9, 2)
+      );
+      const vide = Date.parse(vid);
+      return te - vide <= 0;
+    }
+    return false;
   };
 
   return (

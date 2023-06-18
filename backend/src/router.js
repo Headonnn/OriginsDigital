@@ -27,9 +27,9 @@ router.delete("/users/:id", userControllers.destroy);
 // Video routes
 router.get("/videos", videoControllers.browse);
 router.get("/videos/:id", videoControllers.read);
-router.put("/videos/:id", videoControllers.edit);
+router.put("/videos/:id/edit", videoControllers.edit);
 router.post("/videos", videoControllers.add);
-router.delete("/videos/:id", videoControllers.destroy);
+router.delete("/videos/:id/delete", videoControllers.destroy);
 router.get("/videos/filtre/:categorie", videoControllers.filterCategory);
 
 // Category routes
