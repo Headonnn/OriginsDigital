@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BsArrowLeft, BsPlusCircle } from "react-icons/bs";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import ButtonOrange from "../components/ButtonOrange";
 
 function AdminCarousselCustom() {
@@ -109,7 +108,6 @@ function AdminCarousselCustom() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

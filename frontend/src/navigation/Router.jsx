@@ -8,7 +8,7 @@ import VideoDescription from "../pages/VideoDescription";
 import Watch from "../pages/Watch";
 import CreateAccountForm from "../components/CreateAccountForm";
 import CreateAccountMsg from "../components/CreateAccountMsg";
-import CreateAccountProfile from "../components/CreateAccountProfile";
+import CreateAccountProfile from "../components/UserProfile";
 import AccountCreation from "../pages/AccountCreation";
 import Decouvrir from "../pages/Decouvrir";
 import AdminSection from "../pages/AdminSection";

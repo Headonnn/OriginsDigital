@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import ButtonOrange from "./ButtonOrange";
 import NavBar from "./NavBar";
-import Footer from "./Footer";
 
 function CreateAccountMsg() {
   return (
@@ -33,8 +32,6 @@ function CreateAccountMsg() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

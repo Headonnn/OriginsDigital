@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar";
-import Footer from "../Footer";
 
 function ListVideo() {
   const { dataVideo } = useContext(VideoContext);
@@ -102,7 +101,6 @@ function ListVideo() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
