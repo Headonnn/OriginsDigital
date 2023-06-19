@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
 
@@ -92,8 +91,6 @@ function Decouvrir() {
           );
         })}
       </div>
-
-      <Footer />
     </div>
   );
 }

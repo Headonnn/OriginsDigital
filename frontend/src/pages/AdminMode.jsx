@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ButtonOrange from "../components/ButtonOrange";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 
 function AdminMode() {
   const handleButtonClick = () => {
@@ -47,7 +46,6 @@ function AdminMode() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

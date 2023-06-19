@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
-
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
-import Footer from "../components/Footer";
 import VideoContext from "../../contexts/VideoContext";
 
 function HomePage() {
@@ -15,34 +13,31 @@ function HomePage() {
   ]);
 
   return (
-    <>
-      {dataVideo.length > 0 && (
-        <div>
-          {sections.map((e) => {
-            if (e.type === "Hero") {
-              return (
-                <div key={e.id}>
-                  <Hero />
-                </div>
-              );
-            }
-            if (e.type === "CarouselDate") {
-              return (
-                <div key={e.id}>
-                  <CarouselAll isFiltered />
-                </div>
-              );
-            }
+    dataVideo.length > 0 && (
+      <div>
+        {sections.map((e) => {
+          if (e.type === "Hero") {
             return (
               <div key={e.id}>
-                <CarouselAll isFiltered={false} />
+                <Hero />
               </div>
             );
-          })}
-        </div>
-      )}
-      <Footer />
-    </>
+          }
+          if (e.type === "CarouselDate") {
+            return (
+              <div key={e.id}>
+                <CarouselAll isFiltered />
+              </div>
+            );
+          }
+          return (
+            <div key={e.id}>
+              <CarouselAll isFiltered={false} />
+            </div>
+          );
+        })}
+      </div>
+    )
   );
 }
 
