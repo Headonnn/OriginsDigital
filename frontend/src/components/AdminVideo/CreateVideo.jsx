@@ -52,7 +52,7 @@ function CreateVideo() {
       {isClicked ? (
         <div className="h-96">
           <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 xl:p-0 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-            <p className="text-white text-2xl py-12">La vidéo a été modifiée</p>
+            <p className="text-white text-2xl py-12">Vidéo créée</p>
             <div className="flex justify-center">
               <div className="flex flex-col items-center space-y-36 md:space-y-16 mx-5" />
             </div>
