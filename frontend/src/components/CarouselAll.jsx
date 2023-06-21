@@ -11,7 +11,6 @@ import {
   BsCheckCircle,
 } from "react-icons/bs";
 
-
 import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll({ dataSection }) {
@@ -80,7 +79,6 @@ function CarouselAll({ dataSection }) {
           keyBoardControl
           containerClass="carousel-container"
         >
-
           {dataSection &&
             dataVideo
               .filter((e) =>
@@ -92,12 +90,10 @@ function CarouselAll({ dataSection }) {
               )
               .map((video) => {
                 return (
-
                   <div
                     key={video.id}
                     className="carousel-item relative m-4 hover:scale-105 transition"
                   >
-
                     <img
                       src={video.thumbnail}
                       alt={video.title}
@@ -123,10 +119,8 @@ function CarouselAll({ dataSection }) {
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-
+                );
+              })}
         </Carousel>
       </div>
     )
