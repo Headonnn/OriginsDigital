@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { BiLeftArrow } from "react-icons/bi";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar";
 
@@ -77,6 +78,12 @@ function ListVideo() {
         <div className="bg-gradient-to-br from-blue-900 to-022340 mx-auto flex flex-col px-3 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-3">
             <div className="flex justify-between items-center pb-20">
+              <Link to="/admin/">
+                <BiLeftArrow
+                  className="text-xl mr-2"
+                  style={{ color: "white" }}
+                />
+              </Link>
               <h2 className="text-2xl">Liste des vidéos</h2>
               <div>
                 <button

@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { BiLeftArrow } from "react-icons/bi";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import ButtonOrange from "../components/ButtonOrange";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
@@ -49,10 +48,13 @@ function AdminAddVideo() {
       <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
         <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start min-h-screen pt-10 sm:w-10/12 md:w-9/12 lg:w-7/12 xl:w-8/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-4 sm:px-7 md:h-[6rem] md:px-6 md:py-6 flex items-center justify-center relative">
-            <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
-              <BsArrowLeft className="text-white w-5 h-5 md:w-6 md:h-6 font-bold cursor-pointer" />
-            </div>
-
+            <div className="absolute left-0 top-[50%] transform -translate-y-1/2" />
+            <Link to="/admin/caroussel/custom">
+              <BiLeftArrow
+                className="text-xl mr-2"
+                style={{ color: "white" }}
+              />
+            </Link>
             <div className="flex items-center justify-center">
               <ButtonOrange
                 className="w-full flex-grow"
@@ -133,7 +135,6 @@ function AdminAddVideo() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

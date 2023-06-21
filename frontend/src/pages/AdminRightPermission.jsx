@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BiLeftArrow } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 
 function AdminRightPermission() {
   const [users, setUsers] = useState([]);
@@ -138,10 +138,12 @@ function AdminRightPermission() {
         <div className="bg-gradient-to-br from-blue-900 to-022340 mx-auto flex flex-col px-3 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-1">
             <div className="flex justify-center items-center pb-20">
-              <BiLeftArrow
-                className="text-xl mr-2"
-                style={{ color: "white" }}
-              />
+              <Link to="/admin/">
+                <BiLeftArrow
+                  className="text-xl mr-2"
+                  style={{ color: "white" }}
+                />
+              </Link>
               <h2 className="text-2xl">Gestion des admins</h2>
             </div>
             <div className="flex justify-center items-center">
