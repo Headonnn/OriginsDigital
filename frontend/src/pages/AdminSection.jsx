@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BsArrowLeft, BsPlusCircle } from "react-icons/bs";
+import { BsPlusCircle } from "react-icons/bs";
+import { BiLeftArrow } from "react-icons/bi";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
@@ -52,7 +53,12 @@ function AdminSection() {
         <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-10 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-center relative">
             <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
-              <BsArrowLeft className="text-white w-5 h-5 md:w-6 md:h-6 font-bold cursor-pointer" />
+              <Link to="/admin/">
+                <BiLeftArrow
+                  className="text-xl mr-2"
+                  style={{ color: "white" }}
+                />
+              </Link>
             </div>
 
             <div className="flex items-center justify-center ">
