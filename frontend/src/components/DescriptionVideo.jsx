@@ -72,35 +72,41 @@ function DescriptionVideo() {
           </Link>
         </div>
         <div className="flex items-center mb-9">
-          <div
+          <button
+            type="button"
             className={` ${
               isClicked
                 ? "hidden"
                 : "hidden sm:flex items-center gap-[16px] border rounded-xl mb-[16px] p-[12px] cursor-pointer bg-black text-white hover:bg-white hover:text-black"
             }`}
-            onChange={handleClick}
+            onClick={handleClick}
+            onKeyDown={handleClick}
           >
             <BsShareFill /> Partager
-          </div>
+          </button>
 
-          <div
+          <button
+            type="button"
             className={` ${
               isClicked
                 ? "hidden"
                 : "sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition"
             }`}
-            onChange={handleClick}
+            onClick={handleClick}
+            onKeyDown={handleClick}
           >
             <BsShareFill />
-          </div>
+          </button>
 
-          <div
+          <button
+            type="button"
             className={` ${
               isClicked
                 ? "sm:flex items-center gap-[16px] border rounded-xl mb-[8px] sm:mb-[16px] p-[5px] sm:p-[8px] cursor-pointer animate-fade-down animate-once animate-duration-500 animate-ease-linear animate-normal"
                 : "hidden"
             }`}
-            onChange={handleClick}
+            onClick={handleClick}
+            onKeyDown={handleClick}
           >
             <EmailShareButton url={currentPageUrl}>
               <EmailIcon size={28} round />
@@ -114,7 +120,7 @@ function DescriptionVideo() {
             <WhatsappShareButton url={currentPageUrl}>
               <WhatsappIcon size={28} round />
             </WhatsappShareButton>
-          </div>
+          </button>
         </div>
       </div>
     </div>
