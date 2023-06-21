@@ -163,7 +163,6 @@ function AdminRightPermission() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
