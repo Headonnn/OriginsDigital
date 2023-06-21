@@ -34,27 +34,26 @@ function AdminRightPermission() {
 
   const toggleAdmin = (id) => {
     const updatedUsers = users.map((userItem) => {
-        if (userItem.id === id) {
-          const newAdminStatus = !userItem.is_admin;
-          const updatedUser = {
-            ...userItem,
-            is_admin: newAdminStatus,
-            text: newAdminStatus ? "Admin" : "non-Admin",
-          };
-      
-          // Effectuer la requête PUT ou PATCH pour mettre à jour le statut admin/non-admin dans la base de données
-          axios
-            .put(`http://localhost:5002/user/${id}`, { is_admin: newAdminStatus })
-            .then((res) => {
-              console.warn(res.data);
-            })
-            .catch((error) => console.error(error));
-      
-          return updatedUser;
-        }
-        return userItem;
-      });
-      
+      if (userItem.id === id) {
+        const newAdminStatus = !userItem.is_admin;
+        const updatedUser = {
+          ...userItem,
+          is_admin: newAdminStatus,
+          text: newAdminStatus ? "Admin" : "non-Admin",
+        };
+
+        // Effectuer la requête PUT ou PATCH pour mettre à jour le statut admin/non-admin dans la base de données
+        axios
+          .put(`http://localhost:5002/user/${id}`, { is_admin: newAdminStatus })
+          .then((res) => {
+            console.warn(res.data);
+          })
+          .catch((error) => console.error(error));
+
+        return updatedUser;
+      }
+      return userItem;
+    });
 
     setUsers(updatedUsers);
   };

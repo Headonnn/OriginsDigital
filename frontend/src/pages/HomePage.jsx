@@ -1,11 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import React, { useContext, useState } from "react";
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
-
 
 function HomePage() {
   const [dataSection, setDataSection] = useState([]);
@@ -30,8 +27,7 @@ function HomePage() {
   }, []);
 
   return (
-
-    <>
+    <div>
       {dataSection.length > 0 && (
         <div>
           <Hero />
@@ -41,9 +37,7 @@ function HomePage() {
           ))}
         </div>
       )}
-
-    </>
-
+    </div>
   );
 }
 
