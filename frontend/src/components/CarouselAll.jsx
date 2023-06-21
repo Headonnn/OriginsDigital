@@ -90,32 +90,34 @@ function CarouselAll({ dataSection }) {
               )
               .map((video) => {
                 return (
-                  <div
-                    key={video.id}
-                    className="carousel-item relative m-4 hover:scale-105 transition"
-                  >
-                    <img
-                      src={video.thumbnail}
-                      alt={video.title}
-                      className="h-52 w-88"
-                    />
+                  <div className="group">
+                    <div
+                      key={video.id}
+                      className="carousel-item relative m-4 hover:scale-105 transition"
+                    >
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="h-52 w-88"
+                      />
 
-                    <div className="hidden group-hover:block group-hover:absolute bg-black transform top-2/3 bg-opacity-60 text-white w-full h-5/6">
-                      <div className="text-lg">{video.title}</div>
-                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 text-black rounded-xl cursor-pointer text-white transition">
-                        <Link to={`/description/${video.id - 1}`}>
-                          <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                        </Link>
-                        <Link to={`/watch/${video.id - 1}`}>
-                          <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                        </Link>
-                        <button type="button" onClick={handleAddToList}>
-                          {!isInTheList ? (
-                            <BsPlusCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                          ) : (
-                            <BsCheckCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                          )}
-                        </button>
+                      <div className="hidden group-hover:block group-hover:absolute bg-black transform top-2/3 bg-opacity-60 text-white w-full h-5/6">
+                        <div className="text-lg">{video.title}</div>
+                        <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 text-black rounded-xl cursor-pointer text-white transition">
+                          <Link to={`/description/${video.id - 1}`}>
+                            <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                          </Link>
+                          <Link to={`/watch/${video.id - 1}`}>
+                            <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                          </Link>
+                          <button type="button" onClick={handleAddToList}>
+                            {!isInTheList ? (
+                              <BsPlusCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                            ) : (
+                              <BsCheckCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                            )}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
