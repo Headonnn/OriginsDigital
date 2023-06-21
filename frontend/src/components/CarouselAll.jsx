@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import {
+  BsInfoCircle,
+  BsPlayCircle,
+  BsPlusCircle,
+  BsCheckCircle,
+} from "react-icons/bs";
+
 import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll({ isFiltered }) {
   const { dataVideo } = useContext(VideoContext);
+  const [isInTheList, SetisInTheList] = useState(false);
 
   const responsive = {
     largeDesktop: {
@@ -50,9 +58,13 @@ function CarouselAll({ isFiltered }) {
     return false;
   };
 
+  const handleAddToList = () => {
+    SetisInTheList(!isInTheList);
+  };
+
   return (
     dataVideo.length > 0 && (
-      <div className="carousel mx-auto bg-neutral-950">
+      <div className="carousel mx-auto bg-neutral-950 my-20">
         <h2 className="text-lg text-white font-light py-6 ml-4">
           {isFiltered ? "Nouveautés" : "Toutes les videos"}
         </h2>
@@ -74,17 +86,36 @@ function CarouselAll({ isFiltered }) {
             })
             .map((video) => {
               return (
-                <div
-                  key={video.id}
-                  className="carousel-item relative m-4 hover:scale-105 transition"
-                >
-                  <Link to={`/description/${video.id - 1}`}>
+                <div className="group">
+                  <div
+                    key={video.id}
+                    className="carousel-item relative m-4 hover:scale-105 transition"
+                  >
                     <img
                       src={video.thumbnail}
                       alt={video.title}
                       className="h-52 w-88"
                     />
-                  </Link>
+
+                    <div className="hidden group-hover:block group-hover:absolute bg-black transform top-2/3 bg-opacity-60 text-white w-full h-5/6">
+                      <div className="text-lg">{video.title}</div>
+                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 text-black rounded-xl cursor-pointer text-white transition">
+                        <Link to={`/description/${video.id - 1}`}>
+                          <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                        </Link>
+                        <Link to={`/watch/${video.id - 1}`}>
+                          <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                        </Link>
+                        <button type="button" onClick={handleAddToList}>
+                          {!isInTheList ? (
+                            <BsPlusCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                          ) : (
+                            <BsCheckCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
             })}
