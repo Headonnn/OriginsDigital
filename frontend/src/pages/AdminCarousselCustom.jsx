@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BsArrowLeft, BsPlusCircle } from "react-icons/bs";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import ButtonOrange from "../components/ButtonOrange";
@@ -71,9 +72,9 @@ function AdminCarousselCustom() {
               />
             </div>
           </div>
-          <div className="flex justify-center">
-            <BsPlusCircle className="text-white text-5xl mt-8 sm:mt-16 cursor-pointer" />
-          </div>
+          <Link to="/admin/add/video" className="flex justify-center">
+            <BsPlusCircle className="text-white text-5xl mt-16 cursor-pointer" />
+          </Link>
           <div className="mt-14 flex items-center justify-center flex-wrap">
             <div className="flex items-center justify-center w-full px-10 sm:px-8 md:px-20 lg:px-32 gap-2">
               <label htmlFor="inputFieldName">Nom</label>
