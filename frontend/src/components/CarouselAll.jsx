@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import {
   BsInfoCircle,
   BsPlayCircle,
@@ -10,9 +11,10 @@ import {
   BsCheckCircle,
 } from "react-icons/bs";
 
+
 import VideoContext from "../../contexts/VideoContext";
 
-function CarouselAll({ isFiltered }) {
+function CarouselAll({ dataSection }) {
   const { dataVideo } = useContext(VideoContext);
   const [isInTheList, SetisInTheList] = useState(false);
 
@@ -66,8 +68,9 @@ function CarouselAll({ isFiltered }) {
     dataVideo.length > 0 && (
       <div className="carousel mx-auto bg-neutral-950 my-20">
         <h2 className="text-lg text-white font-light py-6 ml-4">
-          {isFiltered ? "Nouveautés" : "Toutes les videos"}
+          {dataSection.name ? dataSection.name[0] : dataSection.carousel.name}
         </h2>
+
         <Carousel
           responsive={responsive}
           arrows
@@ -77,20 +80,24 @@ function CarouselAll({ isFiltered }) {
           keyBoardControl
           containerClass="carousel-container"
         >
-          {dataVideo
-            .filter((e) => {
-              if (isFiltered) {
-                return handleDateNouv(e.date);
-              }
-              return e;
-            })
-            .map((video) => {
-              return (
-                <div className="group">
+
+          {dataSection &&
+            dataVideo
+              .filter((e) =>
+                dataSection.name === "Nouveautés"
+                  ? handleDateNouv(e.date)
+                  : dataSection.videos
+                      .map((el) => Object.values(el)[0])
+                      .includes(e.id)
+              )
+              .map((video) => {
+                return (
+
                   <div
                     key={video.id}
                     className="carousel-item relative m-4 hover:scale-105 transition"
                   >
+
                     <img
                       src={video.thumbnail}
                       alt={video.title}
@@ -119,6 +126,7 @@ function CarouselAll({ isFiltered }) {
                 </div>
               );
             })}
+
         </Carousel>
       </div>
     )
@@ -126,7 +134,10 @@ function CarouselAll({ isFiltered }) {
 }
 
 CarouselAll.propTypes = {
-  isFiltered: PropTypes.bool.isRequired,
+  dataSection: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.number.isRequired, PropTypes.string.isRequired)
+      .isRequired
+  ).isRequired,
 };
 
 export default CarouselAll;

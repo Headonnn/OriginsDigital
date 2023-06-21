@@ -7,12 +7,6 @@ CREATE TABLE `user` (
 	lastname VARCHAR(100) NOT NULL,
 	is_admin TINYINT DEFAULT 0
 );
-CREATE TABLE `section` (
-  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  `order` INT NOT NULL,
-  title VARCHAR (100) NOT NULL,
-  size VARCHAR(50)
-);
 
 
 CREATE TABLE `video` (
@@ -45,9 +39,9 @@ CREATE TABLE `favorite` (
 
 CREATE TABLE `carousel_custom` (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	section_id INT NOT NULL,
-	name VARCHAR(100),
-	FOREIGN KEY (`section_id`) REFERENCES `section` (id)
+	
+	name VARCHAR(100)
+
 );
 
 CREATE TABLE `video_carousel` (
@@ -74,11 +68,11 @@ CREATE TABLE `video_category` (
 
 CREATE TABLE `carousel_category` (
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	section_id INT NOT NULL,
+	
 	max_number INT NOT NULL,
 	category_id INT NOT NULL,
-	FOREIGN KEY (category_id) REFERENCES `category` (id),
-	 FOREIGN KEY (`section_id`) REFERENCES `section` (id)
+	FOREIGN KEY (category_id) REFERENCES `category` (id)
+
 );
 
 CREATE TABLE `advert` (
@@ -86,10 +80,26 @@ CREATE TABLE `advert` (
 	title VARCHAR(150) NOT NULL,
 	section_id INT NOT NULL,
 	description VARCHAR(500) NOT NULL,
-	image VARCHAR(100) NOT NULL,
-	FOREIGN KEY (section_id) REFERENCES `section` (id)
+	image VARCHAR(100) NOT NULL
+
 );
 
+CREATE TABLE `section` (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `ordre` INT NOT NULL,
+
+  title VARCHAR (100) NOT NULL,
+  size VARCHAR(50),
+  carousel_category_id INT DEFAULT NULL,
+  carousel_custom_id INT DEFAULT NULL,
+  advert_id INT DEFAULT NULL,
+
+  Foreign Key (carousel_custom_id) REFERENCES carousel_custom (id),
+  Foreign Key (carousel_category_id) REFERENCES carousel_category (id),
+  Foreign Key (advert_id) REFERENCES advert (id)
+
+
+);
 
 
 
@@ -127,19 +137,21 @@ VALUES
   (8, 6),
   (6, 1);
 
-  INSERT INTO `section` (`order`, size,title) 
+
+INSERT INTO carousel_custom (name) VALUES ("custom1"),("custom2");
+
+INSERT INTO carousel_category (max_number,category_id) VALUES (100,1);
+INSERT INTO `section` (ordre, size, title, carousel_category_id, carousel_custom_id) 
 VALUES 
 
-(1, "moyen","carouselNouv"),
-(2, "moyen","carouselAll"),
-(3, "moyen","carouselCustom");
-
-INSERT INTO carousel_custom (name,section_id) VALUES ("custom1",1),("custom2",3);
-
-INSERT INTO carousel_category (max_number,category_id,section_id) VALUES (100,1,2);
+(1, "moyen","carouselNouv",NULL,1),
+(2, "moyen","carouselAll",1,NULL),
+(3, "moyen","carouselCustom",NULL,2);
 
 
 
+
+INSERT INTO video_carousel (video_id,carousel_id) VALUES (1,1),(5,1),(6,1),(3,2),(5,2),(8,2);
 
 
 

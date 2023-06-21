@@ -9,7 +9,10 @@ const userControllers = require("./controllers/userControllers");
 const videoControllers = require("./controllers/videoControllers");
 const sectionControllers = require("./controllers/sectionsControllers");
 const categoryControllers = require("./controllers/categoryControllers");
-
+const videoCarouselControllers = require("./controllers/videoCarouselControllers");
+const carouselCustomControllers = require("./controllers/carouselCustomControllers");
+const carouselCategoryControllers = require("./controllers/carouselCategoryControllers");
+const videoCategoryControllers = require("./controllers/videoCategoryControllers");
 // Item routes
 router.get("/items", itemControllers.browse);
 router.get("/items/:id", itemControllers.read);
@@ -40,6 +43,21 @@ router.post("/categories", categoryControllers.add);
 router.delete("/categories/:id", categoryControllers.destroy);
 
 // Sections routes
+
 router.get("/sections", sectionControllers.browse);
+
+// video_carousel routes
+router.get("/videos_carousel/:id", videoCarouselControllers.read);
+
+// carousel_custom routes
+router.get("/carousel_custom", carouselCustomControllers.browse);
+router.get("/carousel_custom/:id", carouselCustomControllers.read);
+
+// carousel_category routes
+router.get("/carousel_category", carouselCategoryControllers.browse);
+router.get("/carousel_category/:id", carouselCategoryControllers.read);
+
+// video_category routes
+router.get("/videos_category/:id", videoCategoryControllers.read);
 
 module.exports = router;
