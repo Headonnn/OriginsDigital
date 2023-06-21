@@ -18,6 +18,7 @@ import EditVideo from "../components/AdminVideo/EditVideo";
 import AdminSectionAccess from "../pages/AdminSectionAccess";
 import AdminCarousselCustom from "../pages/AdminCarousselCustom";
 import AdminAddVideo from "../pages/AdminAddVideo";
+import AdminRightPermission from "../pages/AdminRightPermission";
 
 function Router() {
   return (
@@ -43,6 +44,7 @@ function Router() {
         element={<AdminCarousselCustom />}
       />
       <Route path="/admin/add/video" element={<AdminAddVideo />} />
+      <Route path="/admin/permission" element={<AdminRightPermission />} />
     </Routes>
   );
 }
