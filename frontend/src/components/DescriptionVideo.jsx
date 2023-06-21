@@ -1,6 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { BsFillPlayFill } from "react-icons/bs";
+import { BsFillPlayFill, BsShareFill } from "react-icons/bs";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 import VideoContext from "../../contexts/VideoContext";
 
 function DescriptionVideo() {
@@ -10,6 +20,13 @@ function DescriptionVideo() {
   if (!dataVideo || !dataVideo[params.id]) {
     return <div>Loading...</div>;
   }
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
+  const currentPageUrl = window.location.href;
 
   return (
     <div>
@@ -43,12 +60,62 @@ function DescriptionVideo() {
           </h6>
         </div>
       </div>
-      <div className="flex items-center mb-9">
-        <Link to={`/watch/${params.id}`}>
-          <div className=" flex items-center gap-[16px] border bg-black text-white rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-            <BsFillPlayFill /> Lecture
+      <div className="flex justify-between items-center ">
+        <div className="flex items-center mb-9">
+          <Link to={`/watch/${params.id}`}>
+            <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+              <BsFillPlayFill /> Lecture
+            </div>
+            <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+              <BsFillPlayFill />
+            </div>
+          </Link>
+        </div>
+        <div className="flex items-center mb-9">
+          <div
+            className={` ${
+              isClicked
+                ? "hidden"
+                : "hidden sm:flex items-center gap-[16px] border rounded-xl mb-[16px] p-[12px] cursor-pointer bg-black text-white hover:bg-white hover:text-black"
+            }`}
+            onChange={handleClick}
+          >
+            <BsShareFill /> Partager
           </div>
-        </Link>
+
+          <div
+            className={` ${
+              isClicked
+                ? "hidden"
+                : "sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition"
+            }`}
+            onChange={handleClick}
+          >
+            <BsShareFill />
+          </div>
+
+          <div
+            className={` ${
+              isClicked
+                ? "sm:flex items-center gap-[16px] border rounded-xl mb-[8px] sm:mb-[16px] p-[5px] sm:p-[8px] cursor-pointer animate-fade-down animate-once animate-duration-500 animate-ease-linear animate-normal"
+                : "hidden"
+            }`}
+            onChange={handleClick}
+          >
+            <EmailShareButton url={currentPageUrl}>
+              <EmailIcon size={28} round />
+            </EmailShareButton>
+            <TwitterShareButton url={currentPageUrl}>
+              <TwitterIcon size={28} round />
+            </TwitterShareButton>
+            <FacebookShareButton url={currentPageUrl}>
+              <FacebookIcon size={28} round />
+            </FacebookShareButton>
+            <WhatsappShareButton url={currentPageUrl}>
+              <WhatsappIcon size={28} round />
+            </WhatsappShareButton>
+          </div>
+        </div>
       </div>
     </div>
   );
