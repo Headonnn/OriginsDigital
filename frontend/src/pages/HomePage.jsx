@@ -1,8 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import React, { useContext, useState } from "react";
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
-import Footer from "../components/Footer";
+
 
 function HomePage() {
   const [dataSection, setDataSection] = useState([]);
@@ -27,6 +30,7 @@ function HomePage() {
   }, []);
 
   return (
+
     <>
       {dataSection.length > 0 && (
         <div>
@@ -37,8 +41,9 @@ function HomePage() {
           ))}
         </div>
       )}
-      <Footer />
+
     </>
+
   );
 }
 

@@ -31,7 +31,7 @@ function LoginId() {
         className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute top-[0px] left-1/2 transform -translate-x-1/2"
         style={{ clipPath: "circle(50% at 50% 50%)" }}
       /> */}
-      <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 xl:p-0shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+      <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
         <p className="text-white text-xl text-center mt-15">
           Se connecter à Mon Compte
         </p>

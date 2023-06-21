@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ButtonOrange from "../components/ButtonOrange";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 
 function AdminMode() {
   const handleButtonClick = () => {
@@ -44,10 +43,19 @@ function AdminMode() {
                 </ButtonOrange>
               </Link>
             </div>
+            <div className="w-full max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center relative">
+              <Link to="/admin/permission">
+                <ButtonOrange
+                  onClick={handleButtonClick}
+                  className="w-full flex-grow"
+                >
+                  Administration des admins
+                </ButtonOrange>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

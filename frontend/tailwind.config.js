@@ -3,6 +3,7 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    safelist: {},
     extend: {
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
@@ -10,5 +11,5 @@ export default {
     },
   },
 
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("tailwindcss-animated")],
 };

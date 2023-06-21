@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
+import axios from "axios";
 
 function CreateAccountForm() {
   const [username, setUsername] = useState("");
@@ -12,19 +13,22 @@ function CreateAccountForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/users`, {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username,
-        email,
-        firstname,
-        lastname,
-        password,
-      }),
-    })
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/users`,
+        {
+          username,
+          email,
+          firstname,
+          lastname,
+          password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
       .then((response) => {
-        if (response.ok) {
+        if (response.status === 200) {
           console.warn(response);
         } else {
           throw new Error("Error submitting form data");
@@ -56,7 +60,7 @@ function CreateAccountForm() {
         style={{ clipPath: "circle(50% at 50% 50%)" }}
       />
 
-      <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-20 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+      <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 xl:p-0shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
         <div>
           <NavLink to="/login">
             {" "}

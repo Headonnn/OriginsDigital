@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
+import Footer from "./components/Footer";
 
 function App() {
   const [dataVideo, setDataVideo] = useState([]);
@@ -53,9 +54,14 @@ function App() {
   );
 
   return (
-    <div className="max-w-screen-2xl m-auto">
+    <div className="max-w-screen-2xl m-auto min-h-screen flex flex-col">
       <VideoContext.Provider value={contextValue}>
-        <Router />
+        <div className="flex-grow">
+          <Router />
+        </div>
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </VideoContext.Provider>
     </div>
   );

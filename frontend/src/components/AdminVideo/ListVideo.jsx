@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar";
-import Footer from "../Footer";
 
 function ListVideo() {
   const { dataVideo } = useContext(VideoContext);
@@ -74,7 +73,7 @@ function ListVideo() {
   return (
     <div>
       <NavBar />
-      <div className="loginid-container bg-black min-h-screen p-5 mt-10 relative overflow-hidden">
+      <div className="loginid-container bg-black p-5 mt-10 relative overflow-hidden">
         <div className="bg-gradient-to-br from-blue-900 to-022340 mx-auto flex flex-col px-3 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-3">
             <div className="flex justify-between items-center pb-20">
@@ -102,7 +101,6 @@ function ListVideo() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

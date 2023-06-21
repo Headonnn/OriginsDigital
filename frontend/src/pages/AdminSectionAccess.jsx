@@ -1,8 +1,9 @@
 import React from "react";
 import { BsArrowLeft } from "react-icons/bs";
-import ButtonOrange from "./components/ButtonOrange";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import { Link } from "react-router-dom";
+import ButtonOrange from "../components/ButtonOrange";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 function AdminSectionAccess() {
   return (
@@ -49,12 +50,15 @@ function AdminSectionAccess() {
             <h1 className="text-white text-center font-poppins  underline">
               Choix de la section à créer :
             </h1>
-            <button
-              type="button"
-              className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
-            >
-              Caroussel custom
-            </button>
+            <Link to="/admin/caroussel/custom" className="flex justify-center">
+              <button
+                type="button"
+                className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
+              >
+                Caroussel custom
+              </button>
+            </Link>
+
             <button
               type="button"
               className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"

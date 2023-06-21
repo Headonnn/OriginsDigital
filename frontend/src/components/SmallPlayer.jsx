@@ -12,7 +12,7 @@ function SmallPlayer() {
   }
 
   return (
-    <div className="flex bg-black my-9">
+    <div className="flex justify-center bg-black my-9">
       <ReactPlayer url={dataVideo[params.id].url} controls />
     </div>
   );
