@@ -28,14 +28,14 @@ function CreateAccountForm() {
         }
       )
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 201) {
           console.warn(response);
         } else {
-          throw new Error("Error submitting form data");
+          throw new Error("else, Error submitting new form data");
         }
       })
       .catch((error) => {
-        console.error("Error submitting form data:", error);
+        console.error("catch, Error submitting new form data:", error);
       });
   };
 
