@@ -90,8 +90,8 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
 
     .findByMail(email)
     .then(([user]) => {
-      if (user != null) {
-        req.user = user;
+      if (user[0] != null) {
+        req.user = user[0];
         console.warn("user identified by email, so far so good");
         next();
       } else {
