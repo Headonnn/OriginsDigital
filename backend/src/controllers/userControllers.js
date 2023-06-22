@@ -8,7 +8,7 @@ const browse = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("error const browse userCont");
     });
 };
 
@@ -17,14 +17,14 @@ const read = (req, res) => {
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.sendStatus(404);
+        res.status(404).send("error 404");
       } else {
         res.send(rows[0]);
       }
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("error const read userCont");
     });
 };
 
@@ -39,14 +39,14 @@ const edit = (req, res) => {
     .update(user)
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.sendStatus(404);
+        res.status(404).send("error 404");
       } else {
-        res.sendStatus(204);
+        res.status(204).send();
       }
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("error const edit userCont");
     });
 };
 
@@ -83,7 +83,7 @@ const add = (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("error const add userCont");
     });
 };
 
@@ -92,14 +92,37 @@ const destroy = (req, res) => {
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.sendStatus(404);
+        res.status(404).send("error 404");
       } else {
-        res.sendStatus(204);
+        res.status(204).send();
       }
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send("error const destroy userCont");
+    });
+};
+
+const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  const { email } = req.body;
+
+  models.user
+
+    .findByMail(email)
+    .then(([user]) => {
+      if (user[0] != null) {
+        req.user = user[0];
+        console.warn("user identified by email, so far so good");
+        next();
+      } else {
+        res.status(500).send("error 401 userController getuserbymailmachin");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res
+        .status(500)
+        .send("UserController level, error retrieving data from database");
     });
 };
 
@@ -110,4 +133,5 @@ module.exports = {
   editAll,
   add,
   destroy,
+  getUserByEmailWithPasswordAndPassToNext,
 };

@@ -31,6 +31,15 @@ class UserManager extends AbstractManager {
       [isAdmin, id]
     );
   }
+
+  findByMail(email) {
+    return this.database
+      .query(`SELECT * FROM ${this.table} WHERE email = ?`, [email])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to retrieve data from the database AZERTY.");
+      });
+  }
 }
 
 module.exports = UserManager;
