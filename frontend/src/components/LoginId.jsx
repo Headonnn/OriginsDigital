@@ -27,9 +27,10 @@ function LoginId() {
           headers: { "Content-Type": "application/json" },
         }
       )
-      .then((response) => {
-        if (response.status === 200) {
-          console.warn(response);
+      .then((res) => {
+        if (res.status === 200) {
+          console.warn(res.data);
+          localStorage.setItem("token", JSON.stringify(res.data));
         } else {
           throw new Error("Error during login attempt");
         }

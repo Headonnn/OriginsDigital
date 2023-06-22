@@ -47,15 +47,14 @@ const verifyPassword = async (req, res) => {
     const isVerified = await argon2.verify(hashedPassword, password);
 
     if (isVerified) {
-      const payload = { sub: req.user.id };
+      const user = { ...req.user };
+      delete user.hashedPassword;
+      const payload = { cargo: req.user };
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "1000",
       });
 
-      const user = { ...req.user };
-      delete user.hashedPassword;
-
-      res.status(200).send({ token, user });
+      res.status(200).send({ token });
       return null;
     }
     res.status(401).send("verifypassword, error expelliarmus");
