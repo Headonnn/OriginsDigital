@@ -1,5 +1,5 @@
 import React from "react";
-import BigPlayer from "../components/BigPlayer";
+import BigPlayer from "../components/LectureVideo/BigPlayer";
 
 function Watch() {
   return (

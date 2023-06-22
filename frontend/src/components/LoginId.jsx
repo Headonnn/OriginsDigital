@@ -42,24 +42,6 @@ function LoginId() {
 
   return (
     <div className="loginid-container bg-black p-5 py-8 relative overflow-hidden">
-      {/* <div
-        className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute bottom-[10px] left-[00px]"
-        style={{
-          clipPath:
-            "polygon(0 0, 100% 0, 100% 100%, 70% 100%, 30% 100%, 0 100%)",
-        }}
-      />
-      <div
-        className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute bottom-[1px] right-[100px]"
-        style={{
-          clipPath:
-            "polygon(0 0, 100% 0, 100% 100%, 70% 100%, 30% 100%, 0 100%)",
-        }}
-      />
-      <div
-        className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute top-[0px] left-1/2 transform -translate-x-1/2"
-        style={{ clipPath: "circle(50% at 50% 50%)" }}
-      /> */}
       <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
         <p className="text-white text-xl text-center mt-15">
           Se connecter à Mon Compte

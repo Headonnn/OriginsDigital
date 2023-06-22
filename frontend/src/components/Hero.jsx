@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 import ReactPlayer from "react-player";
 import VideoContext from "../../contexts/VideoContext";
-import NavBar from "./NavBar";
+import NavBar from "./NavBar/NavBar";
 
 function Hero() {
   const { dataVideo } = useContext(VideoContext);

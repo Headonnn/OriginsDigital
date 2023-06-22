@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 
 function ManageVideos() {
   const { dataVideo, setDataVideo } = useContext(VideoContext);

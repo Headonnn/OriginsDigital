@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import {
+  BsInfoCircle,
+  BsPlayCircle,
+  BsPlusCircle,
+  BsCheckCircle,
+} from "react-icons/bs";
+import NavBar from "../components/NavBar/NavBar";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
 
@@ -8,7 +14,12 @@ function Decouvrir() {
   const [search, setSearch] = useState("");
   const [isFiltered, setIsFiltered] = useState([]);
   const [filtreCategorie, setFiltreCategorie] = useState("");
+  const [isInTheList, SetisInTheList] = useState(false);
   const { dataVideo, setDataVideo } = useContext(VideoContext);
+
+  const handleAddToList = () => {
+    SetisInTheList(!isInTheList);
+  };
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
@@ -50,11 +61,8 @@ function Decouvrir() {
       <div className="flex justify-center gap-12 flex-wrap my-5">
         {isFiltered.map((video) => {
           return (
-            <div className="group">
-              <div
-                key={video.id}
-                className="w-60 hover:scale-110 transition text-white "
-              >
+            <div className="group" key={video.id}>
+              <div className="w-60 hover:scale-110 transition text-white ">
                 <h3>{video.title}</h3>
                 <Link to={`/description/${video.id - 1}`}>
                   <img
@@ -63,14 +71,23 @@ function Decouvrir() {
                     className="rounded-lg h-44 w-68"
                   />
                 </Link>
-                <div className="hidden p-3 group-hover:block group-hover:absolute group-hover:bg-black">
-                  <div className="flex justify-between items-center">
-                    <p>Date : </p>
-                    {video.date}
-                    <p>Durée : </p>
-                    {video.length}
+                <div className="hidden group-hover:block group-hover:absolute bg-black transform bottom-0 bg-opacity-60 text-white w-full ">
+                  <div className="text-md">{video.title}</div>
+                  <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 text-black rounded-xl cursor-pointer text-white transition">
+                    <Link to={`/description/${video.id - 1}`}>
+                      <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                    </Link>
+                    <Link to={`/watch/${video.id - 1}`}>
+                      <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                    </Link>
+                    <button type="button" onClick={handleAddToList}>
+                      {!isInTheList ? (
+                        <BsPlusCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                      ) : (
+                        <BsCheckCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                      )}
+                    </button>
                   </div>
-                  {video.description}
                 </div>
               </div>
             </div>

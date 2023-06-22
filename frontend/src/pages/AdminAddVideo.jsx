@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { BiLeftArrow } from "react-icons/bi";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar/NavBar";
 import ButtonOrange from "../components/ButtonOrange";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";

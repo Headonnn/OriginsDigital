@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 
 import { BsArrowLeft } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
-import VideoContext from "../../contexts/VideoContext";
+import VideoContext from "../../../contexts/VideoContext";
 
 function BigPlayer() {
   const params = useParams();
