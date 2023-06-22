@@ -50,6 +50,26 @@ const edit = (req, res) => {
     });
 };
 
+const editAll = (req, res) => {
+  const user = req.body;
+
+  user.id = parseInt(req.params.id, 10);
+
+  models.user
+    .updateAll(user)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const add = (req, res) => {
   const user = req.body;
   console.warn(user);
@@ -110,6 +130,7 @@ module.exports = {
   browse,
   read,
   edit,
+  editAll,
   add,
   destroy,
   getUserByEmailWithPasswordAndPassToNext,

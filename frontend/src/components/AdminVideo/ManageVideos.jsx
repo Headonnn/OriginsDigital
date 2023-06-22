@@ -1,24 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { BiLeftArrow } from "react-icons/bi";
+import { Link, useNavigate } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar";
 
-function ListVideo() {
-  const { dataVideo } = useContext(VideoContext);
+function ManageVideos() {
+  const { dataVideo, setDataVideo } = useContext(VideoContext);
+  const navigate = useNavigate();
 
+  const updateVideoList = () => {
+    axios
+      .get("http://localhost:5002/videos")
+      .then((res) => setDataVideo(res.data))
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    updateVideoList();
+  }, [dataVideo]);
   const deleteVideo = (e, id) => {
     e.preventDefault();
-
-    const clicked = e.currentTarget;
-    clicked.innerText = "Suppression...";
 
     axios
       .delete(`http://localhost:5002/videos/${id}/delete`)
       .then((res) => {
         console.warn(res.data);
-        clicked.closest("tr").remove();
+        updateVideoList();
       })
       .catch((error) => console.error(error));
   };
@@ -78,12 +85,15 @@ function ListVideo() {
         <div className="bg-gradient-to-br from-blue-900 to-022340 mx-auto flex flex-col px-3 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-3">
             <div className="flex justify-between items-center pb-20">
-              <Link to="/admin/">
-                <BiLeftArrow
-                  className="text-xl mr-2"
-                  style={{ color: "white" }}
-                />
-              </Link>
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => navigate("/admin/")}
+                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                >
+                  Retour
+                </button>
+              </div>
               <h2 className="text-2xl">Liste des vidéos</h2>
               <div>
                 <button
@@ -112,4 +122,4 @@ function ListVideo() {
   );
 }
 
-export default ListVideo;
+export default ManageVideos;

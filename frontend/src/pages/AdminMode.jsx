@@ -49,7 +49,7 @@ function AdminMode() {
                   onClick={handleButtonClick}
                   className="w-full flex-grow"
                 >
-                  Administration des admins
+                  Administration des utilisateurs
                 </ButtonOrange>
               </Link>
             </div>
