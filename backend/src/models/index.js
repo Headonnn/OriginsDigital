@@ -34,16 +34,28 @@ const UserManager = require("./UserManager");
 const VideoManager = require("./VideoManager");
 const CategoryManager = require("./CategoryManager");
 const SectionsManager = require("./SectionsManager");
+const VideoCarouselManager = require("./VideoCarouselManager");
+const CarouselCustomManager = require("./CarouselCustomManager");
+const CarouselCategoryManager = require("./CarouselCategoryManager");
+const VideoCategoryManager = require("./VideoCategoryManager");
 
 models.item = new ItemManager();
 models.user = new UserManager();
 models.video = new VideoManager();
 models.category = new CategoryManager();
 models.section = new SectionsManager();
+models.videoCarousel = new VideoCarouselManager();
+models.carouselCustom = new CarouselCustomManager();
+models.carouselCategory = new CarouselCategoryManager();
+models.videoCategory = new VideoCategoryManager();
 models.user.setDatabase(pool);
 models.video.setDatabase(pool);
 models.category.setDatabase(pool);
 models.section.setDatabase(pool);
+models.videoCarousel.setDatabase(pool);
+models.carouselCustom.setDatabase(pool);
+models.carouselCategory.setDatabase(pool);
+models.videoCategory.setDatabase(pool);
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

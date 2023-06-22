@@ -1,8 +1,8 @@
 import React from "react";
-import { BsArrowLeft } from "react-icons/bs";
-import ButtonOrange from "./components/ButtonOrange";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import { Link } from "react-router-dom";
+import { BiLeftArrow } from "react-icons/bi";
+import ButtonOrange from "../components/ButtonOrange";
+import NavBar from "../components/NavBar";
 
 function AdminSectionAccess() {
   return (
@@ -30,7 +30,12 @@ function AdminSectionAccess() {
         <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-10 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-center relative">
             <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
-              <BsArrowLeft className="text-white w-5 h-5 md:w-6 md:h-6 font-bold cursor-pointer" />
+              <Link to="/admin/section">
+                <BiLeftArrow
+                  className="text-xl mr-2"
+                  style={{ color: "white" }}
+                />
+              </Link>
             </div>
 
             <div className="flex items-center justify-center ">
@@ -49,12 +54,15 @@ function AdminSectionAccess() {
             <h1 className="text-white text-center font-poppins  underline">
               Choix de la section à créer :
             </h1>
-            <button
-              type="button"
-              className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
-            >
-              Caroussel custom
-            </button>
+            <Link to="/admin/caroussel/custom" className="flex justify-center">
+              <button
+                type="button"
+                className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
+              >
+                Caroussel custom
+              </button>
+            </Link>
+
             <button
               type="button"
               className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
@@ -70,7 +78,6 @@ function AdminSectionAccess() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

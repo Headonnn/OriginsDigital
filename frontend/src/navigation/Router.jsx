@@ -15,6 +15,10 @@ import AdminSection from "../pages/AdminSection";
 import CreateVideo from "../components/AdminVideo/CreateVideo";
 import ListVideo from "../components/AdminVideo/ListVideo";
 import EditVideo from "../components/AdminVideo/EditVideo";
+import AdminSectionAccess from "../pages/AdminSectionAccess";
+import AdminCarousselCustom from "../pages/AdminCarousselCustom";
+import AdminAddVideo from "../pages/AdminAddVideo";
+import AdminRightPermission from "../pages/AdminRightPermission";
 
 function Router() {
   return (
@@ -34,6 +38,13 @@ function Router() {
       <Route path="/createaccountform" element={<CreateAccountForm />} />
       <Route path="/createaccountmsg" element={<CreateAccountMsg />} />
       <Route path="/createaccountprofile" element={<CreateAccountProfile />} />
+      <Route path="/admin/section/access" element={<AdminSectionAccess />} />
+      <Route
+        path="/admin/caroussel/custom"
+        element={<AdminCarousselCustom />}
+      />
+      <Route path="/admin/add/video" element={<AdminAddVideo />} />
+      <Route path="/admin/permission" element={<AdminRightPermission />} />
     </Routes>
   );
 }
