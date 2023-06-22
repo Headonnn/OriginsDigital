@@ -12,6 +12,7 @@ function AdminRightPermission() {
       .get("http://localhost:5002/users")
       .then((response) => {
         setUsers(response.data);
+        console.warn(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -24,7 +25,7 @@ function AdminRightPermission() {
     const clicked = e.currentTarget;
 
     axios
-      .delete(`http://localhost:5002/user/${id}`)
+      .delete(`http://localhost:5002/users/${id}`)
       .then((res) => {
         console.warn(res.data);
         clicked.closest("tr").remove();
@@ -44,7 +45,9 @@ function AdminRightPermission() {
 
         // Effectuer la requête PUT ou PATCH pour mettre à jour le statut admin/non-admin dans la base de données
         axios
-          .put(`http://localhost:5002/user/${id}`, { is_admin: newAdminStatus })
+          .put(`http://localhost:5002/users/${id}/edit`, {
+            isAdmin: newAdminStatus,
+          })
           .then((res) => {
             console.warn(res.data);
           })
