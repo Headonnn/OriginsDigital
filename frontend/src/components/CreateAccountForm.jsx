@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ function CreateAccountForm() {
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,6 +30,7 @@ function CreateAccountForm() {
       .then((response) => {
         if (response.status === 200 || response.status === 201) {
           console.warn(response);
+          navigate("/login");
         } else {
           throw new Error("else, Error submitting new form data");
         }
@@ -189,6 +190,7 @@ function CreateAccountForm() {
           </div>
 
           <div className="mt-4">
+            {/* <NavLink to="/login"> */}
             <button
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-m font-bold text-white font-poppins bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -196,6 +198,7 @@ function CreateAccountForm() {
               {" "}
               JE M'INSCRIS !
             </button>
+            {/* </NavLink> */}
           </div>
         </form>
       </div>

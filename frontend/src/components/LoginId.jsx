@@ -1,17 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
-
 import "tailwindcss/tailwind.css";
 import { BsCheckCircle } from "react-icons/bs";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
 
 function LoginId() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,6 +31,7 @@ function LoginId() {
         if (response.status === 200) {
           console.warn(response.data);
           localStorage.setItem("token", JSON.stringify(response.data));
+          navigate("/");
         } else {
           throw new Error("throw-error level, Error during login attempt");
         }
