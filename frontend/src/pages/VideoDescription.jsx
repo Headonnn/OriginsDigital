@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar/NavBar";
 import DescriptionVideo from "../components/DescriptionVideo";
-import SmallPlayer from "../components/SmallPlayer";
+import SmallPlayer from "../components/LectureVideo/SmallPlayer";
 
 function VideoDescription() {
   return (

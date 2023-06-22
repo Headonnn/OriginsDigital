@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
-import logolarge from "../assets/images/Logo_Origins-digital_White.png";
+import logolarge from "../../assets/images/Logo_Origins-digital_White.png";
 
 function Header() {
   const location = useLocation();

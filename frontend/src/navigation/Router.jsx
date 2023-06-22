@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import AdminMode from "../pages/AdminMode";
 import VideoDescription from "../pages/VideoDescription";
@@ -25,7 +24,6 @@ function Router() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/accountcreation" element={<AccountCreation />} />
       <Route path="/admin" element={<AdminMode />} />
