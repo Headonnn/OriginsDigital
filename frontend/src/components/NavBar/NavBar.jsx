@@ -40,7 +40,7 @@ function Header() {
           <NavLink to="/decouvrir">Découvrir</NavLink>
         </li>
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
-          <NavLink to="/admin">Ma Liste</NavLink>
+          <NavLink to="/ma_liste">Ma Liste</NavLink>
         </li>
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
           <NavLink to="/admin">Admin</NavLink>
