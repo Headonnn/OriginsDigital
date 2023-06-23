@@ -5,7 +5,6 @@ import axios from "axios";
 import CreateAccountMsg from "./CreateAccountMsg";
 
 function CreateAccountForm() {
-
   const navigate = useNavigate();
 
   const [isClicked, setIsClicked] = useState(false);
@@ -22,7 +21,6 @@ function CreateAccountForm() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const saveUser = (e) => {
-
     e.preventDefault();
 
     const data = {
