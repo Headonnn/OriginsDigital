@@ -49,7 +49,11 @@ function Header() {
       <div className="flex items-center pr-8 gap-8">
         {/*  */}
         {loggedIn ? (
-          <button type="submit" onClick={handleLogout}>
+          <button
+            type="submit"
+            className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
+            onClick={handleLogout}
+          >
             {" "}
             Se déconnecter{" "}
           </button>

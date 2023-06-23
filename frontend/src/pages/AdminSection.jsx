@@ -16,17 +16,6 @@ function AdminSection() {
       .then((result) => setSections(result))
       .catch((error) => console.error(error));
   }, []);
-  const handleDelete = () => {
-    // Logique pour supprimer la section
-  };
-
-  const handleEdit = () => {
-    // Logique pour éditer la section
-  };
-
-  const handleAdd = () => {
-    // Logique pour ajouter une nouvelle section
-  };
 
   return (
     <>
@@ -83,10 +72,7 @@ function AdminSection() {
                 <div className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1">
                   Hero
                 </div>
-                <AiFillEdit
-                  className="text-blue-500 ml-2 cursor-pointer"
-                  onClick={() => handleEdit()}
-                />
+                <AiFillEdit className="text-blue-500 ml-2 cursor-pointer" />
               </div>
 
               {sections.map((section) => (
@@ -97,14 +83,8 @@ function AdminSection() {
                   >
                     {section.title}
                   </div>
-                  <AiFillEdit
-                    className="text-blue-500 ml-2 cursor-pointer"
-                    onClick={() => handleEdit(section.id)}
-                  />
-                  <AiFillDelete
-                    className="text-red-500 ml-2 cursor-pointer"
-                    onClick={handleDelete}
-                  />
+                  <AiFillEdit className="text-blue-500 ml-2 cursor-pointer" />
+                  <AiFillDelete className="text-red-500 ml-2 cursor-pointer" />
                 </div>
               ))}
             </div>
@@ -117,7 +97,6 @@ function AdminSection() {
           <button
             type="button"
             className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-8"
-            onClick={handleAdd}
           >
             Validation
           </button>

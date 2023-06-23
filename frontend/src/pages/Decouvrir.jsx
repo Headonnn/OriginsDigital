@@ -120,9 +120,9 @@ function Decouvrir({ isMaListe }) {
                     className="rounded-lg h-44 w-68"
                   />
                 </Link>
-                <div className="hidden group-hover:block group-hover:absolute bg-black transform bottom-0 bg-opacity-60 text-white w-full ">
+                <div className="hidden group-hover:block group-hover:absolute bg-black transform bottom-0 bg-opacity-60 w-full ">
                   <div className="text-md">{video.title}</div>
-                  <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 text-black rounded-xl cursor-pointer text-white transition">
+                  <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                     <Link to={`/description/${video.id - 1}`}>
                       <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                     </Link>

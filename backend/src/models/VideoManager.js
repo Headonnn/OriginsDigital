@@ -67,6 +67,15 @@ class VideoManager extends AbstractManager {
       ]
     );
   }
+
+  updateFreemium(video) {
+    const { isFreemium, id } = video;
+
+    return this.database.query(
+      `UPDATE  ${this.table} SET is_freemium = ? WHERE id = ?`,
+      [isFreemium, id]
+    );
+  }
 }
 
 module.exports = VideoManager;
