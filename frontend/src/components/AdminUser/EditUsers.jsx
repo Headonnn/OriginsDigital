@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 
 function EditUsers() {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ function EditUsers() {
     lastname: "",
     username: "",
     email: "",
+    password: "",
   });
   const [error, setError] = useState("");
 
@@ -46,6 +47,7 @@ function EditUsers() {
       lastname: users.lastname,
       username: users.username,
       email: users.email,
+      password: users.password,
     };
     axios
       .put(`http://localhost:5002/users/${id}/edit`, data)
@@ -147,6 +149,21 @@ function EditUsers() {
                   type="text"
                   placeholder="Votre nom de famille"
                   value={users.lastname}
+                  onChange={handleInput}
+                />
+                <span className="text-orange-600 pb-3">{error}</span>
+              </label>
+              <label
+                htmlFor="userPassword"
+                className="text-white flex flex-col"
+              >
+                Mot de passe
+                <input
+                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
+                  name="password"
+                  type="text"
+                  placeholder="Votre mot de passe"
+                  value={users.password}
                   onChange={handleInput}
                 />
                 <span className="text-orange-600 pb-3">{error}</span>

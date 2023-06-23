@@ -49,7 +49,9 @@ function BurgerMenu() {
               </div>
               <p className="mt-3 text-sm text-center">
                 Première visite sur Origins Digital ?{" "}
-                <span className="font-bold">Inscrivez-vous</span>
+                <NavLink to="/createaccountform">
+                  <span className="font-bold">Inscrivez-vous</span>
+                </NavLink>
               </p>
             </div>
           </div>

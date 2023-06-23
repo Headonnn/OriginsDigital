@@ -3,7 +3,7 @@ import { BsPlusCircle } from "react-icons/bs";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { BiLeftArrow } from "react-icons/bi";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar/NavBar";
 import ButtonOrange from "../components/ButtonOrange";
 
 function AdminCarousselCustom() {
