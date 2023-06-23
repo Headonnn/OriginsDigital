@@ -16,7 +16,7 @@ function Decouvrir({ isMaListe }) {
   const [search, setSearch] = useState("");
   const [isFiltered, setIsFiltered] = useState([]);
   const [filtreCategorie, setFiltreCategorie] = useState("");
-  const [isInTheList, SetisInTheList] = useState(false);
+
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo, setDataVideo } = useContext(VideoContext);
 
@@ -38,13 +38,32 @@ function Decouvrir({ isMaListe }) {
         }
       });
   };
+  const handleAddToList = (clickedVideo) => {
+    if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
+      axios
+        .post(`http://localhost:5002/favorites/add`, {
+          userId: 2,
+          videoId: clickedVideo,
+        })
+        .then(() => {
+          setDataFavorites([...dataFavorites, clickedVideo]);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      axios
+        .delete(`http://localhost:5002/favorites/2/${clickedVideo}`)
+        .then(() => {
+          let tmp = [...dataFavorites];
+          tmp = tmp.filter((vid) => vid !== clickedVideo);
+          setDataFavorites(tmp);
+        })
+        .catch((err) => console.error(err));
+    }
+  };
 
   useEffect(() => {
     fetchFavorites();
   }, []);
-  const handleAddToList = () => {
-    SetisInTheList(!isInTheList);
-  };
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
@@ -65,7 +84,7 @@ function Decouvrir({ isMaListe }) {
     }
     console.warn("liste", filteredVideo);
     setIsFiltered(filteredVideo);
-  }, [dataVideo, search, filtreCategorie, isMaListe]);
+  }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites]);
 
   useEffect(() => {
     if (filtreCategorie === "") {
@@ -110,8 +129,11 @@ function Decouvrir({ isMaListe }) {
                     <Link to={`/watch/${video.id - 1}`}>
                       <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                     </Link>
-                    <button type="button" onClick={handleAddToList}>
-                      {!isInTheList ? (
+                    <button
+                      type="button"
+                      onClick={() => handleAddToList(video.id)}
+                    >
+                      {!dataFavorites.includes(parseInt(video.id, 10)) ? (
                         <BsPlusCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                       ) : (
                         <BsCheckCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
