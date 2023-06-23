@@ -6,17 +6,42 @@ import {
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
+import axios from "axios";
+import PropTypes from "prop-types";
 import NavBar from "../components/NavBar/NavBar";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
 
-function Decouvrir() {
+function Decouvrir({ isMaListe }) {
   const [search, setSearch] = useState("");
   const [isFiltered, setIsFiltered] = useState([]);
   const [filtreCategorie, setFiltreCategorie] = useState("");
   const [isInTheList, SetisInTheList] = useState(false);
+  const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo, setDataVideo } = useContext(VideoContext);
 
+  const fetchFavorites = () => {
+    axios
+      .get(`http://localhost:5002/favorites/2`)
+      .then((res) => {
+        setDataFavorites(res.data);
+        console.warn(res.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          if (err.response.status === 404) {
+            console.error("pas de favorites pour cet user");
+          }
+          if (err.response.status === 500) {
+            console.error(err);
+          }
+        }
+      });
+  };
+
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
   const handleAddToList = () => {
     SetisInTheList(!isInTheList);
   };
@@ -30,12 +55,17 @@ function Decouvrir() {
   };
 
   useEffect(() => {
-    const filteredVideo = dataVideo.filter((el) =>
+    let filteredVideo = dataVideo.filter((el) =>
       el.title.toLowerCase().includes(search.toLowerCase())
     );
-
+    console.warn(filteredVideo);
+    console.warn(dataFavorites);
+    if (isMaListe) {
+      filteredVideo = filteredVideo.filter((e) => dataFavorites.includes(e.id));
+    }
+    console.warn("liste", filteredVideo);
     setIsFiltered(filteredVideo);
-  }, [dataVideo, search, filtreCategorie]);
+  }, [dataVideo, search, filtreCategorie, isMaListe]);
 
   useEffect(() => {
     if (filtreCategorie === "") {
@@ -111,5 +141,7 @@ function Decouvrir() {
     </div>
   );
 }
-
+Decouvrir.propTypes = {
+  isMaListe: PropTypes.bool.isRequired,
+};
 export default Decouvrir;

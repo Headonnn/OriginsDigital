@@ -31,7 +31,7 @@ function Router() {
       <Route path="/admin/section" element={<AdminSection />} />
       <Route path="/admin/video_create" element={<CreateVideo />} />
       <Route path="/admin/videos/:id/edit" element={<EditVideo />} />
-      <Route path="/decouvrir" element={<Decouvrir />} />
+      <Route path="/decouvrir" element={<Decouvrir isMaListe={false} />} />
       <Route path="/description/:id" element={<VideoDescription />} />
       <Route path="/watch/:id" element={<Watch />} />
       <Route path="/createaccountform" element={<CreateAccountForm />} />
@@ -39,6 +39,7 @@ function Router() {
       <Route path="/createaccountprofile" element={<CreateAccountProfile />} />
       <Route path="/admin/section/access" element={<AdminSectionAccess />} />
       <Route path="/admin/users/:id/edit" element={<EditUsers />} />
+      <Route path="/ma_liste" element={<Decouvrir isMaListe />} />
       <Route
         path="/admin/caroussel/custom"
         element={<AdminCarousselCustom />}
