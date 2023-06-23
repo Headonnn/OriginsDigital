@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 
 function ManageVideos() {
   const { dataVideo, setDataVideo } = useContext(VideoContext);
+
   const navigate = useNavigate();
 
   const updateVideoList = () => {
@@ -18,6 +19,7 @@ function ManageVideos() {
   useEffect(() => {
     updateVideoList();
   }, [dataVideo]);
+
   const deleteVideo = (e, id) => {
     e.preventDefault();
 
@@ -30,6 +32,30 @@ function ManageVideos() {
       .catch((error) => console.error(error));
   };
 
+  const isFreemium = (id) => {
+    const updatedSatutFreemium = dataVideo.map((video) => {
+      if (video.id === id) {
+        const videoStatutFreemium = !video.is_freemium;
+        const updatedVideo = {
+          ...video,
+          is_freemium: videoStatutFreemium,
+        };
+        axios
+          .put(`http://localhost:5002/videos/${id}/is_freemium`, {
+            isFreemium: videoStatutFreemium,
+          })
+          .then((res) => {
+            console.warn(res.data);
+          })
+          .catch((error) => console.error(error));
+
+        return updatedVideo;
+      }
+      return video;
+    });
+    console.warn(updatedSatutFreemium);
+  };
+
   const videoDetails = dataVideo.map((video) => {
     return (
       <tr
@@ -38,6 +64,45 @@ function ManageVideos() {
       >
         <td>{video.id}</td>
         <td>{video.title}</td>
+        <td className="text-sm text-center">
+          <button
+            type="button"
+            onClick={() => isFreemium(video.id)}
+            className="focus:outline-none"
+          >
+            {video.is_freemium ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="h-6 w-6 cursor-pointer text-yellow-400"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M12 2l2.29 7.47h7.71l-5.89 4.28 2.32 7.5L12 17.71l-7.14 4.54 2.32-7.5L2 9.47h7.71L12 2z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="h-6 w-6 cursor-pointer"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M12 2l2.29 7.47h7.71l-5.89 4.28 2.32 7.5L12 17.71l-7.14 4.54 2.32-7.5L2 9.47h7.71L12 2z"
+                />
+              </svg>
+            )}
+          </button>
+        </td>
         <td>
           <div className="flex justify-end gap-4">
             <button type="button" onClick={(e) => deleteVideo(e, video.id)}>
@@ -109,7 +174,8 @@ function ManageVideos() {
                 <thead>
                   <tr>
                     <th className="px-6 py-4 text-lg">ID</th>
-                    <th className="px-6 py-4 text-lg">Title</th>
+                    <th className="px-6 py-4 text-lg">Titre</th>
+                    <th className="px-6 py-4 text-lg text-center">Freemium</th>
                   </tr>
                 </thead>
                 <tbody className="">{videoDetails}</tbody>
