@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
+
 import { LoginContext } from "../contexts/LoginContext";
+
 import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
 import Footer from "./components/Footer";
