@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ButtonOrange from "../components/ButtonOrange";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar/NavBar";
 
 function AdminMode() {
   const handleButtonClick = () => {
@@ -49,7 +49,7 @@ function AdminMode() {
                   onClick={handleButtonClick}
                   className="w-full flex-grow"
                 >
-                  Administration des admins
+                  Administration des utilisateurs
                 </ButtonOrange>
               </Link>
             </div>

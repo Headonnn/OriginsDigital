@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import ButtonOrange from "./ButtonOrange";
-import NavBar from "./NavBar";
+import NavBar from "./NavBar/NavBar";
 
 function CreateAccountProfile() {
   return (

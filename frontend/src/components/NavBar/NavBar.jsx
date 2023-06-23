@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { LoginContext } from "../../../contexts/LoginContext";
 import BurgerMenu from "./BurgerMenu";
-import logolarge from "../assets/images/Logo_Origins-digital_White.png";
+import logolarge from "../../assets/images/Logo_Origins-digital_White.png";
 
 function Header() {
   const location = useLocation();
+
+  const { loggedIn, setLoggedIn, logout } = useContext(LoginContext);
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    } else {
+      console.warn("User currently has no token");
+    }
+  }, []);
 
   return (
     <nav className=" flex justify-between items-center text-white inset-x-0 h-24 bg-black bg-opacity-60	shadow-[0px_20px_20px_10px_#00000024]">
@@ -31,14 +47,22 @@ function Header() {
         </li>
       </ul>
       <div className="flex items-center pr-8 gap-8">
-        <NavLink to="/login">
-          <button
-            type="button"
-            className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
-          >
-            S'identifier
+        {/*  */}
+        {loggedIn ? (
+          <button type="submit" onClick={handleLogout}>
+            {" "}
+            Se déconnecter{" "}
           </button>
-        </NavLink>
+        ) : (
+          <NavLink to="/login">
+            <button
+              type="button"
+              className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
+            >
+              S'identifier
+            </button>
+          </NavLink>
+        )}
         <BurgerMenu className="block md:hidden" />
       </div>
     </nav>

@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword } = require("./auth");
+const { hashPassword, verifyPassword, verifyToken } = require("./auth");
 
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
@@ -24,9 +24,16 @@ router.delete("/items/:id", itemControllers.destroy);
 // User routes
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
-router.put("/users/:id/edit", userControllers.edit);
+router.put("/users/:id", userControllers.edit);
+router.put("/users/:id/edit", userControllers.editAll);
 router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
+router.post(
+  "/users/login",
+  userControllers.getUserByEmailWithPasswordAndPassToNext,
+  verifyPassword,
+  verifyToken
+);
 
 // Video routes
 router.get("/videos", videoControllers.browse);
@@ -39,7 +46,7 @@ router.get("/videos/filtre/:categorie", videoControllers.filterCategory);
 // Category routes
 router.get("/categories", categoryControllers.browse);
 router.get("/categories/:id", categoryControllers.read);
-router.put("/categories/:id", categoryControllers.edit);
+router.put("/categories/:id/edit", categoryControllers.edit);
 router.post("/categories", categoryControllers.add);
 router.delete("/categories/:id", categoryControllers.destroy);
 

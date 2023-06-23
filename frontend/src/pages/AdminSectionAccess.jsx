@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BiLeftArrow } from "react-icons/bi";
 import ButtonOrange from "../components/ButtonOrange";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/NavBar/NavBar";
 
 function AdminSectionAccess() {
   return (

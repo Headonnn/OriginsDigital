@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import AdminMode from "../pages/AdminMode";
 import VideoDescription from "../pages/VideoDescription";
@@ -13,18 +12,18 @@ import AccountCreation from "../pages/AccountCreation";
 import Decouvrir from "../pages/Decouvrir";
 import AdminSection from "../pages/AdminSection";
 import CreateVideo from "../components/AdminVideo/CreateVideo";
-import ListVideo from "../components/AdminVideo/ListVideo";
+import ListVideo from "../components/AdminVideo/ManageVideos";
 import EditVideo from "../components/AdminVideo/EditVideo";
 import AdminSectionAccess from "../pages/AdminSectionAccess";
 import AdminCarousselCustom from "../pages/AdminCarousselCustom";
 import AdminAddVideo from "../pages/AdminAddVideo";
-import AdminRightPermission from "../pages/AdminRightPermission";
+import ManageUsers from "../components/AdminUser/ManageUsers ";
+import EditUsers from "../components/AdminUser/EditUsers";
 
 function Router() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/accountcreation" element={<AccountCreation />} />
       <Route path="/admin" element={<AdminMode />} />
@@ -39,12 +38,13 @@ function Router() {
       <Route path="/createaccountmsg" element={<CreateAccountMsg />} />
       <Route path="/createaccountprofile" element={<CreateAccountProfile />} />
       <Route path="/admin/section/access" element={<AdminSectionAccess />} />
+      <Route path="/admin/users/:id/edit" element={<EditUsers />} />
       <Route
         path="/admin/caroussel/custom"
         element={<AdminCarousselCustom />}
       />
       <Route path="/admin/add/video" element={<AdminAddVideo />} />
-      <Route path="/admin/permission" element={<AdminRightPermission />} />
+      <Route path="/admin/permission" element={<ManageUsers />} />
     </Routes>
   );
 }

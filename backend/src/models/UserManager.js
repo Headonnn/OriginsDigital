@@ -14,6 +14,15 @@ class UserManager extends AbstractManager {
     );
   }
 
+  updateAll(user) {
+    const { username, email, firstname, lastname, id } = user;
+
+    return this.database.query(
+      `UPDATE ${this.table} SET username=?, email=?, firstname=?, lastname=? WHERE id=?`,
+      [username, email, firstname, lastname, id]
+    );
+  }
+
   update(user) {
     const { id, isAdmin } = user;
 
@@ -21,6 +30,15 @@ class UserManager extends AbstractManager {
       `UPDATE ${this.table} SET is_admin=? WHERE id=?`,
       [isAdmin, id]
     );
+  }
+
+  findByMail(email) {
+    return this.database
+      .query(`SELECT * FROM ${this.table} WHERE email = ?`, [email])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to retrieve data from the database AZERTY.");
+      });
   }
 }
 

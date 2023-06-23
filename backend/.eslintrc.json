@@ -9,6 +9,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
     "no-console": "off",
     "no-restricted-syntax": [
       "error",
