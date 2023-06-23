@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import axios from "axios";
 import CreateAccountMsg from "./CreateAccountMsg";
 
 function CreateAccountForm() {
+  const navigate = useNavigate();
+
   const [isClicked, setIsClicked] = useState(false);
   const [user, setUser] = useState({
     username: "",
@@ -33,6 +35,7 @@ function CreateAccountForm() {
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);
+        navigate("/login");
       })
       .catch((err) => console.warn(err));
   };
@@ -153,12 +156,14 @@ function CreateAccountForm() {
           </div>
 
           <div className="mt-4">
+            {/* <NavLink to="/login"> */}
             <button
               type="submit"
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               JE M'INSCRIS !
             </button>
+            {/* </NavLink> */}
           </div>
         </form>
       </div>

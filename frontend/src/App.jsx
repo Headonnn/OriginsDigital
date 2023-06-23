@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { LoginContext } from "../contexts/LoginContext";
 import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
 import Footer from "./components/Footer";
@@ -53,15 +54,35 @@ function App() {
     ]
   );
 
+  const [loggedIn, setLoggedIn] = useState(false);
+  const login = () => {
+    setLoggedIn(true);
+  };
+  const logout = () => {
+    setLoggedIn(false);
+    localStorage.removeItem("token");
+  };
+  const loginContextValue = useMemo(
+    () => ({
+      loggedIn,
+      setLoggedIn,
+      login,
+      logout,
+    }),
+    [loggedIn, setLoggedIn]
+  );
+
   return (
     <div className="max-w-screen-2xl m-auto min-h-screen flex flex-col">
       <VideoContext.Provider value={contextValue}>
-        <div className="flex-grow">
-          <Router />
-        </div>
-        <div className="mt-auto">
-          <Footer />
-        </div>
+        <LoginContext.Provider value={loginContextValue}>
+          <div className="flex-grow">
+            <Router />
+          </div>
+          <div className="mt-auto">
+            <Footer />
+          </div>
+        </LoginContext.Provider>
       </VideoContext.Provider>
     </div>
   );

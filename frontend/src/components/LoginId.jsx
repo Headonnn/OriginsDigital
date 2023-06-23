@@ -1,19 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { BsCheckCircle } from "react-icons/bs";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
 
 function LoginId() {
   const [passwordVisible, setPasswordVisible] = useState(false);
-
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleLogin = (e) => {
     e.preventDefault();
     axios
@@ -27,16 +27,17 @@ function LoginId() {
           headers: { "Content-Type": "application/json" },
         }
       )
-      .then((res) => {
-        if (res.status === 200) {
-          console.warn(res.data);
-          localStorage.setItem("token", JSON.stringify(res.data));
+      .then((response) => {
+        if (response.status === 200) {
+          console.warn(response.data);
+          localStorage.setItem("token", JSON.stringify(response.data));
+          navigate("/");
         } else {
-          throw new Error("Error during login attempt");
+          throw new Error("throw-error level, Error during login attempt");
         }
       })
       .catch((error) => {
-        console.error("Catch, Error during login attempt", error);
+        console.error("Catch level, Error during login attempt", error);
       });
   };
 
@@ -84,10 +85,17 @@ function LoginId() {
             <div className="flex flex-col space-y-2 mt-16 w-full">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-red-600 to-orange-500 text-white font-regular text-base rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700"
+                className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white font-regular text-md rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700 w-full md:w-106 pr-10"
               >
                 S'identifier
               </button>
+
+              {/* <button
+                      type="submit"
+                      className="bg-gradient-to-r from-red-600 to-orange-500 text-white font-regular text-base rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700"
+                  >
+                    S'identifier
+                  </button>  */}
               <p className="mt-4 text-sm text-center">
                 Première visite sur Origins Digital ?{" "}
                 <NavLink to="/createaccountform">
