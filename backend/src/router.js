@@ -13,6 +13,7 @@ const videoCarouselControllers = require("./controllers/videoCarouselControllers
 const carouselCustomControllers = require("./controllers/carouselCustomControllers");
 const carouselCategoryControllers = require("./controllers/carouselCategoryControllers");
 const videoCategoryControllers = require("./controllers/videoCategoryControllers");
+const favoritesControllers = require("./controllers/favoritesControllers");
 // Item routes
 router.get("/items", itemControllers.browse);
 router.get("/items/:id", itemControllers.read);
@@ -59,5 +60,10 @@ router.get("/carousel_category/:id", carouselCategoryControllers.read);
 
 // video_category routes
 router.get("/videos_category/:id", videoCategoryControllers.read);
+
+// favorites routes
+router.post("/favorites/add", favoritesControllers.add);
+router.delete("/favorites/:userid/:videoid", favoritesControllers.destroy);
+router.get("/favorites/:id", favoritesControllers.read);
 
 module.exports = router;
