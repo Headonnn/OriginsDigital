@@ -75,7 +75,7 @@ function App() {
   );
 
   return (
-    <div className="max-w-screen-2xl m-auto min-h-screen flex flex-col">
+    <div className="max-w-screen-xl m-auto min-h-screen flex flex-col">
       <VideoContext.Provider value={contextValue}>
         <LoginContext.Provider value={loginContextValue}>
           <div className="flex-grow">

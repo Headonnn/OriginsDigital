@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
 
 function CreateVideo() {
+  const { dataVideo } = useContext(VideoContext);
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
   const [video, setVideo] = useState({
@@ -40,10 +42,28 @@ function CreateVideo() {
       .catch((err) => console.warn(err));
   };
 
-  const [isPremium, setIsPremium] = useState(false);
+  const isFreemium = (id) => {
+    const updatedSatutFreemium = dataVideo.map((vid) => {
+      if (vid.id === id) {
+        const videoStatutFreemium = !vid.is_freemium;
+        const updatedVideo = {
+          ...vid,
+          is_freemium: videoStatutFreemium,
+        };
+        axios
+          .put(`http://localhost:5002/videos/${id}/is_freemium`, {
+            isFreemium: videoStatutFreemium,
+          })
+          .then((res) => {
+            console.warn(res.data);
+          })
+          .catch((err) => console.error(err));
 
-  const handlePremiumChange = () => {
-    setIsPremium(!isPremium);
+        return updatedVideo;
+      }
+      return video;
+    });
+    console.warn(updatedSatutFreemium);
   };
 
   return (
@@ -164,8 +184,8 @@ function CreateVideo() {
                 <input
                   type="checkbox"
                   className="w-4 h-4 border-2 cursor-pointer"
-                  onClick={handlePremiumChange}
-                  onKeyPress={handlePremiumChange}
+                  onClick={() => isFreemium(video.id)}
+                  onKeyPress={() => isFreemium(video.id)}
                   aria-label="Toggle Premium"
                 />
               </label>
