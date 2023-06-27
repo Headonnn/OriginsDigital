@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
 
 function CreateVideo() {
+  const { dataVideo } = useContext(VideoContext);
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
   const [video, setVideo] = useState({
@@ -40,10 +42,28 @@ function CreateVideo() {
       .catch((err) => console.warn(err));
   };
 
-  const [isPremium, setIsPremium] = useState(false);
+  const isFreemium = (id) => {
+    const updatedSatutFreemium = dataVideo.map((vid) => {
+      if (vid.id === id) {
+        const videoStatutFreemium = !vid.is_freemium;
+        const updatedVideo = {
+          ...vid,
+          is_freemium: videoStatutFreemium,
+        };
+        axios
+          .put(`http://localhost:5002/videos/${id}/is_freemium`, {
+            isFreemium: videoStatutFreemium,
+          })
+          .then((res) => {
+            console.warn(res.data);
+          })
+          .catch((err) => console.error(err));
 
-  const handlePremiumChange = () => {
-    setIsPremium(!isPremium);
+        return updatedVideo;
+      }
+      return video;
+    });
+    console.warn(updatedSatutFreemium);
   };
 
   return (
@@ -52,7 +72,7 @@ function CreateVideo() {
       {isClicked ? (
         <div className="h-[60vh] flex items-center justify-center">
           <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
-            <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
+            <p className="pt-8 pb-16 text-lg md:text-2xl ">
               La vidéo a bien été ajoutée !
             </p>
             <div className="flex justify-center">
@@ -164,8 +184,8 @@ function CreateVideo() {
                 <input
                   type="checkbox"
                   className="w-4 h-4 border-2 cursor-pointer"
-                  onClick={handlePremiumChange}
-                  onKeyPress={handlePremiumChange}
+                  onClick={() => isFreemium(video.id)}
+                  onKeyPress={() => isFreemium(video.id)}
                   aria-label="Toggle Premium"
                 />
               </label>

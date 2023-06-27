@@ -111,6 +111,26 @@ const filterCategory = (req, res) => {
     });
 };
 
+const editFreemium = (req, res) => {
+  const video = req.body;
+
+  video.id = parseInt(req.params.id, 10);
+
+  models.video
+    .updateFreemium(video)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
@@ -118,4 +138,5 @@ module.exports = {
   add,
   destroy,
   filterCategory,
+  editFreemium,
 };

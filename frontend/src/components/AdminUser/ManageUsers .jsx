@@ -70,37 +70,24 @@ function ManageUsers() {
             onClick={() => toggleAdmin(user.id)}
             className="focus:outline-none"
           >
-            {user.is_admin ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="h-6 w-6 cursor-pointer text-yellow-400"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M12 2l2.29 7.47h7.71l-5.89 4.28 2.32 7.5L12 17.71l-7.14 4.54 2.32-7.5L2 9.47h7.71L12 2z"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="h-6 w-6 cursor-pointer"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M12 2l2.29 7.47h7.71l-5.89 4.28 2.32 7.5L12 17.71l-7.14 4.54 2.32-7.5L2 9.47h7.71L12 2z"
-                />
-              </svg>
-            )}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className={
+                user.is_admin
+                  ? `h-6 w-6 cursor-pointer text-yellow-400`
+                  : `h-6 w-6 cursor-pointer`
+              }
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="M12 2l2.29 7.47h7.71l-5.89 4.28 2.32 7.5L12 17.71l-7.14 4.54 2.32-7.5L2 9.47h7.71L12 2z"
+              />
+            </svg>
           </button>
         </td>
         <td className="flex justify-end gap-4">
@@ -175,7 +162,7 @@ function ManageUsers() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="">{userDetails}</tbody>
+                <tbody>{userDetails}</tbody>
               </table>
             </div>
           </div>
