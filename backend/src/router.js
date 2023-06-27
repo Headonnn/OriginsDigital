@@ -55,6 +55,8 @@ router.delete("/categories/:id", categoryControllers.destroy);
 
 router.get("/sections", sectionControllers.browse);
 
+router.put("/sections/:id", sectionControllers.edit);
+
 // video_carousel routes
 router.get("/videos_carousel/:id", videoCarouselControllers.read);
 

@@ -13,5 +13,15 @@ class SectionsManager extends AbstractManager {
         throw new Error("Failed to retrieve data from the database.");
       });
   }
+
+  update(section) {
+    const { id, ordre } = section;
+    return this.database
+      .query(`UPDATE ${this.table} SET ordre=? WHERE id=?`, [ordre, id])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to edit order from section.");
+      });
+  }
 }
 module.exports = SectionsManager;

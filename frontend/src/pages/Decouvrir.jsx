@@ -108,6 +108,11 @@ function Decouvrir({ isMaListe }) {
         handleChangeCategory={handleChangeCategory}
       />
       <div className="flex justify-center gap-12 flex-wrap my-5">
+        {isFiltered.length === 0 && (
+          <div className="text-white">
+            Aucune vidéo ne correspond à vos critères de recherche
+          </div>
+        )}
         {isFiltered.map((video) => {
           return (
             <div className="group" key={video.id}>

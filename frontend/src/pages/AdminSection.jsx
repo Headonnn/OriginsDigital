@@ -3,8 +3,8 @@ import { BsPlusCircle } from "react-icons/bs";
 import { BiLeftArrow } from "react-icons/bi";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import NavBar from "../components/NavBar/NavBar";
-
 import ButtonOrange from "../components/ButtonOrange";
 
 function AdminSection() {
@@ -16,6 +16,45 @@ function AdminSection() {
       .then((result) => setSections(result))
       .catch((error) => console.error(error));
   }, []);
+
+  const handleDelete = () => {
+    // Logique pour supprimer la section
+  };
+
+  const handleEdit = () => {
+    // Logique pour éditer la section
+  };
+
+  const handleAdd = () => {
+    // Logique pour ajouter une nouvelle section
+  };
+  const dragItem = React.useRef(null);
+  const dragOverItem = React.useRef(null);
+  const handleDragStart = (index) => {
+    dragItem.current = index;
+  };
+  const handleDragEnter = (index) => {
+    dragOverItem.current = index;
+  };
+  const handleSort = () => {
+    const tempsections = [...sections];
+    const draggedItemContent = tempsections.splice(dragItem.current, 1)[0];
+    tempsections.splice(dragOverItem.current, 0, draggedItemContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setSections(tempsections);
+  };
+  useEffect(() => {
+    sections.forEach((e, index) => {
+      axios
+        .put(`http://localhost:5002/sections/${e.id}`, { ordre: index + 1 })
+        .then((res) => {
+          console.warn(res.data);
+        })
+        .catch((err) => console.error(err));
+    });
+  }, [sections]);
+
 
   return (
     <>
@@ -75,13 +114,18 @@ function AdminSection() {
                 <AiFillEdit className="text-blue-500 ml-2 cursor-pointer" />
               </div>
 
-              {sections.map((section) => (
-                <div className="flex items-center mt-4">
+              {sections.map((section, index) => (
+                <div className="flex items-center mt-4  cursor-grab">
                   <div
+                    draggable
+                    onDragStart={() => handleDragStart(index)}
+                    onDragEnter={() => handleDragEnter(index)}
+                    onDragEnd={handleSort}
+                    onDragOver={(e) => e.preventDefault}
                     key={section.id}
                     className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1"
                   >
-                    {section.title}
+                    {section.name ? section.name[0] : section.carousel.name}
                   </div>
                   <AiFillEdit className="text-blue-500 ml-2 cursor-pointer" />
                   <AiFillDelete className="text-red-500 ml-2 cursor-pointer" />
