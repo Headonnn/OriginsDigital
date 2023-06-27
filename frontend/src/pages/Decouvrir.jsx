@@ -112,7 +112,6 @@ function Decouvrir({ isMaListe }) {
           return (
             <div className="group" key={video.id}>
               <div className="w-60 hover:scale-110 transition text-white ">
-                <h3>{video.title}</h3>
                 <Link to={`/description/${video.id - 1}`}>
                   <img
                     src={video.thumbnail}

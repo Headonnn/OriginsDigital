@@ -145,7 +145,7 @@ function CarouselAll({ dataSection }) {
                       />
 
                       <div className="hidden group-hover:block group-hover:absolute bg-black transform top-2/3 bg-opacity-60 text-white w-full h-5/6">
-                        <div className="text-lg">{video.title}</div>
+                        <div className="text-md">{video.title}</div>
                         <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl transition">
                           <Link to={`/description/${video.id - 1}`}>
                             <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
