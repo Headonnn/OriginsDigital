@@ -38,6 +38,7 @@ router.post(
 // Video routes
 router.get("/videos", videoControllers.browse);
 router.get("/videos/:id", videoControllers.read);
+router.get("/videos/isfreemium", videoControllers.filterIsFreemium);
 router.put("/videos/:id/edit", videoControllers.edit);
 router.put("/videos/:id/is_freemium", videoControllers.editFreemium);
 router.post("/videos", videoControllers.add);

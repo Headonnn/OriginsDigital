@@ -131,6 +131,19 @@ const editFreemium = (req, res) => {
     });
 };
 
+const filterIsFreemium = (req, res) => {
+  console.log("lol");
+  models.video
+    .isFreemium()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+};
+
 module.exports = {
   browse,
   read,
@@ -139,4 +152,5 @@ module.exports = {
   destroy,
   filterCategory,
   editFreemium,
+  filterIsFreemium,
 };
