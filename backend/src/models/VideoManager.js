@@ -78,14 +78,13 @@ class VideoManager extends AbstractManager {
   }
 
   isFreemium() {
-
     return this.database
-      .query(`SELECT * FROM ${this.table} WHERE is_freemium = 1`)
+      .query(`SELECT * FROM ${this.table} WHERE is_freemium= 1`)
       .catch((error) => {
         console.error(error);
         throw new Error("Failed to retrieve data from the database.");
       });
-}
+  }
 }
 
 module.exports = VideoManager;

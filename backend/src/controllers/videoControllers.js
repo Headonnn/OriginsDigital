@@ -132,7 +132,6 @@ const editFreemium = (req, res) => {
 };
 
 const filterIsFreemium = (req, res) => {
-  console.log("lol");
   models.video
     .isFreemium()
     .then(([rows]) => {
