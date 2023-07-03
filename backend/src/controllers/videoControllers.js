@@ -99,6 +99,7 @@ const filterCategory = (req, res) => {
           url: row.url,
           description: row.description,
           thumbnail: row.thumbnail,
+          is_freemium: row.is_freemium,
           date: row.date,
         };
       });

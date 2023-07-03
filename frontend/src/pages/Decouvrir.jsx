@@ -77,12 +77,14 @@ function Decouvrir({ isMaListe }) {
     let filteredVideo = dataVideo.filter((el) =>
       el.title.toLowerCase().includes(search.toLowerCase())
     );
-    console.warn(filteredVideo);
-    console.warn(dataFavorites);
     if (isMaListe) {
       filteredVideo = filteredVideo.filter((e) => dataFavorites.includes(e.id));
     }
-    filteredVideo.sort((a, b) => {
+    setIsFiltered(filteredVideo);
+  }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites]);
+
+  useEffect(() => {
+    const compareVideos = (a, b) => {
       if (a.is_freemium === 0 && b.is_freemium === 1) {
         return -1;
       }
@@ -90,20 +92,16 @@ function Decouvrir({ isMaListe }) {
         return 1;
       }
       return 0;
-    });
-    setIsFiltered(filteredVideo);
-  }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites]);
-
-  useEffect(() => {
+    };
     if (filtreCategorie === "") {
       fetch(`http://localhost:5002/videos`)
         .then((res) => res.json())
-        .then((result) => setDataVideo(result))
+        .then((result) => setDataVideo(result.sort(compareVideos)))
         .catch((error) => console.error(error));
     } else {
       fetch(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
         .then((res) => res.json())
-        .then((result) => setDataVideo(result))
+        .then((result) => setDataVideo(result.sort(compareVideos)))
         .catch((error) => console.error(error));
     }
   }, [setDataVideo, filtreCategorie]);
