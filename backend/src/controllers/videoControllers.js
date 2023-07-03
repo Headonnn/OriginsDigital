@@ -135,7 +135,17 @@ const filterIsFreemium = (req, res) => {
   models.video
     .isFreemium()
     .then(([rows]) => {
-      res.send(rows);
+      const videoData = rows.map((row) => {
+        return {
+          title: row.title,
+          url: row.url,
+          description: row.description,
+          thumbnail: row.thumbnail,
+          date: row.date,
+        };
+      });
+
+      res.json(videoData);
     })
     .catch((err) => {
       console.error(err);
