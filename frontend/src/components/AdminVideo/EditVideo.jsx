@@ -12,8 +12,16 @@ function EditVideo() {
     url: "",
     description: "",
     thumbnail: "",
+    is_freemium: false,
   });
   const [error, setError] = useState("");
+
+  const toggleFreemium = () => {
+    setVideo((vid) => ({
+      ...vid,
+      is_freemium: !vid.is_freemium,
+    }));
+  };
 
   useEffect(() => {
     axios
@@ -46,6 +54,7 @@ function EditVideo() {
       url: video.url,
       description: video.description,
       thumbnail: video.thumbnail,
+      is_freemium: video.is_freemium,
     };
     axios
       .put(`http://localhost:5002/videos/${id}/edit`, data)
@@ -54,12 +63,6 @@ function EditVideo() {
         setIsClicked(!isClicked);
       })
       .catch((err) => console.error(err));
-  };
-
-  const [isPremium, setIsPremium] = useState(false);
-
-  const handlePremiumChange = () => {
-    setIsPremium(!isPremium);
   };
 
   return (
@@ -181,8 +184,9 @@ function EditVideo() {
                 <input
                   type="checkbox"
                   className="w-4 h-4 border-2 cursor-pointer"
-                  onClick={handlePremiumChange}
-                  onKeyPress={handlePremiumChange}
+                  checked={video.is_freemium ? "checked" : ""}
+                  onClick={() => toggleFreemium()}
+                  onKeyPress={() => toggleFreemium()}
                   aria-label="Toggle Premium"
                 />
               </label>
@@ -200,5 +204,4 @@ function EditVideo() {
     </>
   );
 }
-
 export default EditVideo;

@@ -22,6 +22,7 @@ import EditUsers from "../components/AdminUser/EditUsers";
 import ManageCategory from "../components/AdminCategory/ManageCategory";
 import EditCategories from "../components/AdminCategory/EditCategories";
 import AddCategory from "../components/AdminCategory/AddCategory";
+import AddUsers from "../components/AdminUser/AddUser";
 
 function Router() {
   return (
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/createaccountprofile" element={<CreateAccountProfile />} />
       <Route path="/admin/section/access" element={<AdminSectionAccess />} />
       <Route path="/admin/users/:id/edit" element={<EditUsers />} />
+      <Route path="/admin/users/add_user" element={<AddUsers />} />
       <Route path="/ma_liste" element={<Decouvrir isMaListe />} />
       <Route
         path="/admin/caroussel/custom"
