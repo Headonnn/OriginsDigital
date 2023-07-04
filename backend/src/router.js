@@ -55,15 +55,17 @@ router.delete("/categories/:id/delete", categoryControllers.destroy);
 // Sections routes
 
 router.get("/sections", sectionControllers.browse);
-
+router.get("/sections/ordre", sectionControllers.browseordre);
 router.put("/sections/:id", sectionControllers.edit);
+router.post("/sections/custom", sectionControllers.addcustom);
 
 // video_carousel routes
 router.get("/videos_carousel/:id", videoCarouselControllers.read);
-
+router.post("/videos_carousel", videoCarouselControllers.add);
 // carousel_custom routes
 router.get("/carousel_custom", carouselCustomControllers.browse);
 router.get("/carousel_custom/:id", carouselCustomControllers.read);
+router.post("/carousel_custom", carouselCustomControllers.add);
 
 // carousel_category routes
 router.get("/carousel_category", carouselCategoryControllers.browse);

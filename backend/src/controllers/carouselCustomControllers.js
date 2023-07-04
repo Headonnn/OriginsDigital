@@ -26,8 +26,24 @@ const read = (req, res) => {
       res.sendStatus(500);
     });
 };
+const add = (req, res) => {
+  const carousel = req.body;
+
+  // TODO validations (length, format...)
+
+  models.carouselCustom
+    .insert(carousel)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 module.exports = {
   browse,
   read,
+  add,
 };

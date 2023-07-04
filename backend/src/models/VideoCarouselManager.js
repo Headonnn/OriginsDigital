@@ -13,6 +13,19 @@ class VideoCarouselManager extends AbstractManager {
         throw new Error("Failed to retrieve data from the database.");
       });
   }
+
+  insert(ids) {
+    const { videoId, carouselId } = ids;
+    return this.database
+      .query(`INSERT INTO ${this.table} (video_id,carousel_id)VALUES (?,?)`, [
+        videoId,
+        carouselId,
+      ])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Erreur en inserant un couple video_id carousel_id");
+      });
+  }
 }
 
 module.exports = VideoCarouselManager;

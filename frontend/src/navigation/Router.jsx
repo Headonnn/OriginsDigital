@@ -16,7 +16,7 @@ import ListVideo from "../components/AdminVideo/ManageVideos";
 import EditVideo from "../components/AdminVideo/EditVideo";
 import AdminSectionAccess from "../pages/AdminSectionAccess";
 import AdminCarousselCustom from "../pages/AdminCarousselCustom";
-import AdminAddVideo from "../pages/AdminAddVideo";
+
 import ManageUsers from "../components/AdminUser/ManageUsers ";
 import EditUsers from "../components/AdminUser/EditUsers";
 import ManageCategory from "../components/AdminCategory/ManageCategory";
@@ -50,8 +50,10 @@ function Router() {
         path="/admin/caroussel/custom"
         element={<AdminCarousselCustom />}
       />
+
       <Route path="/admin/add/video" element={<AdminAddVideo />} />
       <Route path="/admin/user_list" element={<ManageUsers />} />
+
     </Routes>
   );
 }

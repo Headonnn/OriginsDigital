@@ -11,5 +11,20 @@ const read = (req, res) => {
       res.sendStatus(500);
     });
 };
+const add = (req, res) => {
+  const video = req.body;
 
-module.exports = { read };
+  // TODO validations (length, format...)
+
+  models.videoCarousel
+    .insert(video)
+    .then(([result]) => {
+      res.send(result).status(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+module.exports = { read, add };

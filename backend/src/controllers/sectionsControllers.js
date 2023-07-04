@@ -40,7 +40,17 @@ const browse = async (req, res) => {
     res.sendStatus(500);
   }
 };
-
+const browseordre = (req, res) => {
+  models.section
+    .findAll()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.senStatus(500);
+    });
+};
 const edit = (req, res) => {
   const section = req.body;
 
@@ -60,7 +70,22 @@ const edit = (req, res) => {
       res.sendStatus(500);
     });
 };
+const addcustom = (req, res) => {
+  const custom = req.body;
+
+  models.section
+    .insertcustom(custom)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 module.exports = {
   browse,
   edit,
+  browseordre,
+  addcustom,
 };
