@@ -95,6 +95,7 @@ const filterCategory = (req, res) => {
     .then(([rows]) => {
       const videoData = rows.map((row) => {
         return {
+          id: row.id,
           title: row.title,
           url: row.url,
           description: row.description,
@@ -103,7 +104,6 @@ const filterCategory = (req, res) => {
           date: row.date,
         };
       });
-
       res.json(videoData);
     })
     .catch((err) => {

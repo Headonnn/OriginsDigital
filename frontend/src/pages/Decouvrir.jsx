@@ -20,6 +20,16 @@ function Decouvrir({ isMaListe }) {
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo, setDataVideo } = useContext(VideoContext);
 
+  const compareVideos = (a, b) => {
+    if (a.is_freemium === 0 && b.is_freemium === 1) {
+      return -1;
+    }
+    if (a.is_freemium === 1 && b.is_freemium === 0) {
+      return 1;
+    }
+    return 0;
+  };
+
   const fetchFavorites = () => {
     axios
       .get(`http://localhost:5002/favorites/2`)
@@ -80,28 +90,21 @@ function Decouvrir({ isMaListe }) {
     if (isMaListe) {
       filteredVideo = filteredVideo.filter((e) => dataFavorites.includes(e.id));
     }
-    setIsFiltered(filteredVideo);
+    setIsFiltered(filteredVideo.sort(compareVideos));
   }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites]);
 
   useEffect(() => {
-    const compareVideos = (a, b) => {
-      if (a.is_freemium === 0 && b.is_freemium === 1) {
-        return -1;
-      }
-      if (a.is_freemium === 1 && b.is_freemium === 0) {
-        return 1;
-      }
-      return 0;
-    };
     if (filtreCategorie === "") {
-      fetch(`http://localhost:5002/videos`)
-        .then((res) => res.json())
-        .then((result) => setDataVideo(result.sort(compareVideos)))
+      axios
+        .get(`http://localhost:5002/videos`)
+        .then((result) => setDataVideo(result.data.sort(compareVideos)))
         .catch((error) => console.error(error));
     } else {
-      fetch(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
-        .then((res) => res.json())
-        .then((result) => setDataVideo(result.sort(compareVideos)))
+      axios
+        .get(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
+        .then((result) => {
+          setDataVideo(result.data.sort(compareVideos));
+        })
         .catch((error) => console.error(error));
     }
   }, [setDataVideo, filtreCategorie]);
@@ -123,7 +126,7 @@ function Decouvrir({ isMaListe }) {
           return (
             <div
               className={`${
-                video.is_freemium === 1 ? "opacity-60 relative" : "relative"
+                video.is_freemium ? "opacity-60 relative" : "relative"
               }`}
               key={video.id}
             >
@@ -138,30 +141,39 @@ function Decouvrir({ isMaListe }) {
 
                 <div
                   className={`${
-                    video.is_freemium === 1
+                    video.is_freemium
                       ? "flex flex-col justify-end absolute bottom-0 bg-black bg-opacity-60 w-full h-full"
                       : "flex flex-col justify-end absolute bottom-0 bg-black bg-opacity-60 w-full"
                   }`}
                 >
-                  <div className="text-md">{video.title}</div>
-                  <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
-                    <Link to={`/description/${video.id - 1}`}>
+                  <div className="text-md pl-1">{video.title}</div>
+
+                  {video.is_freemium ? (
+                    <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                       <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                    </Link>
-                    <Link to={`/watch/${video.id - 1}`}>
                       <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() => handleAddToList(video.id)}
-                    >
-                      {!dataFavorites.includes(parseInt(video.id, 10)) ? (
-                        <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                      ) : (
-                        <BsCheckCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                      )}
-                    </button>
-                  </div>
+                      <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                    </div>
+                  ) : (
+                    <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                      <Link to={`/description/${video.id - 1}`}>
+                        <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                      </Link>
+                      <Link to={`/watch/${video.id - 1}`}>
+                        <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => handleAddToList(video.id)}
+                      >
+                        {!dataFavorites.includes(parseInt(video.id, 10)) ? (
+                          <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                        ) : (
+                          <BsCheckCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                        )}
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
