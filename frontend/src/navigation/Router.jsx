@@ -19,6 +19,9 @@ import AdminCarousselCustom from "../pages/AdminCarousselCustom";
 
 import ManageUsers from "../components/AdminUser/ManageUsers ";
 import EditUsers from "../components/AdminUser/EditUsers";
+import ManageCategory from "../components/AdminCategory/ManageCategory";
+import EditCategories from "../components/AdminCategory/EditCategories";
+import AddCategory from "../components/AdminCategory/AddCategory";
 
 function Router() {
   return (
@@ -28,8 +31,11 @@ function Router() {
       <Route path="/accountcreation" element={<AccountCreation />} />
       <Route path="/admin" element={<AdminMode />} />
       <Route path="/admin/video_list" element={<ListVideo />} />
+      <Route path="/admin/category_list" element={<ManageCategory />} />
+      <Route path="/admin/add_category" element={<AddCategory />} />
+      <Route path="/admin/category/:id/edit" element={<EditCategories />} />
       <Route path="/admin/section" element={<AdminSection />} />
-      <Route path="/admin/video_create" element={<CreateVideo />} />
+      <Route path="/admin/add_video" element={<CreateVideo />} />
       <Route path="/admin/videos/:id/edit" element={<EditVideo />} />
       <Route path="/decouvrir" element={<Decouvrir isMaListe={false} />} />
       <Route path="/description/:id" element={<VideoDescription />} />
@@ -45,7 +51,9 @@ function Router() {
         element={<AdminCarousselCustom />}
       />
 
-      <Route path="/admin/permission" element={<ManageUsers />} />
+      <Route path="/admin/add/video" element={<AdminAddVideo />} />
+      <Route path="/admin/user_list" element={<ManageUsers />} />
+
     </Routes>
   );
 }

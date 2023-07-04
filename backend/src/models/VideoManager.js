@@ -9,7 +9,7 @@ class VideoManager extends AbstractManager {
     const category = parseInt(id, 10);
     return this.database
       .query(
-        `SELECT title, url, description, thumbnail, date, is_freemium, is_in_hero FROM ${this.table}
+        `SELECT ${this.table}.id, title, url, description, thumbnail, date, is_freemium, is_in_hero FROM ${this.table}
         INNER JOIN video_category ON video_id = ${this.table}.id 
         INNER JOIN category ON category_id = category.id
         WHERE category.id = ?`,
@@ -75,6 +75,15 @@ class VideoManager extends AbstractManager {
       `UPDATE  ${this.table} SET is_freemium = ? WHERE id = ?`,
       [isFreemium, id]
     );
+  }
+
+  isFreemium() {
+    return this.database
+      .query(`SELECT * FROM ${this.table} WHERE is_freemium= 1`)
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to retrieve data from the database.");
+      });
   }
 }
 

@@ -37,6 +37,7 @@ router.post(
 
 // Video routes
 router.get("/videos", videoControllers.browse);
+router.get("/videos/get/is_freemium", videoControllers.filterIsFreemium);
 router.get("/videos/:id", videoControllers.read);
 router.put("/videos/:id/edit", videoControllers.edit);
 router.put("/videos/:id/is_freemium", videoControllers.editFreemium);
@@ -49,7 +50,7 @@ router.get("/categories", categoryControllers.browse);
 router.get("/categories/:id", categoryControllers.read);
 router.put("/categories/:id/edit", categoryControllers.edit);
 router.post("/categories", categoryControllers.add);
-router.delete("/categories/:id", categoryControllers.destroy);
+router.delete("/categories/:id/delete", categoryControllers.destroy);
 
 // Sections routes
 

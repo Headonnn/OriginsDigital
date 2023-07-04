@@ -95,14 +95,15 @@ const filterCategory = (req, res) => {
     .then(([rows]) => {
       const videoData = rows.map((row) => {
         return {
+          id: row.id,
           title: row.title,
           url: row.url,
           description: row.description,
           thumbnail: row.thumbnail,
+          is_freemium: row.is_freemium,
           date: row.date,
         };
       });
-
       res.json(videoData);
     })
     .catch((err) => {
@@ -131,6 +132,28 @@ const editFreemium = (req, res) => {
     });
 };
 
+const filterIsFreemium = (req, res) => {
+  models.video
+    .isFreemium()
+    .then(([rows]) => {
+      const videoData = rows.map((row) => {
+        return {
+          title: row.title,
+          url: row.url,
+          description: row.description,
+          thumbnail: row.thumbnail,
+          date: row.date,
+        };
+      });
+
+      res.json(videoData);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+};
+
 module.exports = {
   browse,
   read,
@@ -139,4 +162,5 @@ module.exports = {
   destroy,
   filterCategory,
   editFreemium,
+  filterIsFreemium,
 };
