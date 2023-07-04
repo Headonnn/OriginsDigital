@@ -9,7 +9,7 @@ class VideoManager extends AbstractManager {
     const category = parseInt(id, 10);
     return this.database
       .query(
-        `SELECT title, url, description, thumbnail, date, is_freemium, is_in_hero FROM ${this.table}
+        `SELECT ${this.table}.id, title, url, description, thumbnail, date, is_freemium, is_in_hero FROM ${this.table}
         INNER JOIN video_category ON video_id = ${this.table}.id 
         INNER JOIN category ON category_id = category.id
         WHERE category.id = ?`,
