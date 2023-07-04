@@ -135,36 +135,40 @@ function ManageUsers() {
   return (
     <div>
       <NavBar />
-      <div className="loginid-container bg-black min-h-screen p-5 mt-10 relative overflow-hidden">
-        <div className="bg-gradient-to-br from-blue-900 to-022340 mx-auto flex flex-col px-3 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="px-1">
-            <div className="flex justify-between items-center pb-20 w-3/5">
-              <div className="flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => navigate("/admin/")}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
-                >
-                  Retour
-                </button>
-              </div>
-              <h2 className="text-2xl">Gestion des utilisateurs</h2>
+      <div className="p-5 ">
+        <div className="bg-gradient-to-br from-blue-900 my-10 to-022340 mx-auto flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+          <div className="flex justify-between items-center pb-20">
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() => navigate("/admin/")}
+                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+              >
+                Retour
+              </button>
             </div>
-            <div className="flex justify-center items-center">
-              <table className=" w-full border-collapse text-left text-sm">
-                <thead>
-                  <tr>
-                    <th className="px-1 md:px-6 py-4 text-lg">ID</th>
-                    <th className="px-1 md:px-6 py-4 text-lg">UserName</th>
-                    <th className="px-1 md:px-6 py-4 text-lg">Email</th>
-                    <th className="px-1 md:px-9 py-4 text-lg text-center">
-                      Admin
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{userDetails}</tbody>
-              </table>
+            <h2 className="text-2xl">Gestion des utilisateurs</h2>
+            <div>
+              <button
+                type="button"
+                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-6 transition"
+              >
+                <Link to="/admin/video_create">Ajouter un utilisateur</Link>
+              </button>
             </div>
+          </div>
+          <div className="flex justify-center items-center">
+            <table className=" w-full border-collapse text-left text-sm">
+              <thead>
+                <tr>
+                  <th className="py-4 text-lg">ID</th>
+                  <th className="py-4 text-lg">UserName</th>
+                  <th className="py-4 text-lg">Email</th>
+                  <th className="py-4 text-lg text-center">Admin</th>
+                </tr>
+              </thead>
+              <tbody>{userDetails}</tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ router.get("/categories", categoryControllers.browse);
 router.get("/categories/:id", categoryControllers.read);
 router.put("/categories/:id/edit", categoryControllers.edit);
 router.post("/categories", categoryControllers.add);
-router.delete("/categories/:id", categoryControllers.destroy);
+router.delete("/categories/:id/delete", categoryControllers.destroy);
 
 // Sections routes
 
