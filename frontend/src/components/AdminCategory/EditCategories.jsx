@@ -72,8 +72,8 @@ function EditCategories() {
           </div>
         </div>
       ) : (
-        <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+        <div className="min-h-screen p-5 pt-20 pb-20">
+          <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
             <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
               <div>
                 <h2 className="text-lg md:text-2xl">Modifier une catégorie</h2>

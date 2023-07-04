@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 
-function EditUsers() {
+function AddUsers() {
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
-  const { id } = useParams();
   const [users, setUsers] = useState({
     firstname: "",
     lastname: "",
@@ -16,26 +15,11 @@ function EditUsers() {
   });
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5002/users/${id}`)
-      .then((res) => setUsers(res.data))
-      .catch((err) => {
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.error("cet utilisateur n'existe pas");
-          }
-          if (err.response.status === 500) {
-            console.error(err);
-          }
-        }
-      });
-  }, [id]);
-
   const handleInput = (e) => {
     e.persist();
     setUsers({ ...users, [e.target.name]: e.target.value });
   };
+
   const updateUser = (e) => {
     e.preventDefault();
     if (users.username === "" || users.email === "") {
@@ -49,8 +33,9 @@ function EditUsers() {
       email: users.email,
       password: users.password,
     };
+
     axios
-      .put(`http://localhost:5002/users/${id}/edit`, data)
+      .post(`http://localhost:5002/users`, data)
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);
@@ -66,12 +51,12 @@ function EditUsers() {
         <div className="h-[60vh] flex items-center justify-center">
           <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
             <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
-              L'utilisateur a bien été modifiée !
+              L'utilisateur a bien été crée !
             </p>
             <div className="flex justify-center">
               <button
                 type="button"
-                onClick={() => navigate("../admin/permission")}
+                onClick={() => navigate("../admin/user_list")}
                 className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
               >
                 Retour
@@ -84,7 +69,7 @@ function EditUsers() {
           <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
             <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
               <div>
-                <h2 className="text-lg md:text-2xl">Modifier un utilisateur</h2>
+                <h2 className="text-lg md:text-2xl">Ajouter un utilisateur</h2>
               </div>
               <div>
                 <button
@@ -142,7 +127,7 @@ function EditUsers() {
                 htmlFor="userLastname"
                 className="text-white flex flex-col"
               >
-                Nom*
+                Nom
                 <input
                   className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
                   name="lastname"
@@ -157,7 +142,7 @@ function EditUsers() {
                 htmlFor="userPassword"
                 className="text-white flex flex-col"
               >
-                Mot de passe
+                Mot de passe*
                 <input
                   className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
                   name="password"
@@ -172,7 +157,7 @@ function EditUsers() {
                 type="submit"
                 className="w-1/4 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-12"
               >
-                Modifier
+                Ajouter
               </button>
             </form>
           </div>
@@ -182,4 +167,4 @@ function EditUsers() {
   );
 }
 
-export default EditUsers;
+export default AddUsers;
