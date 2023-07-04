@@ -51,9 +51,7 @@ function Router() {
         element={<AdminCarousselCustom />}
       />
 
-      <Route path="/admin/add/video" element={<AdminAddVideo />} />
       <Route path="/admin/user_list" element={<ManageUsers />} />
-
     </Routes>
   );
 }
