@@ -23,5 +23,16 @@ class SectionsManager extends AbstractManager {
         throw new Error("Failed to edit order from section.");
       });
   }
+
+  insertcustom(custom) {
+    console.warn(custom);
+
+    const { ordre, carouselCustomId, title } = custom;
+
+    return this.database.query(
+      `INSERT INTO ${this.table} (carousel_custom_id, ordre,title) VALUES (?,?,?)`,
+      [carouselCustomId, ordre, title]
+    );
+  }
 }
 module.exports = SectionsManager;

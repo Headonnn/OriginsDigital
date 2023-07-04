@@ -17,17 +17,6 @@ function AdminSection() {
       .catch((error) => console.error(error));
   }, []);
 
-  const handleDelete = () => {
-    // Logique pour supprimer la section
-  };
-
-  const handleEdit = () => {
-    // Logique pour éditer la section
-  };
-
-  const handleAdd = () => {
-    // Logique pour ajouter une nouvelle section
-  };
   const dragItem = React.useRef(null);
   const dragOverItem = React.useRef(null);
   const handleDragStart = (index) => {
@@ -54,7 +43,6 @@ function AdminSection() {
         .catch((err) => console.error(err));
     });
   }, [sections]);
-
 
   return (
     <>
