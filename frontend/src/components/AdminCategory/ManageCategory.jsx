@@ -4,95 +4,41 @@ import { Link, useNavigate } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
-function ManageVideos() {
-  const { dataVideo, setDataVideo } = useContext(VideoContext);
-
+function ManageCategory() {
+  const { categorie, setCategorie } = useContext(VideoContext);
   const navigate = useNavigate();
 
-  const updateVideoList = () => {
+  const updateCategoryList = () => {
     axios
-      .get("http://localhost:5002/videos")
-      .then((res) => setDataVideo(res.data))
+      .get("http://localhost:5002/categories")
+      .then((res) => setCategorie(res.data))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    updateVideoList();
-  }, [dataVideo]);
+    updateCategoryList();
+  }, [categorie]);
 
-  const deleteVideo = (e, id) => {
+  const deleteCategory = (e, id) => {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:5002/videos/${id}/delete`)
+      .delete(`http://localhost:5002/categories/${id}/delete`)
       .then((res) => {
-        console.warn(res.data);
-        updateVideoList();
+        console.warn(res);
+        updateCategoryList();
       })
       .catch((error) => console.error(error));
   };
 
-  const isFreemium = (id) => {
-    const updatedSatutFreemium = dataVideo.map((video) => {
-      if (video.id === id) {
-        const videoStatutFreemium = !video.is_freemium;
-        const updatedVideo = {
-          ...video,
-          is_freemium: videoStatutFreemium,
-        };
-        axios
-          .put(`http://localhost:5002/videos/${id}/is_freemium`, {
-            isFreemium: videoStatutFreemium,
-          })
-          .then((res) => {
-            console.warn(res.data);
-          })
-          .catch((error) => console.error(error));
-
-        return updatedVideo;
-      }
-      return video;
-    });
-    console.warn(updatedSatutFreemium);
-  };
-
-  const videoDetails = dataVideo.map((video) => {
+  const categoryDetails = categorie.map((cat) => {
     return (
-      <tr
-        className="hover:bg-gray-50 hover:text-black transition"
-        key={video.id}
-      >
-        <td>{video.id}</td>
-        <td>{video.title}</td>
-        <td className="text-sm text-center">
-          <button
-            type="button"
-            onClick={() => isFreemium(video.id)}
-            className="focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className={
-                video.is_freemium
-                  ? `h-6 w-6 cursor-pointer text-yellow-400`
-                  : `h-6 w-6 cursor-pointer`
-              }
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M12 2l2.29 7.47h7.71l-5.89 4.28 2.32 7.5L12 17.71l-7.14 4.54 2.32-7.5L2 9.47h7.71L12 2z"
-              />
-            </svg>
-          </button>
-        </td>
+      <tr className="hover:bg-gray-50 hover:text-black transition" key={cat.id}>
+        <td>{cat.id}</td>
+        <td>{cat.name}</td>
         <td>
           <div className="flex justify-end gap-4">
-            <button type="button" onClick={(e) => deleteVideo(e, video.id)}>
+            <button type="button" onClick={(e) => deleteCategory(e, cat.id)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -108,7 +54,7 @@ function ManageVideos() {
                 />
               </svg>
             </button>
-            <Link to={`/admin/videos/${video.id}/edit`}>
+            <Link to={`/admin/category/${cat.id}/edit`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -133,8 +79,8 @@ function ManageVideos() {
   return (
     <div>
       <NavBar />
-      <div className="p-5 ">
-        <div className="bg-gradient-to-br my-10 from-blue-900 flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+      <div className="p-5">
+        <div className="bg-gradient-to-br from-blue-900 my-10 flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="flex justify-between items-center pb-20">
             <div className="flex justify-center">
               <button
@@ -145,13 +91,13 @@ function ManageVideos() {
                 Retour
               </button>
             </div>
-            <h2 className="text-2xl">Liste des vidéos</h2>
+            <h2 className="text-2xl">Liste des catégories</h2>
             <div>
               <button
                 type="button"
                 className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-6 transition"
               >
-                <Link to="/admin/add_video">Ajouter une video</Link>
+                <Link to="/admin/add_category">Ajouter une catégorie</Link>
               </button>
             </div>
           </div>
@@ -160,11 +106,10 @@ function ManageVideos() {
               <thead>
                 <tr>
                   <th className="py-4 text-lg">ID</th>
-                  <th className="py-4 text-lg">Titre</th>
-                  <th className="py-4 text-lg text-center">Freemium</th>
+                  <th className="py-4 text-lg text-left">Categorie</th>
                 </tr>
               </thead>
-              <tbody className="">{videoDetails}</tbody>
+              <tbody>{categoryDetails}</tbody>
             </table>
           </div>
         </div>
@@ -173,4 +118,4 @@ function ManageVideos() {
   );
 }
 
-export default ManageVideos;
+export default ManageCategory;

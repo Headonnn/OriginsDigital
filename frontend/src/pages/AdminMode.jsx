@@ -14,18 +14,18 @@ function AdminMode() {
               Administration des vidéos
             </ButtonOrange>
           </Link>
-
-          <ButtonOrange className="w-full flex-grow">
-            Administration des catégories
-          </ButtonOrange>
-
+          <Link to="/admin/category_list">
+            <ButtonOrange className="w-full flex-grow">
+              Administration des catégories
+            </ButtonOrange>
+          </Link>
           <Link to="/admin/section">
             <ButtonOrange className="w-full flex-grow">
               Administration des sections
             </ButtonOrange>
           </Link>
 
-          <Link to="/admin/permission">
+          <Link to="/admin/user_list">
             <ButtonOrange className="w-full flex-grow">
               Administration des utilisateurs
             </ButtonOrange>
