@@ -39,6 +39,7 @@ function CarouselAll({ dataSection }) {
 
   useEffect(() => {
     fetchFavorites();
+    console.warn(dataVideo);
   }, []);
 
   const responsive = {
