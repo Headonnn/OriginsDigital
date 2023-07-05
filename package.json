@@ -36,11 +36,13 @@
     "argon2": "^0.30.3",
     "axios": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
+    "react-csv": "^2.2.2",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
     "react-player": "^2.12.0",
     "react-share": "^4.4.1",
+    "react-tailwindcss-select": "^1.8.5",
     "tailwindcss": "^3.3.2",
     "tailwindcss-animated": "^1.0.1"
   }
