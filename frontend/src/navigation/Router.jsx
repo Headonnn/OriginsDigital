@@ -7,7 +7,7 @@ import VideoDescription from "../pages/VideoDescription";
 import Watch from "../pages/Watch";
 import CreateAccountForm from "../components/CreateAccountForm";
 import CreateAccountMsg from "../components/CreateAccountMsg";
-import CreateAccountProfile from "../components/UserProfile";
+import UserProfile from "../components/UserProfile";
 import AccountCreation from "../pages/AccountCreation";
 import Decouvrir from "../pages/Decouvrir";
 import AdminSection from "../pages/AdminSection";
@@ -16,13 +16,13 @@ import ListVideo from "../components/AdminVideo/ManageVideos";
 import EditVideo from "../components/AdminVideo/EditVideo";
 import AdminSectionAccess from "../pages/AdminSectionAccess";
 import AdminCarousselCustom from "../pages/AdminCarousselCustom";
-
 import ManageUsers from "../components/AdminUser/ManageUsers ";
 import EditUsers from "../components/AdminUser/EditUsers";
 import ManageCategory from "../components/AdminCategory/ManageCategory";
 import EditCategories from "../components/AdminCategory/EditCategories";
 import AddCategory from "../components/AdminCategory/AddCategory";
 import AddUsers from "../components/AdminUser/AddUser";
+import ModifyAccountForm from "../components/ModifyAccountForm";
 
 function Router() {
   return (
@@ -43,11 +43,12 @@ function Router() {
       <Route path="/watch/:id" element={<Watch />} />
       <Route path="/createaccountform" element={<CreateAccountForm />} />
       <Route path="/createaccountmsg" element={<CreateAccountMsg />} />
-      <Route path="/createaccountprofile" element={<CreateAccountProfile />} />
+      <Route path="/UserProfile" element={<UserProfile />} />
       <Route path="/admin/section/access" element={<AdminSectionAccess />} />
       <Route path="/admin/users/:id/edit" element={<EditUsers />} />
       <Route path="/admin/users/add_user" element={<AddUsers />} />
       <Route path="/ma_liste" element={<Decouvrir isMaListe />} />
+      <Route path="/modifyaccountform" element={<ModifyAccountForm />} />
       <Route
         path="/admin/caroussel/custom"
         element={<AdminCarousselCustom />}
