@@ -33,18 +33,20 @@ function App() {
       .catch((error) => console.error(error));
   }, []);
 
-  /* eslint-disable */
   useEffect(() => {
     if (!dataLogin) {
       console.warn("App log !dataLogin");
       const token = JSON.parse(localStorage.getItem("token"));
-      if (!token) return console.warn("app log !token");
+      if (!token) {
+        console.warn("app log !token");
+        return;
+      }
       const decoded = jwtDecode(token.token);
       console.warn("app log jwtdecode", decoded);
       setDataLogin(decoded.cargo);
     }
   }, []);
-  /* eslint-disable */
+
   const contextValue = useMemo(
     () => ({
       dataVideo,
