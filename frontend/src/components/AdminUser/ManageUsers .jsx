@@ -1,12 +1,32 @@
 import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { CSVLink } from "react-csv";
+import { TfiExport } from "react-icons/tfi";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
 function ManageUsers() {
   const { dataUser, setDataUser } = useContext(VideoContext);
+
   const navigate = useNavigate();
+
+  // export CSV
+
+  const headers = [
+    { label: "ID", key: "id" },
+    { label: "Username", key: "username" },
+    { label: "E-Mail", key: "email" },
+    { label: "Prénom", key: "firstname" },
+    { label: "Nom", key: "lastname" },
+    { label: "Admin", key: "is_admin" },
+  ];
+
+  const csvReport = {
+    filename: "usersList.csv",
+    headers,
+    data: dataUser,
+  };
 
   const updateUserList = () => {
     axios
@@ -137,16 +157,15 @@ function ManageUsers() {
       <NavBar />
       <div className="p-5 ">
         <div className="bg-gradient-to-br from-blue-900 my-10 to-022340 mx-auto flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="flex justify-between items-center pb-20">
-            <div className="flex justify-center">
-              <button
-                type="button"
-                onClick={() => navigate("/admin/")}
-                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
-              >
-                Retour
-              </button>
-            </div>
+          <div className="flex justify-between items-center pb-5">
+            <button
+              type="button"
+              onClick={() => navigate("/admin/")}
+              className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+            >
+              Retour
+            </button>
+
             <h2 className="text-2xl">Gestion des utilisateurs</h2>
             <div>
               <button
@@ -156,6 +175,15 @@ function ManageUsers() {
                 <Link to="/admin/users/add_user">Ajouter un utilisateur</Link>
               </button>
             </div>
+          </div>
+          <div className="flex justify-end pb-20">
+            <CSVLink
+              {...csvReport}
+              className=" flex items-center gap-2 border hover:bg-white tracking-wide hover:text-black rounded-lg py-1 px-3 text-sm transition"
+            >
+              <TfiExport />
+              <p>Export csv</p>
+            </CSVLink>
           </div>
           <div className="flex justify-center items-center">
             <table className=" w-full border-collapse text-left text-sm">
