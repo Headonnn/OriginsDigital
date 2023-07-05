@@ -7,11 +7,11 @@ import logolarge from "../../assets/images/Logo_Origins-digital_White.png";
 function Header() {
   const location = useLocation();
 
-  const { dataUser, setDataUser } = useContext(LoginContext);
+  const { dataLogin, setDataLogin } = useContext(LoginContext);
 
   const logout = () => {
     localStorage.removeItem("token");
-    setDataUser(undefined);
+    setDataLogin(undefined);
   };
 
   const handleLogout = () => {
@@ -38,15 +38,20 @@ function Header() {
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
           <NavLink to="/ma_liste">Ma Liste</NavLink>
         </li>
-        {dataUser?.is_admin ? (
+        {dataLogin?.is_admin ? (
           <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
-            <NavLink to="/admin">YOU IS ADMIN</NavLink>
+            <NavLink to="/admin">Admin Page</NavLink>
           </li>
         ) : null}
       </ul>
       <div className="flex items-center pr-8 gap-8">
         {/*  */}
-        {dataUser ? (
+        {dataLogin ? (
+          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
+            <NavLink to="/UserProfile">Hello {dataLogin.username} !</NavLink>
+          </li>
+        ) : null}
+        {dataLogin ? (
           <button
             type="submit"
             className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
@@ -65,6 +70,7 @@ function Header() {
             </button>
           </NavLink>
         )}
+
         <BurgerMenu className="block md:hidden" />
       </div>
     </nav>

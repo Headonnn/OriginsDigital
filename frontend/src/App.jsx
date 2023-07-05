@@ -9,7 +9,8 @@ function App() {
   const [dataVideo, setDataVideo] = useState([]);
   const [categorie, setCategorie] = useState([]);
   const [videoCategorie, setVideoCategorie] = useState([]);
-  const [dataUser, setDataUser] = useState(undefined);
+  const [dataUser, setDataUser] = useState([]);
+  const [dataLogin, setDataLogin] = useState(undefined);
 
   useEffect(() => {
     fetch(`http://localhost:5002/videos`)
@@ -24,15 +25,23 @@ function App() {
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));
   }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:5002/users`)
+      .then((res) => res.json())
+      .then((result) => setDataUser(result))
+      .catch((error) => console.error(error));
+  }, []);
+
   /* eslint-disable */
   useEffect(() => {
-    if (!dataUser) {
-      console.warn("App log !datauser");
+    if (!dataLogin) {
+      console.warn("App log !dataLogin");
       const token = JSON.parse(localStorage.getItem("token"));
       if (!token) return console.warn("app log !token");
       const decoded = jwtDecode(token.token);
       console.warn("app log jwtdecode", decoded);
-      setDataUser(decoded.cargo);
+      setDataLogin(decoded.cargo);
     }
   }, []);
   /* eslint-disable */
@@ -46,6 +55,8 @@ function App() {
       setVideoCategorie,
       dataUser,
       setDataUser,
+      dataLogin,
+      setDataLogin,
     }),
     [
       dataVideo,
@@ -56,6 +67,8 @@ function App() {
       setVideoCategorie,
       dataUser,
       setDataUser,
+      dataLogin,
+      setDataLogin,
     ]
   );
 
