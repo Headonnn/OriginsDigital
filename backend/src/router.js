@@ -58,6 +58,7 @@ router.get("/sections", sectionControllers.browse);
 router.get("/sections/ordre", sectionControllers.browseordre);
 router.put("/sections/:id", sectionControllers.edit);
 router.post("/sections/custom", sectionControllers.addcustom);
+router.post("/sections/category", sectionControllers.addcategory);
 
 // video_carousel routes
 router.get("/videos_carousel/:id", videoCarouselControllers.read);
@@ -70,6 +71,7 @@ router.post("/carousel_custom", carouselCustomControllers.add);
 // carousel_category routes
 router.get("/carousel_category", carouselCategoryControllers.browse);
 router.get("/carousel_category/:id", carouselCategoryControllers.read);
+router.post("/carousel_category", carouselCategoryControllers.add);
 
 // video_category routes
 router.get("/videos_category/:id", videoCategoryControllers.read);

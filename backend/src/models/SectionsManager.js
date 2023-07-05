@@ -34,5 +34,16 @@ class SectionsManager extends AbstractManager {
       [carouselCustomId, ordre, title]
     );
   }
+
+  insertcategory(category) {
+    console.warn(category);
+
+    const { ordre, carouselCategoryId, title } = category;
+
+    return this.database.query(
+      `INSERT INTO ${this.table} (carousel_category_id, ordre,title) VALUES (?,?,?)`,
+      [carouselCategoryId, ordre, title]
+    );
+  }
 }
 module.exports = SectionsManager;
