@@ -153,7 +153,7 @@ function ManageUsers() {
                 type="button"
                 className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-6 transition"
               >
-                <Link to="/admin/video_create">Ajouter un utilisateur</Link>
+                <Link to="/admin/users/add_user">Ajouter un utilisateur</Link>
               </button>
             </div>
           </div>

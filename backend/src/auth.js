@@ -53,11 +53,11 @@ const verifyPassword = async (req, res) => {
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "1000",
       });
-
       res.status(200).send({ token });
+      console.warn("oi mate her's' yer token mate");
       return null;
     }
-    res.status(401).send("verifypassword, error expelliarmus");
+    res.status(401).send("verifypassword, error tirlipinpon");
     return null;
   } catch (err) {
     console.error(err);
