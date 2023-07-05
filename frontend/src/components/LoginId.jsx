@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { BsCheckCircle } from "react-icons/bs";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
+import LoginContext from "../../contexts/LoginContext";
 
 function LoginId() {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -13,6 +15,8 @@ function LoginId() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { setDataUser } = useContext(LoginContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -31,6 +35,8 @@ function LoginId() {
         if (response.status === 200) {
           console.warn(response.data);
           localStorage.setItem("token", JSON.stringify(response.data));
+          const decoded = jwtDecode(response.data.token);
+          setDataUser(decoded.cargo);
           navigate("/");
         } else {
           throw new Error("throw-error level, Error during login attempt");
