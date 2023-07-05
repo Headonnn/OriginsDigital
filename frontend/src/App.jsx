@@ -24,18 +24,17 @@ function App() {
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));
   }, []);
-  /* eslint-disable */
+
   useEffect(() => {
     if (!dataUser) {
       console.warn("App log !datauser");
       const token = JSON.parse(localStorage.getItem("token"));
-      if (!token) return console.warn("app log !token");
       const decoded = jwtDecode(token.token);
       console.warn("app log jwtdecode", decoded);
       setDataUser(decoded.cargo);
     }
   }, []);
-  /* eslint-disable */
+
   const contextValue = useMemo(
     () => ({
       dataVideo,

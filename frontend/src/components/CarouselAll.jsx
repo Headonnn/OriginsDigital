@@ -108,8 +108,8 @@ function CarouselAll({ dataSection }) {
 
   return (
     dataVideo.length > 0 && (
-      <div className="carousel mx-auto bg-neutral-950 my-20">
-        <h2 className="text-lg text-white font-light py-6 ml-4">
+      <div className="carousel mx-auto bg-neutral-950 my-9">
+        <h2 className="text-xl text-white font-light py-3 ml-4">
           {dataSection.name ? dataSection.name[0] : dataSection.carousel.name}
         </h2>
 
@@ -120,7 +120,6 @@ function CarouselAll({ dataSection }) {
           swipeable
           infinite
           keyBoardControl
-          containerClass="carousel-container"
         >
           {dataSection &&
             dataVideo
@@ -133,43 +132,41 @@ function CarouselAll({ dataSection }) {
               )
               .map((video) => {
                 return (
-                  <div className="group">
-                    <div
-                      key={video.id}
-                      className="carousel-item relative m-4 hover:scale-105 transition"
-                    >
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="h-52 w-88"
-                      />
+                  <div
+                    key={video.id}
+                    className="carousel-item relative m-4 hover:scale-105 transition"
+                  >
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="h-40 w-96"
+                    />
 
-                      <div className="hidden group-hover:block group-hover:absolute bg-black transform top-2/3 bg-opacity-60 text-white w-full h-5/6">
-                        <div className="text-md">{video.title}</div>
-                        <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl transition">
-                          <Link to={`/description/${video.id - 1}`}>
-                            <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                          </Link>
-                          <Link to={`/watch/${video.id - 1}`}>
-                            <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                          </Link>
-                          <button
-                            type="button"
-                            onClick={() => handleAddToList(video.id)}
-                          >
-                            {!dataFavorites.includes(parseInt(video.id, 10)) ? (
-                              <BsPlusCircle
-                                id={video.id}
-                                className="hover:bg-white hover:text-black hover:rounded-2xl"
-                              />
-                            ) : (
-                              <BsCheckCircle
-                                id={video.id}
-                                className="hover:bg-white hover:text-black hover:rounded-2xl"
-                              />
-                            )}
-                          </button>
-                        </div>
+                    <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
+                      <div>{video.title}</div>
+                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl">
+                        <Link to={`/description/${video.id - 1}`}>
+                          <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl duration-200" />
+                        </Link>
+                        <Link to={`/watch/${video.id - 1}`}>
+                          <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl duration-200" />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => handleAddToList(video.id)}
+                        >
+                          {!dataFavorites.includes(parseInt(video.id, 10)) ? (
+                            <BsPlusCircle
+                              id={video.id}
+                              className="hover:bg-white hover:text-black hover:rounded-2xl"
+                            />
+                          ) : (
+                            <BsCheckCircle
+                              id={video.id}
+                              className="hover:bg-white hover:text-black hover:rounded-2xl"
+                            />
+                          )}
+                        </button>
                       </div>
                     </div>
                   </div>
