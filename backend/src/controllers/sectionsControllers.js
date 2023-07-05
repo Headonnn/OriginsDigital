@@ -4,6 +4,7 @@ const models = require("../models");
 const browse = async (req, res) => {
   try {
     const [rows] = await models.section.findAllOrdered();
+
     const promises = rows.map(async (section) => {
       if (section.carousel_custom_id) {
         const [custom] = await models.carouselCustom.find(
@@ -18,15 +19,18 @@ const browse = async (req, res) => {
         const [category] = await models.carouselCategory.find(
           section.carousel_category_id
         );
+
         section.carousel = category[0];
         const [videos] = await models.videoCategory.findCatId(
           section.carousel.category_id
         );
+
         section.videos = videos;
-        const [name] = await models.videoCategory.findCatName(
+        const [name] = await models.carouselCategory.findCatName(
           section.carousel_category_id
         );
-        section.name = Object.values(name[0]);
+
+        name[0] && (section.name = Object.values(name[0]));
       } else {
         console.warn("advert");
       }
