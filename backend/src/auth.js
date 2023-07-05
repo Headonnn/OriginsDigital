@@ -54,6 +54,7 @@ const verifyPassword = async (req, res) => {
         expiresIn: "1000",
       });
       res.status(200).send({ token });
+      console.warn(token);
       console.warn("oi mate her's' yer token mate");
       return null;
     }

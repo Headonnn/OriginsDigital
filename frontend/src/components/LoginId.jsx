@@ -15,7 +15,7 @@ function LoginId() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setDataUser } = useContext(LoginContext);
+  const { setDataLogin } = useContext(LoginContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -35,7 +35,8 @@ function LoginId() {
           console.warn(response.data);
           localStorage.setItem("token", JSON.stringify(response.data));
           const decoded = jwtDecode(response.data.token);
-          setDataUser(decoded.cargo);
+          setDataLogin(decoded.cargo);
+          console.warn(decoded.cargo);
           navigate("/");
         } else {
           throw new Error("throw-error level, Error during login attempt");

@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword, verifyPassword, verifyToken } = require("./auth");
+const { hashPassword, verifyPassword } = require("./auth");
 
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
@@ -31,8 +31,7 @@ router.delete("/users/:id", userControllers.destroy);
 router.post(
   "/users/login",
   userControllers.getUserByEmailWithPasswordAndPassToNext,
-  verifyPassword,
-  verifyToken
+  verifyPassword
 );
 
 // Video routes
