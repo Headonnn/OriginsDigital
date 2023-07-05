@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
-
-import { LoginContext } from "../contexts/LoginContext";
-
+import jwtDecode from "jwt-decode";
+import LoginContext from "../contexts/LoginContext";
 import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
 import Footer from "./components/Footer";
@@ -10,7 +9,7 @@ function App() {
   const [dataVideo, setDataVideo] = useState([]);
   const [categorie, setCategorie] = useState([]);
   const [videoCategorie, setVideoCategorie] = useState([]);
-  const [dataUser, setDataUser] = useState([]);
+  const [dataUser, setDataUser] = useState(undefined);
 
   useEffect(() => {
     fetch(`http://localhost:5002/videos`)
@@ -25,59 +24,45 @@ function App() {
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));
   }, []);
-
+  /* eslint-disable */
   useEffect(() => {
-    fetch(`http://localhost:5002/users`)
-      .then((res) => res.json())
-      .then((result) => setDataUser(result))
-      .catch((error) => console.error(error));
+    if (!dataUser) {
+      console.warn("App log !datauser");
+      const token = JSON.parse(localStorage.getItem("token"));
+      if (!token) return console.warn("app log !token");
+      const decoded = jwtDecode(token.token);
+      console.warn("app log jwtdecode", decoded);
+      setDataUser(decoded.cargo);
+    }
   }, []);
-
+  /* eslint-disable */
   const contextValue = useMemo(
     () => ({
       dataVideo,
       setDataVideo,
       categorie,
       setCategorie,
-      dataUser,
-      setDataUser,
       videoCategorie,
       setVideoCategorie,
+      dataUser,
+      setDataUser,
     }),
     [
       dataVideo,
       setDataVideo,
       categorie,
       setCategorie,
-      dataUser,
-      setDataUser,
       videoCategorie,
       setVideoCategorie,
+      dataUser,
+      setDataUser,
     ]
-  );
-
-  const [loggedIn, setLoggedIn] = useState(false);
-  const login = () => {
-    setLoggedIn(true);
-  };
-  const logout = () => {
-    setLoggedIn(false);
-    localStorage.removeItem("token");
-  };
-  const loginContextValue = useMemo(
-    () => ({
-      loggedIn,
-      setLoggedIn,
-      login,
-      logout,
-    }),
-    [loggedIn, setLoggedIn]
   );
 
   return (
     <div className="max-w-screen-xl m-auto min-h-screen flex flex-col">
       <VideoContext.Provider value={contextValue}>
-        <LoginContext.Provider value={loginContextValue}>
+        <LoginContext.Provider value={contextValue}>
           <div className="flex-grow">
             <Router />
           </div>
