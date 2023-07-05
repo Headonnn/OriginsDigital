@@ -22,6 +22,7 @@ import EditUsers from "../components/AdminUser/EditUsers";
 import ManageCategory from "../components/AdminCategory/ManageCategory";
 import EditCategories from "../components/AdminCategory/EditCategories";
 import AddCategory from "../components/AdminCategory/AddCategory";
+import AdminCarouselCategory from "../pages/AdminCarouselCategory";
 
 function Router() {
   return (
@@ -52,6 +53,10 @@ function Router() {
       />
 
       <Route path="/admin/user_list" element={<ManageUsers />} />
+      <Route
+        path="/admin/caroussel/category"
+        element={<AdminCarouselCategory />}
+      />
     </Routes>
   );
 }

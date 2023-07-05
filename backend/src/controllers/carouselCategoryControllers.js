@@ -27,7 +27,21 @@ const read = (req, res) => {
       res.sendStatus(500);
     });
 };
+const add = (req, res) => {
+  const carousel = req.body;
+
+  models.carouselCategory
+    .insert(carousel)
+    .then(([result]) => {
+      res.send(result).status(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 module.exports = {
   browse,
   read,
+  add,
 };

@@ -83,9 +83,23 @@ const addcustom = (req, res) => {
       res.sendStatus(500);
     });
 };
+const addcategory = (req, res) => {
+  const category = req.body;
+
+  models.section
+    .insertcategory(category)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 module.exports = {
   browse,
   edit,
   browseordre,
   addcustom,
+  addcategory,
 };

@@ -62,13 +62,17 @@ function AdminSectionAccess() {
                 Caroussel custom
               </button>
             </Link>
-
-            <button
-              type="button"
-              className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
+            <Link
+              to="/admin/caroussel/category"
+              className="flex justify-center"
             >
-              Caroussel catégorie
-            </button>
+              <button
+                type="button"
+                className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
+              >
+                Caroussel catégorie
+              </button>
+            </Link>
             <button
               type="button"
               className="bg-gradient-to-r from-white hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-14 w-80 h-16  cursor-pointer"
