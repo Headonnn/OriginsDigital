@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import "tailwindcss/tailwind.css";
 import { BsCheckCircle } from "react-icons/bs";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
 import LoginContext from "../../contexts/LoginContext";

@@ -26,7 +26,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="mb-20">
       {dataSection.length > 0 && (
         <div>
           <Hero />
