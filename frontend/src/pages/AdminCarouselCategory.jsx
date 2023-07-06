@@ -43,7 +43,7 @@ function AdminCarouselCategory() {
     const dataSec = {
       ordre: section.ordre,
       carouselCategoryId: section.carousel_category_id,
-      title: categorie[carousel.category].name,
+      title: "categorie",
     };
     await axios
       .post(`http://localhost:5002/sections/category`, dataSec)
