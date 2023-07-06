@@ -19,6 +19,7 @@ const favoritesControllers = require("./controllers/favoritesControllers");
 // User routes
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
+router.post("/users", hashPassword, userControllers.add);
 router.post(
   "/users/login",
   userControllers.getUserByEmailWithPasswordAndPassToNext,
@@ -73,13 +74,12 @@ router.get("/favorites/:id", favoritesControllers.read);
 
 // SECURE ROUTES________________________________________________________________
 
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // user routes
 
 router.put("/users/:id", userControllers.edit);
 router.put("/users/:id/edit", userControllers.editAll);
-router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 
 // Video routes
