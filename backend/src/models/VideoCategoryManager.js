@@ -25,6 +25,19 @@ class VideoCategoryManager extends AbstractManager {
         throw new Error("Failed to retrieve data from the database.");
       });
   }
+
+  insert(vidCat) {
+    const { categoryId, videoId } = vidCat;
+    return this.database
+      .query(`INSERT INTO ${this.table} (video_id, category_id) VALUES (?,?)`, [
+        videoId,
+        categoryId,
+      ])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to retrieve data from the database.");
+      });
+  }
 }
 
 module.exports = VideoCategoryManager;

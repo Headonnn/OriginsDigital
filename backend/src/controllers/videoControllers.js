@@ -53,12 +53,10 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const video = req.body;
 
-  // TODO validations (length, format...)
-
   models.video
     .insert(video)
     .then(([result]) => {
-      res.location(`/videos/${result.insertId}`).sendStatus(201);
+      res.send(result).status(201);
     })
     .catch((err) => {
       console.error(err);
