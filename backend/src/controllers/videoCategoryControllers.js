@@ -12,6 +12,18 @@ const read = (req, res) => {
     });
 };
 
+const findAll = (req, res) => {
+  models.videoCategory
+    .findAllFromVid(req.params.id)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const post = (req, res) => {
   const vidCat = req.body;
 
@@ -26,4 +38,4 @@ const post = (req, res) => {
     });
 };
 
-module.exports = { read, post };
+module.exports = { read, post, findAll };

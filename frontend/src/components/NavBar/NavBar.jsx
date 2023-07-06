@@ -44,7 +44,7 @@ function Header() {
           </li>
         ) : null}
       </ul>
-      <div className="flex items-center pr-8 gap-8">
+      <div className="flex items-center gap-8">
         {/*  */}
         {dataLogin ? (
           <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
