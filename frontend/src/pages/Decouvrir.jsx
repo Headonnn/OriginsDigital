@@ -131,7 +131,7 @@ function Decouvrir({ isMaListe }) {
               key={video.id}
             >
               <div className="w-60 hover:scale-110 transition text-white ">
-                <Link to={`/description/${video.id - 1}`}>
+                <Link to={`/description/${video.id}`}>
                   <img
                     src={video.thumbnail}
                     alt={video.title}
@@ -156,10 +156,10 @@ function Decouvrir({ isMaListe }) {
                     </div>
                   ) : (
                     <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
-                      <Link to={`/description/${video.id - 1}`}>
+                      <Link to={`/description/${video.id}`}>
                         <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                       </Link>
-                      <Link to={`/watch/${video.id - 1}`}>
+                      <Link to={`/watch/${video.id}`}>
                         <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
                       </Link>
                       <button
