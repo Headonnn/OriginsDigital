@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword, verifyPassword, verifyToken } = require("./auth");
+const { hashPassword, verifyPassword } = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
 const videoControllers = require("./controllers/videoControllers");
