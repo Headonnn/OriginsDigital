@@ -34,7 +34,7 @@ function Hero() {
 
         <div className="absolute top-0 px-10 pb-10 w-full h-full">
           <div className="h-full flex justify-between text-white">
-            <div className=" flex flex-col  justify-end">
+            <div className=" flex flex-col justify-end">
               <h1 className="text-5xl mb-10">{dataVideo[8].title}</h1>
               <div className="flex flex-row w-full gap-4 ">
                 <Link to="/watch/4">
