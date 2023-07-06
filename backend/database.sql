@@ -26,7 +26,7 @@ CREATE TABLE
     video_hero (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         video_id INT NOT NULL,
-        FOREIGN KEY (video_id) REFERENCES video (id)
+        FOREIGN KEY (video_id) REFERENCES video (id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -34,8 +34,8 @@ CREATE TABLE
         user_id INT NOT NULL,
         video_id INT NOT NULL,
         PRIMARY KEY (user_id, video_id),
-        FOREIGN KEY (user_id) REFERENCES `user` (id),
-        FOREIGN KEY (video_id) REFERENCES `video` (id)
+        FOREIGN KEY (user_id) REFERENCES `user` (id) ON DELETE CASCADE,
+        FOREIGN KEY (video_id) REFERENCES `video` (id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -49,8 +49,8 @@ CREATE TABLE
         video_id INT NOT NULL,
         carousel_id INT NOT NULL,
         PRIMARY KEY (video_id, carousel_id),
-        FOREIGN KEY (video_id) REFERENCES `video` (id),
-        FOREIGN KEY (carousel_id) REFERENCES `carousel_custom` (id)
+        FOREIGN KEY (video_id) REFERENCES `video` (id) ON DELETE CASCADE,
+        FOREIGN KEY (carousel_id) REFERENCES `carousel_custom` (id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -64,8 +64,8 @@ CREATE TABLE
         video_id INT NOT NULL,
         category_id INT NOT NULL,
         PRIMARY KEY (video_id, category_id),
-        FOREIGN KEY (video_id) REFERENCES `video` (id),
-        FOREIGN KEY (category_id) REFERENCES `category` (id)
+        FOREIGN KEY (video_id) REFERENCES `video` (id) ON DELETE CASCADE,
+        FOREIGN KEY (category_id) REFERENCES `category` (id) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -94,9 +94,9 @@ CREATE TABLE
         carousel_category_id INT DEFAULT NULL,
         carousel_custom_id INT DEFAULT NULL,
         advert_id INT DEFAULT NULL,
-        Foreign Key (carousel_custom_id) REFERENCES carousel_custom (id),
-        Foreign Key (carousel_category_id) REFERENCES carousel_category (id),
-        Foreign Key (advert_id) REFERENCES advert (id)
+        Foreign Key (carousel_custom_id) REFERENCES carousel_custom (id) ON DELETE CASCADE,
+        Foreign Key (carousel_category_id) REFERENCES carousel_category (id) ON DELETE CASCADE,
+        Foreign Key (advert_id) REFERENCES advert (id) ON DELETE CASCADE
     );
 
 INSERT INTO

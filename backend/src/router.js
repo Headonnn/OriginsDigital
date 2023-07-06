@@ -74,6 +74,11 @@ router.post("/carousel_category", carouselCategoryControllers.add);
 
 // video_category routes
 router.get("/videos_category/:id", videoCategoryControllers.read);
+router.post("/videos_category", videoCategoryControllers.post);
+router.get(
+  "/videos_category/get_category/:id",
+  videoCategoryControllers.findAll
+);
 
 // favorites routes
 router.post("/favorites/add", favoritesControllers.add);

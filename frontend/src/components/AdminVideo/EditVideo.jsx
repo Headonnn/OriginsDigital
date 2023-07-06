@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import Select from "react-tailwindcss-select";
 import NavBar from "../NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
 
 function EditVideo() {
   const navigate = useNavigate();
+  const { categorie } = useContext(VideoContext);
   const [isClicked, setIsClicked] = useState(false);
+  const [categories, setCategories] = useState([]);
   const { id } = useParams();
   const [video, setVideo] = useState({
     title: "",
@@ -14,6 +18,17 @@ function EditVideo() {
     thumbnail: "",
     is_freemium: false,
   });
+
+  const options = categorie.map((cate) => ({
+    value: cate.name,
+    label: cate.name,
+    id: cate.id,
+  }));
+
+  const handleChangeCategories = (value) => {
+    console.warn("value:", value);
+    setCategories(value);
+  };
   const [error, setError] = useState("");
 
   const toggleFreemium = () => {
@@ -38,6 +53,26 @@ function EditVideo() {
         }
       });
   }, [id]);
+
+  const fetchData = async () => {
+    try {
+      const data = await axios.get(
+        `http://localhost:5002/videos_category/get_category/${id}`
+      );
+      data.data.map((cat) =>
+        setCategories([
+          ...categories,
+          { label: cat.name, value: cat.name, id: cat.category_id },
+        ])
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleInput = (e) => {
     e.persist();
@@ -88,7 +123,7 @@ function EditVideo() {
         </div>
       ) : (
         <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+          <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
             <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
               <div>
                 <h2 className="text-lg md:text-2xl">Modifier une vidéo</h2>
@@ -135,13 +170,18 @@ function EditVideo() {
 
               <label
                 htmlFor="videoCategories"
-                className="text-white flex flex-col"
+                className="text-white flex flex-col mb-4"
               >
                 Catégories
-                <input
-                  type="text"
+                <Select
+                  value={categories}
+                  options={options}
+                  onChange={handleChangeCategories}
+                  isMultiple="true"
+                  isSearchable
                   name="category"
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
+                  noOptionsMessage="Catégorie inexistante"
+                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md"
                   placeholder="Catégories"
                   aria-label="Catégories"
                 />

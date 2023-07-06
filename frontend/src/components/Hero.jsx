@@ -27,14 +27,13 @@ function Hero() {
           muted={!sound}
           width="100%"
           height="100%"
-          className=""
         />
         <div className="absolute top-0 z-50 w-full ">
           <NavBar />
         </div>
 
         <div className="absolute top-0 px-10 pb-10 w-full h-full">
-          <div className="h-full  flex justify-between  text-white">
+          <div className="h-full flex justify-between text-white">
             <div className=" flex flex-col  justify-end">
               <h1 className="text-5xl mb-10">{dataVideo[8].title}</h1>
               <div className="flex flex-row w-full gap-4 ">

@@ -12,4 +12,30 @@ const read = (req, res) => {
     });
 };
 
-module.exports = { read };
+const findAll = (req, res) => {
+  models.videoCategory
+    .findAllFromVid(req.params.id)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const post = (req, res) => {
+  const vidCat = req.body;
+
+  models.videoCategory
+    .insert(vidCat)
+    .then(([result]) => {
+      res.send(result).status(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+module.exports = { read, post, findAll };

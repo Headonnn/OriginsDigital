@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Select from "react-tailwindcss-select";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
 
 function CreateVideo() {
-  const { dataVideo } = useContext(VideoContext);
+  const { dataVideo, categorie } = useContext(VideoContext);
   const navigate = useNavigate();
+  const [categories, setCategories] = useState(null);
   const [isClicked, setIsClicked] = useState(false);
   const [video, setVideo] = useState({
     title: "",
@@ -15,13 +17,24 @@ function CreateVideo() {
     thumbnail: "",
   });
 
+  const options = categorie.map((cate) => ({
+    value: cate.name,
+    label: cate.name,
+    id: cate.id,
+  }));
+
+  const handleChangeCategories = (value) => {
+    console.warn("value:", value);
+    setCategories(value);
+  };
+
   const [error, setError] = useState("");
 
   const handleInput = (e) => {
     e.persist();
     setVideo({ ...video, [e.target.name]: e.target.value });
   };
-  const saveVideo = (e) => {
+  const saveVideo = async (e) => {
     e.preventDefault();
     if (!video.title || !video.url || !video.thumbnail) {
       setError("*Ce champ est obligatoire");
@@ -33,13 +46,25 @@ function CreateVideo() {
       description: video.description,
       thumbnail: video.thumbnail,
     };
-    axios
+
+    let videoID = 0;
+    await axios
       .post(`http://localhost:5002/videos`, data)
       .then((res) => {
-        console.warn(res.data);
+        videoID = res.data.insertId;
         setIsClicked(!isClicked);
       })
       .catch((err) => console.warn(err));
+
+    categories.map((cat) =>
+      axios
+        .post(`http://localhost:5002/videos_category`, {
+          categoryId: cat.id,
+          videoId: videoID,
+        })
+
+        .catch((err) => console.warn(err))
+    );
   };
 
   const isFreemium = (id) => {
@@ -88,7 +113,7 @@ function CreateVideo() {
         </div>
       ) : (
         <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+          <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
             <div className="px-2 md:px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:py-6 flex items-center justify-between ">
               <div>
                 <h2 className="text-lg md:text-2xl">Ajouter une vidéo</h2>
@@ -135,13 +160,18 @@ function CreateVideo() {
 
               <label
                 htmlFor="videoCategories"
-                className="text-white flex flex-col"
+                className="text-white flex flex-col mb-4"
               >
                 Catégories
-                <input
-                  type="text"
+                <Select
+                  value={categories}
+                  options={options}
+                  onChange={handleChangeCategories}
+                  isMultiple="true"
+                  isSearchable
                   name="category"
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
+                  noOptionsMessage="Catégorie inexistante"
+                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md"
                   placeholder="Catégories"
                   aria-label="Catégories"
                 />
@@ -165,11 +195,11 @@ function CreateVideo() {
                 htmlFor="videoThumbnail"
                 className="text-white flex flex-col"
               >
-                Thumbail*
+                Thumbnail*
                 <input
                   className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
                   name="thumbnail"
-                  placeholder="thumbail"
+                  placeholder="thumbnail"
                   value={video.thumbnail}
                   onChange={handleInput}
                 />
