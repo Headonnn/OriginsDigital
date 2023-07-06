@@ -11,23 +11,23 @@ function AdminMode() {
         <div className="flex flex-col items-center md:space-y-16 mx-5">
           <Link to="/admin/video_list">
             <ButtonOrange className="w-full flex-grow">
-              Administration des vidéos
+              Gérer les vidéos
             </ButtonOrange>
           </Link>
           <Link to="/admin/category_list">
             <ButtonOrange className="w-full flex-grow">
-              Administration des catégories
+              Gérer les catégories
             </ButtonOrange>
           </Link>
           <Link to="/admin/section">
             <ButtonOrange className="w-full flex-grow">
-              Administration des sections
+              Gérer les sections
             </ButtonOrange>
           </Link>
 
           <Link to="/admin/user_list">
             <ButtonOrange className="w-full flex-grow">
-              Administration des utilisateurs
+              Gérer les utilisateurs
             </ButtonOrange>
           </Link>
         </div>
