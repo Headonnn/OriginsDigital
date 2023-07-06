@@ -105,38 +105,44 @@ INSERT INTO
         email,
         hashedPassword,
         firstname,
-        lastname
+        lastname,
+        is_admin
     )
 VALUES (
         'Camille',
         'camille@camille.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmZXpmemZlemVmZWR6ZXplZg$rqZkhxu5YbqCGHPNrjJZpQ',
         'Camille',
-        'Kamizuchi'
+        'Kamizuchi',
+        '1'
     ), (
         'Chloé',
         'chloe@chloe.com',
-        '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZQ$eSetR6KPUNAGW+q+wDadcw',
+        '$argon2id$v=19$m=65536,t=5,p=1$UH4Y1+YIyIlkx2WQrM6jxw$I/l1LS1wVEeqnApwzc6fPdYh/hwfpPP1eHwgCxMFsDA',
         'Chloé',
-        'Peltier'
+        'Peltier',
+        '1'
     ), (
         'Thomas',
         'tomtom@nana.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZXphZGF6ZGQ$a0bg5DZB6H6v3jjQC81DXg',
         'Thomas',
-        'Thomasovich'
+        'Thomasovich',
+        '1'
     ), (
         'Emilie',
         'emilie@emilie.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZnpmemZlemFkYXpkZA$V1qAnJDyMuuWG7g9yoGYXA',
         'Emilie',
-        'Nathan'
+        'Nathan',
+        '1'
     ), (
         'Jeremy',
         'jeremy@jeremy.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$VCzq45PL9t8khtc44Kk5iw',
         'Jeremy',
-        'Herpanovski'
+        'Herpanovski',
+        '1'
     );
 
 INSERT INTO
