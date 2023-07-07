@@ -31,8 +31,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const category = req.body;
 
-  // TODO validations (length, format...)
-
   category.id = parseInt(req.params.id, 10);
 
   models.category
@@ -53,12 +51,10 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const category = req.body;
 
-  // TODO validations (length, format...)
-
   models.category
     .insert(category)
     .then(([result]) => {
-      res.location(`/categorys/${result.insertId}`).sendStatus(201);
+      res.send(result).status(201);
     })
     .catch((err) => {
       console.error(err);

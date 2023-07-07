@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import LoginContext from "../../../contexts/LoginContext";
 import BurgerMenu from "./BurgerMenu";
@@ -17,6 +17,8 @@ function Header() {
   const handleLogout = () => {
     logout();
   };
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <nav className=" flex justify-between items-center text-white inset-x-0 h-24 bg-black bg-opacity-60	shadow-[0px_20px_20px_10px_#00000024]">
@@ -44,22 +46,37 @@ function Header() {
           </li>
         ) : null}
       </ul>
-      <div className="flex items-center pr-8 gap-8">
-        {/*  */}
+
+      <div className="flex items-center gap-8">
         {dataLogin ? (
-          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
-            <NavLink to="/UserProfile">Hello {dataLogin.username} !</NavLink>
-          </li>
-        ) : null}
-        {dataLogin ? (
-          <button
-            type="submit"
-            className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
-            onClick={handleLogout}
+          <ul
+            onMouseOver={() => setIsDropdownOpen(true)}
+            onFocus={() => setIsDropdownOpen(true)}
+            onMouseLeave={() => setIsDropdownOpen(false)}
           >
-            {" "}
-            Se déconnecter{" "}
-          </button>
+            <li className="relative text-l hidden lg:block tracking-wide transition">
+              <p> Bonjour {dataLogin.username} !</p>
+              {isDropdownOpen && (
+                <div className="absolute top-full w-48 rounded-md py-2">
+                  <NavLink to="/userprofile">
+                    <p className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition my-2">
+                      Mon compte
+                    </p>
+                  </NavLink>
+                  <NavLink to="/">
+                    <button
+                      type="submit"
+                      className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition my-2"
+                      onClick={handleLogout}
+                    >
+                      {" "}
+                      Se déconnecter{" "}
+                    </button>
+                  </NavLink>
+                </div>
+              )}
+            </li>
+          </ul>
         ) : (
           <NavLink to="/login">
             <button
@@ -70,7 +87,6 @@ function Header() {
             </button>
           </NavLink>
         )}
-
         <BurgerMenu className="block md:hidden" />
       </div>
     </nav>

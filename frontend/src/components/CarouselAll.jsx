@@ -4,19 +4,20 @@ import "react-multi-carousel/lib/styles.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-
 import {
   BsInfoCircle,
   BsPlayCircle,
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
+import LoginContext from "../../contexts/LoginContext";
 
 import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll({ dataSection }) {
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo } = useContext(VideoContext);
+  const { dataLogin } = useContext(LoginContext);
 
   const fetchFavorites = () => {
     axios
@@ -135,39 +136,55 @@ function CarouselAll({ dataSection }) {
                 return (
                   <div
                     key={video.id}
-                    className="carousel-item relative m-4 hover:scale-105 transition"
+                    className={`${
+                      video.is_freemium && !dataLogin
+                        ? "carousel-item m-1 opacity-60 relative"
+                        : "carousel-item m-1 relative"
+                    }`}
                   >
-                    <img
-                      src={video.thumbnail}
-                      alt={video.title}
-                      className="h-40 w-96"
-                    />
+                    <div className="hover:scale-105 duration-200 text-white ">
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="h-40 w-96"
+                      />
 
-                    <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
-                      <div>{video.title}</div>
-                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl">
-                        <Link to={`/description/${video.id - 1}`}>
-                          <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl duration-200" />
-                        </Link>
-                        <Link to={`/watch/${video.id - 1}`}>
-                          <BsPlayCircle className="hover:bg-white hover:text-black hover:rounded-2xl duration-200" />
-                        </Link>
-                        <button
-                          type="button"
-                          onClick={() => handleAddToList(video.id)}
-                        >
-                          {!dataFavorites.includes(parseInt(video.id, 10)) ? (
-                            <BsPlusCircle
-                              id={video.id}
-                              className="hover:bg-white hover:text-black hover:rounded-2xl"
-                            />
-                          ) : (
-                            <BsCheckCircle
-                              id={video.id}
-                              className="hover:bg-white hover:text-black hover:rounded-2xl"
-                            />
-                          )}
-                        </button>
+                      <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
+                        <div className="text-md pl-1">{video.title}</div>
+                        {video.is_freemium && !dataLogin ? (
+                          <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                            <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                            <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                            <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                          </div>
+                        ) : (
+                          <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                            <Link to={`/description/${video.id - 1}`}>
+                              <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                            </Link>
+                            <Link to={`/watch/${video.id - 1}`}>
+                              <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                            </Link>
+                            <button
+                              type="button"
+                              onClick={() => handleAddToList(video.id)}
+                            >
+                              {!dataFavorites.includes(
+                                parseInt(video.id, 10)
+                              ) ? (
+                                <BsPlusCircle
+                                  id={video.id}
+                                  className="hover:bg-white  hover:text-black hover:rounded-2xl"
+                                />
+                              ) : (
+                                <BsCheckCircle
+                                  id={video.id}
+                                  className="hover:bg-white  hover:text-black hover:rounded-2xl"
+                                />
+                              )}
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

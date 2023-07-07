@@ -161,7 +161,7 @@ function EditUsers() {
                 <input
                   className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
                   name="password"
-                  type="text"
+                  type="password"
                   placeholder="Votre mot de passe"
                   value={users.password}
                   onChange={handleInput}

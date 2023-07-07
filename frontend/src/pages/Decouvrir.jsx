@@ -11,14 +11,15 @@ import PropTypes from "prop-types";
 import NavBar from "../components/NavBar/NavBar";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
+import LoginContext from "../../contexts/LoginContext";
 
 function Decouvrir({ isMaListe }) {
   const [search, setSearch] = useState("");
   const [isFiltered, setIsFiltered] = useState([]);
   const [filtreCategorie, setFiltreCategorie] = useState("");
-
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo, setDataVideo } = useContext(VideoContext);
+  const { dataLogin } = useContext(LoginContext);
 
   const compareVideos = (a, b) => {
     if (a.is_freemium === 0 && b.is_freemium === 1) {
@@ -116,7 +117,7 @@ function Decouvrir({ isMaListe }) {
         handleSearchChange={handleSearchChange}
         handleChangeCategory={handleChangeCategory}
       />
-      <div className="flex justify-center gap-12 flex-wrap my-5">
+      <div className="flex justify-center gap-8 flex-wrap mt-5 mb-20">
         {isFiltered.length === 0 && (
           <div className="text-white">
             Aucune vidéo ne correspond à vos critères de recherche
@@ -126,11 +127,14 @@ function Decouvrir({ isMaListe }) {
           return (
             <div
               className={`${
-                video.is_freemium ? "opacity-60 relative" : "relative"
+                video.is_freemium && !dataLogin
+                  ? "opacity-60 relative"
+                  : "relative"
               }`}
               key={video.id}
             >
               <div className="w-60 hover:scale-110 transition text-white ">
+
                 <Link to={`/description/${video.id}`}>
                   <img
                     src={video.thumbnail}
@@ -139,16 +143,11 @@ function Decouvrir({ isMaListe }) {
                   />
                 </Link>
 
-                <div
-                  className={`${
-                    video.is_freemium
-                      ? "flex flex-col justify-end absolute bottom-0 bg-black bg-opacity-60 w-full h-full"
-                      : "flex flex-col justify-end absolute bottom-0 bg-black bg-opacity-60 w-full"
-                  }`}
-                >
+
+                <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
                   <div className="text-md pl-1">{video.title}</div>
 
-                  {video.is_freemium ? (
+                  {video.is_freemium && !dataLogin ? (
                     <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                       <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                       <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
@@ -167,9 +166,15 @@ function Decouvrir({ isMaListe }) {
                         onClick={() => handleAddToList(video.id)}
                       >
                         {!dataFavorites.includes(parseInt(video.id, 10)) ? (
-                          <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                          <BsPlusCircle
+                            id={video.id}
+                            className="hover:bg-white  hover:text-black hover:rounded-2xl"
+                          />
                         ) : (
-                          <BsCheckCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                          <BsCheckCircle
+                            id={video.id}
+                            className="hover:bg-white  hover:text-black hover:rounded-2xl"
+                          />
                         )}
                       </button>
                     </div>
