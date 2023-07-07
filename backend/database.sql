@@ -125,7 +125,7 @@ VALUES (
     ), (
         'Thomas',
         'tomtom@nana.com',
-        '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlemZ6ZnpmZXphZGF6ZGQ$a0bg5DZB6H6v3jjQC81DXg',
+        '$argon2id$v=19$m=65536,t=5,p=1$F539F2S78zvEKMGU0CnTOg$vcIUNLgUZcCOAInNsakrdOWvRlUbNpKl8hU9TPngbwA',
         'Thomas',
         'Thomasovich',
         '1'
