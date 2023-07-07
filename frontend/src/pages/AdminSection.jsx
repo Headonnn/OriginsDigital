@@ -9,14 +9,35 @@ import ButtonOrange from "../components/ButtonOrange";
 
 function AdminSection() {
   const [sections, setSections] = useState([]);
-
-  useEffect(() => {
+  const uploadSections = () => {
     fetch(`http://localhost:5002/sections`)
       .then((res) => res.json())
       .then((result) => setSections(result))
       .catch((error) => console.error(error));
+  };
+  useEffect(() => {
+    uploadSections();
   }, []);
-
+  const handleDelete = (e, carouselCustomId, carouselCategoryId) => {
+    e.preventDefault();
+    if (carouselCustomId) {
+      axios
+        .delete(`http://localhost:5002/carousel_custom/${carouselCustomId}`)
+        .then((res) => {
+          console.warn(res.data);
+          uploadSections();
+        })
+        .catch((err) => console.error(err));
+    } else {
+      axios
+        .delete(`http://localhost:5002/carousel_category/${carouselCategoryId}`)
+        .then((res) => {
+          console.warn(res.data);
+          uploadSections();
+        })
+        .catch((err) => console.error(err));
+    }
+  };
   const dragItem = React.useRef(null);
   const dragOverItem = React.useRef(null);
   const handleDragStart = (index) => {
@@ -48,24 +69,6 @@ function AdminSection() {
     <>
       <NavBar />
       <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-        <div
-          className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute bottom-[-10px] left-[60px]"
-          style={{
-            clipPath:
-              "polygon(0 0, 100% 0, 100% 100%, 70% 100%, 30% 100%, 0 100%)",
-          }}
-        />
-        <div
-          className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute bottom-[-10px] right-[60px]"
-          style={{
-            clipPath:
-              "polygon(0 0, 100% 0, 100% 100%, 70% 100%, 30% 100%, 0 100%)",
-          }}
-        />
-        <div
-          className="bg-gradient-to-r from-red-600 to-orange-500 rounded-full w-72 h-72 absolute top-[0px] left-1/2 transform -translate-x-1/2"
-          style={{ clipPath: "circle(50% at 50% 50%)" }}
-        />
         <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-10 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-center relative">
             <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
@@ -103,20 +106,33 @@ function AdminSection() {
               </div>
 
               {sections.map((section, index) => (
-                <div className="flex items-center mt-4  cursor-grab">
-                  <div
-                    draggable
-                    onDragStart={() => handleDragStart(index)}
-                    onDragEnter={() => handleDragEnter(index)}
-                    onDragEnd={handleSort}
-                    onDragOver={(e) => e.preventDefault}
-                    key={section.id}
-                    className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1"
-                  >
+                <div
+                  className="flex items-center mt-4  cursor-grab"
+                  draggable
+                  onDragStart={() => handleDragStart(index)}
+                  onDragEnter={() => handleDragEnter(index)}
+                  onDragEnd={handleSort}
+                  onDragOver={(e) => e.preventDefault}
+                  key={section.id}
+                >
+                  <div className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1">
                     {section.name ? section.name[0] : section.carousel.name}
                   </div>
-                  <AiFillEdit className="text-blue-500 ml-2 cursor-pointer" />
-                  <AiFillDelete className="text-red-500 ml-2 cursor-pointer" />
+                  <AiFillEdit
+                    id={section.id}
+                    className="text-blue-500 ml-2 cursor-pointer"
+                  />
+                  <AiFillDelete
+                    id={section.id}
+                    onClick={(e) =>
+                      handleDelete(
+                        e,
+                        section.carousel_custom_id,
+                        section.carousel_category_id
+                      )
+                    }
+                    className="text-red-500 ml-2 cursor-pointer"
+                  />
                 </div>
               ))}
             </div>
@@ -126,12 +142,6 @@ function AdminSection() {
               <BsPlusCircle className="text-white text-5xl mt-16 cursor-pointer" />
             </Link>
           </div>
-          <button
-            type="button"
-            className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md mt-8"
-          >
-            Validation
-          </button>
         </div>
       </div>
     </>

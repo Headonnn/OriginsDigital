@@ -48,7 +48,9 @@ function AdminCarousselCustom() {
         section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
       })
       .catch((err) => console.warn(err));
-
+    if (!section.ordre) {
+      section.ordre = 2;
+    }
     const dataSec = {
       ordre: section.ordre,
       carouselCustomId: section.carousel_custom_id,
