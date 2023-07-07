@@ -37,12 +37,12 @@ function Hero() {
             <div className=" flex flex-col justify-end">
               <h1 className="text-5xl mb-10">{dataVideo[8].title}</h1>
               <div className="flex flex-row w-full gap-4 ">
-                <Link to="/watch/4">
+                <Link to="/watch/8">
                   <div className=" flex items-center  gap-[16px] border bg-white text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
                     <BsFillPlayFill /> Lecture
                   </div>
                 </Link>
-                <Link to="/description/4">
+                <Link to="/description/8">
                   <div className=" flex items-center  gap-[16px] border bg-[#9ca3af]/80 text-black rounded-xl  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
                     <BsInfoCircle /> Infos
                   </div>

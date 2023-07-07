@@ -85,7 +85,8 @@ function Decouvrir({ isMaListe }) {
   };
 
   useEffect(() => {
-    let filteredVideo = dataVideo.filter((el) =>
+    const dataTemp = dataVideo;
+    let filteredVideo = dataTemp.filter((el) =>
       el.title.toLowerCase().includes(search.toLowerCase())
     );
     if (isMaListe) {
@@ -98,13 +99,13 @@ function Decouvrir({ isMaListe }) {
     if (filtreCategorie === "") {
       axios
         .get(`http://localhost:5002/videos`)
-        .then((result) => setDataVideo(result.data.sort(compareVideos)))
+        .then((result) => setIsFiltered(result.data.sort(compareVideos)))
         .catch((error) => console.error(error));
     } else {
       axios
         .get(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
         .then((result) => {
-          setDataVideo(result.data.sort(compareVideos));
+          setIsFiltered(result.data.sort(compareVideos));
         })
         .catch((error) => console.error(error));
     }
@@ -134,15 +135,13 @@ function Decouvrir({ isMaListe }) {
               key={video.id}
             >
               <div className="w-60 hover:scale-110 transition text-white ">
-
-                <Link to={`/description/${video.id}`}>
+                <Link to={`/description/${video.id - 1}`}>
                   <img
                     src={video.thumbnail}
                     alt={video.title}
                     className="rounded-lg h-44 w-68"
                   />
                 </Link>
-
 
                 <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
                   <div className="text-md pl-1">{video.title}</div>
@@ -155,10 +154,10 @@ function Decouvrir({ isMaListe }) {
                     </div>
                   ) : (
                     <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
-                      <Link to={`/description/${video.id}`}>
+                      <Link to={`/description/${video.id - 1}`}>
                         <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                       </Link>
-                      <Link to={`/watch/${video.id}`}>
+                      <Link to={`/watch/${video.id - 1}`}>
                         <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
                       </Link>
                       <button
