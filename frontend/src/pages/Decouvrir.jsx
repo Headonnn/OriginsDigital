@@ -6,6 +6,7 @@ import {
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
+import { AiOutlineCalendar } from "react-icons/ai";
 import axios from "axios";
 import PropTypes from "prop-types";
 import NavBar from "../components/NavBar/NavBar";
@@ -20,6 +21,8 @@ function Decouvrir({ isMaListe }) {
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo, setDataVideo } = useContext(VideoContext);
   const { dataLogin } = useContext(LoginContext);
+  const [alphabet, setAlphabet] = useState(false);
+  const [date, setDate] = useState(false);
 
   const compareVideos = (a, b) => {
     if (a.is_freemium === 0 && b.is_freemium === 1) {
@@ -32,28 +35,30 @@ function Decouvrir({ isMaListe }) {
   };
 
   const fetchFavorites = () => {
-    axios
-      .get(`http://localhost:5002/favorites/2`)
-      .then((res) => {
-        setDataFavorites(res.data);
-        console.warn(res.data);
-      })
-      .catch((err) => {
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.error("pas de favorites pour cet user");
+    if (dataLogin) {
+      axios
+        .get(`http://localhost:5002/favorites/${dataLogin.id}`)
+        .then((res) => {
+          setDataFavorites(res.data);
+          console.warn(res.data);
+        })
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 404) {
+              console.error("pas de favorites pour cet user");
+            }
+            if (err.response.status === 500) {
+              console.error(err);
+            }
           }
-          if (err.response.status === 500) {
-            console.error(err);
-          }
-        }
-      });
+        });
+    }
   };
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
       axios
         .post(`http://localhost:5002/favorites/add`, {
-          userId: 2,
+          userId: dataLogin.id,
           videoId: clickedVideo,
         })
         .then(() => {
@@ -62,7 +67,9 @@ function Decouvrir({ isMaListe }) {
         .catch((err) => console.error(err));
     } else {
       axios
-        .delete(`http://localhost:5002/favorites/2/${clickedVideo}`)
+        .delete(
+          `http://localhost:5002/favorites/${dataLogin.id}/${clickedVideo}`
+        )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
@@ -110,14 +117,111 @@ function Decouvrir({ isMaListe }) {
         .catch((error) => console.error(error));
     }
   }, [setDataVideo, filtreCategorie]);
+  const handleAlphabet = () => {
+    if (alphabet) {
+      const filtreTemp = isFiltered.sort((a, b) => {
+        const nameA = a.title.toUpperCase();
+        const nameB = b.title.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
 
+        return 0;
+      });
+      setIsFiltered(filtreTemp);
+    } else {
+      const filtreTemp = isFiltered.sort((a, b) => {
+        const nameA = a.title.toUpperCase();
+        const nameB = b.title.toUpperCase();
+        if (nameA > nameB) {
+          return -1;
+        }
+        if (nameA < nameB) {
+          return 1;
+        }
+
+        return 0;
+      });
+      setIsFiltered(filtreTemp);
+    }
+
+    setAlphabet(!alphabet);
+  };
+  const handleDate = () => {
+    if (!date) {
+      const filtreDate = isFiltered.sort((a, b) => {
+        if (a.date > b.date) {
+          return -1;
+        }
+        if (a.date < b.date) {
+          return 1;
+        }
+        return 0;
+      });
+
+      setIsFiltered(filtreDate);
+    } else {
+      const filtreDate = isFiltered.sort((a, b) => a.id - b.id);
+
+      setIsFiltered(filtreDate);
+    }
+    setDate(!date);
+  };
   return (
     <div>
       <NavBar />
-      <SearchBar
-        handleSearchChange={handleSearchChange}
-        handleChangeCategory={handleChangeCategory}
-      />
+      {!isMaListe ? (
+        <SearchBar
+          handleSearchChange={handleSearchChange}
+          handleChangeCategory={handleChangeCategory}
+        />
+      ) : (
+        <div className="flex gap-2">
+          {alphabet ? (
+            <div
+              className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
+              onClick={handleAlphabet}
+              onKeyDown={handleAlphabet}
+              role="presentation"
+            >
+              Z-A
+            </div>
+          ) : (
+            <div
+              className="text-white border-white  border-2 rounded-md p-2 cursor-pointer"
+              onClick={handleAlphabet}
+              onKeyDown={handleAlphabet}
+              role="presentation"
+            >
+              A-Z
+            </div>
+          )}
+          {date ? (
+            <div
+              className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
+              onClick={handleDate}
+              onKeyDown={handleDate}
+              role="presentation"
+            >
+              <AiOutlineCalendar />
+            </div>
+          ) : (
+            <div
+              className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
+              onClick={handleDate}
+              onKeyDown={handleDate}
+              role="presentation"
+            >
+              {" "}
+              <AiOutlineCalendar />
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="flex justify-center gap-8 flex-wrap mt-5 mb-20">
         {isFiltered.length === 0 && (
           <div className="text-white">

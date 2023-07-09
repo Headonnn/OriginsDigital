@@ -59,12 +59,17 @@ function EditVideo() {
       const data = await axios.get(
         `http://localhost:5002/videos_category/get_category/${id}`
       );
-      data.data.map((cat) =>
-        setCategories([
-          ...categories,
-          { label: cat.name, value: cat.name, id: cat.category_id },
-        ])
-      );
+
+      const newCate = data.data.map((cat) => {
+        return {
+          ...cat,
+          label: cat.name,
+          value: cat.name,
+          id: cat.category_id,
+        };
+      });
+
+      setCategories(newCate);
     } catch (e) {
       console.error(e);
     }
@@ -78,7 +83,7 @@ function EditVideo() {
     e.persist();
     setVideo({ ...video, [e.target.name]: e.target.value });
   };
-  const updateVideo = (e) => {
+  const updateVideo = async (e) => {
     e.preventDefault();
     if (!video.title || !video.url || !video.thumbnail) {
       setError("*Ce champ est obligatoire");
@@ -91,13 +96,29 @@ function EditVideo() {
       thumbnail: video.thumbnail,
       is_freemium: video.is_freemium,
     };
-    axios
+    await axios
       .put(`http://localhost:5002/videos/${id}/edit`, data)
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);
       })
       .catch((err) => console.error(err));
+
+    await axios
+      .delete(`http://localhost:5002/videos_category/${id}`)
+
+      .catch((err) => console.error(err));
+
+    if (categories) {
+      categories.forEach((cat) => {
+        axios
+          .post(`http://localhost:5002/videos_category`, {
+            categoryId: cat.id,
+            videoId: id,
+          })
+          .catch((err) => console.warn(err));
+      });
+    }
   };
 
   return (

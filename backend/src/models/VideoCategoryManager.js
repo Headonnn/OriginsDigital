@@ -50,6 +50,14 @@ class VideoCategoryManager extends AbstractManager {
         throw new Error("Failed to retrieve data from the database.");
       });
   }
-}
 
+  delete(id) {
+    return this.database
+      .query(`DELETE FROM ${this.table} WHERE video_id = ?`, [id])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to delete data from the database.");
+      });
+  }
+}
 module.exports = VideoCategoryManager;
