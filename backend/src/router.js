@@ -69,7 +69,7 @@ router.post("/carousel_category", carouselCategoryControllers.add);
 router.delete("/carousel_category/:id", carouselCategoryControllers.destroy);
 
 // video_category routes
-
+router.delete("/videos_category/:id", videoCategoryControllers.destroy);
 router.get("/videos_category/:id", videoCategoryControllers.read);
 router.post("/videos_category", videoCategoryControllers.post);
 router.get(

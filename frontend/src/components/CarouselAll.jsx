@@ -20,22 +20,24 @@ function CarouselAll({ dataSection }) {
   const { dataLogin } = useContext(LoginContext);
 
   const fetchFavorites = () => {
-    axios
-      .get(`http://localhost:5002/favorites/2`)
-      .then((res) => {
-        setDataFavorites(res.data);
-        console.warn(res.data);
-      })
-      .catch((err) => {
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.error("pas de favorites pour cet user");
+    if (dataLogin) {
+      axios
+        .get(`http://localhost:5002/favorites/${dataLogin.id}`)
+        .then((res) => {
+          setDataFavorites(res.data);
+          console.warn(res.data);
+        })
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 404) {
+              console.error("pas de favorites pour cet user");
+            }
+            if (err.response.status === 500) {
+              console.error(err);
+            }
           }
-          if (err.response.status === 500) {
-            console.error(err);
-          }
-        }
-      });
+        });
+    }
   };
 
   useEffect(() => {
