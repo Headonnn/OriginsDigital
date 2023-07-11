@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   BsInfoCircle,
   BsPlayCircle,
@@ -8,13 +8,15 @@ import {
 } from "react-icons/bs";
 import { AiOutlineCalendar } from "react-icons/ai";
 import axios from "axios";
-import PropTypes from "prop-types";
+
 import NavBar from "../components/NavBar/NavBar";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
 import LoginContext from "../../contexts/LoginContext";
 
-function Decouvrir({ isMaListe }) {
+function Decouvrir() {
+  const [isMaListe, setIsMaListe] = useState(false);
+  const location = useLocation();
   const [search, setSearch] = useState("");
   const [isFiltered, setIsFiltered] = useState([]);
   const [filtreCategorie, setFiltreCategorie] = useState("");
@@ -82,7 +84,13 @@ function Decouvrir({ isMaListe }) {
   useEffect(() => {
     fetchFavorites();
   }, []);
-
+  useEffect(() => {
+    if (location.pathname === "/ma_liste") {
+      setIsMaListe(true);
+    } else {
+      setIsMaListe(false);
+    }
+  }, [location]);
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
@@ -291,7 +299,4 @@ function Decouvrir({ isMaListe }) {
     </div>
   );
 }
-Decouvrir.propTypes = {
-  isMaListe: PropTypes.bool.isRequired,
-};
 export default Decouvrir;

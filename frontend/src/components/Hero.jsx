@@ -14,7 +14,7 @@ import NavBar from "./NavBar/NavBar";
 
 function Hero() {
   const { dataVideo } = useContext(VideoContext);
-  const [sound, setSound] = useState(true);
+  const [sound, setSound] = useState(false);
   if (dataVideo === undefined) return null;
 
   return (

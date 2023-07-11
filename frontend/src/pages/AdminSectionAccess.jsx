@@ -1,35 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { BiLeftArrow } from "react-icons/bi";
-import ButtonOrange from "../components/ButtonOrange";
+import { Link, useNavigate } from "react-router-dom";
+
 import NavBar from "../components/NavBar/NavBar";
 
 function AdminSectionAccess() {
+  const navigate = useNavigate();
   return (
     <>
       <NavBar />
       <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
         <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-10 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-center relative">
-            <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
-              <Link to="/admin/section">
-                <BiLeftArrow
-                  className="text-xl mr-2"
-                  style={{ color: "white" }}
-                />
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-center ">
-              <ButtonOrange
-                className="w-full flex-grow"
-                style={{ cursor: "default" }}
-                disabled
-              >
-                <div className="flex items-center justify-center h-full">
-                  Administration des sections
-                </div>
-              </ButtonOrange>
+          <div className="px-7 w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between relative">
+            <div className="px-7  w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
+              <div>
+                <h2 className="text-lg text-center md:text-2xl ">
+                  Admin HomePage
+                </h2>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => navigate(-1)}
+                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                >
+                  Retour
+                </button>
+              </div>
             </div>
           </div>
           <div className="flex flex-col items-center justify-center pt-20">
