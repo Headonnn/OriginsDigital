@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BsPlusCircle } from "react-icons/bs";
-import { BiLeftArrow } from "react-icons/bi";
+
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../components/NavBar/NavBar";
-import ButtonOrange from "../components/ButtonOrange";
 
 function AdminSection() {
+  const navigate = useNavigate();
   const [sections, setSections] = useState([]);
   const uploadSections = () => {
     fetch(`http://localhost:5002/sections`)
@@ -69,32 +69,26 @@ function AdminSection() {
     <>
       <NavBar />
       <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-        <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col items-center justify-start h-screen pt-10 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-center relative">
-            <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
-              <Link to="/admin/">
-                <BiLeftArrow
-                  className="text-xl mr-2"
-                  style={{ color: "white" }}
-                />
-              </Link>
+        <div className="bg-gradient-to-br from-blue-900  mx-auto relative flex flex-col items-center justify-start h-screen pt-10 sm:w-10/12 lg:w-9/12 xl:w-10/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+          <div className="px-7  w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
+            <div>
+              <h2 className="text-lg text-center md:text-2xl ">
+                Admin Homepage
+              </h2>
             </div>
-
-            <div className="flex items-center justify-center ">
-              <ButtonOrange
-                className="w-full flex-grow"
-                style={{ cursor: "default" }}
-                disabled
+            <div>
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
               >
-                <div className="flex items-center justify-center h-full">
-                  Administration des sections
-                </div>
-              </ButtonOrange>
+                Retour
+              </button>
             </div>
           </div>
 
-          <h1 className="text-white text-center font-poppins pt-6 underline">
-            Liste des sections du site
+          <h1 className="text-white w-full px-7  font-poppins pt-6 underline">
+            Modifiez la structure de la page d'accueil :
           </h1>
           <div className="mt-10">
             <div className="flex flex-col mt-4">

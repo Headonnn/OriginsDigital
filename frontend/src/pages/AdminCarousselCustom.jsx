@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
-import { BiLeftArrow } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 import NavBar from "../components/NavBar/NavBar";
-import ButtonOrange from "../components/ButtonOrange";
+
 import AddVideo from "../components/AdminSection/AddVideo";
 
 function AdminCarousselCustom() {
@@ -86,25 +86,21 @@ function AdminCarousselCustom() {
       <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
         <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col p-10 sm:w-10/12 md:w-9/12 lg:w-7/12 xl:w-8/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="px-4 sm:px-7 md:h-[6rem] md:px-6 md:py-6 flex  justify-center relative">
-            <div className="absolute left-0 top-[50%] transform -translate-y-1/2">
-              <Link to="/admin/section/access">
-                <BiLeftArrow
-                  className="text-xl mr-2"
-                  style={{ color: "white" }}
-                />
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-center">
-              <ButtonOrange
-                className="w-full flex-grow"
-                style={{ cursor: "default" }}
-                disabled
-              >
-                <div className="flex items-center justify-center h-full">
-                  Caroussel Custom
-                </div>
-              </ButtonOrange>
+            <div className="px-7  w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
+              <div>
+                <h2 className="text-lg text-center md:text-2xl ">
+                  Carousel customisé
+                </h2>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => navigate(-1)}
+                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                >
+                  Retour
+                </button>
+              </div>
             </div>
           </div>
 
