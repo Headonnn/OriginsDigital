@@ -131,7 +131,7 @@ function CreateVideo() {
               onSubmit={saveVideo}
             >
               <label htmlFor="videoLink" className="text-white flex flex-col">
-                Lien de la vidéo*
+                Fichier vidéo *
               </label>
               <UploadWidget
                 accept="video/*"
