@@ -4,12 +4,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
+import UploadWidget from "./UploadWidget";
 
 function EditVideo() {
   const navigate = useNavigate();
   const { categorie } = useContext(VideoContext);
   const [isClicked, setIsClicked] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [videoFile, setVideoFile] = useState("");
+  const [thumbnailFile, setThumbnailFile] = useState("");
   const { id } = useParams();
   const [video, setVideo] = useState({
     title: "",
@@ -91,9 +94,9 @@ function EditVideo() {
     }
     const data = {
       title: video.title,
-      url: video.url,
+      url: videoFile,
       description: video.description,
-      thumbnail: video.thumbnail,
+      thumbnail: thumbnailFile,
       is_freemium: video.is_freemium,
     };
     await axios
@@ -165,16 +168,13 @@ function EditVideo() {
             >
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Lien de la vidéo*
-                <input
-                  type="text"
-                  name="url"
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
-                  placeholder="Lien de la vidéo"
-                  value={video.url}
-                  onChange={handleInput}
-                />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
+              <UploadWidget
+                accept="video/*"
+                name="url"
+                id="videoLink"
+                setVideoFile={setVideoFile}
+              />
 
               <label htmlFor="videoTitle" className="text-white flex flex-col">
                 Titre*
@@ -227,14 +227,12 @@ function EditVideo() {
                 className="text-white flex flex-col"
               >
                 Thumbail*
-                <input
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
+                <UploadWidget
+                  accept="image/png, image/jpeg"
                   name="thumbnail"
-                  placeholder="thumbail"
-                  value={video.thumbnail}
-                  onChange={handleInput}
+                  id="videoThumbnail"
+                  setThumbnailFile={setThumbnailFile}
                 />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
 
               <label
@@ -246,7 +244,7 @@ function EditVideo() {
                   type="checkbox"
                   className="w-4 h-4 border-2 cursor-pointer"
                   checked={video.is_freemium ? "checked" : ""}
-                  onClick={() => toggleFreemium()}
+                  onChange={() => toggleFreemium()}
                   onKeyPress={() => toggleFreemium()}
                   aria-label="Toggle Premium"
                 />

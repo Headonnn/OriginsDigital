@@ -14,12 +14,12 @@ function AddVideo({ vidCarousel, setVidCarousel }) {
   const videoDetails = dataVideo.map((video) => {
     return (
       <tr
-        className="hover:bg-gray-50 hover:text-black transition"
+        className="hover:bg-gray-50  hover:text-black transition"
         key={video.id}
       >
         <td>{video.id}</td>
         <td>{video.title}</td>
-        <td className="text-sm text-center">
+        <td className="text-sm text-right">
           <input
             type="checkbox"
             id={video.id}
@@ -33,9 +33,9 @@ function AddVideo({ vidCarousel, setVidCarousel }) {
   });
 
   return (
-    <div className=" flex flex-col items-start justify-start  w-full gap-2">
+    <div className="    w-full gap-2">
       <form>
-        <table className="border-collapse text-left text-sm">
+        <table className=" text-left w-full text-sm">
           <thead>
             <tr>
               <th className="px-6 py-4 text-lg">ID</th>

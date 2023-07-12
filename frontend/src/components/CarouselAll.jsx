@@ -127,6 +127,12 @@ function CarouselAll({ dataSection }) {
         >
           {dataSection &&
             dataVideo
+              .filter((e, i) => {
+                if (dataSection.carousel.max_number) {
+                  return i < dataSection.carousel.max_number;
+                }
+                return e;
+              })
               .filter((e) =>
                 dataSection.name === "Nouveautés"
                   ? handleDateNouv(e.date)

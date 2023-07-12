@@ -9,6 +9,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "^3.0.1",
     "axios": "^0.21.1",
+    "cloudinary": "^1.37.3",
     "cloudinary-react": "^1.8.1",
     "i": "^0.3.7",
     "jwt-decode": "^3.1.2",

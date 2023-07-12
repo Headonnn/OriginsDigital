@@ -9,7 +9,7 @@ function BurgerMenu() {
 
   return (
     <div>
-      <nav className="lg:hidden pr-3">
+      <nav className="lg:hidden pr-3 ">
         {openMenu === false ? (
           <GiHamburgerMenu
             className="hover:text-orange-600"
@@ -24,13 +24,13 @@ function BurgerMenu() {
           />
         )}
         {openMenu === true && (
-          <div className="w-full absolute top-20 right-0 py-4 px-4 bg-black rounded-md transition">
-            <ul className="bg-black">
+          <div className="w-full absolute top-24 right-0 py-4 px-4 bg-black bg-opacity-60	 rounded-b-md transition">
+            <ul className="">
               <li className="p-2 hover:text-orange-600 font-medium">
                 <NavLink to="/decouvrir">Découvrir</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
-                <NavLink>Ma Liste</NavLink>
+                <NavLink to="/ma_liste">Ma Liste</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
                 <NavLink to="/admin">Admin</NavLink>
