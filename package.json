@@ -35,6 +35,7 @@
   "dependencies": {
     "argon2": "^0.30.3",
     "axios": "^1.4.0",
+    "cloudinary": "^1.37.3",
     "jsonwebtoken": "^9.0.0",
     "react-csv": "^2.2.2",
     "react-dnd": "^16.0.1",
