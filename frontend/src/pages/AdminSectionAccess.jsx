@@ -13,11 +13,6 @@ function AdminSectionAccess() {
           <div className="px-7 w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between relative">
             <div className="px-7  w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
               <div>
-                <h2 className="text-lg text-center md:text-2xl ">
-                  Admin HomePage
-                </h2>
-              </div>
-              <div>
                 <button
                   type="button"
                   onClick={() => navigate(-1)}
@@ -25,6 +20,11 @@ function AdminSectionAccess() {
                 >
                   Retour
                 </button>
+              </div>
+              <div>
+                <h2 className="text-lg text-center md:text-2xl ">
+                  Admin HomePage
+                </h2>
               </div>
             </div>
           </div>
