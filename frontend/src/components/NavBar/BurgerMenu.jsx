@@ -30,7 +30,7 @@ function BurgerMenu() {
                 <NavLink to="/decouvrir">Découvrir</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
-                <NavLink>Ma Liste</NavLink>
+                <NavLink to="/ma_liste">Ma Liste</NavLink>
               </li>
               <li className="p-2 hover:text-orange-600 font-medium">
                 <NavLink to="/admin">Admin</NavLink>

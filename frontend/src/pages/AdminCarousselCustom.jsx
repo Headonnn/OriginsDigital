@@ -83,47 +83,45 @@ function AdminCarousselCustom() {
   return (
     <>
       <NavBar />
-      <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-        <div className="bg-gradient-to-br from-blue-900 via-blue-900 to-022340 mx-auto relative flex flex-col p-10 sm:w-10/12 md:w-9/12 lg:w-7/12 xl:w-8/12  shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="px-4 sm:px-7 md:h-[6rem] md:px-6 md:py-6 flex  justify-center relative">
-            <div className="px-7  w-full md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
-              <div>
-                <h2 className="text-lg text-center md:text-2xl ">
-                  Carousel customisé
-                </h2>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  onClick={() => navigate(-1)}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
-                >
-                  Retour
-                </button>
-              </div>
+      <div className="p-5 pt-20 pb-20">
+        <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px] px-6">
+          <div className="   md:h-[6rem] flex items-center justify-between w-full ">
+            <div>
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+              >
+                Retour
+              </button>
+            </div>
+            <div>
+              <h2 className="text-lg text-center md:text-2xl ">
+                Carousel customisé
+              </h2>
             </div>
           </div>
 
           <form>
-            <div className="mt-14 flex  flex-wrap">
-              <div className="flex w-full  gap-2">
+            <div className="mt-6 flex   flex-wrap">
+              <div className="flex w-full flex-col gap-2">
                 <label htmlFor="inputFieldName">Nom :</label>
                 <input
                   type="text"
                   id="inputFieldName"
                   name="name"
-                  className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md mb-1"
+                  className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   placeholder="nom du carousel"
                   aria-label=""
                   value={carousel.name}
                   onChange={handleInput}
                 />
               </div>
-              <div className="flex  w-full  gap-2 mt-6">
+              <div className="flex  w-full  flex-col gap-2 mt-6 ">
                 <label htmlFor="selectSize">Taille : </label>
                 <select
                   id="selectSize"
-                  className="bg-white text-black w-full md:w-80 h-10 px-4 py-2 rounded-md"
+                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md"
                 >
                   <option value="petit">Petit</option>
                   <option value="moyen">Moyen</option>
