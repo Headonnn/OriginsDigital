@@ -4,12 +4,15 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
+import UploadWidget from "./UploadWidget";
 
 function CreateVideo() {
   const { dataVideo, categorie } = useContext(VideoContext);
   const navigate = useNavigate();
   const [categories, setCategories] = useState(null);
   const [isClicked, setIsClicked] = useState(false);
+  const [videoFile, setVideoFile] = useState("");
+  const [thumbnailFile, setThumbnailFile] = useState("");
   const [video, setVideo] = useState({
     title: "",
     url: "",
@@ -28,23 +31,18 @@ function CreateVideo() {
     setCategories(value);
   };
 
-  const [error, setError] = useState("");
-
   const handleInput = (e) => {
     e.persist();
     setVideo({ ...video, [e.target.name]: e.target.value });
   };
   const saveVideo = async (e) => {
     e.preventDefault();
-    if (!video.title || !video.url || !video.thumbnail) {
-      setError("*Ce champ est obligatoire");
-      return;
-    }
+
     const data = {
       title: video.title,
-      url: video.url,
+      url: videoFile,
       description: video.description,
-      thumbnail: video.thumbnail,
+      thumbnail: thumbnailFile,
     };
 
     let videoID = 0;
@@ -134,16 +132,13 @@ function CreateVideo() {
             >
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Lien de la vidéo*
-                <input
-                  type="text"
-                  name="url"
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
-                  placeholder="Lien de la vidéo"
-                  value={video.url}
-                  onChange={handleInput}
-                />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
+              <UploadWidget
+                accept="video/*"
+                name="url"
+                id="videoLink"
+                setVideoFile={setVideoFile}
+              />
 
               <label htmlFor="videoTitle" className="text-white flex flex-col">
                 Titre*
@@ -155,7 +150,6 @@ function CreateVideo() {
                   value={video.title}
                   onChange={handleInput}
                 />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
 
               <label
@@ -196,14 +190,12 @@ function CreateVideo() {
                 className="text-white flex flex-col"
               >
                 Thumbnail*
-                <input
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
+                <UploadWidget
+                  accept="image/png, image/jpeg"
                   name="thumbnail"
-                  placeholder="thumbnail"
-                  value={video.thumbnail}
-                  onChange={handleInput}
+                  id="videoThumbnail"
+                  setThumbnailFile={setThumbnailFile}
                 />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
 
               <label
