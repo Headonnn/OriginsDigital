@@ -1,6 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { BsFillPlayFill, BsShareFill } from "react-icons/bs";
+import {
+  BsFillPlayFill,
+  BsShareFill,
+  BsPlusLg,
+  BsCheckLg,
+} from "react-icons/bs";
+import axios from "axios";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -12,21 +18,84 @@ import {
   EmailIcon,
 } from "react-share";
 import VideoContext from "../../contexts/VideoContext";
+import LoginContext from "../../contexts/LoginContext";
 
 function DescriptionVideo() {
   const { dataVideo } = useContext(VideoContext);
-  const params = useParams();
-
-  if (!dataVideo || !dataVideo[params.id]) {
-    return <div>Loading...</div>;
-  }
-
+  const { dataLogin } = useContext(LoginContext);
+  const [categ, setCateg] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
+  const [dataFavorites, setDataFavorites] = useState([]);
+  const params = useParams();
+  const currentPageUrl = window.location.href;
+
+  const fetchFavorites = () => {
+    if (dataLogin) {
+      axios
+        .get(`http://localhost:5002/favorites/${dataLogin.id}`)
+        .then((res) => {
+          setDataFavorites(res.data);
+          console.warn(res.data);
+        })
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 404) {
+              console.error("pas de favorites pour cet user");
+            }
+            if (err.response.status === 500) {
+              console.error(err);
+            }
+          }
+        });
+    }
+  };
+  const handleAddToList = (clickedVideo) => {
+    if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
+      axios
+        .post(`http://localhost:5002/favorites/add`, {
+          userId: dataLogin.id,
+          videoId: clickedVideo,
+        })
+        .then(() => {
+          setDataFavorites([...dataFavorites, clickedVideo]);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      axios
+        .delete(
+          `http://localhost:5002/favorites/${dataLogin.id}/${clickedVideo}`
+        )
+        .then(() => {
+          let tmp = [...dataFavorites];
+          tmp = tmp.filter((vid) => vid !== clickedVideo);
+          setDataFavorites(tmp);
+        })
+        .catch((err) => console.error(err));
+    }
+  };
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5002/videos_category/get_category/${
+          parseInt(params.id, 10) + 1
+        }`
+      )
+      .then((res) => {
+        setCateg(res.data);
+      })
+      .catch((err) => console.warn(err));
+  }, []);
 
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-  const currentPageUrl = window.location.href;
+
+  if (!dataVideo || !dataVideo[params.id]) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -44,15 +113,15 @@ function DescriptionVideo() {
           </h2>
         </div>
         {/* Catégorie */}
-        <div className="text-white mb-1">
-          <h4 className="text-sm md:text-base font-medium">
-            Catégorie : Surf, Documentaire
-          </h4>
+        <div className="text-white mb-1 flex gap-1">
+          Catégorie :{" "}
+          {categ.map((e) => {
+            return (
+              <h4 className="text-sm md:text-base font-medium">{e.name} </h4>
+            );
+          })}
         </div>
-        {/* Durée */}
-        <div className="text-white mb-1">
-          <h5 className="text-sm md:text-base font-medium">Durée: 52 min</h5>
-        </div>
+
         {/* Date de publication */}
         <div className="text-white mb-[1rem]">
           <h6 className="text-sm md:text-base font-medium mb-6">
@@ -71,6 +140,31 @@ function DescriptionVideo() {
             </div>
           </Link>
         </div>
+        <button
+          className="flex items-center mb-9 "
+          onClick={() => handleAddToList(parseInt(params.id, 10) + 1)}
+          type="button"
+        >
+          {!dataFavorites.includes(parseInt(params.id, 10) + 1) ? (
+            <>
+              <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                <BsPlusLg /> Ajouter à ma liste
+              </div>
+              <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                <BsPlusLg />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                <BsCheckLg /> Supprimer de ma liste
+              </div>
+              <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                <BsCheckLg />
+              </div>
+            </>
+          )}
+        </button>
         <div className="flex items-center mb-9">
           <button
             type="button"
