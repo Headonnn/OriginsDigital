@@ -36,6 +36,7 @@
     "argon2": "^0.30.3",
     "axios": "^1.4.0",
     "cloudinary": "^1.37.3",
+    "cloudinary-react": "^1.8.1",
     "jsonwebtoken": "^9.0.0",
     "react-csv": "^2.2.2",
     "react-dnd": "^16.0.1",
