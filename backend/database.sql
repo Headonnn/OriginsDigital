@@ -16,7 +16,7 @@ CREATE TABLE
         url VARCHAR(500) NOT NULL,
         description VARCHAR(500) NOT NULL,
         thumbnail VARCHAR(500) NOT NULL,
-        date DATE,
+        date DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
         length TIME,
         is_freemium TINYINT DEFAULT 0,
         is_in_hero TINYINT DEFAULT 0
@@ -49,9 +49,7 @@ CREATE TABLE
         video_id INT NOT NULL,
         carousel_id INT NOT NULL,
         PRIMARY KEY (video_id, carousel_id),
-
         FOREIGN KEY (video_id) REFERENCES `video` (id) ON DELETE CASCADE,
-
         FOREIGN KEY (carousel_id) REFERENCES `carousel_custom` (id) ON DELETE CASCADE
     );
 
@@ -98,9 +96,7 @@ CREATE TABLE
         advert_id INT DEFAULT NULL,
         Foreign Key (carousel_custom_id) REFERENCES carousel_custom (id) ON DELETE CASCADE,
         Foreign Key (carousel_category_id) REFERENCES carousel_category (id) ON DELETE CASCADE,
-
         Foreign Key (advert_id) REFERENCES advert (id) ON DELETE CASCADE
-
     );
 
 INSERT INTO

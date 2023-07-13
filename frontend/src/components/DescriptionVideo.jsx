@@ -26,6 +26,7 @@ function DescriptionVideo() {
   const [categ, setCateg] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [dataFavorites, setDataFavorites] = useState([]);
+  const [dataDesc, setDataDesc] = useState(undefined);
   const params = useParams();
   const currentPageUrl = window.location.href;
 
@@ -75,6 +76,10 @@ function DescriptionVideo() {
   };
   useEffect(() => {
     fetchFavorites();
+
+    setDataDesc(
+      dataVideo.filter((e) => e.id === parseInt(params.id, 10) + 1)[0]
+    );
   }, []);
   useEffect(() => {
     axios
@@ -93,7 +98,7 @@ function DescriptionVideo() {
     setIsClicked(!isClicked);
   };
 
-  if (!dataVideo || !dataVideo[params.id]) {
+  if (!dataVideo || !dataDesc) {
     return <div>Loading...</div>;
   }
 
@@ -103,13 +108,13 @@ function DescriptionVideo() {
         {/* Titre */}
         <div className="text-white mb-8">
           <h1 className="text-2xl md:text-3xl font-bold mt-10">
-            {dataVideo[params.id].title}
+            {dataDesc.title}
           </h1>
         </div>
         {/* Description */}
         <div className="text-white mb-8">
           <h2 className="text-base md:text-lg overflow-y-auto">
-            {dataVideo[params.id].description}
+            {dataDesc.description}
           </h2>
         </div>
         {/* Catégorie */}
@@ -125,7 +130,8 @@ function DescriptionVideo() {
         {/* Date de publication */}
         <div className="text-white mb-[1rem]">
           <h6 className="text-sm md:text-base font-medium mb-6">
-            Date de publication : {dataVideo[params.id].date.substring(0, 10)}
+            Date de publication :{" "}
+            {dataDesc.date && dataDesc.date.substring(0, 10)}
           </h6>
         </div>
       </div>
