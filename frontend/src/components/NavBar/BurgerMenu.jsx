@@ -35,6 +35,9 @@ function BurgerMenu() {
               <li className="p-2 hover:text-orange-600 font-medium">
                 <NavLink to="/admin">Admin</NavLink>
               </li>
+              <li className="p-2 hover:text-orange-600 font-medium">
+                <NavLink to="/faq">FAQ</NavLink>
+              </li>
             </ul>
             <div className="flex flex-col p-2 justify-center mt-7">
               <div className="w-full flex justify-center">
