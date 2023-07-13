@@ -117,17 +117,6 @@ function AdminCarousselCustom() {
                   onChange={handleInput}
                 />
               </div>
-              <div className="flex  w-full  flex-col gap-2 mt-6 ">
-                <label htmlFor="selectSize">Taille : </label>
-                <select
-                  id="selectSize"
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md"
-                >
-                  <option value="petit">Petit</option>
-                  <option value="moyen">Moyen</option>
-                  <option value="grand">Grand</option>
-                </select>
-              </div>
             </div>
           </form>
           <div className="flex gap-2 items-end">

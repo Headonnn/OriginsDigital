@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 
 import { BsArrowLeft } from "react-icons/bs";
@@ -9,7 +9,14 @@ function BigPlayer() {
   const navigate = useNavigate();
   const params = useParams();
   const { dataVideo } = useContext(VideoContext);
-
+  const [dataDesc, setDataDesc] = useState(undefined);
+  useEffect(
+    () =>
+      setDataDesc(
+        dataVideo.filter((e) => e.id === parseInt(params.id, 10) + 1)[0]
+      ),
+    []
+  );
   return (
     <div className="player-wrapper relative">
       <div
@@ -21,12 +28,9 @@ function BigPlayer() {
         <BsArrowLeft size={30} />
       </div>
 
-      <ReactPlayer
-        url={dataVideo[params.id].url}
-        controls
-        width="100vw"
-        height="100vh"
-      />
+      {dataDesc && (
+        <ReactPlayer url={dataDesc.url} controls width="100vw" height="100vh" />
+      )}
     </div>
   );
 }
