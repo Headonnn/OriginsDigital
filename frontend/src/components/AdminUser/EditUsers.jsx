@@ -10,7 +10,6 @@ function EditUsers() {
   const [users, setUsers] = useState({
     firstname: "",
     lastname: "",
-    username: "",
     email: "",
     password: "",
   });
@@ -38,14 +37,14 @@ function EditUsers() {
   };
   const updateUser = (e) => {
     e.preventDefault();
-    if (users.username === "" || users.email === "") {
+    if (users.email === "") {
       setError("*Ce champ est obligatoire");
       return;
     }
     const data = {
       firstname: users.firstname,
       lastname: users.lastname,
-      username: users.username,
+
       email: users.email,
       password: users.password,
     };
@@ -100,7 +99,7 @@ function EditUsers() {
               className="mt-6 flex flex-col px-3 md:px-6"
               onSubmit={updateUser}
             >
-              <label htmlFor="Username" className="text-white flex flex-col">
+              {/* <label htmlFor="Username" className="text-white flex flex-col">
                 Username*
                 <input
                   type="text"
@@ -111,7 +110,7 @@ function EditUsers() {
                   onChange={handleInput}
                 />
                 <span className="text-orange-600 pb-3">{error}</span>
-              </label>
+              </label> */}
 
               <label htmlFor="userEmail" className="text-white flex flex-col">
                 Email*

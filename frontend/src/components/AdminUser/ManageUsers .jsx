@@ -15,7 +15,7 @@ function ManageUsers() {
 
   const headers = [
     { label: "ID", key: "id" },
-    { label: "Username", key: "username" },
+
     { label: "E-Mail", key: "email" },
     { label: "Prénom", key: "firstname" },
     { label: "Nom", key: "lastname" },
@@ -82,7 +82,7 @@ function ManageUsers() {
         key={user.id}
       >
         <td className="text-sm">{user.id}</td>
-        <td className="text-sm">{user.username}</td>
+
         <td className="text-sm">{user.email}</td>
         <td className="text-sm text-center">
           <button
@@ -186,11 +186,11 @@ function ManageUsers() {
             </CSVLink>
           </div>
           <div className="flex justify-center items-center">
-            <table className=" w-full border-collapse text-left text-sm">
+            <table className=" w-1/2 border-collapse text-left text-sm">
               <thead>
                 <tr>
                   <th className="py-4 text-lg">ID</th>
-                  <th className="py-4 text-lg">UserName</th>
+
                   <th className="py-4 text-lg">Email</th>
                   <th className="py-4 text-lg text-center">Admin</th>
                 </tr>

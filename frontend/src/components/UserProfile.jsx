@@ -1,47 +1,42 @@
-import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import axios from "axios";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
 import ButtonOrange from "./ButtonOrange";
 import NavBar from "./NavBar/NavBar";
 import LoginContext from "../../contexts/LoginContext";
+// import axios from "axios";
 
 function UserProfile() {
   const { dataLogin } = useContext(LoginContext);
 
-  const { id } = useParams();
+  // const { id } = useParams();
 
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    id,
-  });
+  // const [user, setUser] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  // });
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5002/users/${id}`)
-      .then((res) => {
-        const userData = res.data;
-        if (userData) {
-          setUser((prevUser) => ({
-            ...prevUser,
-            ...userData,
-          }));
-          console.warn("Fetched user:", userData);
-        } else {
-          console.error("User data not found");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:5002/users/id`)
+  //     .then((res) => setDataLogin("User OK", res.data))
+  //     .catch((err) => {
+  //       if (err.response) {
+  //         if (err.response.status === 404) {
+  //           console.error("PB UseEff UserProf");
+  //         }
+  //         if (err.response.status === 500) {
+  //           console.error(err);
+  //         }
+  //       }
+  //     });
+  // }, [id]);
 
   return (
     <>
       <NavBar />
-      <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden text-white">
+      <div className="loginid-container bg-black min-h-screen p-5 pt-15 pb-15 relative overflow-hidden text-white">
         <div className="flex flex-col items-center relative bg-gradient-to-br from-blue-900  px-6 py-10 mx-auto sm:max-w-md my-10 rounded-[31px]">
           <h2 className=" flex items-center gap-12 pb-6 text-2xl">
             Votre profil
@@ -55,7 +50,7 @@ function UserProfile() {
                       Vous êtes
                     </h3>
                     <p className=" text-xl md:text-2xl text-white">
-                      {dataLogin.firstname}
+                      {dataLogin.firstname} {dataLogin.lastname}
                     </p>
                   </li>
                   <li>
@@ -82,31 +77,35 @@ function UserProfile() {
                 </ul>
               </div>
               <div className="flex justify-end md:space-y-16">
-                <ul className="space-y-14 pr-3">
+                <ul className=" space-y-14 pr-3 py-3">
                   <li>
                     {dataLogin.id && (
-                      <NavLink to={`/updateuserprofile/${user.id}/edit`}>
-                        <p className="hidden md:block flex justify-center border hover:bg-white tracking-wide text-white hover:text-black rounded-xl my-2 py-2 px-3 text-sm md:px-6 md:text-lg transition">
-                          Modifier
+                      <NavLink to={`/updateuserprofile/${dataLogin.id}/edit`}>
+                        <p className="hidden md:block border hover:bg-white tracking-wide text-white hover:text-black rounded-xl  py-3 px-3 text-sm md:px-6 md:text-lg transition">
+                          Modifier ?
                         </p>
                       </NavLink>
                     )}
                     <SlPencil className="block md:hidden cursor-pointer text-orange-500 my-4 mr-3 w-8 h-8" />
                   </li>
                   <li>
-                    <p className="hidden md:block flex justify-center border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition">
-                      Modifier
+                    {dataLogin.id && (
+                      <NavLink to={`/updateuserprofile/${dataLogin.id}/edit`}>
+                        <p className="hidden md:block border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-3 px-3 text-sm md:px-6 md:text-lg transition">
+                          Modifier ?
+                        </p>
+                      </NavLink>
+                    )}
+                    <SlPencil className="block md:hidden cursor-pointer text-orange-500 my-4 mr-3 w-8 h-8" />
+                  </li>
+                  <li>
+                    <p className="hidden md:block border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-3 px-3 text-sm md:px-6 md:text-lg transition">
+                      Modifier ?
                     </p>
                     <SlPencil className="block md:hidden cursor-pointer text-orange-500 my-4 mr-3 w-8 h-8" />
                   </li>
                   <li>
-                    <p className="hidden md:block flex justify-center border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition">
-                      Modifier
-                    </p>
-                    <SlPencil className="block md:hidden cursor-pointer text-orange-500 my-4 mr-3 w-8 h-8" />
-                  </li>
-                  <li>
-                    <p className="hidden md:block flex justify-center border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition">
+                    <p className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition">
                       Supprimer
                     </p>
                   </li>
