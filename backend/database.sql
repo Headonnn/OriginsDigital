@@ -161,65 +161,65 @@ INSERT INTO
     )
 VALUES (
         'Wingsuit skills',
-        'https://www.youtube.com/watch?v=-C_jPcUkVrM&ab_channel=GoPro',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689235370/sq8uqy1avzg94npua5lj.mp4',
         'Après 3 années de préparation intensive, Uli Emanuele pilote ce qui est probablement le saut le plus technique et difficile jamais accompli.',
-        'https://www.skydivecoastalcarolinas.com/wp-content/uploads/wingsuit-flying-what-you-need-to-know-1.jpg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689235053/piwqu7vizrodkj1vnzvw.jpg',
         '2023-03-09',
         1,
         0
     ), (
-        'Tae Kwon Do demonstration',
-        'https://www.youtube.com/watch?v=TKEbws4QhEk&ab_channel=StuntsAmazing',
+        'Tae Kwon Do démonstration',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689235658/ykljf7yxechxpewxrf5i.mp4',
         'Démonstration de la palette technique du Tae Kwon Do.',
-        'https://medias.paris2024.org/uploads/2020/11/GettyImages-150142201-Taekwondo-scaled.jpg?x-oss-process=image/resize,w_2560,h_1853,m_lfit/format,jpeg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689235690/dphnioqmkh5zscpz9yip.jpg',
         '2023-06-20',
         0,
         0
     ), (
-        'World Chase Tag finals',
-        'https://www.youtube.com/watch?v=IS-5tBlSAoA&ab_channel=WorldChaseTag',
-        'Les GNF affrontent les United dans la finale mondiale 2019 de World Chase Tag.',
-        'https://global-uploads.webflow.com/60dfb7bd2f950755e96a7caf/640f675be1cfcf91e87717e4_WCT6USA_11_Group%20A_Empire%20vs%20Apex%20Moon_Thumbnail.jpg',
+        'Judo démonstration',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689236294/iy12onzarln3stkefmdw.mp4',
+        'Démonstration des techniques de judo.',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689236357/tsuccr9lbabmirwflyen.jpg',
         '2023-04-26',
         0,
         0
     ), (
         'The tunnel effect',
-        'https://www.youtube.com/watch?v=19fQAxys9q8&ab_channel=RedBull',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689236875/rbffbghpbqy2ga6ecwsp.mp4',
         'Dario Costa se révèle comme une figure mondiale de la voltige aérienne en accomplissant un passage de tunnel.',
-        'https://cap.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fcap.2F2018.2F04.2F20.2Fa1f391ad-9cd9-415c-ae72-0bd6e28373d2.2Ejpeg/1200x630/background-color/ffffff/quality/70/red-bull-air-race-limpressionnante-course-davions-sinstalle-a-cannes-ce-weekend-1284117.jpg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689236907/n7ytzisypraxbhdml55m.jpg',
         '2023-06-21',
         0,
         0
     ), (
         'World record at Nazare',
-        'https://www.youtube.com/watch?v=HF05SHKi55g&t=5s&ab_channel=OliverRaatz',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689237623/z5v24rzxce2blsvc2tew.mp4',
         'Sebastian Steudtner établit un nouveau record du monde sur le spot de Nazare au Portugal.',
-        'https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/5/1/mqgjwevxveuc6fcqvdfc/carissa-moore-surf-vague-tahiti',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689237650/vooa0h6dziebmwribcsy.jpg',
         '2023-06-22',
         1,
         0
     ), (
         'Breaking 70 mph on a skate',
-        'https://www.youtube.com/watch?v=vSBcrmx4aFw&ab_channel=JoshNeuman',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689237844/xjqykqb9jkksj9ydf930.mp4',
         'Josh Neumann dévale les pentes des routes montagnardes, au coeur des Alpes suisses.',
-        'https://media.sudouest.fr/4233793/1000x500/thumbnail-img-7165.jpg?v=1627294930',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689237867/mxvvhbga5dnld09x7dp2.jpg',
         '2023-05-25',
         1,
         0
     ), (
         'Free diving at Dean Blue Hole',
-        'https://www.youtube.com/watch?v=uQITWbAaDx0&t=170s&ab_channel=GuillaumeN%C3%A9ry',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689238227/z8rkbfpg3dgidy1fm2l8.mp4',
         'Guillaume Néry et Julie Gautier plongent en apnée sur le spot de Dean Blue Hole.',
-        'https://apneatotalmalta.com/wp-content/uploads/2023/02/Apnea-Total-Malta-Freediving-School-Freediving-Explained-Featured.jpg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689238257/eepmau2wsbwo4fyonp56.jpg',
         '2023-05-26',
         0,
         0
     ), (
         'Les AMHE',
-        'https://www.youtube.com/watch?v=HdEkVKzuptA&ab_channel=Bj%C3%B6rnR%C3%BCther',
-        'A la découverte des Arts Martiaux Historiques Européens, un ensemble de pratiques martiales basées sur les sources historiques.',
-        'https://pbs.twimg.com/media/CNfMDCUUAAAASjk.jpg:large',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689238521/r9daozpaxlvzukjsfwro.mp4',
+        'En escrime, il existe trois armes différentes : le fleuret, l’épée et le sabre. Chacune de ces armes a sa propre histoire, règle et manière d’utilisation. Pour toutes les armes, un système électrique détecte les touches.',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689238550/fuj6betcr1kh8zttsdly.jpg',
         '2023-06-13',
         0,
         0
@@ -322,7 +322,7 @@ VALUES (
     );
 
 INSERT INTO category (name)
-VALUES ('skate'), ('voltige'), ('surf'), ('wingsuit'), ('apnée'), ('arts martiaux'), ("Nouveautés");
+VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés");
 
 INSERT INTO
     video_category (video_id, category_id)

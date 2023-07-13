@@ -21,7 +21,7 @@ function Hero() {
     dataVideo.length > 0 && (
       <div className="w-full relative shadow-inner">
         <ReactPlayer
-          url={dataVideo[20].url}
+          url={dataVideo[8].url}
           playing
           loop
           muted={!sound}
