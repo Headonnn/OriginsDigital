@@ -23,6 +23,7 @@ import EditCategories from "../components/AdminCategory/EditCategories";
 import AddCategory from "../components/AdminCategory/AddCategory";
 import AdminCarouselCategory from "../pages/AdminCarouselCategory";
 import AddUsers from "../components/AdminUser/AddUser";
+import Faq from "../pages/Faq";
 
 function Router() {
   return (
@@ -57,6 +58,7 @@ function Router() {
         path="/admin/caroussel/category"
         element={<AdminCarouselCategory />}
       />
+      <Route path="/faq" element={<Faq />} />
     </Routes>
   );
 }
