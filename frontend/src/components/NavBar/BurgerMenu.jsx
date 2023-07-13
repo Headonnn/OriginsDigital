@@ -8,7 +8,7 @@ function BurgerMenu() {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <div>
+    <div className="z-50">
       <nav className="lg:hidden pr-3 ">
         {openMenu === false ? (
           <GiHamburgerMenu
