@@ -41,7 +41,7 @@ const edit = (req, res) => {
       if (result.affectedRows === 0) {
         res.status(404).send("error 404");
       } else {
-        res.status(204).send();
+        res.status(200).send(user);
       }
     })
     .catch((err) => {
@@ -61,7 +61,7 @@ const editAll = (req, res) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else {
-        res.sendStatus(204);
+        res.status(200).send(user);
       }
     })
     .catch((err) => {

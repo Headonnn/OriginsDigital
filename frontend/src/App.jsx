@@ -35,14 +35,11 @@ function App() {
 
   useEffect(() => {
     if (!dataLogin) {
-      console.warn("App log !dataLogin");
       const token = JSON.parse(localStorage.getItem("token"));
       if (!token) {
-        console.warn("app log !token");
         return;
       }
       const decoded = jwtDecode(token.token);
-      console.warn("app log jwtdecode", decoded);
       setDataLogin(decoded.cargo);
     }
   }, []);

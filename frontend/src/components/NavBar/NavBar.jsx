@@ -58,7 +58,7 @@ function Header() {
             onMouseLeave={() => setIsDropdownOpen(false)}
           >
             <li className="relative text-l hidden lg:block tracking-wide transition">
-              <p> Bonjour {dataLogin.username} !</p>
+              <p> Bonjour {dataLogin.firstname} !</p>
               {isDropdownOpen && (
                 <div className="absolute top-full w-48 rounded-md py-2">
                   <NavLink to="/userprofile">
