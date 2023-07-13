@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 
 function Faq() {
@@ -49,9 +49,16 @@ function Faq() {
         <div className="flex flex-col items-center justify-center h-full">
           <div className="max-w-3xl mx-auto">
             <div className="mb-4">
-              <div
-                className="flex items-center justify-between p-4 rounded cursor-pointer"
+              <button
+                type="button"
+                className="flex items-center justify-between p-4 rounded cursor-pointer border border-white"
                 onClick={toggleAnswerVisibility1}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    toggleAnswerVisibility1();
+                  }
+                }}
+                tabIndex={0}
               >
                 <h2 className="text-xl">
                   Dois-je m'inscrire pour accéder aux vidéos sportives ?
@@ -72,20 +79,29 @@ function Faq() {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </button>
               {isAnswerVisible1 && (
                 <div className="p-4">
                   <p>
-                    Non, vous n'avez pas besoin de vous inscrire pour accéder aux vidéos sportives sur notre site. Elles sont disponibles gratuitement pour tous les utilisateurs.
+                    Non, vous n'avez pas besoin de vous inscrire pour accéder
+                    aux vidéos sportives sur notre site. Elles sont disponibles
+                    gratuitement pour tous les utilisateurs.
                   </p>
                 </div>
               )}
             </div>
 
             <div className="mb-4">
-              <div
-                className="flex items-center justify-between p-4 rounded cursor-pointer"
+              <button
+                type="button"
+                className="flex items-center justify-between p-4 rounded cursor-pointer border border-white"
                 onClick={toggleAnswerVisibility2}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    toggleAnswerVisibility2();
+                  }
+                }}
+                tabIndex={0}
               >
                 <h2 className="text-xl">
                   Quels sont les avantages de la création d'un compte ?
@@ -106,20 +122,32 @@ function Faq() {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </button>
               {isAnswerVisible2 && (
                 <div className="p-4">
                   <p>
-                    En créant un compte personnel sur notre site, vous pouvez profiter de fonctionnalités supplémentaires telles que la possibilité de marquer vos vidéos préférées et de les ajouter à votre liste de favoris pour un accès ultérieur. Cela vous permet de garder une trace de vos contenus préférés et de les retrouver facilement.
+                    En créant un compte personnel sur notre site, vous pouvez
+                    profiter de fonctionnalités supplémentaires telles que la
+                    possibilité de marquer vos vidéos préférées et de les
+                    ajouter à votre liste de favoris pour un accès ultérieur.
+                    Cela vous permet de garder une trace de vos contenus
+                    préférés et de les retrouver facilement.
                   </p>
                 </div>
               )}
             </div>
 
             <div className="mb-4">
-              <div
-                className="flex items-center justify-between p-4 rounded cursor-pointer"
+              <button
+                type="button"
+                className="flex items-center justify-between p-4 rounded cursor-pointer border border-white"
                 onClick={toggleAnswerVisibility3}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    toggleAnswerVisibility3();
+                  }
+                }}
+                tabIndex={0}
               >
                 <h2 className="text-xl">
                   Quels types de vidéos sportives sont disponibles ?
@@ -140,20 +168,32 @@ function Faq() {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </button>
               {isAnswerVisible3 && (
                 <div className="p-4">
                   <p>
-                    Nous proposons une vaste collection de vidéos sportives couvrant différents sports. Vous pourrez trouver des moments forts, des analyses de matchs, des interviews d'athlètes et bien plus encore. Nous nous efforçons de fournir un large éventail de contenus pour satisfaire tous les passionnés de sport.
+                    Nous proposons une vaste collection de vidéos sportives
+                    couvrant différents sports. Vous pourrez trouver des moments
+                    forts, des analyses de matchs, des interviews d'athlètes et
+                    bien plus encore. Nous nous efforçons de fournir un large
+                    éventail de contenus pour satisfaire tous les passionnés de
+                    sport.
                   </p>
                 </div>
               )}
             </div>
 
             <div className="mb-4">
-              <div
-                className="flex items-center justify-between p-4 rounded cursor-pointer"
+              <button
+                type="button"
+                className="flex items-center justify-between p-4 rounded cursor-pointer border border-white"
                 onClick={toggleAnswerVisibility4}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    toggleAnswerVisibility4();
+                  }
+                }}
+                tabIndex={0}
               >
                 <h2 className="text-xl">
                   Puis-je contrôler qui peut accéder aux vidéos ?
@@ -174,20 +214,32 @@ function Faq() {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </button>
               {isAnswerVisible4 && (
                 <div className="p-4">
                   <p>
-                    Oui, en tant qu'administrateur du site, nous avons mis en place des options de contrôle d'accès. Vous pouvez choisir de rendre les vidéos publiques, accessibles à tous les utilisateurs, ou de les réserver aux passionnés de sports inscrits uniquement. Cela vous permet de gérer la confidentialité et l'exclusivité des contenus.
+                    Oui, en tant qu'administrateur du site, nous avons mis en
+                    place des options de contrôle d'accès. Vous pouvez choisir
+                    de rendre les vidéos publiques, accessibles à tous les
+                    utilisateurs, ou de les réserver aux passionnés de sports
+                    inscrits uniquement. Cela vous permet de gérer la
+                    confidentialité et l'exclusivité des contenus.
                   </p>
                 </div>
               )}
             </div>
 
             <div className="mb-4">
-              <div
-                className="flex items-center justify-between p-4 rounded cursor-pointer"
+              <button
+                type="button"
+                className="flex items-center justify-between p-4 rounded cursor-pointer border border-white"
                 onClick={toggleAnswerVisibility5}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    toggleAnswerVisibility5();
+                  }
+                }}
+                tabIndex={0}
               >
                 <h2 className="text-xl">
                   Le site est-il compatible avec les appareils mobiles ?
@@ -208,11 +260,16 @@ function Faq() {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </button>
               {isAnswerVisible5 && (
                 <div className="p-4">
                   <p>
-                    Oui, nous avons développé le site en adoptant une approche centrée sur les appareils mobiles. Cela garantit une expérience utilisateur optimale, que vous utilisiez un smartphone, une tablette ou un ordinateur de bureau. Vous pourrez profiter de la plateforme de streaming sportif où que vous soyez.
+                    Oui, nous avons développé le site en adoptant une approche
+                    centrée sur les appareils mobiles. Cela garantit une
+                    expérience utilisateur optimale, que vous utilisiez un
+                    smartphone, une tablette ou un ordinateur de bureau. Vous
+                    pourrez profiter de la plateforme de streaming sportif où
+                    que vous soyez.
                   </p>
                 </div>
               )}
