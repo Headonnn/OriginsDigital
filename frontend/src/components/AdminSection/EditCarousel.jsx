@@ -1,33 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-
-import { useNavigate } from "react-router-dom";
-
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
+import SearchVideos from "../SearchVideos";
 
-import NavBar from "../components/NavBar/NavBar";
-import SearchVideos from "../components/SearchVideos";
-import AddVideo from "../components/AdminSection/AddVideo";
-import VideoContext from "../../contexts/VideoContext";
-
-function AdminCarousselCustom() {
-  const { dataVideo } = useContext(VideoContext);
+function EditCarousel() {
   const navigate = useNavigate();
-
-  const [error, setError] = useState("");
-
+  const { dataVideo } = useContext(VideoContext);
+  const [vidCarousel, setVidCarousel] = useState(undefined);
+  const [sections, setSections] = useState([]);
   const [carousel, setCarousel] = useState({
     name: "",
   });
-
-  const [vidCarousel, setVidCarousel] = useState(undefined);
   const [search, setSearch] = useState("");
   const [filtre, setFiltre] = useState([]);
   const handleSearchChange = (ev) => {
     setSearch(ev.target.value);
-  };
-  const handleInput = (e) => {
-    e.persist();
-    setCarousel({ ...carousel, [e.target.name]: e.target.value });
   };
   useEffect(() => {
     const dataTemp = dataVideo;
@@ -36,49 +25,95 @@ function AdminCarousselCustom() {
     );
     setFiltre(filteredVideo);
   }, [search, dataVideo]);
+  const handleAdd = (e) => {
+    const target = e.target.id;
+    const { checked } = e.target;
+    setVidCarousel({ ...vidCarousel, [target]: checked });
+  };
+  const handleInput = (e) => {
+    e.persist();
+    setCarousel({ ...carousel, [e.target.name]: e.target.value });
+  };
+
+  const params = useParams();
+  const fetchSections = async () => {
+    try {
+      const data = await axios.get(`http://localhost:5002/sections`);
+      const section = data.data.filter(
+        (e) => e.carousel.id === parseInt(params.id, 10)
+      )[0];
+      setSections(section);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  useEffect(() => {
+    fetchSections();
+  }, []);
+
+  useEffect(() => {
+    if (sections.videos) {
+      const section = sections.videos.map((video) => video.video_id);
+
+      const baseVid = { [section[0]]: true };
+      section.forEach((e) => {
+        baseVid[e] = true;
+      });
+
+      setVidCarousel(baseVid);
+      setCarousel({ ...carousel, name: sections.carousel.name });
+    }
+  }, [sections]);
+  const videoDetails = filtre.map((video) => {
+    let check = false;
+    if (vidCarousel) {
+      let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
+      selected = selected.map((el) => parseInt(el[0], 10));
+      check = !!selected.includes(video.id);
+    }
+
+    return (
+      <tr
+        className="hover:bg-gray-50  hover:text-black transition"
+        key={video.id}
+      >
+        <td>{video.id}</td>
+        <td>{video.title}</td>
+        <td className="text-sm text-right">
+          <input
+            type="checkbox"
+            id={video.id}
+            name={video.title}
+            onChange={(e) => handleAdd(e)}
+            checked={check}
+          />
+        </td>
+        <td />
+      </tr>
+    );
+  });
+
   const handleSub = async (e) => {
     e.preventDefault();
-    if (!carousel.name) {
-      setError("*Ce champ est obligatoire");
-      console.warn(error);
-      return;
-    }
-    const data = {
-      name: carousel.name,
-    };
-    let section = { carousel_custom_id: null, ordre: null };
-    await axios
-      .post(`http://localhost:5002/carousel_custom`, data)
-      .then((res) => {
-        section = { ...section, carousel_custom_id: res.data.insertId };
-      })
-      .catch((err) => console.warn(err));
+    const data = { name: carousel.name };
 
     await axios
-      .get(`http://localhost:5002/sections/ordre`)
-      .then((res) => {
-        section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
-      })
-      .catch((err) => console.warn(err));
-    if (!section.ordre) {
-      section.ordre = 2;
-    }
-    const dataSec = {
-      ordre: section.ordre,
-      carouselCustomId: section.carousel_custom_id,
-      title: carousel.name,
-    };
+      .put(
+        `http://localhost:5002/carousel_custom/${sections.carousel.id}`,
+        data
+      )
+      .catch((err) => console.error(err));
     await axios
-      .post(`http://localhost:5002/sections/custom`, dataSec)
+      .delete(`http://localhost:5002/videos_carousel/${sections.carousel.id}`)
+      .catch((err) => console.error(err));
 
-      .catch((err) => console.warn(err));
     let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
     selected = selected.map((el) => parseInt(el[0], 10));
     let vidToPost = [];
     vidToPost = selected.map((el) => ({
       ...vidToPost,
       videoId: el,
-      carouselId: section.carousel_custom_id,
+      carouselId: sections.carousel.id,
     }));
 
     vidToPost.forEach((el) => {
@@ -91,11 +126,9 @@ function AdminCarousselCustom() {
     });
     navigate("/admin/section");
   };
-
   return (
     <>
       <NavBar />
-
       <div className="p-5 pt-20 pb-20">
         <div className="bg-gradient-to-br from-blue-900 my-10 flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <div className="   md:h-[6rem] flex items-center justify-between w-full ">
@@ -126,22 +159,29 @@ function AdminCarousselCustom() {
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   placeholder="nom du carousel"
                   aria-label=""
-                  value={carousel.name}
                   onChange={handleInput}
+                  value={carousel.name}
                 />
               </div>
             </div>
           </form>
-
           <div className="flex gap-2 items-end">
-            <h1 className="text-white   font-poppins pt-10  ">Videos :</h1>
+            <h1 className="text-white   font-poppins   pt-10 ">Videos :</h1>
           </div>
           <SearchVideos handleSearchChange={handleSearchChange} />
-          <AddVideo
-            vidCarousel={vidCarousel}
-            filtre={filtre}
-            setVidCarousel={setVidCarousel}
-          />
+          <div className="    w-full gap-2">
+            <form>
+              <table className=" text-left w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className="px-6 py-4 text-lg">ID</th>
+                    <th className="px-6 py-4 text-lg">Titre</th>
+                  </tr>
+                </thead>
+                <tbody className="">{videoDetails}</tbody>
+              </table>
+            </form>
+          </div>
           <div className="flex justify-center mt-4">
             <button
               type="submit"
@@ -157,4 +197,4 @@ function AdminCarousselCustom() {
   );
 }
 
-export default AdminCarousselCustom;
+export default EditCarousel;

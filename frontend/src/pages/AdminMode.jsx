@@ -26,7 +26,7 @@ function AdminMode() {
             </Link>
             <Link to="/admin/section">
               <ButtonOrange className="w-full flex-grow rounded-md">
-                Gérer les sections
+                Gérer la page d'accueil
               </ButtonOrange>
             </Link>
 

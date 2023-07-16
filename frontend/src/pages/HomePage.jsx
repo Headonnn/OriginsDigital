@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
+import VideoContext from "../../contexts/VideoContext";
 
 function HomePage() {
   const [dataSection, setDataSection] = useState([]);
-
+  const { setDataVideo } = useContext(VideoContext);
+  useEffect(() => {
+    fetch(`http://localhost:5002/videos`)
+      .then((res) => res.json())
+      .then((result) => setDataVideo(result))
+      .catch((error) => console.error(error));
+  }, []);
   useEffect(() => {
     axios
       .get(`http://localhost:5002/sections`)

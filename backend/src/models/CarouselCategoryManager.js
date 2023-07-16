@@ -25,6 +25,15 @@ class CarouselCategoryManager extends AbstractManager {
         throw new Error("Failed to retrieve data from the database.");
       });
   }
+
+  update(carousel) {
+    const { maxNumber, category, id } = carousel;
+
+    return this.database.query(
+      `UPDATE ${this.table} SET max_number=?,category_id=? WHERE id=?`,
+      [maxNumber, category, id]
+    );
+  }
 }
 
 module.exports = CarouselCategoryManager;

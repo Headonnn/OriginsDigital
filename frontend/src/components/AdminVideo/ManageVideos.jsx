@@ -1,14 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
+import SearchVideos from "../SearchVideos";
 
 function ManageVideos() {
   const { dataVideo, setDataVideo } = useContext(VideoContext);
 
   const navigate = useNavigate();
-
+  const [search, setSearch] = useState("");
+  const [filtre, setFiltre] = useState([]);
+  const handleSearchChange = (ev) => {
+    setSearch(ev.target.value);
+  };
+  useEffect(() => {
+    const dataTemp = dataVideo;
+    const filteredVideo = dataTemp.filter((el) =>
+      el.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setFiltre(filteredVideo);
+  }, [search, dataVideo]);
   const updateVideoList = () => {
     axios
       .get("http://localhost:5002/videos")
@@ -56,7 +68,7 @@ function ManageVideos() {
     console.warn(updatedSatutFreemium);
   };
 
-  const videoDetails = dataVideo.map((video) => {
+  const videoDetails = filtre.map((video) => {
     return (
       <tr
         className="hover:bg-gray-50 hover:text-black transition"
@@ -155,6 +167,7 @@ function ManageVideos() {
               </button>
             </div>
           </div>
+          <SearchVideos handleSearchChange={handleSearchChange} />
           <div className="flex justify-center">
             <table className="w-full border-collapse text-left text-sm">
               <thead>

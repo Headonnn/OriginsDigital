@@ -26,6 +26,15 @@ class VideoCarouselManager extends AbstractManager {
         throw new Error("Erreur en inserant un couple video_id carousel_id");
       });
   }
+
+  delete(id) {
+    return this.database
+      .query(`DELETE FROM ${this.table} WHERE carousel_id = ?`, [id])
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Failed to delete data from the database.");
+      });
+  }
 }
 
 module.exports = VideoCarouselManager;

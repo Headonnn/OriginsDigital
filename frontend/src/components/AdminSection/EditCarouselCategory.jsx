@@ -1,22 +1,49 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
-import VideoContext from "../../contexts/VideoContext";
-import NavBar from "../components/NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
+import NavBar from "../NavBar/NavBar";
 
-function AdminCarouselCategory() {
+function EditCarouselCategory() {
+  const params = useParams();
   const navigate = useNavigate();
+  const [sections, setSections] = useState(undefined);
   const { categorie } = useContext(VideoContext);
 
-  const [carousel, setCarousel] = useState(undefined);
+  const [carousel, setCarousel] = useState({ category: "", max_number: 0 });
 
   const handleInput = (e) => {
     e.persist();
     setCarousel({ ...carousel, [e.target.name]: e.target.value });
   };
+  const fetchSections = async () => {
+    try {
+      const data = await axios.get(`http://localhost:5002/sections`);
+      const section = data.data.filter(
+        (e) => e.carousel.id === parseInt(params.id, 10)
+      )[0];
 
+      setSections(section);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  useEffect(() => {
+    fetchSections();
+  }, []);
+
+  useEffect(() => {
+    if (sections) {
+      const init = {
+        category: sections.carousel.category_id,
+        max_number: sections.carousel.max_number,
+      };
+
+      setCarousel(init);
+    }
+  }, [sections]);
   const handleSub = async (e) => {
     e.preventDefault();
 
@@ -24,30 +51,9 @@ function AdminCarouselCategory() {
       category: carousel.category,
       maxNumber: carousel.max_number,
     };
-    let section = { carousel_category_id: null, ordre: null };
-    await axios
-      .post(`http://localhost:5002/carousel_category`, data)
-      .then((res) => {
-        section = { ...section, carousel_category_id: res.data.insertId };
-      })
-      .catch((err) => console.warn(err));
 
     await axios
-      .get(`http://localhost:5002/sections/ordre`)
-      .then((res) => {
-        section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
-      })
-      .catch((err) => console.warn(err));
-    if (!section.ordre) {
-      section.ordre = 2;
-    }
-    const dataSec = {
-      ordre: section.ordre,
-      carouselCategoryId: section.carousel_category_id,
-      title: "categorie",
-    };
-    await axios
-      .post(`http://localhost:5002/sections/category`, dataSec)
+      .put(`http://localhost:5002/carousel_category/${params.id}`, data)
 
       .catch((err) => console.warn(err));
 
@@ -86,6 +92,7 @@ function AdminCarouselCategory() {
                   name="category"
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   onChange={handleInput}
+                  value={carousel.category}
                 >
                   {categorie.map((e) => (
                     <option name="category" value={e.id} id={e.id}>
@@ -102,6 +109,7 @@ function AdminCarouselCategory() {
                   name="max_number"
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   onChange={handleInput}
+                  value={carousel.max_number}
                 />
               </div>
             </div>
@@ -122,4 +130,4 @@ function AdminCarouselCategory() {
   );
 }
 
-export default AdminCarouselCategory;
+export default EditCarouselCategory;

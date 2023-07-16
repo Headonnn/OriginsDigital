@@ -1,17 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import { PropTypes } from "prop-types";
-import VideoContext from "../../../contexts/VideoContext";
 
-function AddVideo({ vidCarousel, setVidCarousel }) {
-  const { dataVideo } = useContext(VideoContext);
-
+function AddVideo({ vidCarousel, setVidCarousel, filtre }) {
   const handleAdd = (e) => {
     const target = e.target.id;
     const { checked } = e.target;
     setVidCarousel({ ...vidCarousel, [target]: checked });
   };
 
-  const videoDetails = dataVideo.map((video) => {
+  const videoDetails = filtre.map((video) => {
+    let check = false;
+    if (vidCarousel) {
+      let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
+      selected = selected.map((el) => parseInt(el[0], 10));
+      check = !!selected.includes(video.id);
+    }
     return (
       <tr
         className="hover:bg-gray-50  hover:text-black transition"
@@ -25,6 +28,7 @@ function AddVideo({ vidCarousel, setVidCarousel }) {
             id={video.id}
             name={video.title}
             onChange={(e) => handleAdd(e)}
+            checked={check}
           />
         </td>
         <td />
@@ -51,5 +55,8 @@ function AddVideo({ vidCarousel, setVidCarousel }) {
 AddVideo.propTypes = {
   vidCarousel: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
   setVidCarousel: PropTypes.func.isRequired,
+  filtre: PropTypes.arrayOf(
+    PropTypes.objectOf(PropTypes.bool, PropTypes.number, PropTypes.string)
+  ),
 };
 export default AddVideo;
