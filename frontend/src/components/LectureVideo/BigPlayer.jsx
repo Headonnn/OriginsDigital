@@ -23,7 +23,7 @@ function BigPlayer() {
         onClick={() => navigate(-1)}
         onKeyDown={() => navigate(-1)}
         role="presentation"
-        className="absolute left-1 top-1 text-white cursor-pointer hover:scale-105 transition"
+        className="absolute left-1 top-1 z-[99] text-white cursor-pointer hover:scale-105 transition"
       >
         <BsArrowLeft size={30} />
       </div>

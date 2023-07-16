@@ -44,7 +44,9 @@ function EditVideo() {
   useEffect(() => {
     axios
       .get(`http://localhost:5002/videos/${id}`)
-      .then((res) => setVideo(res.data))
+      .then((res) => {
+        setVideo(res.data);
+      })
       .catch((err) => {
         if (err.response) {
           if (err.response.status === 404) {
@@ -56,6 +58,10 @@ function EditVideo() {
         }
       });
   }, [id]);
+  useEffect(() => {
+    setVideoFile(video.url);
+    setThumbnailFile(video.thumbnail);
+  }, [video]);
 
   const fetchData = async () => {
     try {
@@ -92,12 +98,15 @@ function EditVideo() {
       setError("*Ce champ est obligatoire");
       return;
     }
+    const date = new Date(video.date);
     const data = {
       title: video.title,
       url: videoFile,
       description: video.description,
       thumbnail: thumbnailFile,
       is_freemium: video.is_freemium,
+      is_in_hero: video.is_in_hero,
+      date: date.toISOString().slice(0, 19).replace("T", " "),
     };
     await axios
       .put(`http://localhost:5002/videos/${id}/edit`, data)

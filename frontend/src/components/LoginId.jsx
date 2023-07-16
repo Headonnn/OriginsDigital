@@ -58,7 +58,7 @@ function LoginId() {
             <div className="relative">
               <input
                 type="email"
-                className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white font-regular text-md rounded-md px-3 py-3 mb-4 border border-black focus:outline-none focus:border-blue-700 w-full md:w-96 pr-10"
+                className=" text-white placeholder-white font-regular text-md rounded-md px-3 py-3 mb-4 border-black  w-full md:w-96 pr-10"
                 placeholder="identifiant"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
@@ -68,7 +68,7 @@ function LoginId() {
             <div className="relative">
               <input
                 type={passwordVisible ? "text" : "password"}
-                className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white font-regular text-md rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700 w-full md:w-106 pr-10"
+                className=" placeholder-white text-md rounded-md px-3 py-3 border border-black w-full md:w-106 pr-10"
                 placeholder="mot de passe"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
@@ -86,26 +86,26 @@ function LoginId() {
               )}
             </div>
             <p className="text-white text-sm font-light font-poppins mt-2">
-              Forgot password? Recover <span className="underline">here</span>.
+              Mot de passe oublié ? Cliquez{" "}
+              <span className="underline font-bold duration-200 hover:text-orange-600">
+                ici
+              </span>
+              .
             </p>
             <div className="flex flex-col space-y-2 mt-16 w-full">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white font-regular text-md rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700 w-full md:w-106 pr-10"
+                className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white text-md rounded-md px-3 py-3 border border-black  w-full md:w-106 pr-10"
               >
                 S'identifier
               </button>
 
-              {/* <button
-                      type="submit"
-                      className="bg-gradient-to-r from-red-600 to-orange-500 text-white font-regular text-base rounded-md px-3 py-3 border border-black focus:outline-none focus:border-blue-700"
-                  >
-                    S'identifier
-                  </button>  */}
               <p className="mt-4 text-sm text-center">
                 Première visite sur Origins Digital ?{" "}
                 <NavLink to="/createaccountform">
-                  <span className="font-bold">Inscrivez-vous</span>
+                  <span className="font-bold duration-200 hover:text-orange-600">
+                    Inscrivez-vous
+                  </span>
                 </NavLink>
               </p>
             </div>

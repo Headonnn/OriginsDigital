@@ -33,7 +33,7 @@ function AdminSectionAccess() {
                 className="flex justify-center my-2"
               >
                 <ButtonOrange className="w-full rounded-sm flex-shrink-0">
-                  Caroussel custom
+                  Caroussel personnalisé
                 </ButtonOrange>
               </Link>
               <Link
