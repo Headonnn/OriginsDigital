@@ -30,7 +30,7 @@ function UpdateUserProfile() {
   }, [id]);
 
   const [user, setUser] = useState({
-    username: "",
+    firstname: "",
     email: "",
     password: "",
   });
@@ -44,7 +44,7 @@ function UpdateUserProfile() {
     e.preventDefault();
 
     const data = {
-      username: user.username,
+      firstname: user.firstname,
       email: user.email,
       password: user.password,
       id,
@@ -56,8 +56,9 @@ function UpdateUserProfile() {
         console.warn(res.data, "OK conslog UpdateUser");
         setDataLogin(res.data);
         setIsClicked(!isClicked);
-
-        navigate("/userprofile");
+        localStorage.removeItem("token");
+        setDataLogin(undefined);
+        navigate("/login");
       })
       .catch((err) => console.error(err));
   };
@@ -76,13 +77,13 @@ function UpdateUserProfile() {
             <form onSubmit={updateUser}>
               <div>
                 <label htmlFor="email" className="text-md">
-                  Username
+                  Prénom
                 </label>
                 <input
                   onChange={handleInput}
-                  value={user.username}
-                  placeholder={dataLogin.username}
-                  name="username"
+                  value={user.firstname}
+                  placeholder={dataLogin.firstname}
+                  name="firstname"
                   type="text"
                   required
                   className="w-full rounded-lg text-blue-800"
