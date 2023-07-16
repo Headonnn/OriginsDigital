@@ -23,11 +23,17 @@ import EditCategories from "../components/AdminCategory/EditCategories";
 import AddCategory from "../components/AdminCategory/AddCategory";
 import AdminCarouselCategory from "../pages/AdminCarouselCategory";
 import AddUsers from "../components/AdminUser/AddUser";
+
 import EditCarouselCategory from "../components/AdminSection/EditCarouselCategory";
+
+import EditCarousel from "../components/AdminSection/EditCarousel";
+
+import UpdateUserProfile from "../components/UpdateUserProfile";
+
 import AdminHero from "../pages/AdminHero";
 
 import Faq from "../pages/Faq";
-import EditCarousel from "../components/AdminSection/EditCarousel";
+
 
 function Router() {
   return (
@@ -54,6 +60,10 @@ function Router() {
       <Route path="/ma_liste" element={<Decouvrir />} />
       <Route path="/userprofile" element={<UserProfile />} />
       <Route
+        path="/updateuserprofile/:id/edit"
+        element={<UpdateUserProfile />}
+      />
+      <Route
         path="/admin/caroussel/custom"
         element={<AdminCarousselCustom />}
       />
@@ -66,11 +76,13 @@ function Router() {
       <Route path="/admin/hero" element={<AdminHero />} />
 
       <Route path="/faq" element={<Faq />} />
+
       <Route path="/admin/edit/carousel/:id" element={<EditCarousel />} />
       <Route
         path="/admin/edit/carousel_cat/:id"
         element={<EditCarouselCategory />}
       />
+
     </Routes>
   );
 }

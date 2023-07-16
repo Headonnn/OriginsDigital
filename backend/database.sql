@@ -1,7 +1,6 @@
 CREATE TABLE
     `user` (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        username VARCHAR(100) NOT NULL,
         email VARCHAR(100) NOT NULL,
         hashedPassword varchar(255) NOT NULL,
         firstname VARCHAR(100) NOT NULL,
@@ -101,7 +100,6 @@ CREATE TABLE
 
 INSERT INTO
     user (
-        username,
         email,
         hashedPassword,
         firstname,
@@ -109,35 +107,30 @@ INSERT INTO
         is_admin
     )
 VALUES (
-        'Camille',
         'camille@camille.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmZXpmemZlemVmZWR6ZXplZg$rqZkhxu5YbqCGHPNrjJZpQ',
         'Camille',
         'Kamizuchi',
         '1'
     ), (
-        'Chloé',
         'chloe@chloe.com',
         '$argon2id$v=19$m=65536,t=5,p=1$UH4Y1+YIyIlkx2WQrM6jxw$I/l1LS1wVEeqnApwzc6fPdYh/hwfpPP1eHwgCxMFsDA',
         'Chloé',
         'Peltier',
         '1'
     ), (
-        'Thomas',
         'tomtom@nana.com',
         '$argon2id$v=19$m=65536,t=5,p=1$F539F2S78zvEKMGU0CnTOg$vcIUNLgUZcCOAInNsakrdOWvRlUbNpKl8hU9TPngbwA',
         'Thomas',
         'Thomasovich',
         '1'
     ), (
-        'Emilie',
         'emilie@emilie.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZnpmemZlemFkYXpkZA$V1qAnJDyMuuWG7g9yoGYXA',
         'Emilie',
         'Nathan',
         '1'
     ), (
-        'Jeremy',
         'jeremy@jeremy.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$VCzq45PL9t8khtc44Kk5iw',
         'Jeremy',
@@ -212,7 +205,7 @@ VALUES (
         0,
         0
     ), (
-        'Les AMHE',
+        'Compétition Escrime',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689238521/r9daozpaxlvzukjsfwro.mp4',
         'En escrime, il existe trois armes différentes : le fleuret, l’épée et le sabre. Chacune de ces armes a sa propre histoire, règle et manière d’utilisation. Pour toutes les armes, un système électrique détecte les touches.',
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689238550/fuj6betcr1kh8zttsdly.jpg',
@@ -221,33 +214,33 @@ VALUES (
         0
     ), (
         'Alex Honnold en Free Solo',
-        'https://www.youtube.com/watch?v=AqLAaDJFuiM&ab_channel=NatGeoFrance',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689253780/zoiu11a9ckgnnijr6ckc.mp4',
         'Alex Honnold affonte El Capitan en free solo',
-        'https://img.lemde.fr/2021/07/16/732/0/3648/2427/664/0/75/0/8d68ba4_554117786-freesolo-13-jpg.jpg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689253799/ae5e6tqmcotqz82sahwu.jpg',
         '2023-06-14',
         0,
         0
     ), (
-        'La nuit en skate au musée',
-        'https://www.youtube.com/watch?v=WrHGINpaiXc&ab_channel=RedBullSkateboarding',
-        'Quatre parmi les meilleures skateuses explorent le British Museum en skateboard, de nuit',
-        'https://s2.dmcdn.net/v/V1UoF1aa5_nMGiohd/x1080',
+        'Warehouse & skateboard',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689254295/xq4bdmx5svdkkdcofjza.mp4',
+        'Un skateboarder investi une usine desaffectée.',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689254349/j637z2nfyrg9ys6bxovm.jpg',
         '2023-06-23',
         1,
-        0
+        0   
     ), (
         'Faire du skateboard dans un aéroport désert',
-        'https://www.youtube.com/watch?v=I-unDEoXnN4&ab_channel=RedBull',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689258350/qf7bk2olbn3ifxl6t8ep.mp4',
         'Competition de skateboard au Louis Armstrong International Airport à New Orleans',
-        'https://bloximages.newyork1.vip.townnews.com/nola.com/content/tncms/assets/v3/editorial/2/8f/28fd1dfe-685f-5c7b-a95d-8df1fe1202ca/608ef5859325f.image.jpg?resize=1024%2C682',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689258431/ouebx6i0lcmhcw3rugz5.jpg',
         '2023-06-22',
         1,
         0
     ), (
         'Le Go Skateboarding Day à Santiago, au Chili',
-        'https://www.youtube.com/watch?v=Dcj7aPmRxvI&ab_channel=RedBullSkateboarding',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1689258643/zdqpk2i5ouqwgmcjqnl6.mp4',
         'Douze-mille skateboarders se rassemblent à Santiago pour une manif en faveur de leur sport',
-        'https://img.redbull.com/images/c_crop,w_800,h_400,x_0,y_50,f_auto,q_auto/c_scale,w_1200/redbullcom/2019/06/21/47da659e-1b52-4fe6-8f6b-ea56619acd0e/skateday-santiago',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1689258800/bgnkiuossvmwvhwzoxtr.jpg',
         '2023-06-23',
         1,
         0
@@ -318,11 +311,11 @@ VALUES (
     );
 
 INSERT INTO category (name)
-VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés");
+VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés"), ("Escalade");
 
 INSERT INTO
     video_category (video_id, category_id)
-VALUES (1, 4), (5, 3), (7, 5), (2, 6), (8, 6), (6, 1), (10, 1), (11, 1), (12, 1), (13, 4), (14, 4), (15, 4), (16, 3), (17, 3), (18, 5);
+VALUES (1, 4), (3, 6), (9, 8), (5, 3), (7, 5), (2, 6), (8, 6), (6, 1), (10, 1), (11, 1), (12, 1), (13, 4), (14, 4), (15, 4), (16, 3), (17, 3), (18, 5);
 
 INSERT INTO
     carousel_custom (name)
