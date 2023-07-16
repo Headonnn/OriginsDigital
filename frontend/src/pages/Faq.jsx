@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+
+/* import React, { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 
@@ -282,3 +284,4 @@ function Faq() {
 }
 
 export default Faq;
+ */

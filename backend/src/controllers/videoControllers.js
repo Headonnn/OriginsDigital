@@ -129,6 +129,25 @@ const editFreemium = (req, res) => {
       res.sendStatus(500);
     });
 };
+const editHero = (req, res) => {
+  const video = req.body;
+
+  video.id = parseInt(req.params.id, 10);
+
+  models.video
+    .updateHero(video)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 const filterIsFreemium = (req, res) => {
   models.video
@@ -161,4 +180,5 @@ module.exports = {
   filterCategory,
   editFreemium,
   filterIsFreemium,
+  editHero,
 };

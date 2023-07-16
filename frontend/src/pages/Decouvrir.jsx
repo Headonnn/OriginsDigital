@@ -6,7 +6,7 @@ import {
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
-import { AiOutlineCalendar } from "react-icons/ai";
+
 import axios from "axios";
 
 import NavBar from "../components/NavBar/NavBar";
@@ -24,8 +24,8 @@ function Decouvrir() {
   const { dataVideo, setDataVideo } = useContext(VideoContext);
   const { dataLogin } = useContext(LoginContext);
   const [alphabet, setAlphabet] = useState(false);
-  const [date, setDate] = useState(false);
-
+  const [nouveau, setNouveau] = useState(true);
+  const [ancien, setAncien] = useState(false);
   const compareVideos = (a, b) => {
     if (a.is_freemium === 0 && b.is_freemium === 1) {
       return -1;
@@ -35,7 +35,23 @@ function Decouvrir() {
     }
     return 0;
   };
+  const handleNouveau = () => {
+    const filtreDate = isFiltered.sort((a, b) => {
+      if (a.date > b.date) {
+        return -1;
+      }
+      if (a.date < b.date) {
+        return 1;
+      }
+      return 0;
+    });
 
+    setIsFiltered(filtreDate);
+
+    setNouveau(true);
+    setAncien(false);
+    setAlphabet(false);
+  };
   const fetchFavorites = () => {
     if (dataLogin) {
       axios
@@ -83,14 +99,15 @@ function Decouvrir() {
 
   useEffect(() => {
     fetchFavorites();
-  }, []);
-  useEffect(() => {
     if (location.pathname === "/ma_liste") {
       setIsMaListe(true);
+
+      handleNouveau();
     } else {
       setIsMaListe(false);
     }
-  }, [location]);
+  }, [location, dataLogin]);
+
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
@@ -108,7 +125,7 @@ function Decouvrir() {
       filteredVideo = filteredVideo.filter((e) => dataFavorites.includes(e.id));
     }
     setIsFiltered(filteredVideo.sort(compareVideos));
-  }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites]);
+  }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites, location]);
 
   useEffect(() => {
     if (filtreCategorie === "") {
@@ -126,57 +143,40 @@ function Decouvrir() {
     }
   }, [setDataVideo, filtreCategorie]);
   const handleAlphabet = () => {
-    if (alphabet) {
-      const filtreTemp = isFiltered.sort((a, b) => {
-        const nameA = a.title.toUpperCase();
-        const nameB = b.title.toUpperCase();
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
+    const filtreTemp = isFiltered.sort((a, b) => {
+      const nameA = a.title.toUpperCase();
+      const nameB = b.title.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
 
-        return 0;
-      });
-      setIsFiltered(filtreTemp);
-    } else {
-      const filtreTemp = isFiltered.sort((a, b) => {
-        const nameA = a.title.toUpperCase();
-        const nameB = b.title.toUpperCase();
-        if (nameA > nameB) {
-          return -1;
-        }
-        if (nameA < nameB) {
-          return 1;
-        }
-
-        return 0;
-      });
-      setIsFiltered(filtreTemp);
-    }
-
-    setAlphabet(!alphabet);
+      return 0;
+    });
+    setIsFiltered(filtreTemp);
+    setAlphabet(true);
+    setNouveau(false);
+    setAncien(false);
   };
-  const handleDate = () => {
-    if (!date) {
-      const filtreDate = isFiltered.sort((a, b) => {
-        if (a.date > b.date) {
-          return -1;
-        }
-        if (a.date < b.date) {
-          return 1;
-        }
-        return 0;
-      });
 
-      setIsFiltered(filtreDate);
-    } else {
-      const filtreDate = isFiltered.sort((a, b) => a.id - b.id);
+  const handleAncien = () => {
+    const filtreDate = isFiltered.sort((a, b) => {
+      if (a.date < b.date) {
+        return -1;
+      }
+      if (a.date > b.date) {
+        return 1;
+      }
+      return 0;
+    });
 
-      setIsFiltered(filtreDate);
-    }
-    setDate(!date);
+    setIsFiltered(filtreDate);
+
+    setNouveau(false);
+    setAncien(true);
+    setAlphabet(false);
   };
   return (
     <div>
@@ -187,15 +187,15 @@ function Decouvrir() {
           handleChangeCategory={handleChangeCategory}
         />
       ) : (
-        <div className="flex gap-2">
+        <div className="flex gap-2 px-2">
           {alphabet ? (
             <div
-              className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
+              className="text-black bg-white border-white border-2 rounded-md p-2 cursor-pointer"
               onClick={handleAlphabet}
               onKeyDown={handleAlphabet}
               role="presentation"
             >
-              Z-A
+              A-Z
             </div>
           ) : (
             <div
@@ -207,24 +207,42 @@ function Decouvrir() {
               A-Z
             </div>
           )}
-          {date ? (
+          {nouveau ? (
             <div
               className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleDate}
-              onKeyDown={handleDate}
+              onClick={handleNouveau}
+              onKeyDown={handleNouveau}
               role="presentation"
             >
-              <AiOutlineCalendar />
+              Les plus récentes
+            </div>
+          ) : (
+            <div
+              className="text-white  border-white bg-black border-2 rounded-md p-2 cursor-pointer"
+              onClick={handleNouveau}
+              onKeyDown={handleNouveau}
+              role="presentation"
+            >
+              Les plus récentes
+            </div>
+          )}
+          {ancien ? (
+            <div
+              className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
+              onClick={handleAncien}
+              onKeyDown={handleAncien}
+              role="presentation"
+            >
+              Les plus anciennes
             </div>
           ) : (
             <div
               className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleDate}
-              onKeyDown={handleDate}
+              onClick={handleAncien}
+              onKeyDown={handleAncien}
               role="presentation"
             >
-              {" "}
-              <AiOutlineCalendar />
+              Les plus anciennes
             </div>
           )}
         </div>

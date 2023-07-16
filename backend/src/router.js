@@ -99,6 +99,7 @@ router.put("/videos/:id/edit", videoControllers.edit);
 router.put("/videos/:id/is_freemium", videoControllers.editFreemium);
 router.post("/videos", videoControllers.add);
 router.delete("/videos/:id/delete", videoControllers.destroy);
+router.put("/videos/:id/hero", videoControllers.editHero);
 
 // Category routes
 
@@ -115,13 +116,15 @@ router.post("/sections/category", sectionControllers.addcategory);
 // Video Carousel route
 
 router.post("/videos_carousel", videoCarouselControllers.add);
+router.delete("/videos_carousel/:id", videoCarouselControllers.destroy);
 
 // Carousel Custom route
 
 router.post("/carousel_custom", carouselCustomControllers.add);
+router.put("/carousel_custom/:id", carouselCustomControllers.edit);
 
 // Carousel Category route
 
 router.post("/carousel_category", carouselCategoryControllers.add);
-
+router.put("/carousel_category/:id", carouselCategoryControllers.edit);
 module.exports = router;
