@@ -112,8 +112,8 @@ function CarouselAll({ dataSection }) {
 
   return (
     dataVideo.length > 0 && (
-      <div className="carousel mx-auto bg-neutral-950 my-9">
-        <h2 className="text-xl text-white font-light py-3 ml-4">
+      <div className="carousel md:mx-6 lg:mx-6 bg-neutral-950 my-9 mx-10">
+        <h2 className="text-md md:text-lg text-white font-light py-3 ml-4">
           {dataSection.name ? dataSection.name[0] : dataSection.carousel.name}
         </h2>
 

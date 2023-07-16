@@ -25,7 +25,11 @@ function Header() {
       <ul className="flex items-center gap-12">
         <li>
           <Link to="/">
-            <img className="w-48" src={logolarge} alt="Logo Origins-Digital" />
+            <img
+              className="w-36 md:w-48"
+              src={logolarge}
+              alt="Logo Origins-Digital"
+            />
           </Link>
         </li>
 
