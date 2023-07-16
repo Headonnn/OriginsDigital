@@ -128,7 +128,11 @@ function Decouvrir() {
   }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites, location]);
 
   useEffect(() => {
-    if (filtreCategorie === "") {
+    if (
+      filtreCategorie === "" ||
+      filtreCategorie === "9" ||
+      filtreCategorie === "7"
+    ) {
       axios
         .get(`http://localhost:5002/videos`)
         .then((result) => setIsFiltered(result.data.sort(compareVideos)))
@@ -254,65 +258,72 @@ function Decouvrir() {
             Aucune vidéo ne correspond à vos critères de recherche
           </div>
         )}
-        {isFiltered.map((video) => {
-          return (
-            <div
-              className={`${
-                video.is_freemium && !dataLogin
-                  ? "opacity-60 relative"
-                  : "relative"
-              }`}
-              key={video.id}
-            >
-              <div className="w-60 hover:scale-110 transition text-white ">
-                <Link to={`/description/${video.id - 1}`}>
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="rounded-lg h-44 w-68"
-                  />
-                </Link>
+        {isFiltered
+          .filter((e) => {
+            if (filtreCategorie === "9") {
+              return e.is_freemium === 0;
+            }
+            return e;
+          })
+          .map((video) => {
+            return (
+              <div
+                className={`${
+                  video.is_freemium && !dataLogin
+                    ? "opacity-60 relative"
+                    : "relative"
+                }`}
+                key={video.id}
+              >
+                <div className="w-60 hover:scale-110 transition text-white ">
+                  <Link to={`/description/${video.id - 1}`}>
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="rounded-lg h-44 w-68"
+                    />
+                  </Link>
 
-                <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
-                  <div className="text-md pl-1">{video.title}</div>
+                  <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
+                    <div className="text-md pl-1">{video.title}</div>
 
-                  {video.is_freemium && !dataLogin ? (
-                    <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
-                      <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                      <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                      <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                    </div>
-                  ) : (
-                    <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
-                      <Link to={`/description/${video.id - 1}`}>
+                    {video.is_freemium && !dataLogin ? (
+                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                         <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                      </Link>
-                      <Link to={`/watch/${video.id - 1}`}>
                         <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => handleAddToList(video.id)}
-                      >
-                        {!dataFavorites.includes(parseInt(video.id, 10)) ? (
-                          <BsPlusCircle
-                            id={video.id}
-                            className="hover:bg-white  hover:text-black hover:rounded-2xl"
-                          />
-                        ) : (
-                          <BsCheckCircle
-                            id={video.id}
-                            className="hover:bg-white  hover:text-black hover:rounded-2xl"
-                          />
-                        )}
-                      </button>
-                    </div>
-                  )}
+                        <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                      </div>
+                    ) : (
+                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                        <Link to={`/description/${video.id - 1}`}>
+                          <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                        </Link>
+                        <Link to={`/watch/${video.id - 1}`}>
+                          <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => handleAddToList(video.id)}
+                        >
+                          {!dataFavorites.includes(parseInt(video.id, 10)) ? (
+                            <BsPlusCircle
+                              id={video.id}
+                              className="hover:bg-white  hover:text-black hover:rounded-2xl"
+                            />
+                          ) : (
+                            <BsCheckCircle
+                              id={video.id}
+                              className="hover:bg-white  hover:text-black hover:rounded-2xl"
+                            />
+                          )}
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

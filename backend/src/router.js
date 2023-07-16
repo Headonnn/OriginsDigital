@@ -42,8 +42,8 @@ router.get("/categories/:id", categoryControllers.read);
 
 router.get("/sections", sectionControllers.browse);
 router.get("/sections/ordre", sectionControllers.browseordre);
-
 router.put("/sections/:id", sectionControllers.edit);
+router.put("/sections/:id/visibility", sectionControllers.editVis);
 router.post("/sections/custom", sectionControllers.addcustom);
 router.post("/sections/category", sectionControllers.addcategory);
 router.delete("/sections/:id", sectionControllers.destroy);

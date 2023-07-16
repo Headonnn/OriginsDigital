@@ -67,6 +67,7 @@ function AdminCarousselCustom() {
       ordre: section.ordre,
       carouselCustomId: section.carousel_custom_id,
       title: carousel.name,
+      visibility: carousel.visibility,
     };
     await axios
       .post(`http://localhost:5002/sections/custom`, dataSec)
@@ -131,10 +132,34 @@ function AdminCarousselCustom() {
                 />
               </div>
             </div>
+            <div className="mt-6 flex flex-col">
+              <div className="flex w-full flex-col gap-2">
+                <label htmlFor="inputFieldName">Visibilité :</label>
+                <select
+                  name="visibility"
+                  className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
+                  onChange={handleInput}
+                >
+                  <option name="visibility" id="visibility" value="all">
+                    Tous les utilisateurs
+                  </option>
+                  <option name="visibility" id="visibility" value="connected">
+                    Utilisateurs connectés
+                  </option>
+                  <option
+                    name="visibility"
+                    id="visibility"
+                    value="disconnected"
+                  >
+                    Utilisateurs non connectés
+                  </option>
+                </select>
+              </div>
+            </div>
           </form>
 
           <div className="flex gap-2 items-end">
-            <h1 className="text-white   font-poppins pt-10  ">Videos :</h1>
+            <h1 className="text-white   font-poppins mt-6  ">Videos :</h1>
           </div>
           <SearchVideos handleSearchChange={handleSearchChange} />
           <AddVideo

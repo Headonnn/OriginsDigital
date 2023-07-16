@@ -61,7 +61,11 @@ function EditCarousel() {
       });
 
       setVidCarousel(baseVid);
-      setCarousel({ ...carousel, name: sections.carousel.name });
+      setCarousel({
+        ...carousel,
+        name: sections.carousel.name,
+        visibility: sections.visibility,
+      });
     }
   }, [sections]);
   const videoDetails = filtre.map((video) => {
@@ -96,12 +100,15 @@ function EditCarousel() {
   const handleSub = async (e) => {
     e.preventDefault();
     const data = { name: carousel.name };
-
+    const dataVis = { visibility: carousel.visibility };
     await axios
       .put(
         `http://localhost:5002/carousel_custom/${sections.carousel.id}`,
         data
       )
+      .catch((err) => console.error(err));
+    await axios
+      .put(`http://localhost:5002/sections/${sections.id}/visibility`, dataVis)
       .catch((err) => console.error(err));
     await axios
       .delete(`http://localhost:5002/videos_carousel/${sections.carousel.id}`)
@@ -162,6 +169,31 @@ function EditCarousel() {
                   onChange={handleInput}
                   value={carousel.name}
                 />
+              </div>
+            </div>
+            <div className="mt-6 flex flex-col">
+              <div className="flex w-full flex-col gap-2">
+                <label htmlFor="inputFieldName">Visibilité :</label>
+                <select
+                  name="visibility"
+                  className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
+                  onChange={handleInput}
+                  value={carousel.visibility}
+                >
+                  <option name="visibility" id="visibility" value="all">
+                    Tous les utilisateurs
+                  </option>
+                  <option name="visibility" id="visibility" value="connected">
+                    Utilisateurs connectés
+                  </option>
+                  <option
+                    name="visibility"
+                    id="visibility"
+                    value="disconnected"
+                  >
+                    Utilisateurs non connectés
+                  </option>
+                </select>
               </div>
             </div>
           </form>
