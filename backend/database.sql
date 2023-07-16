@@ -89,7 +89,7 @@ CREATE TABLE
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         `ordre` INT NOT NULL,
         title VARCHAR (100) NOT NULL,
-        size VARCHAR(50),
+        visibility VARCHAR(50),
         carousel_category_id INT DEFAULT NULL,
         carousel_custom_id INT DEFAULT NULL,
         advert_id INT DEFAULT NULL,
@@ -227,7 +227,7 @@ VALUES (
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689254349/j637z2nfyrg9ys6bxovm.jpg',
         '2023-06-23',
         1,
-        0   
+        0
     ), (
         'Faire du skateboard dans un aéroport désert',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689258350/qf7bk2olbn3ifxl6t8ep.mp4',
@@ -311,7 +311,7 @@ VALUES (
     );
 
 INSERT INTO category (name)
-VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés"), ("Escalade");
+VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés"), ("Escalade"), ("Vidéos gratuites");
 
 INSERT INTO
     video_category (video_id, category_id)
@@ -328,26 +328,20 @@ VALUES (100, 1);
 INSERT INTO
     `section` (
         ordre,
-        size,
+        visibility,
         title,
         carousel_category_id,
         carousel_custom_id
     )
 VALUES (
         1,
-        "moyen",
+        "all",
         "carouselNouv",
         NULL,
         1
-    ), (
-        2,
-        "moyen",
-        "carouselAll",
-        1,
-        NULL
-    ), (
+    ), (2, "all", "carouselAll", 1, NULL), (
         3,
-        "moyen",
+        "all",
         "carouselCustom",
         NULL,
         2

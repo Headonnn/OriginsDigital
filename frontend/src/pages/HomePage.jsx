@@ -3,10 +3,12 @@ import axios from "axios";
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
 import VideoContext from "../../contexts/VideoContext";
+import LoginContext from "../../contexts/LoginContext";
 
 function HomePage() {
   const [dataSection, setDataSection] = useState([]);
   const { setDataVideo } = useContext(VideoContext);
+  const { dataLogin } = useContext(LoginContext);
   useEffect(() => {
     fetch(`http://localhost:5002/videos`)
       .then((res) => res.json())
@@ -38,9 +40,24 @@ function HomePage() {
         <div>
           <Hero />
 
-          {dataSection.map((e) => (
-            <CarouselAll dataSection={e} />
-          ))}
+          {dataSection.map((e) => {
+            if (e.visibility === "all") {
+              return <CarouselAll dataSection={e} />;
+            }
+            if (e.visibility === "connected") {
+              if (dataLogin) {
+                return <CarouselAll dataSection={e} />;
+              }
+              return <div />;
+            }
+            if (e.visibility === "disconnected") {
+              if (!dataLogin) {
+                return <CarouselAll dataSection={e} />;
+              }
+              return <div />;
+            }
+            return <div />;
+          })}
         </div>
       )}
     </div>
