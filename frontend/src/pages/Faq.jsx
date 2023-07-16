@@ -1,11 +1,10 @@
-
 /* import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
-
+*/
 function Faq() {
-  const navigate = useNavigate();
+  /* const navigate = useNavigate();
   const [isAnswerVisible1, setIsAnswerVisible1] = useState(false);
   const [isAnswerVisible2, setIsAnswerVisible2] = useState(false);
   const [isAnswerVisible3, setIsAnswerVisible3] = useState(false);
@@ -281,7 +280,7 @@ function Faq() {
       </div>
     </>
   );
-}
 
+              */
+}
 export default Faq;
- */

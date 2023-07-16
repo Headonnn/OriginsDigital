@@ -36,7 +36,7 @@ function Hero() {
           <div className="h-full flex justify-between text-white">
             <div className=" flex flex-col justify-end">
               <h1 className="text-5xl mb-10">
-                {dataVideo.filter((e) => e.is_in_hero === 1)[0].url}
+                {dataVideo.filter((e) => e.is_in_hero === 1)[0].title}
               </h1>
               <div className="flex flex-row w-full gap-4 ">
                 <Link to="/watch/8">
