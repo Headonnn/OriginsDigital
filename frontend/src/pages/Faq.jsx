@@ -1,5 +1,6 @@
+/* eslint-disable */
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 
 function Faq() {
@@ -76,7 +77,9 @@ function Faq() {
               {isAnswerVisible1 && (
                 <div className="p-4">
                   <p>
-                    Non, vous n'avez pas besoin de vous inscrire pour accéder aux vidéos sportives sur notre site. Elles sont disponibles gratuitement pour tous les utilisateurs.
+                    Non, vous n'avez pas besoin de vous inscrire pour accéder
+                    aux vidéos sportives sur notre site. Elles sont disponibles
+                    gratuitement pour tous les utilisateurs.
                   </p>
                 </div>
               )}
@@ -110,7 +113,12 @@ function Faq() {
               {isAnswerVisible2 && (
                 <div className="p-4">
                   <p>
-                    En créant un compte personnel sur notre site, vous pouvez profiter de fonctionnalités supplémentaires telles que la possibilité de marquer vos vidéos préférées et de les ajouter à votre liste de favoris pour un accès ultérieur. Cela vous permet de garder une trace de vos contenus préférés et de les retrouver facilement.
+                    En créant un compte personnel sur notre site, vous pouvez
+                    profiter de fonctionnalités supplémentaires telles que la
+                    possibilité de marquer vos vidéos préférées et de les
+                    ajouter à votre liste de favoris pour un accès ultérieur.
+                    Cela vous permet de garder une trace de vos contenus
+                    préférés et de les retrouver facilement.
                   </p>
                 </div>
               )}
@@ -144,7 +152,12 @@ function Faq() {
               {isAnswerVisible3 && (
                 <div className="p-4">
                   <p>
-                    Nous proposons une vaste collection de vidéos sportives couvrant différents sports. Vous pourrez trouver des moments forts, des analyses de matchs, des interviews d'athlètes et bien plus encore. Nous nous efforçons de fournir un large éventail de contenus pour satisfaire tous les passionnés de sport.
+                    Nous proposons une vaste collection de vidéos sportives
+                    couvrant différents sports. Vous pourrez trouver des moments
+                    forts, des analyses de matchs, des interviews d'athlètes et
+                    bien plus encore. Nous nous efforçons de fournir un large
+                    éventail de contenus pour satisfaire tous les passionnés de
+                    sport.
                   </p>
                 </div>
               )}
@@ -178,7 +191,12 @@ function Faq() {
               {isAnswerVisible4 && (
                 <div className="p-4">
                   <p>
-                    Oui, en tant qu'administrateur du site, nous avons mis en place des options de contrôle d'accès. Vous pouvez choisir de rendre les vidéos publiques, accessibles à tous les utilisateurs, ou de les réserver aux passionnés de sports inscrits uniquement. Cela vous permet de gérer la confidentialité et l'exclusivité des contenus.
+                    Oui, en tant qu'administrateur du site, nous avons mis en
+                    place des options de contrôle d'accès. Vous pouvez choisir
+                    de rendre les vidéos publiques, accessibles à tous les
+                    utilisateurs, ou de les réserver aux passionnés de sports
+                    inscrits uniquement. Cela vous permet de gérer la
+                    confidentialité et l'exclusivité des contenus.
                   </p>
                 </div>
               )}
@@ -212,7 +230,12 @@ function Faq() {
               {isAnswerVisible5 && (
                 <div className="p-4">
                   <p>
-                    Oui, nous avons développé le site en adoptant une approche centrée sur les appareils mobiles. Cela garantit une expérience utilisateur optimale, que vous utilisiez un smartphone, une tablette ou un ordinateur de bureau. Vous pourrez profiter de la plateforme de streaming sportif où que vous soyez.
+                    Oui, nous avons développé le site en adoptant une approche
+                    centrée sur les appareils mobiles. Cela garantit une
+                    expérience utilisateur optimale, que vous utilisiez un
+                    smartphone, une tablette ou un ordinateur de bureau. Vous
+                    pourrez profiter de la plateforme de streaming sportif où
+                    que vous soyez.
                   </p>
                 </div>
               )}
