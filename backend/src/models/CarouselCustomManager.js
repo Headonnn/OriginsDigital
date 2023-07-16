@@ -12,6 +12,15 @@ class CarouselCustomManager extends AbstractManager {
       name,
     ]);
   }
+
+  update(carousel) {
+    const { name, id } = carousel;
+
+    return this.database.query(`UPDATE ${this.table} SET name=? WHERE id=?`, [
+      name,
+      id,
+    ]);
+  }
 }
 
 module.exports = CarouselCustomManager;

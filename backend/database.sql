@@ -16,7 +16,7 @@ CREATE TABLE
         url VARCHAR(500) NOT NULL,
         description VARCHAR(500) NOT NULL,
         thumbnail VARCHAR(500) NOT NULL,
-        date DATETIME(3) DEFAULT CURRENT_TIMESTAMP(3),
+        date DATE,
         length TIME,
         is_freemium TINYINT DEFAULT 0,
         is_in_hero TINYINT DEFAULT 0
@@ -162,7 +162,7 @@ VALUES (
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689235053/piwqu7vizrodkj1vnzvw.jpg',
         '2023-03-09',
         1,
-        0
+        1
     ), (
         'Tae Kwon Do démonstration',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689235658/ykljf7yxechxpewxrf5i.mp4',

@@ -56,10 +56,30 @@ const destroy = (req, res) => {
       res.sendStatus(500);
     });
 };
+const edit = (req, res) => {
+  const carousel = req.body;
+
+  carousel.id = parseInt(req.params.id, 10);
+
+  models.carouselCustom
+    .update(carousel)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
 
 module.exports = {
   browse,
   read,
   add,
   destroy,
+  edit,
 };

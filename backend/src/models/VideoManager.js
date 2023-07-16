@@ -77,6 +77,15 @@ class VideoManager extends AbstractManager {
     );
   }
 
+  updateHero(video) {
+    const { isHero, id } = video;
+
+    return this.database.query(
+      `UPDATE  ${this.table} SET is_in_hero = ? WHERE id = ?`,
+      [isHero, id]
+    );
+  }
+
   isFreemium() {
     return this.database
       .query(`SELECT * FROM ${this.table} WHERE is_freemium= 1`)

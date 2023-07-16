@@ -20,9 +20,7 @@ function AdminSectionAccess() {
               Retour
             </button>
           </div>
-          <div className="text-lg text-center md:text-2xl">
-            Admin HomePage
-          </div>
+          <div className="text-lg text-center md:text-2xl">Admin HomePage</div>
         </div>
         <div className="flex flex-col items-center justify-center h-full">
           <h1 className="text-white text-center font-poppins underline py-8">
@@ -30,12 +28,18 @@ function AdminSectionAccess() {
           </h1>
           <div className="w-full flex items-center justify-center flex-grow">
             <div className="w-full max-w-xs">
-              <Link to="/admin/caroussel/custom" className="flex justify-center my-2">
+              <Link
+                to="/admin/caroussel/custom"
+                className="flex justify-center my-2"
+              >
                 <ButtonOrange className="w-full rounded-sm flex-shrink-0">
-                  Caroussel custom
+                  Caroussel personnalisé
                 </ButtonOrange>
               </Link>
-              <Link to="/admin/caroussel/category" className="flex justify-center my-2">
+              <Link
+                to="/admin/caroussel/category"
+                className="flex justify-center my-2"
+              >
                 <ButtonOrange className="w-full rounded-sm flex-shrink-0">
                   Caroussel catégorie
                 </ButtonOrange>
