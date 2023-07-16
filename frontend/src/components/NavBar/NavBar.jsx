@@ -37,9 +37,11 @@ function Header() {
         <li className=" text-l hidden lg:block tracking-wide hover:text-orange-600">
           <NavLink to="/decouvrir">Découvrir</NavLink>
         </li>
-        <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
-          <NavLink to="/ma_liste">Ma Liste</NavLink>
-        </li>
+        {dataLogin ? (
+          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
+            <NavLink to="/ma_liste">Ma Liste</NavLink>
+          </li>
+        ) : null}
         {dataLogin?.is_admin ? (
           <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
             <NavLink to="/admin">Admin Page</NavLink>

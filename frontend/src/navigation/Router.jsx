@@ -27,7 +27,7 @@ import UpdateUserProfile from "../components/UpdateUserProfile";
 
 import AdminHero from "../pages/AdminHero";
 
-import Faq from "../pages/Faq";
+import FAQ from "../components/FAQ/FAQ";
 
 function Router() {
   return (
@@ -69,7 +69,7 @@ function Router() {
 
       <Route path="/admin/hero" element={<AdminHero />} />
 
-      <Route path="/faq" element={<Faq />} />
+      <Route path="/faq" element={<FAQ />} />
     </Routes>
   );
 }
