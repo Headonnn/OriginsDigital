@@ -46,7 +46,7 @@ function Header() {
           </li>
         ) : null}
         <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
-          <NavLink to="/faq">FAQ</NavLink>
+          <NavLink to="">FAQ</NavLink>
         </li>
       </ul>
 

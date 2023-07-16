@@ -32,8 +32,6 @@ import UpdateUserProfile from "../components/UpdateUserProfile";
 
 import AdminHero from "../pages/AdminHero";
 
-import Faq from "../pages/Faq";
-
 function Router() {
   return (
     <Routes>
@@ -73,8 +71,6 @@ function Router() {
       />
 
       <Route path="/admin/hero" element={<AdminHero />} />
-
-      <Route path="/faq" element={<Faq />} />
 
       <Route path="/admin/edit/carousel/:id" element={<EditCarousel />} />
       <Route
