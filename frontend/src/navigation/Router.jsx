@@ -34,7 +34,6 @@ import AdminHero from "../pages/AdminHero";
 
 import Faq from "../pages/Faq";
 
-
 function Router() {
   return (
     <Routes>
@@ -82,7 +81,6 @@ function Router() {
         path="/admin/edit/carousel_cat/:id"
         element={<EditCarouselCategory />}
       />
-
     </Routes>
   );
 }
