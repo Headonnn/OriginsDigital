@@ -42,21 +42,21 @@ function HomePage() {
 
           {dataSection.map((e) => {
             if (e.visibility === "all") {
-              return <CarouselAll dataSection={e} />;
+              return <CarouselAll dataSection={e} key={e.id} />;
             }
             if (e.visibility === "connected") {
               if (dataLogin) {
-                return <CarouselAll dataSection={e} />;
+                return <CarouselAll dataSection={e} key={e.id} />;
               }
-              return <div />;
+              return null;
             }
             if (e.visibility === "disconnected") {
               if (!dataLogin) {
-                return <CarouselAll dataSection={e} />;
+                return <CarouselAll dataSection={e} key={e.id} />;
               }
-              return <div />;
+              return null;
             }
-            return <div />;
+            return null;
           })}
         </div>
       )}
