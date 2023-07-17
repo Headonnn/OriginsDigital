@@ -7,14 +7,19 @@ import LoginContext from "../../contexts/LoginContext";
 
 function LoginId() {
   const [passwordVisible, setPasswordVisible] = useState(false);
+
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
+
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
 
   const [loginError, setLoginError] = useState(false);
+
   const resetPage = () => {
     setLoginError(false);
     navigate("/login");
@@ -75,7 +80,7 @@ function LoginId() {
           </div>
         </div>
       ) : (
-        <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+        <div className=" flex flex-col items-center border border-white px-10 py-8 mx-auto sm:max-w-md my-10 text-white rounded-[31px]">
           <h2 className="text-white text-xl text-center mt-15">Connexion</h2>
           <div className="rounded-lg p-4 mt-16">
             <form onSubmit={handleLogin}>
@@ -108,7 +113,7 @@ function LoginId() {
                   />
                 )}
               </div>
-              <p className="text-white text-sm font-light font-poppins mt-2">
+              <p className="text-white text-sm font-light font-poppins mt-2 ml-1">
                 Mot de passe oublié ? Cliquez{" "}
                 <span className="underline font-bold duration-200 hover:text-orange-600">
                   ici
@@ -118,7 +123,7 @@ function LoginId() {
               <div className="flex flex-col space-y-2 mt-16 w-full">
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white text-md rounded-md px-3 py-3 border border-black  w-full md:w-106 pr-10"
+                  className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-3"
                 >
                   S'identifier
                 </button>
