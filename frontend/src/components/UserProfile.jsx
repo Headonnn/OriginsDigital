@@ -128,7 +128,7 @@ function UserProfile() {
               type="button"
               className="bg-gradient-to-r from-red-600 to-orange-500 rounded-md px-3 py-3 border-black w-full"
             >
-              Retout à l'accueil
+              Retour à l'accueil
             </button>
           </NavLink>
         </div>
