@@ -69,16 +69,16 @@ function UpdateUserProfile() {
     <>
       <NavBar />
 
-      <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden text-white">
+      <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 overflow-hidden text-white">
         {dataLogin?.id && (
-          <div className="flex flex-col items-center relative bg-gradient-to-br from-blue-900  px-6 py-10 mx-auto sm:max-w-md my-10 rounded-[31px]">
-            <h2 className=" flex items-center gap-12 pb-6 text-2xl">
+          <div className=" flex gap-8 flex-col px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px] bg-gradient-to-br from-blue-900">
+            <h2 className=" text-white text-xl text-center">
               Mettez votre profil à jour :
             </h2>
 
             <form onSubmit={updateUser}>
               <div>
-                <label htmlFor="email" className="text-md">
+                <label htmlFor="email" className="text-gray-300">
                   Prénom
                 </label>
                 <input
@@ -88,11 +88,11 @@ function UpdateUserProfile() {
                   name="firstname"
                   type="text"
                   required
-                  className="w-full rounded-lg text-blue-800"
+                  className="w-full text-blue-800 mb-5"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="text-md">
+                <label htmlFor="email" className="text-gray-300">
                   Email
                 </label>
                 <input
@@ -102,12 +102,12 @@ function UpdateUserProfile() {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-lg text-blue-800"
+                  className="w-full text-blue-800 mb-5"
                 />
               </div>
               <div>
-                <label htmlFor="password" className="text-md">
-                  Password
+                <label htmlFor="password" className="text-gray-300">
+                  Veuillez confirmer avec votre mot de passe
                 </label>
                 <input
                   onChange={handleInput}
@@ -116,14 +116,14 @@ function UpdateUserProfile() {
                   name="password"
                   type="password"
                   required
-                  className="w-full rounded-lg text-blue-800"
+                  className="w-full text-blue-800 mb-5"
                 />
               </div>
 
-              <div className="mt-4">
+              <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-12"
                 >
                   Je valide
                 </button>

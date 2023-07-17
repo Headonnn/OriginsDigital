@@ -56,7 +56,7 @@ function LoginId() {
   return (
     <>
       {loginError ? (
-        <div className="px-4 mx-auto mb-20 max-w-screen-md">
+        <div className="h-[60vh] flex items-center justify-center px-4 mx-auto mb-20 max-w-screen-md">
           <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
               Vos identifiants sont incorrects
@@ -66,7 +66,7 @@ function LoginId() {
                 <button
                   type="button"
                   onClick={resetPage}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                  className="border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour
                 </button>
