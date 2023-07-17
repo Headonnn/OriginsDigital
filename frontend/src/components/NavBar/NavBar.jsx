@@ -39,7 +39,7 @@ function Header() {
         </li>
 
         {location.pathname !== "/" && (
-          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600">
+          <li className="text-l hidden lg:block tracking-wide duration-200 hover:text-orange-600">
             <NavLink to="/">Accueil</NavLink>
           </li>
         )}
@@ -47,7 +47,7 @@ function Header() {
           className={
             location.pathname === "/decouvrir"
               ? `hidden lg:block tracking-wide text-orange-600`
-              : `hidden lg:block tracking-wide hover:text-orange-600`
+              : `hidden lg:block tracking-wide duration-200 hover:text-orange-600`
           }
         >
           <NavLink to="/decouvrir">Découvrir</NavLink>
@@ -57,7 +57,7 @@ function Header() {
             className={
               location.pathname === "/ma_liste"
                 ? `hidden lg:block tracking-wide text-orange-600`
-                : `hidden lg:block tracking-wide  hover:text-orange-600`
+                : `hidden lg:block tracking-wide duration-200 hover:text-orange-600`
             }
           >
             <NavLink to="/ma_liste">Ma Liste</NavLink>
@@ -68,7 +68,7 @@ function Header() {
             className={
               location.pathname === "/admin"
                 ? `hidden lg:block tracking-wide text-orange-600`
-                : `hidden lg:block tracking-wide  hover:text-orange-600`
+                : `hidden lg:block tracking-wide duration-200 hover:text-orange-600`
             }
           >
             <NavLink to="/admin">Admin Page</NavLink>
@@ -77,8 +77,8 @@ function Header() {
         <li
           className={
             location.pathname === "/faq"
-              ? ` hidden lg:block tracking-wide text-orange-600`
-              : `hidden lg:block tracking-wide  hover:text-orange-600`
+              ? ` hidden lg:block tracking-wide  text-orange-600`
+              : `hidden lg:block tracking-wide duration-200 hover:text-orange-600`
           }
         >
           <NavLink to="/faq">FAQ</NavLink>
@@ -110,7 +110,7 @@ function Header() {
                   <NavLink to="/">
                     <button
                       type="submit"
-                      className=" hidden lg:block hover:text-orange-600 transition my-2"
+                      className=" hidden lg:block duration-200 hover:text-orange-600 transition my-2"
                       onClick={handleLogout}
                     >
                       {" "}
@@ -125,7 +125,7 @@ function Header() {
           <NavLink to="/login">
             <button
               type="button"
-              className="border hover:bg-white tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
+              className="border hover:bg-white tracking-wide lg:block hidden hover:text-black py-1 px-6 transition"
             >
               S'identifier
             </button>
