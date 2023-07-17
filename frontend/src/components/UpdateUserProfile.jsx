@@ -69,70 +69,74 @@ function UpdateUserProfile() {
     <>
       <NavBar />
 
-      <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 overflow-hidden text-white">
-        {dataLogin?.id && (
-          <div className=" flex gap-8 flex-col px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px] bg-gradient-to-br from-blue-900">
-            <h2 className=" text-white text-xl text-center">
-              Mettez votre profil à jour :
-            </h2>
+      {dataLogin?.id && (
+        <div className=" flex gap-8 flex-col border border-white px-10 py-8 mx-auto sm:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+          <button
+            type="button"
+            onClick={() => navigate("../userprofile")}
+            className="border hover:bg-white tracking-wide text-white hover:text-black py-1 px-3 transition"
+          >
+            Retour
+          </button>
+          <h2 className=" text-white text-xl text-center">
+            Mettez votre profil à jour :
+          </h2>
 
-            <form onSubmit={updateUser}>
-              <div>
-                <label htmlFor="email" className="text-gray-300">
-                  Prénom
-                </label>
-                <input
-                  onChange={handleInput}
-                  defaultValue={dataLogin.firstname}
-                  placeholder={dataLogin.firstname}
-                  name="firstname"
-                  type="text"
-                  required
-                  className="w-full text-blue-800 mb-5"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="text-gray-300">
-                  Email
-                </label>
-                <input
-                  onChange={handleInput}
-                  defaultValue={dataLogin.email}
-                  placeholder={dataLogin.email}
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full text-blue-800 mb-5"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="text-gray-300">
-                  Veuillez confirmer avec votre mot de passe
-                </label>
-                <input
-                  onChange={handleInput}
-                  defaultValue={dataLogin.password}
-                  placeholder="*****"
-                  name="password"
-                  type="password"
-                  required
-                  className="w-full text-blue-800 mb-5"
-                />
-              </div>
+          <form onSubmit={updateUser}>
+            <div>
+              <label htmlFor="email" className="text-gray-300">
+                Prénom
+              </label>
+              <input
+                onChange={handleInput}
+                defaultValue={dataLogin.firstname}
+                placeholder={dataLogin.firstname}
+                name="firstname"
+                type="text"
+                required
+                className="w-full text-blue-800 mb-5"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="text-gray-300">
+                Email
+              </label>
+              <input
+                onChange={handleInput}
+                defaultValue={dataLogin.email}
+                placeholder={dataLogin.email}
+                name="email"
+                type="email"
+                required
+                className="w-full text-blue-800 mb-5"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="text-gray-300">
+                Veuillez confirmer avec votre mot de passe
+              </label>
+              <input
+                onChange={handleInput}
+                defaultValue={dataLogin.password}
+                placeholder="*****"
+                name="password"
+                type="password"
+                required
+                className="w-full text-blue-800 mb-5"
+              />
+            </div>
 
-              <div>
-                <button
-                  type="submit"
-                  className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-12"
-                >
-                  Je valide
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-        ;
-      </div>
+            <div>
+              <button
+                type="submit"
+                className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-5"
+              >
+                Je valide
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </>
   );
 }
