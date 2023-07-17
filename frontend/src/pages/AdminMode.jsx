@@ -26,7 +26,7 @@ function AdminMode() {
               <Link to="/admin/video_list" className="w-2/5">
                 <button
                   type="button"
-                  className="text-sm md:text-md font-semibold duration-300 mb-6 w-full bg-black  text-white border border-gray-200 py-6 px-8 shadow-lg cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
+                  className="text-sm md:text-lg  font-semibold duration-300 mb-6 w-full bg-black  text-white border border-gray-200 py-6 px-8 shadow-lg cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
                 >
                   Gérer les vidéos
                 </button>
@@ -34,7 +34,7 @@ function AdminMode() {
               <Link to="/admin/category_list" className="w-2/5">
                 <button
                   type="button"
-                  className="text-sm md:text-md  font-semibold duration-300 w-full bg-black text-white border border-gray-200 shadow-lg py-6 px-8 cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
+                  className="text-sm md:text-lg font-semibold duration-300 w-full bg-black text-white border border-gray-200 shadow-lg py-6 px-8 cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
                 >
                   Gérer les catégories
                 </button>
@@ -44,7 +44,7 @@ function AdminMode() {
               <Link to="/admin/section" className="w-2/5">
                 <button
                   type="button"
-                  className="text-sm md:text-md  font-semibold duration-300 mb-6 w-full bg-black text-white border border-gray-200 shadow-lg py-6 px-8 cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
+                  className="text-sm md:text-lg  font-semibold duration-300 mb-6 w-full bg-black text-white border border-gray-200 shadow-lg py-6 px-8 cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
                 >
                   Gérer la page d'accueil
                 </button>
@@ -52,7 +52,7 @@ function AdminMode() {
               <Link to="/admin/user_list" className="w-2/5">
                 <button
                   type="button"
-                  className="text-sm md:text-md  font-semibold duration-300 w-full bg-black text-white border border-gray-200 shadow-lg py-6 px-8 cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
+                  className="text-sm md:text-lg font-semibold duration-300 w-full bg-black text-white border border-gray-200 shadow-lg py-6 px-8 cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
                 >
                   Gérer les utilisateurs
                 </button>
