@@ -17,6 +17,7 @@ function AdminCarousselCustom() {
 
   const [carousel, setCarousel] = useState({
     name: "",
+    visibility: "all",
   });
 
   const [vidCarousel, setVidCarousel] = useState(undefined);
