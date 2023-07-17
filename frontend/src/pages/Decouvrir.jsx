@@ -202,79 +202,92 @@ function Decouvrir() {
   return (
     <div>
       <NavBar />
-      {!isMaListe && (
-        <SearchBar
-          handleSearchChange={handleSearchChange}
-          handleChangeCategory={handleChangeCategory}
-        />
-      )}
-      {isMaListe && (
-        <div className="max-w-2xl mx-auto text-center  text-white  ">
-          <h2 className=" text-4xl font-extrabold text-center mb-8 lg:mb-16">
-            Ma Liste
+      {isMaListe ? (
+        <div className="max-w-2xl mx-auto text-center  text-white my-12">
+          <h2 className="mb-4 text-4xl font-extrabold text-center ">
+            Ma liste
+          </h2>
+        </div>
+      ) : (
+        <div className="max-w-2xl mx-auto text-center  text-white my-12">
+          <h2 className="mb-4 text-4xl font-extrabold text-center ">
+            Découvrir
           </h2>
         </div>
       )}
-      <div className="flex gap-2 px-2 ">
-        {nouveau ? (
-          <div
-            className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
-            onClick={handleNouveau}
-            onKeyDown={handleNouveau}
-            role="presentation"
-          >
-            Les plus récentes
+      {!isMaListe && (
+        <div className="flex flex-col">
+          <div>
+            <SearchBar
+              handleSearchChange={handleSearchChange}
+              handleChangeCategory={handleChangeCategory}
+            />
           </div>
-        ) : (
-          <div
-            className="text-white  border-white bg-black border-2 rounded-md p-2 cursor-pointer"
-            onClick={handleNouveau}
-            onKeyDown={handleNouveau}
-            role="presentation"
-          >
-            Les plus récentes
+          <div>
+            <div className="flex gap-2 mb-12 ">
+              {nouveau ? (
+                <div
+                  className="text-black  border-white bg-white border  rounded-md p-2 cursor-pointer"
+                  onClick={handleNouveau}
+                  onKeyDown={handleNouveau}
+                  role="presentation"
+                >
+                  Les plus récentes
+                </div>
+              ) : (
+                <div
+                  className="text-white  border-white bg-black border rounded-md p-2 cursor-pointer"
+                  onClick={handleNouveau}
+                  onKeyDown={handleNouveau}
+                  role="presentation"
+                >
+                  Les plus récentes
+                </div>
+              )}
+              {alphabet ? (
+                <div
+                  className="text-black bg-white border-white border rounded-md p-2 cursor-pointer"
+                  onClick={handleAlphabet}
+                  onKeyDown={handleAlphabet}
+                  role="presentation"
+                >
+                  A-Z
+                </div>
+              ) : (
+                <div
+                  className="text-white border-white  border rounded-md p-2 cursor-pointer"
+                  onClick={handleAlphabet}
+                  onKeyDown={handleAlphabet}
+                  role="presentation"
+                >
+                  A-Z
+                </div>
+              )}
+              {ancien ? (
+                <div
+                  className="text-black  border-white bg-white border rounded-md p-2 cursor-pointer"
+                  onClick={handleAncien}
+                  onKeyDown={handleAncien}
+                  role="presentation"
+                >
+                  Les plus anciennes
+                </div>
+              ) : (
+                <div
+                  className="text-white  border-white border rounded-md p-2 cursor-pointer"
+                  onClick={handleAncien}
+                  onKeyDown={handleAncien}
+                  role="presentation"
+                >
+                  Les plus anciennes
+                </div>
+              )}
+            </div>
           </div>
-        )}
-        {alphabet ? (
-          <div
-            className="text-black bg-white border-white border-2 rounded-md p-2 cursor-pointer"
-            onClick={handleAlphabet}
-            onKeyDown={handleAlphabet}
-            role="presentation"
-          >
-            A-Z
-          </div>
-        ) : (
-          <div
-            className="text-white border-white  border-2 rounded-md p-2 cursor-pointer"
-            onClick={handleAlphabet}
-            onKeyDown={handleAlphabet}
-            role="presentation"
-          >
-            A-Z
-          </div>
-        )}
-        {ancien ? (
-          <div
-            className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
-            onClick={handleAncien}
-            onKeyDown={handleAncien}
-            role="presentation"
-          >
-            Les plus anciennes
-          </div>
-        ) : (
-          <div
-            className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
-            onClick={handleAncien}
-            onKeyDown={handleAncien}
-            role="presentation"
-          >
-            Les plus anciennes
-          </div>
-        )}
-      </div>
-      <div className="flex justify-center gap-8 flex-wrap mt-5 mb-20">
+        </div>
+      )}
+
+      <div className="flex justify-center gap-8 flex-wrap mt-8 mb-20">
         {isFiltered.length === 0 && (
           <div className="text-white">
             Aucune vidéo ne correspond à vos critères de recherche
@@ -308,16 +321,16 @@ function Decouvrir() {
                   </Link>
 
                   <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
-                    <div className="text-md pl-1">{video.title}</div>
+                    <div className="text-md pl-1 truncate">{video.title}</div>
 
                     {video.is_freemium && !dataLogin ? (
-                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                      <div className=" flex items-center text-4xl justify-around  gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                         <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                         <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
                         <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
                       </div>
                     ) : (
-                      <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                      <div className=" flex items-center text-4xl  justify-around gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                         <Link to={`/description/${video.id - 1}`}>
                           <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                         </Link>
