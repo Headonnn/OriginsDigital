@@ -141,11 +141,10 @@ function CarouselAll({ dataSection }) {
                   if (dataSection.name[0] === "Vidéos gratuites") {
                     return e.is_freemium === 0;
                   }
-                  return dataSection.videos
-                    .map((el) => Object.values(el)[0])
-                    .includes(e.id);
                 }
-                return e;
+                return dataSection.videos
+                  .map((el) => Object.values(el)[0])
+                  .includes(e.id);
               })
               .map((video) => {
                 return (

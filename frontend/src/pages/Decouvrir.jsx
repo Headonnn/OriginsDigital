@@ -24,8 +24,9 @@ function Decouvrir() {
   const { dataVideo, setDataVideo } = useContext(VideoContext);
   const { dataLogin } = useContext(LoginContext);
   const [alphabet, setAlphabet] = useState(false);
-  const [nouveau, setNouveau] = useState(true);
+  const [nouveau, setNouveau] = useState(false);
   const [ancien, setAncien] = useState(false);
+  const [categ, setCateg] = useState([]);
   const compareVideos = (a, b) => {
     if (a.is_freemium === 0 && b.is_freemium === 1) {
       return -1;
@@ -101,10 +102,10 @@ function Decouvrir() {
     fetchFavorites();
     if (location.pathname === "/ma_liste") {
       setIsMaListe(true);
-
-      handleNouveau();
+      setFiltreCategorie("");
     } else {
       setIsMaListe(false);
+      setFiltreCategorie("");
     }
   }, [location, dataLogin]);
 
@@ -118,14 +119,30 @@ function Decouvrir() {
 
   useEffect(() => {
     const dataTemp = dataVideo;
-    let filteredVideo = dataTemp.filter((el) =>
-      el.title.toLowerCase().includes(search.toLowerCase())
-    );
-    if (isMaListe) {
-      filteredVideo = filteredVideo.filter((e) => dataFavorites.includes(e.id));
+    let vidCateg = [-1];
+    if (categ) {
+      vidCateg = categ.map((e) => e.id);
     }
+
+    let filteredVideo = [];
+    filteredVideo = dataTemp
+      .filter((el) => el.title.toLowerCase().includes(search.toLowerCase()))
+      .filter((e) => vidCateg.includes(e.id));
+
+    if (isMaListe) {
+      filteredVideo = dataTemp.filter((e) => dataFavorites.includes(e.id));
+    }
+
     setIsFiltered(filteredVideo.sort(compareVideos));
-  }, [dataVideo, search, filtreCategorie, isMaListe, dataFavorites, location]);
+  }, [
+    dataVideo,
+    search,
+    isMaListe,
+    dataFavorites,
+    location,
+    filtreCategorie,
+    categ,
+  ]);
 
   useEffect(() => {
     if (
@@ -135,17 +152,17 @@ function Decouvrir() {
     ) {
       axios
         .get(`http://localhost:5002/videos`)
-        .then((result) => setIsFiltered(result.data.sort(compareVideos)))
+        .then((result) => setCateg(result.data))
         .catch((error) => console.error(error));
     } else {
       axios
         .get(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
         .then((result) => {
-          setIsFiltered(result.data.sort(compareVideos));
+          setCateg(result.data);
         })
         .catch((error) => console.error(error));
     }
-  }, [setDataVideo, filtreCategorie]);
+  }, [setDataVideo, filtreCategorie, location]);
   const handleAlphabet = () => {
     const filtreTemp = isFiltered.sort((a, b) => {
       const nameA = a.title.toUpperCase();
@@ -185,79 +202,85 @@ function Decouvrir() {
   return (
     <div>
       <NavBar />
-      {!isMaListe ? (
+      {!isMaListe && (
         <SearchBar
           handleSearchChange={handleSearchChange}
           handleChangeCategory={handleChangeCategory}
         />
-      ) : (
-        <div className="flex gap-2 px-2">
-          {alphabet ? (
-            <div
-              className="text-black bg-white border-white border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleAlphabet}
-              onKeyDown={handleAlphabet}
-              role="presentation"
-            >
-              A-Z
-            </div>
-          ) : (
-            <div
-              className="text-white border-white  border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleAlphabet}
-              onKeyDown={handleAlphabet}
-              role="presentation"
-            >
-              A-Z
-            </div>
-          )}
-          {nouveau ? (
-            <div
-              className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleNouveau}
-              onKeyDown={handleNouveau}
-              role="presentation"
-            >
-              Les plus récentes
-            </div>
-          ) : (
-            <div
-              className="text-white  border-white bg-black border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleNouveau}
-              onKeyDown={handleNouveau}
-              role="presentation"
-            >
-              Les plus récentes
-            </div>
-          )}
-          {ancien ? (
-            <div
-              className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleAncien}
-              onKeyDown={handleAncien}
-              role="presentation"
-            >
-              Les plus anciennes
-            </div>
-          ) : (
-            <div
-              className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
-              onClick={handleAncien}
-              onKeyDown={handleAncien}
-              role="presentation"
-            >
-              Les plus anciennes
-            </div>
-          )}
+      )}
+      {isMaListe && (
+        <div className="max-w-2xl mx-auto text-center  text-white  ">
+          <h2 className=" text-4xl font-extrabold text-center mb-8 lg:mb-16">
+            Ma Liste
+          </h2>
         </div>
       )}
-
+      <div className="flex gap-2 px-2 ">
+        {nouveau ? (
+          <div
+            className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
+            onClick={handleNouveau}
+            onKeyDown={handleNouveau}
+            role="presentation"
+          >
+            Les plus récentes
+          </div>
+        ) : (
+          <div
+            className="text-white  border-white bg-black border-2 rounded-md p-2 cursor-pointer"
+            onClick={handleNouveau}
+            onKeyDown={handleNouveau}
+            role="presentation"
+          >
+            Les plus récentes
+          </div>
+        )}
+        {alphabet ? (
+          <div
+            className="text-black bg-white border-white border-2 rounded-md p-2 cursor-pointer"
+            onClick={handleAlphabet}
+            onKeyDown={handleAlphabet}
+            role="presentation"
+          >
+            A-Z
+          </div>
+        ) : (
+          <div
+            className="text-white border-white  border-2 rounded-md p-2 cursor-pointer"
+            onClick={handleAlphabet}
+            onKeyDown={handleAlphabet}
+            role="presentation"
+          >
+            A-Z
+          </div>
+        )}
+        {ancien ? (
+          <div
+            className="text-black  border-white bg-white border-2 rounded-md p-2 cursor-pointer"
+            onClick={handleAncien}
+            onKeyDown={handleAncien}
+            role="presentation"
+          >
+            Les plus anciennes
+          </div>
+        ) : (
+          <div
+            className="text-white  border-white border-2 rounded-md p-2 cursor-pointer"
+            onClick={handleAncien}
+            onKeyDown={handleAncien}
+            role="presentation"
+          >
+            Les plus anciennes
+          </div>
+        )}
+      </div>
       <div className="flex justify-center gap-8 flex-wrap mt-5 mb-20">
         {isFiltered.length === 0 && (
           <div className="text-white">
             Aucune vidéo ne correspond à vos critères de recherche
           </div>
         )}
+
         {isFiltered
           .filter((e) => {
             if (filtreCategorie === "9") {
