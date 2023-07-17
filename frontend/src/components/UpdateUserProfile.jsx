@@ -14,19 +14,21 @@ function UpdateUserProfile() {
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5002/users/${dataLogin.id}`)
-      .then((res) => setDataLogin(res.data))
-      .catch((err) => {
-        if (err.response) {
-          if (err.response.status === 404) {
-            console.error("PB UseEff UpdateUser");
+    if (dataLogin) {
+      axios
+        .get(`http://localhost:5002/users/${dataLogin.id}`)
+        .then((res) => setDataLogin(res.data))
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 404) {
+              console.error("PB UseEff UpdateUser");
+            }
+            if (err.response.status === 500) {
+              console.error(err);
+            }
           }
-          if (err.response.status === 500) {
-            console.error(err);
-          }
-        }
-      });
+        });
+    }
   }, [id]);
 
   const [user, setUser] = useState({
@@ -51,7 +53,7 @@ function UpdateUserProfile() {
     };
 
     axios
-      .put(`http://localhost:5002/users/${data.id}/edit`, data)
+      .put(`http://localhost:5002/users/${data && data.id}/edit`, data)
       .then((res) => {
         console.warn(res.data, "OK conslog UpdateUser");
         setDataLogin(res.data);
@@ -68,7 +70,7 @@ function UpdateUserProfile() {
       <NavBar />
 
       <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden text-white">
-        {dataLogin ? (
+        {dataLogin?.id && (
           <div className="flex flex-col items-center relative bg-gradient-to-br from-blue-900  px-6 py-10 mx-auto sm:max-w-md my-10 rounded-[31px]">
             <h2 className=" flex items-center gap-12 pb-6 text-2xl">
               Mettez votre profil à jour :
@@ -81,7 +83,7 @@ function UpdateUserProfile() {
                 </label>
                 <input
                   onChange={handleInput}
-                  value={user.firstname}
+                  defaultValue={dataLogin.firstname}
                   placeholder={dataLogin.firstname}
                   name="firstname"
                   type="text"
@@ -95,7 +97,7 @@ function UpdateUserProfile() {
                 </label>
                 <input
                   onChange={handleInput}
-                  value={user.email}
+                  defaultValue={dataLogin.email}
                   placeholder={dataLogin.email}
                   name="email"
                   type="email"
@@ -109,7 +111,7 @@ function UpdateUserProfile() {
                 </label>
                 <input
                   onChange={handleInput}
-                  value={user.password}
+                  defaultValue={dataLogin.password}
                   placeholder="*****"
                   name="password"
                   type="password"
@@ -128,7 +130,7 @@ function UpdateUserProfile() {
               </div>
             </form>
           </div>
-        ) : null}
+        )}
         ;
       </div>
     </>
