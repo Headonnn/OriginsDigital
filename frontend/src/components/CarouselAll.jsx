@@ -169,45 +169,38 @@ function CarouselAll({ dataSection }) {
                         alt={video.title}
                         className="md:h-40 md:w-96 h-[6.5rem]"
                       />
-
-                      <div className="flex flex-col justify-between absolute text-ellipsis bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
-                        <div className="md:text-base text-xs pl-1 truncate">
-                          {video.title}
-                        </div>
-                        {video.is_freemium && !dataLogin ? (
-                          <div className=" flex items-center md:text-2xl text-xs  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
-                            <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
-                            <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                            <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
-                          </div>
-                        ) : (
-                          <div className=" flex items-center md:text-2xl text-lg  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                      <div className="flex flex-col justify-between absolute bg-black p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
+                        <div className="text-md pl-1">{video.title}</div>
+                        {!video.is_freemium && !dataLogin ? (
+                          <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl transition">
                             <Link to={`/description/${video.id - 1}`}>
-                              <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
+                              <BsInfoCircle className="hover:bg-white hover:text-black cursor-pointer hover:rounded-2xl" />
                             </Link>
                             <Link to={`/watch/${video.id - 1}`}>
-                              <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
+                              <BsPlayCircle className="hover:bg-white  hover:text-black cursor-pointer hover:rounded-2xl" />
                             </Link>
-                            <button
-                              type="button"
-                              onClick={() => handleAddToList(video.id)}
-                            >
-                              {!dataFavorites.includes(
-                                parseInt(video.id, 10)
-                              ) ? (
-                                <BsPlusCircle
-                                  id={video.id}
-                                  className="hover:bg-white  hover:text-black hover:rounded-2xl"
-                                />
-                              ) : (
-                                <BsCheckCircle
-                                  id={video.id}
-                                  className="hover:bg-white  hover:text-black hover:rounded-2xl"
-                                />
-                              )}
-                            </button>
+                            {dataLogin && (
+                              <button
+                                type="button"
+                                onClick={() => handleAddToList(video.id)}
+                              >
+                                {!dataFavorites.includes(
+                                  parseInt(video.id, 10)
+                                ) ? (
+                                  <BsPlusCircle
+                                    id={video.id}
+                                    className="hover:bg-white  hover:text-black cursor-pointer hover:rounded-2xl"
+                                  />
+                                ) : (
+                                  <BsCheckCircle
+                                    id={video.id}
+                                    className="hover:bg-white  hover:text-black cursor-pointer hover:rounded-2xl"
+                                  />
+                                )}
+                              </button>
+                            )}
                           </div>
-                        )}
+                        ) : null}
                       </div>
                     </div>
                   </div>
