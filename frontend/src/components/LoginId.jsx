@@ -57,8 +57,8 @@ function LoginId() {
   return (
     <>
       {loginError ? (
-        <div className="h-[60vh] flex items-center justify-center">
-          <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
+        <div className="px-4 mx-auto mb-20 max-w-screen-md">
+          <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
               Vos identifiants sont incorrects
             </p>
