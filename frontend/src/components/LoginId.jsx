@@ -21,7 +21,6 @@ function LoginId() {
     navigate("/login");
   };
 
-
   const { setDataLogin } = useContext(LoginContext);
 
   const handleLogin = (e) => {
@@ -58,7 +57,6 @@ function LoginId() {
   return (
     <>
       {loginError ? (
-
         <div className="h-[60vh] flex items-center justify-center">
           <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
             <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
@@ -76,8 +74,7 @@ function LoginId() {
               </NavLink>
             </div>
           </div>
-        </div >
-
+        </div>
       ) : (
         <div className="loginid-container bg-black p-5 py-8 relative overflow-hidden">
           <div className="bg-gradient-to-br from-blue-900 relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
@@ -144,8 +141,8 @@ function LoginId() {
             </div>
           </div>
         </div>
-      )
-      };
+      )}
+      ;
     </>
   );
 }
