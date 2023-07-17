@@ -39,6 +39,7 @@
     "cloudinary-react": "^1.8.1",
     "jsonwebtoken": "^9.0.0",
     "react-csv": "^2.2.2",
+    "react-day-and-night-toggle": "^1.0.18",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
