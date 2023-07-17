@@ -47,13 +47,6 @@ function FAQ() {
               />
             );
           })}
-
-          {/*   <p className="text-center text-white textbase mt-9">
-            Vous n'avez pas trouvé la réponse à votre question ?{" "}
-            <span className="font-medium text-[#E52460] transition-all duration-200 hover:text-[#bb1e50] focus:text-[#bb1e50] hover:underline">
-             <NavLink to="/contact">Contactez notre support</NavLink> 
-            </span>
-          </p> */}
         </div>
       </section>
     </>
