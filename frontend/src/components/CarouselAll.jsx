@@ -18,7 +18,7 @@ function CarouselAll({ dataSection }) {
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo } = useContext(VideoContext);
   const { dataLogin } = useContext(LoginContext);
-
+  const [mobile, setMobile] = useState(false);
   const fetchFavorites = () => {
     if (dataLogin) {
       axios
@@ -44,6 +44,13 @@ function CarouselAll({ dataSection }) {
     fetchFavorites();
     console.warn(dataVideo);
   }, []);
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  }, []);
 
   const responsive = {
     largeDesktop: {
@@ -58,12 +65,12 @@ function CarouselAll({ dataSection }) {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      items: 5,
       partialVisibilityGutter: 30,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 3,
       partialVisibilityGutter: 30,
     },
   };
@@ -113,13 +120,13 @@ function CarouselAll({ dataSection }) {
   return (
     dataVideo.length > 0 && (
       <div className="carousel md:mx-6 lg:mx-6 bg-neutral-950 my-9 mx-10">
-        <h2 className="text-md md:text-lg text-white font-light py-3 ml-4">
+        <h2 className="text-md md:text-lg text-white font-light py-3 ">
           {dataSection.name ? dataSection.name[0] : dataSection.carousel.name}
         </h2>
 
         <Carousel
           responsive={responsive}
-          arrows
+          arrows={!mobile}
           draggable
           swipeable
           infinite
@@ -160,19 +167,21 @@ function CarouselAll({ dataSection }) {
                       <img
                         src={video.thumbnail}
                         alt={video.title}
-                        className="h-40 w-96"
+                        className="md:h-40 md:w-96 h-[6.5rem]"
                       />
 
-                      <div className="flex flex-col justify-between absolute bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
-                        <div className="text-md pl-1">{video.title}</div>
+                      <div className="flex flex-col justify-between absolute text-ellipsis bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
+                        <div className="md:text-base text-xs pl-1 truncate">
+                          {video.title}
+                        </div>
                         {video.is_freemium && !dataLogin ? (
-                          <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                          <div className=" flex items-center md:text-2xl text-xs  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                             <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                             <BsPlayCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
                             <BsPlusCircle className="hover:bg-white  hover:text-black hover:rounded-2xl" />
                           </div>
                         ) : (
-                          <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
+                          <div className=" flex items-center md:text-2xl text-lg  w-1/2 gap-4 px-2 py-1 rounded-xl cursor-pointer transition">
                             <Link to={`/description/${video.id - 1}`}>
                               <BsInfoCircle className="hover:bg-white hover:text-black hover:rounded-2xl" />
                             </Link>
