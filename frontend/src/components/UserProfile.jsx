@@ -36,7 +36,7 @@ function UserProfile() {
   return (
     <>
       <NavBar />
-      <div className="loginid-container bg-black min-h-screen p-5 pt-15 pb-15 relative overflow-hidden text-white">
+      <div className="loginid-container bg-black min-h-screen p-5 pt-15 pb-15 overflow-hidden text-white">
         <div className="flex flex-col items-center relative bg-gradient-to-br from-blue-900  px-6 py-10 mx-auto sm:max-w-md my-10 rounded-[31px]">
           <h2 className=" flex items-center gap-12 pb-6 text-2xl">
             Votre profil
