@@ -30,7 +30,7 @@ function FAQ() {
     <>
       <NavBar />
 
-      <section className="px-4 mx-auto mb-20 max-w-screen-md">
+      <section className="px-4 mx-auto mb-20 max-w-screen-md mt-12">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-2xl mx-auto text-center  text-white ">
             <h2 className="mb-4 text-4xl font-extrabold text-center ">FAQ</h2>
