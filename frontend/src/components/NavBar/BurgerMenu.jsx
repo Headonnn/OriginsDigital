@@ -26,7 +26,7 @@ function BurgerMenu() {
           />
         )}
         {openMenu === true && (
-          <div className="w-full absolute top-24 right-0 py-4 px-4 bg-black bg-opacity-60	 rounded-b-md transition">
+          <div className="w-full absolute top-24 right-0 py-4 px-4 bg-black rounded-b-md transition">
             <ul className="">
               <li className="p-2 hover:text-orange-600 duration-200 font-medium">
                 <NavLink to="/decouvrir">Découvrir</NavLink>

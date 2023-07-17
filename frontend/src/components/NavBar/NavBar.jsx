@@ -26,7 +26,7 @@ function Header() {
   };
 
   return (
-    <nav className="flex justify-between items-center text-white inset-x-0 h-24 bg-black bg-opacity-60 shadow-[0px_20px_20px_10px_#00000024]-md">
+    <nav className="flex justify-between items-center text-white inset-x-0 h-24 bg-black shadow-[0px_20px_20px_10px_#00000024]-md">
       <ul className="flex items-center gap-12">
         <li>
           <Link to="/">
