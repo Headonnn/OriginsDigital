@@ -1,37 +1,28 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
+import axios from "axios";
 import ButtonOrange from "./ButtonOrange";
 import NavBar from "./NavBar/NavBar";
 import LoginContext from "../../contexts/LoginContext";
-// import axios from "axios";
 
 function UserProfile() {
-  const { dataLogin } = useContext(LoginContext);
+  const { dataLogin, setDataLogin } = useContext(LoginContext);
 
-  // const { id } = useParams();
+  const navigate = useNavigate();
 
-  // const [user, setUser] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  // });
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5002/users/id`)
-  //     .then((res) => setDataLogin("User OK", res.data))
-  //     .catch((err) => {
-  //       if (err.response) {
-  //         if (err.response.status === 404) {
-  //           console.error("PB UseEff UserProf");
-  //         }
-  //         if (err.response.status === 500) {
-  //           console.error(err);
-  //         }
-  //       }
-  //     });
-  // }, [id]);
+  const deleteUser = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:5002/users/${dataLogin.id}`)
+      .then((res) => {
+        console.warn(res.data);
+        localStorage.removeItem("token");
+        setDataLogin(undefined);
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <>
@@ -99,24 +90,36 @@ function UserProfile() {
                     <SlPencil className="block md:hidden cursor-pointer text-orange-500 my-4 mr-3 w-8 h-8" />
                   </li>
                   <li>
-                    <p className="hidden md:block border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-3 px-3 text-sm md:px-6 md:text-lg transition">
-                      Modifier ?
-                    </p>
+                    {dataLogin.id && (
+                      <p className="hidden md:block border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-3 px-3 text-sm md:px-6 md:text-lg transition">
+                        [WIP]
+                      </p>
+                    )}
                     <SlPencil className="block md:hidden cursor-pointer text-orange-500 my-4 mr-3 w-8 h-8" />
                   </li>
                   <li>
-                    <p className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition">
-                      Supprimer
-                    </p>
+                    {dataLogin.id && (
+                      <button
+                        type="button"
+                        onClick={(e) => deleteUser(e, dataLogin.id)}
+                        className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                      >
+                        Supprimer
+                      </button>
+                    )}
                   </li>
                 </ul>
               </div>
             </div>
           ) : null}
           <div className="flex justify-center mt-5">
-            <p className="nlock md:hidden flex justify-center border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide rounded-xl py-2 px-3 text-l md:px-6  md:text-lg transition">
+            <button
+              type="button"
+              onClick={(e) => deleteUser(e, dataLogin.id)}
+              className="nlock md:hidden flex justify-center border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide rounded-xl py-2 px-3 text-l md:px-6  md:text-lg transition"
+            >
               Supprimer le compte
-            </p>
+            </button>
           </div>
           <div className="flex justify-center mt-10">
             <NavLink to="/">

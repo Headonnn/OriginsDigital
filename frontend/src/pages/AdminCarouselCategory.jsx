@@ -10,16 +10,20 @@ function AdminCarouselCategory() {
   const navigate = useNavigate();
   const { categorie } = useContext(VideoContext);
 
-  const [carousel, setCarousel] = useState(undefined);
+  const [carousel, setCarousel] = useState({ category: 1, visibility: "all" });
 
   const handleInput = (e) => {
     e.persist();
+
     setCarousel({ ...carousel, [e.target.name]: e.target.value });
   };
 
   const handleSub = async (e) => {
     e.preventDefault();
-
+    if (!carousel.max_number) {
+      console.error("champ requis");
+      return;
+    }
     const data = {
       category: carousel.category,
       maxNumber: carousel.max_number,
@@ -45,7 +49,9 @@ function AdminCarouselCategory() {
       ordre: section.ordre,
       carouselCategoryId: section.carousel_category_id,
       title: "categorie",
+      visibility: carousel.visibility,
     };
+
     await axios
       .post(`http://localhost:5002/sections/category`, dataSec)
 
@@ -103,6 +109,29 @@ function AdminCarouselCategory() {
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   onChange={handleInput}
                 />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="inputFieldName">Visibilité :</label>
+                <select
+                  name="visibility"
+                  className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
+                  onChange={handleInput}
+                >
+                  <option name="visibility" id="visibility" value="all">
+                    Tous les utilisateurs
+                  </option>
+                  <option name="visibility" id="visibility" value="connected">
+                    Utilisateurs connectés
+                  </option>
+                  <option
+                    name="visibility"
+                    id="visibility"
+                    value="disconnected"
+                  >
+                    Utilisateurs non connectés
+                  </option>
+                </select>
               </div>
             </div>
           </form>

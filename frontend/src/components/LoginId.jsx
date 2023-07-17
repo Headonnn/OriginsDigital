@@ -58,8 +58,8 @@ function LoginId() {
             <div className="relative">
               <input
                 type="email"
-                className=" text-white placeholder-white font-regular text-md rounded-md px-3 py-3 mb-4 border-black  w-full md:w-96 pr-10"
-                placeholder="identifiant"
+                className=" text-blue-800 placeholder-blue-800 font-regular text-md rounded-md px-3 py-3 mb-4 border-black  w-full md:w-96 pr-10"
+                placeholder="votre adresse mail"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
@@ -68,19 +68,19 @@ function LoginId() {
             <div className="relative">
               <input
                 type={passwordVisible ? "text" : "password"}
-                className=" placeholder-white text-md rounded-md px-3 py-3 border border-black w-full md:w-106 pr-10"
-                placeholder="mot de passe"
+                className="text-blue-800 placeholder-blue-800 text-md rounded-md px-3 py-3 border border-black w-full md:w-106 pr-10"
+                placeholder="votre mot de passe"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
               {passwordVisible ? (
-                <IoEyeOffSharp
-                  className="absolute right-2 transform -translate-y-1/2 text-white w-6 h-6 cursor-pointer"
+                <IoEyeSharp
+                  className="absolute top-1/2 right-2 transform -translate-y-1/2 text-blue-800 w-6 h-6 cursor-pointer"
                   onClick={togglePasswordVisibility}
                 />
               ) : (
-                <IoEyeSharp
-                  className="absolute top-1/2 right-2 transform -translate-y-1/2 text-white w-6 h-6 cursor-pointer"
+                <IoEyeOffSharp
+                  className="absolute top-1/2 right-2 transform -translate-y-1/2 text-blue-800 w-6 h-6 cursor-pointer"
                   onClick={togglePasswordVisibility}
                 />
               )}

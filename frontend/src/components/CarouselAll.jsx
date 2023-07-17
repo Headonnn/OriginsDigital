@@ -133,13 +133,20 @@ function CarouselAll({ dataSection }) {
                 }
                 return e;
               })
-              .filter((e) =>
-                dataSection.name === "Nouveautés"
-                  ? handleDateNouv(e.date)
-                  : dataSection.videos
-                      .map((el) => Object.values(el)[0])
-                      .includes(e.id)
-              )
+              .filter((e) => {
+                if (dataSection.name) {
+                  if (dataSection.name[0] === "Nouveautés") {
+                    return handleDateNouv(e.date);
+                  }
+                  if (dataSection.name[0] === "Vidéos gratuites") {
+                    return e.is_freemium === 0;
+                  }
+                  return dataSection.videos
+                    .map((el) => Object.values(el)[0])
+                    .includes(e.id);
+                }
+                return e;
+              })
               .map((video) => {
                 return (
                   <div

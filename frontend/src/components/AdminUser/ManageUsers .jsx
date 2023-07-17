@@ -186,7 +186,7 @@ function ManageUsers() {
             </CSVLink>
           </div>
           <div className="flex justify-center items-center">
-            <table className=" w-1/2 border-collapse text-left text-sm">
+            <table className=" w-full border-collapse text-left text-sm">
               <thead>
                 <tr>
                   <th className="py-4 text-lg">ID</th>

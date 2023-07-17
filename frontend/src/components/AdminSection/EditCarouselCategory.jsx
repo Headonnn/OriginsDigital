@@ -39,6 +39,7 @@ function EditCarouselCategory() {
       const init = {
         category: sections.carousel.category_id,
         max_number: sections.carousel.max_number,
+        visibility: sections.visibility,
       };
 
       setCarousel(init);
@@ -57,6 +58,13 @@ function EditCarouselCategory() {
 
       .catch((err) => console.warn(err));
 
+    const dataVis = {
+      visibility: carousel.visibility,
+    };
+    await axios
+      .put(`http://localhost:5002/sections/${sections.id}/visibility/`, dataVis)
+
+      .catch((err) => console.warn(err));
     navigate("/admin/section");
   };
 
@@ -111,6 +119,31 @@ function EditCarouselCategory() {
                   onChange={handleInput}
                   value={carousel.max_number}
                 />
+              </div>
+              <div className=" flex flex-col">
+                <div className="flex w-full flex-col ">
+                  <label htmlFor="inputFieldName">Visibilité :</label>
+                  <select
+                    name="visibility"
+                    className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
+                    onChange={handleInput}
+                    value={carousel.visibility}
+                  >
+                    <option name="visibility" id="visibility" value="all">
+                      Tous les utilisateurs
+                    </option>
+                    <option name="visibility" id="visibility" value="connected">
+                      Utilisateurs connectés
+                    </option>
+                    <option
+                      name="visibility"
+                      id="visibility"
+                      value="disconnected"
+                    >
+                      Utilisateurs non connectés
+                    </option>
+                  </select>
+                </div>
               </div>
             </div>
           </form>
