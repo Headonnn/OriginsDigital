@@ -2,7 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword, verifyPassword } = require("./auth");
+const {
+  hashPassword,
+  verifyPassword,
+  verifyPasswordBeforeDelete,
+} = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
 const videoControllers = require("./controllers/videoControllers");
@@ -91,7 +95,11 @@ router.get("/favorites/:id", favoritesControllers.read);
 
 router.put("/users/:id", userControllers.edit);
 router.put("/users/:id/edit", hashPassword, userControllers.editAll);
-router.delete("/users/:id", userControllers.destroy);
+router.delete(
+  "/users/:id",
+  verifyPasswordBeforeDelete,
+  userControllers.destroy
+);
 
 // Video routes
 
