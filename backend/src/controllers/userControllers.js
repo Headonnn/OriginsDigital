@@ -126,6 +126,27 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     });
 };
 
+const verifyPasswordBeforeDelete = (req, res, next) => {
+  const { password } = req.body;
+  models.user
+    .checkPassword(password)
+    .then(([user]) => {
+      if (user[0] != null) {
+        req.user = user[0];
+        console.warn("password verified, preparing to nuke the account");
+        next();
+      } else {
+        res.status(500).send("error checking the password");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res
+        .status(500)
+        .send("UserController level, error retrieving data from database");
+    });
+};
+
 module.exports = {
   browse,
   read,
@@ -134,4 +155,5 @@ module.exports = {
   add,
   destroy,
   getUserByEmailWithPasswordAndPassToNext,
+  verifyPasswordBeforeDelete,
 };

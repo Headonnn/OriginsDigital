@@ -80,7 +80,7 @@ function LoginId() {
           </div>
         </div>
       ) : (
-        <div className=" flex flex-col items-center border border-white px-10 py-8 mx-auto sm:max-w-md my-10 text-white rounded-[31px]">
+        <div className="flex flex-col items-center border border-white px-10 py-8 mx-auto sm:max-w-md my-10 text-white rounded-[31px]">
           <h2 className="text-white text-xl text-center mt-15">Connexion</h2>
           <div className="rounded-lg p-4 mt-16">
             <form onSubmit={handleLogin}>
