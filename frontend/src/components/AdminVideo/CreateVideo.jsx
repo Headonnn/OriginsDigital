@@ -110,26 +110,23 @@ function CreateVideo() {
           </div>
         </div>
       ) : (
-        <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-            <div className="px-2 md:px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:py-6 flex items-center justify-between ">
-              <div>
-                <h2 className="text-lg md:text-2xl">Ajouter une vidéo</h2>
-              </div>
-              <div>
+        <div className="loginid-container bg-black min-h-screen my-12 relative overflow-hidden">
+          <div className="mx-auto flex flex-col sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+            <div className="flex justify-between items-center w-2/3 mb-6">
+              <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={() => navigate(-1)}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                  onClick={() => navigate("/admin/")}
+                  className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour
                 </button>
               </div>
+              <h2 className="mb-4 text-4xl font-extrabold text-center ">
+                Ajouter une vidéo
+              </h2>
             </div>
-            <form
-              className="mt-6 flex flex-col px-3 md:px-6"
-              onSubmit={saveVideo}
-            >
+            <form className="mt-6 flex flex-col" onSubmit={saveVideo}>
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Fichier vidéo *
               </label>

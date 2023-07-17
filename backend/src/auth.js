@@ -70,21 +70,15 @@ const verifyPassword = async (req, res) => {
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization");
-
     if (!authorizationHeader) {
       throw new Error("Authorization header is missing");
     }
-
     const [type, token] = authorizationHeader.split(" ");
-
     if (type !== "Bearer") {
       throw new Error("Authorization header has an incorrect type");
     }
-
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-
     req.payload = payload;
-
     next();
   } catch (err) {
     console.error(err);
@@ -99,8 +93,37 @@ const verifyToken = (req, res, next) => {
   }
 };
 
+const verifyPasswordBeforeDelete = async (req, res, next) => {
+  console.warn(req.body, "HELLO MATE");
+  console.warn(req.user, "OLA AMIGO");
+  try {
+    const { password } = req.body;
+    const { hashedPassword } = req.user;
+
+    if (!hashedPassword || !password) {
+      return res
+        .status(400)
+        .send("Invalid request a l'étape 1 du verifypasswordbeforedelete.");
+    }
+    const isVerified = await argon2.verify(hashedPassword, password);
+    if (isVerified) {
+      const user = { ...req.user };
+      delete user.hashedPassword;
+      res.status(200).send("olala ça nuke des accounts bravo");
+      next();
+    }
+    res.status(401).send("can't verify the password before nuking");
+    return null;
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("verifypasswordbeforedelete internal servor error");
+    return null;
+  }
+};
+
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyPasswordBeforeDelete,
 };

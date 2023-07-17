@@ -43,20 +43,44 @@ function Header() {
             <NavLink to="/">Accueil</NavLink>
           </li>
         )}
-        <li className="text-l hidden lg:block tracking-wide hover:text-orange-600">
+        <li
+          className={
+            location.pathname === "/decouvrir"
+              ? `hidden lg:block tracking-wide text-orange-600`
+              : `hidden lg:block tracking-wide hover:text-orange-600`
+          }
+        >
           <NavLink to="/decouvrir">Découvrir</NavLink>
         </li>
         {dataLogin ? (
-          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
+          <li
+            className={
+              location.pathname === "/ma_liste"
+                ? `hidden lg:block tracking-wide text-orange-600`
+                : `hidden lg:block tracking-wide  hover:text-orange-600`
+            }
+          >
             <NavLink to="/ma_liste">Ma Liste</NavLink>
           </li>
         ) : null}
         {dataLogin?.is_admin ? (
-          <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
+          <li
+            className={
+              location.pathname === "/admin"
+                ? `hidden lg:block tracking-wide text-orange-600`
+                : `hidden lg:block tracking-wide  hover:text-orange-600`
+            }
+          >
             <NavLink to="/admin">Admin Page</NavLink>
           </li>
         ) : null}
-        <li className="text-l hidden lg:block tracking-wide hover:text-orange-600 transition">
+        <li
+          className={
+            location.pathname === "/faq"
+              ? ` hidden lg:block tracking-wide text-orange-600`
+              : `hidden lg:block tracking-wide  hover:text-orange-600`
+          }
+        >
           <NavLink to="/faq">FAQ</NavLink>
         </li>
         <li>
@@ -67,26 +91,26 @@ function Header() {
       <div className="flex items-center gap-8">
         {dataLogin ? (
           <ul>
-            <li className="relative text-l hidden lg:block tracking-wide transition">
+            <li className="relative hidden lg:block tracking-wide transition">
               <button
                 type="button"
                 onClick={handleClickMyProfile}
-                className="border hover:bg-white duration-300 tracking-wide lg:block hidden hover:text-black rounded-xl py-2 px-6 transition"
+                className="border hover:bg-white duration-300 tracking-wide lg:block hidden hover:text-black py-2 px-6 transition"
               >
                 {" "}
                 Bonjour {dataLogin.firstname} !
               </button>
               {isDropdownOpen && (
-                <div className="px-6 absolute duration-300  bg-black bg-opacity-60 w-60 top-[70px] rounded-b-md py-2">
+                <div className="absolute duration-300  bg-black bg-opacity-60 w-60 top-[70px]">
                   <NavLink to="/userprofile">
-                    <p className="text-l hidden lg:block hover:text-orange-600 transition my-2">
+                    <p className=" hidden lg:block hover:text-orange-600 transition my-2">
                       Mon compte
                     </p>
                   </NavLink>
                   <NavLink to="/">
                     <button
                       type="submit"
-                      className="text-l hidden lg:block hover:text-orange-600 transition my-2"
+                      className=" hidden lg:block hover:text-orange-600 transition my-2"
                       onClick={handleLogout}
                     >
                       {" "}
