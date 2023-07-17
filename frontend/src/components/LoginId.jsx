@@ -14,6 +14,12 @@ function LoginId() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loginError, setLoginError] = useState(false);
+  const resetPage = () => {
+    setLoginError(false);
+    navigate("/login");
+  };
+
   const { setDataLogin } = useContext(LoginContext);
 
   const handleLogin = (e) => {
@@ -43,10 +49,32 @@ function LoginId() {
       })
       .catch((error) => {
         console.error("Catch level, Error during login attempt", error);
+        setLoginError(!loginError);
       });
   };
 
   return (
+ <>
+      {loginError ? (
+        <div className="h-[60vh] flex items-center justify-center">
+          <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
+            <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
+              Vos identifiants sont incorrects
+            </p>
+            <div className="flex justify-center">
+              <NavLink to="/login">
+                <button
+                  type="button"
+                  onClick={resetPage}
+                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                >
+                  Retour
+                </button>
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      ) : (
     <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
       <h2 className="text-white text-xl text-center mt-15">Connexion</h2>
       <div className="rounded-lg p-4 mt-16">
@@ -107,6 +135,10 @@ function LoginId() {
         </form>
       </div>
     </div>
+     )}
+      ;
+    </>
+           
   );
 }
 
