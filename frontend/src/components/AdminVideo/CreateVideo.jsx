@@ -14,6 +14,7 @@ function CreateVideo() {
   const [isClicked, setIsClicked] = useState(false);
   const [videoFile, setVideoFile] = useState("");
   const [thumbnailFile, setThumbnailFile] = useState("");
+
   const [video, setVideo] = useState({
     title: "",
     url: "",
@@ -145,7 +146,7 @@ function CreateVideo() {
                 setVideoFile={setVideoFile}
               />
 
-              <label htmlFor="videoTitle" className="text-white flex flex-col">
+              <label htmlFor="videoTitle" className="text-white flex flex-col ">
                 Titre*
                 <input
                   type="text"
@@ -154,6 +155,8 @@ function CreateVideo() {
                   placeholder="Titre"
                   value={video.title}
                   onChange={handleInput}
+                  required
+                  maxLength={150}
                 />
               </label>
 
