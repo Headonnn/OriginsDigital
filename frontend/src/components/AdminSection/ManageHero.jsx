@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "../components/NavBar/NavBar";
-import VideoContext from "../../contexts/VideoContext";
-import SearchVideos from "../components/SearchVideos";
+import NavBar from "../NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
+import SearchVideos from "../SearchVideos";
 
-function AdminHero() {
+function ManageHero() {
   const navigate = useNavigate();
   const { dataVideo } = useContext(VideoContext);
   const [inHero, setInHero] = useState(
@@ -111,4 +111,4 @@ function AdminHero() {
   );
 }
 
-export default AdminHero;
+export default ManageHero;

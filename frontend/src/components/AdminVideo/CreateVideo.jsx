@@ -111,13 +111,13 @@ function CreateVideo() {
           </div>
         </div>
       ) : (
-        <div className="loginid-container bg-black min-h-screen my-12 overflow-hidden">
-          <div className="mx-auto flex flex-col sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-            <div className="flex justify-between px-3 items-center md:w-2/3 w-3/4 mb-6">
+        <div className="max-w-screen-lg mx-auto ">
+          <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+            <div className="flex justify-between items-center md:w-2/3 w-3/4">
               <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={() => navigate("/admin/video_list")}
+                  onClick={() => navigate("/admin/user")}
                   className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour
@@ -134,7 +134,7 @@ function CreateVideo() {
                 Ajouter une vidéo
               </h2>
             </div>
-            <form className="mt-6 flex flex-col px-3 " onSubmit={saveVideo}>
+            <form className="mt-6 flex flex-col " onSubmit={saveVideo}>
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Fichier vidéo *
               </label>

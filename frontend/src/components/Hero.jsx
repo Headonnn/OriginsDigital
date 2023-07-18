@@ -60,7 +60,7 @@ function Hero() {
                     dataVideo.filter((e) => e.is_in_hero === 1)[0].id - 1
                   }`}
                 >
-                  <div className=" flex items-center  text-xs md:text-base p-2 gap-1 md:gap-[16px] border bg-white text-black rounded-xl  md:mb-[16px] md:p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
+                  <div className=" flex items-center  text-xs md:text-base p-2 gap-1 md:gap-[16px] border bg-white text-black rounded-md  md:mb-[16px] md:p-[12px] cursor-pointer hover:bg-black hover:text-white transition">
                     <BsFillPlayFill /> Lecture
                   </div>
                 </Link>
@@ -69,7 +69,7 @@ function Hero() {
                     dataVideo.filter((e) => e.is_in_hero === 1)[0].id - 1
                   }`}
                 >
-                  <div className=" flex  items-center p-2 text-xs md:text-base md:gap-[16px] border border-[#9ca3af]/80 bg-[#9ca3af]/80 text-black rounded-xl gap-4  mb-5 md:mb-[16px] md:p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                  <div className=" flex  items-center p-2 text-xs md:text-base md:gap-[16px] border border-[#9ca3af]/80 bg-[#9ca3af]/80 text-black rounded-md gap-4  mb-5 md:mb-[16px] md:p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
                     <BsInfoCircle /> Infos
                   </div>
                 </Link>

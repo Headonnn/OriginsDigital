@@ -58,7 +58,7 @@ function EditCategories() {
       {isClicked ? (
         <div className="h-[60vh] flex items-center justify-center">
           <div className="flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
-            <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
+            <p className="pt-8 pb-16 text-lg md:text-2xl ">
               La catégorie a bien été modifiée !
             </p>
             <div className="flex justify-center">
