@@ -104,7 +104,7 @@ function DescriptionVideo() {
 
   return (
     <div>
-      <div className="description-video-container h-auto flex flex-col max-w-full overflow-hidden">
+      <div className=" h-auto flex flex-col max-w-full overflow-hidden">
         {/* Titre */}
         <div className="text-white mb-8">
           <h1 className="text-2xl md:text-3xl font-bold mt-10">
@@ -112,13 +112,13 @@ function DescriptionVideo() {
           </h1>
         </div>
         {/* Description */}
-        <div className="text-white mb-8">
+        <div className="text-white mb-1">
           <h2 className="text-base md:text-lg overflow-y-auto">
             {dataDesc.description}
           </h2>
         </div>
         {/* Catégorie */}
-        <div className="text-white mb-1 flex gap-1">
+        <div className="text-white mb-1 items-center flex gap-1">
           Catégorie :{" "}
           {categ.map((e) => {
             return (
@@ -135,7 +135,7 @@ function DescriptionVideo() {
           </h6>
         </div>
       </div>
-      <div className="flex justify-between items-center ">
+      <div className="flex justify-around items-center ">
         <div className="flex items-center mb-9">
           <Link to={`/watch/${params.id}`}>
             <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
