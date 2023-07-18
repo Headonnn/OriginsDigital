@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ButtonOrange from "../components/ButtonOrange";
-import NavBar from "../components/NavBar/NavBar";
+import ButtonOrange from "../ButtonOrange";
+import NavBar from "../NavBar/NavBar";
 
-function AdminSectionAccess() {
+function AddSection() {
   const navigate = useNavigate();
 
   return (
@@ -57,4 +57,4 @@ function AdminSectionAccess() {
   );
 }
 
-export default AdminSectionAccess;
+export default AddSection;

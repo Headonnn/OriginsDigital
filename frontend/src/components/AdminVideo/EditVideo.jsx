@@ -141,7 +141,7 @@ function EditVideo() {
       {isClicked ? (
         <div className="h-[60vh] flex items-center justify-center">
           <div className="flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
-            <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
+            <p className="pt-8 pb-16 text-lg md:text-2xl ">
               La vidéo a bien été modifiée !
             </p>
             <div className="flex justify-center">
@@ -156,9 +156,9 @@ function EditVideo() {
           </div>
         </div>
       ) : (
-        <div className="loginid-container bg-black min-h-screen my-12 overflow-hidden">
-          <div className="mx-auto flex flex-col sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-            <div className="flex justify-between px-3 items-center md:w-2/3 w-3/4 mb-6">
+        <div className="max-w-screen-lg mx-auto ">
+          <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+            <div className="flex justify-between items-center md:w-2/3 w-4/5">
               <div className="flex justify-center">
                 <button
                   type="button"
@@ -179,7 +179,7 @@ function EditVideo() {
                 Modifier une vidéo
               </h2>
             </div>
-            <form className="mt-6 flex flex-col px-3" onSubmit={updateVideo}>
+            <form className="mt-6 flex flex-col" onSubmit={updateVideo}>
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Lien de la vidéo*
               </label>

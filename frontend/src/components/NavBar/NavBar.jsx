@@ -101,16 +101,16 @@ function Header() {
                 Bonjour {dataLogin.firstname} !
               </button>
               {isDropdownOpen && (
-                <div className="absolute duration-300  bg-black bg-opacity-60 w-60 top-[70px]">
+                <div className="absolute duration-300 bg-black w-56 top-16">
                   <NavLink to="/userprofile">
-                    <p className=" hidden lg:block hover:text-orange-600 transition my-2">
+                    <p className=" hidden lg:block hover:text-orange-600 pl-2 transition my-2">
                       Mon compte
                     </p>
                   </NavLink>
                   <NavLink to="/">
                     <button
                       type="submit"
-                      className=" hidden lg:block duration-200 hover:text-orange-600 transition my-2"
+                      className=" hidden lg:block duration-200 pl-2 hover:text-orange-600 transition my-2"
                       onClick={handleLogout}
                     >
                       {" "}

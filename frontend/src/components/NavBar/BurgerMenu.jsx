@@ -7,7 +7,12 @@ import LoginContext from "../../../contexts/LoginContext";
 function BurgerMenu() {
   // Changer classes menu
   const [openMenu, setOpenMenu] = useState(false);
-  const { dataLogin } = useContext(LoginContext);
+  const { dataLogin, setDataLogin } = useContext(LoginContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setDataLogin(undefined);
+  };
 
   return (
     <div className="z-50">
@@ -26,7 +31,7 @@ function BurgerMenu() {
           />
         )}
         {openMenu === true && (
-          <div className="w-full absolute top-24 right-0 py-4 px-4 bg-black rounded-b-md transition">
+          <div className="w-full absolute top-22 right-0 py-4 px-4 bg-black rounded-b-md transition">
             <ul className="">
               <li className="p-2 hover:text-orange-600 duration-200 font-medium">
                 <NavLink to="/decouvrir">Découvrir</NavLink>
@@ -45,24 +50,44 @@ function BurgerMenu() {
                 <NavLink to="/faq">FAQ</NavLink>
               </li>
             </ul>
-            <div className="flex flex-col p-2 justify-center mt-7">
-              <div className="w-full flex justify-center">
-                <button
-                  type="button"
-                  className="border w-full md:w-60 hover:bg-gray-300 bg-white text-black rounded-xl py-1 transition w-50%"
-                >
-                  <NavLink to="/login">S'identifier</NavLink>
-                </button>
+            {dataLogin ? (
+              <div className="p-2 mt-7">
+                <div className="flex flex-col gap-2 ">
+                  <button
+                    type="button"
+                    className="border w-full md:w-60 hover:bg-gray-300 bg-white text-black rounded-md py-1 transition"
+                  >
+                    <NavLink to="/userprofile">Mon compte</NavLink>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="border w-full md:w-60 hover:bg-gray-300  text-white rounded-md py-1 transition"
+                  >
+                    <NavLink to="/">Déconnexion</NavLink>
+                  </button>
+                </div>
               </div>
-              <p className="mt-3 text-sm text-center">
-                Première visite sur Origins Digital ?{" "}
-                <NavLink to="/createaccountform">
-                  <span className="font-bold duration-200 hover:text-orange-600 ">
-                    Inscrivez-vous
-                  </span>
-                </NavLink>
-              </p>
-            </div>
+            ) : (
+              <div className="flex flex-col p-2 justify-center mt-7">
+                <div className="w-full flex justify-center">
+                  <button
+                    type="button"
+                    className="border w-full md:w-60 hover:bg-gray-300 bg-white text-black rounded-xl py-1 transition w-50%"
+                  >
+                    <NavLink to="/login">S'identifier</NavLink>
+                  </button>
+                </div>
+                <p className="mt-3 text-sm text-center">
+                  Première visite sur Origins Digital ?{" "}
+                  <NavLink to="/createaccountform">
+                    <span className="font-bold duration-200 hover:text-orange-600 ">
+                      Inscrivez-vous
+                    </span>
+                  </NavLink>
+                </p>
+              </div>
+            )}
           </div>
         )}
       </nav>

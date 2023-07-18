@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-import VideoContext from "../../contexts/VideoContext";
-import NavBar from "../components/NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
+import NavBar from "../NavBar/NavBar";
 
-function AdminCarouselCategory() {
+function AddCarouselCategory() {
   const navigate = useNavigate();
   const { categorie } = useContext(VideoContext);
 
@@ -151,4 +149,4 @@ function AdminCarouselCategory() {
   );
 }
 
-export default AdminCarouselCategory;
+export default AddCarouselCategory;

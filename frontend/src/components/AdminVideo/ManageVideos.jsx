@@ -162,7 +162,7 @@ function ManageVideos() {
               </button>
               <button
                 type="button"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/admin/")}
                 className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
               >
                 <BsArrowReturnLeft />
@@ -193,7 +193,7 @@ function ManageVideos() {
             </button>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center ">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr>

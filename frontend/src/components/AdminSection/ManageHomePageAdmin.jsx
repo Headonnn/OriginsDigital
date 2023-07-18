@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-
+import { BsArrowReturnLeft } from "react-icons/bs";
+import { AiOutlinePlus } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "../components/NavBar/NavBar";
+import NavBar from "../NavBar/NavBar";
 
-function AdminSection() {
+function ManageHomePageAdmin() {
   const navigate = useNavigate();
   const [sections, setSections] = useState([]);
   const [vis, setVis] = useState("all");
@@ -70,38 +71,49 @@ function AdminSection() {
   return (
     <>
       <NavBar />
-      <div className="p-5 pt-20 pb-20">
-        <div className="bg-gradient-to-br from-blue-900 my-10 flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
-            <div>
+      <div className="max-w-screen-lg mx-auto my-12 ">
+        <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+          <div className="flex justify-between items-center md:w-2/3 w-4/5">
+            <div className="flex justify-center">
               <button
                 type="button"
-                onClick={() => navigate("/admin")}
-                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                onClick={() => navigate("/admin/")}
+                className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
               >
                 Retour
               </button>
+              <button
+                type="button"
+                onClick={() => navigate("/admin/")}
+                className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+              >
+                <BsArrowReturnLeft />
+              </button>
             </div>
-            <div>
-              <h2 className="text-lg text-center md:text-2xl ">
-                Admin Homepage
-              </h2>
-            </div>
-            <div className="flex justify-center">
+            <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
+              Gérer la page d'accueil
+            </h2>
+          </div>
+          <div className="flex items-center w-full justify-end">
+            <button
+              type="button"
+              className="hidden md:block border hover:bg-white tracking-wide hover:text-black w-1/4 py-2 px-3 transition"
+            >
+              <Link to="/admin/section/access">Ajouter une section</Link>
+            </button>
+            <button
+              type="button"
+              className="md:hidden border  hover:bg-white tracking-wide hover:text-black py-2 px-2 transition"
+            >
               <Link to="/admin/section/access">
-                <div
-                  className="border hover:bg-white 
-               tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
-                >
-                  Ajouter une section
-                </div>
+                <AiOutlinePlus />
               </Link>
-            </div>
+            </button>
           </div>
 
-          <h1 className="text-white w-full   font-poppins pt-6 underline">
+          <h3 className="text-white w-full   font-poppins pt-6 ">
             Modifiez la structure de la page d'accueil :
-          </h1>
+          </h3>
           <div className="flex gap-10">
             <div className="mt-10 flex w-2/3">
               <div className=" w-full">
@@ -249,4 +261,4 @@ function AdminSection() {
   );
 }
 
-export default AdminSection;
+export default ManageHomePageAdmin;
