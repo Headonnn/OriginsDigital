@@ -173,7 +173,7 @@ function ManageVideos() {
             </h2>
           </div>
           <div className="flex items-center w-full justify-between">
-            <div className="w-full">
+            <div className="w-10/12">
               <SearchVideos handleSearchChange={handleSearchChange} />
             </div>
 

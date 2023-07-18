@@ -117,7 +117,7 @@ function CreateVideo() {
               <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={() => navigate("/admin/user")}
+                  onClick={() => navigate("/admin/video_list")}
                   className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour

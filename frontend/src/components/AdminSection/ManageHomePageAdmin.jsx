@@ -73,7 +73,7 @@ function ManageHomePageAdmin() {
       <NavBar />
       <div className="max-w-screen-lg mx-auto my-12 ">
         <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
-          <div className="flex justify-between items-center md:w-2/3 w-4/5">
+          <div className="flex justify-between items-center md:w-3/4 w-11/12 pb-4">
             <div className="flex justify-center">
               <button
                 type="button"

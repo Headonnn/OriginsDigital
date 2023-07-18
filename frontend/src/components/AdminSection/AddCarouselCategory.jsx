@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BsArrowReturnLeft } from "react-icons/bs";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
@@ -61,29 +62,34 @@ function AddCarouselCategory() {
   return (
     <>
       <NavBar />
-      <div className="p-5 pt-20 pb-20">
-        <div className="bg-gradient-to-br from-blue-900 my-10 flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
-            <div className="   md:h-[6rem] flex items-center justify-between ">
-              <div>
-                <button
-                  type="button"
-                  onClick={() => navigate(-1)}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
-                >
-                  Retour
-                </button>
-              </div>
+      <div className="max-w-screen-lg mx-auto ">
+        <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+          <div className="flex justify-between items-center md:w-3/4 w-11/12">
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() => navigate("/admin/section/access")}
+                className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
+              >
+                Retour
+              </button>
+              <button
+                type="button"
+                onClick={() => navigate("/admin/section/access")}
+                className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+              >
+                <BsArrowReturnLeft />
+              </button>
             </div>
             <div>
-              <h2 className="text-lg text-center md:text-2xl ">
-                Carousel par catégories
+              <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
+                Carousel personnalisé
               </h2>
             </div>
           </div>
 
           <form>
-            <div className="mt-6 px-3 md:px-6  flex-col justify-center flex-wrap">
+            <div className="mt-6 flex-col justify-center flex-wrap">
               <div className="flex flex-col">
                 <label htmlFor="inputFieldName">Catégorie :</label>
                 <select
@@ -134,7 +140,7 @@ function AddCarouselCategory() {
             </div>
           </form>
 
-          <div className="flex  mt-4 ml-8 justify-center">
+          <div className="flex mt-12 ml-8 justify-center">
             <button
               type="submit"
               className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md"

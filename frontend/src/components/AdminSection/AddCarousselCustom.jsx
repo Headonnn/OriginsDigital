@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BsArrowReturnLeft } from "react-icons/bs";
 import NavBar from "../NavBar/NavBar";
 import SearchVideos from "../SearchVideos";
 import AddVideoCarousel from "./AddVideoCarousel";
@@ -95,27 +96,34 @@ function AddCarousselCustom() {
     <>
       <NavBar />
 
-      <div className="p-5 pt-20 pb-20">
-        <div className="bg-gradient-to-br from-blue-900 my-10 flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="   md:h-[6rem] flex items-center justify-between w-full ">
-            <div>
+      <div className="max-w-screen-lg mx-auto ">
+        <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+          <div className="flex justify-between items-center md:w-3/4 w-11/12">
+            <div className="flex justify-center">
               <button
                 type="button"
-                onClick={() => navigate(-1)}
-                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                onClick={() => navigate("/admin/section/access")}
+                className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
               >
                 Retour
               </button>
+              <button
+                type="button"
+                onClick={() => navigate("/admin/section/access")}
+                className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+              >
+                <BsArrowReturnLeft />
+              </button>
             </div>
             <div>
-              <h2 className="text-lg text-center md:text-2xl ">
+              <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
                 Carousel personnalisé
               </h2>
             </div>
           </div>
 
           <form>
-            <div className="mt-6 flex   flex-wrap">
+            <div className="mt-6 flex flex-wrap">
               <div className="flex w-full flex-col gap-2">
                 <label htmlFor="inputFieldName">Nom :</label>
                 <input
@@ -123,7 +131,7 @@ function AddCarousselCustom() {
                   id="inputFieldName"
                   name="name"
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
-                  placeholder="nom du carousel"
+                  placeholder="Nom du caroussel..."
                   aria-label=""
                   value={carousel.name}
                   onChange={handleInput}
@@ -155,17 +163,16 @@ function AddCarousselCustom() {
               </div>
             </div>
           </form>
-
-          <div className="flex gap-2 items-end">
-            <h1 className="text-white   font-poppins mt-6  ">Videos :</h1>
-          </div>
+          <h3 className="mt-6">Videos :</h3>
           <SearchVideos handleSearchChange={handleSearchChange} />
-          <AddVideoCarousel
-            vidCarousel={vidCarousel}
-            filtre={filtre}
-            setVidCarousel={setVidCarousel}
-          />
-          <div className="flex justify-center mt-4">
+          <div className="px-3">
+            <AddVideoCarousel
+              vidCarousel={vidCarousel}
+              filtre={filtre}
+              setVidCarousel={setVidCarousel}
+            />
+          </div>
+          <div className="flex justify-center mt-12">
             <button
               type="submit"
               className="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md"
