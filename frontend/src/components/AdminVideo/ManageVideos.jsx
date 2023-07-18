@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BsArrowReturnLeft } from "react-icons/bs";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 import SearchVideos from "../SearchVideos";
@@ -76,7 +77,9 @@ function ManageVideos() {
         key={video.id}
       >
         <td>{video.id}</td>
-        <td>{video.title}</td>
+        <td>
+          <div className="">{video.title}</div>
+        </td>
         <td className="text-sm text-center">
           <button
             type="button"
@@ -148,7 +151,7 @@ function ManageVideos() {
       <NavBar />
       <div className="max-w-screen-lg mx-auto ">
         <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
-          <div className="flex justify-between items-center w-2/3">
+          <div className="flex justify-between items-center md:w-2/3 w-3/4">
             <div className="flex justify-center">
               <button
                 type="button"
@@ -157,8 +160,15 @@ function ManageVideos() {
               >
                 Retour
               </button>
+              <button
+                type="button"
+                onClick={() => navigate(-1)}
+                className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+              >
+                <BsArrowReturnLeft />
+              </button>
             </div>
-            <h2 className="mb-4 text-4xl font-extrabold text-center ">
+            <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
               Liste des vidéos
             </h2>
           </div>
@@ -184,7 +194,7 @@ function ManageVideos() {
           </div>
 
           <div className="flex justify-center">
-            <table className="w-full border-collapse text-left text-sm">
+            <table className="w-full text-left text-sm">
               <thead>
                 <tr>
                   <th className="py-4 md:text-lg text-md">ID</th>
