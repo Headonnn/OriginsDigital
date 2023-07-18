@@ -31,8 +31,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const user = req.body;
 
-  // TODO validations (length, format...)
-
   user.id = parseInt(req.params.id, 10);
 
   models.user
@@ -74,8 +72,6 @@ const add = (req, res) => {
   const user = req.body;
   console.warn(user);
 
-  // TODO validations (length, format...)
-
   models.user
     .insert(user)
     .then(([result]) => {
@@ -112,7 +108,6 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     .then(([user]) => {
       if (user[0] != null) {
         req.user = user[0];
-        console.warn("user identified by email, so far so good");
         next();
       } else {
         res.status(500).send("error 401 userController getuserbymailmachin");
@@ -126,17 +121,17 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     });
 };
 
-const verifyPasswordBeforeDelete = (req, res, next) => {
-  const { password } = req.body;
+const verifyUserBeforeDelete = (req, res, next) => {
+  res.locals.variable = req.body;
+
   models.user
-    .checkPassword(password)
+    .findByID(res.locals.variable.id)
     .then(([user]) => {
-      if (user[0] != null) {
+      if (user[0]) {
         req.user = user[0];
-        console.warn("password verified, preparing to nuke the account");
         next();
       } else {
-        res.status(500).send("error checking the password");
+        res.status(500).send("error checking the user");
       }
     })
     .catch((err) => {
@@ -155,5 +150,5 @@ module.exports = {
   add,
   destroy,
   getUserByEmailWithPasswordAndPassToNext,
-  verifyPasswordBeforeDelete,
+  verifyUserBeforeDelete,
 };

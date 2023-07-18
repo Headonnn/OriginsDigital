@@ -32,8 +32,6 @@ const hashPassword = async (req, res, next) => {
 };
 
 const verifyPassword = async (req, res) => {
-  console.warn(req.body, "this is my verifypassword body");
-  console.warn(req.user, "this is my verifypassword user");
   try {
     const { password } = req.body;
     const { hashedPassword } = req.user;
@@ -54,8 +52,7 @@ const verifyPassword = async (req, res) => {
         expiresIn: "1000",
       });
       res.status(200).send({ token });
-      console.warn(token);
-      console.warn("oi mate her's' yer token mate");
+
       return null;
     }
     res.status(401).send("verifypassword, error tirlipinpon");
@@ -94,12 +91,9 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyPasswordBeforeDelete = async (req, res, next) => {
-  console.warn(req.body, "HELLO MATE");
-  console.warn(req.user, "OLA AMIGO");
+  const { hashedPassword } = req.user;
+  const { password } = req.body;
   try {
-    const { password } = req.body;
-    const { hashedPassword } = req.user;
-
     if (!hashedPassword || !password) {
       return res
         .status(400)
@@ -107,18 +101,17 @@ const verifyPasswordBeforeDelete = async (req, res, next) => {
     }
     const isVerified = await argon2.verify(hashedPassword, password);
     if (isVerified) {
-      const user = { ...req.user };
-      delete user.hashedPassword;
-      res.status(200).send("olala ça nuke des accounts bravo");
       next();
+    } else {
+      res.status(401).send("can't verify the password before nuking");
+      return null;
     }
-    res.status(401).send("can't verify the password before nuking");
-    return null;
   } catch (err) {
     console.error(err);
     res.status(500).send("verifypasswordbeforedelete internal servor error");
     return null;
   }
+  return null;
 };
 
 module.exports = {
