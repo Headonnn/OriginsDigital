@@ -40,7 +40,7 @@ function Hero() {
         ) : (
           <img
             alt="hero"
-            className="h-[50vh]"
+            className="h-[35vh]"
             src={dataVideo.filter((e) => e.is_in_hero === 1)[0].thumbnail}
           />
         )}
