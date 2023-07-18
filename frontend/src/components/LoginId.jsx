@@ -42,11 +42,10 @@ function LoginId() {
       )
       .then((response) => {
         if (response.status === 200) {
-          console.warn(response.data);
           localStorage.setItem("token", JSON.stringify(response.data));
           const decoded = jwtDecode(response.data.token);
           setDataLogin(decoded.cargo);
-          console.warn(decoded.cargo);
+
           navigate("/");
         } else {
           throw new Error("throw-error level, Error during login attempt");

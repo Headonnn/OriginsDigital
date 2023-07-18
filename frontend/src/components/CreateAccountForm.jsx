@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CreateAccountMsg from "./CreateAccountMsg";
 import NavBar from "./NavBar/NavBar";
 
 function CreateAccountForm() {
-  const navigate = useNavigate();
-
   const [isClicked, setIsClicked] = useState(false);
 
   const [user, setUser] = useState({
@@ -35,10 +32,8 @@ function CreateAccountForm() {
 
     axios
       .post(`http://localhost:5002/users`, data)
-      .then((res) => {
-        console.warn(res.data);
+      .then(() => {
         setIsClicked(!isClicked);
-        navigate("/login");
       })
       .catch((err) => console.warn(err));
   };
@@ -158,7 +153,6 @@ function CreateAccountForm() {
             <div className="mt-4">
               <button
                 type="submit"
-                onClick={() => setIsClicked(!isClicked)}
                 className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-3"
               >
                 Je m'inscris

@@ -7,23 +7,17 @@ import LoginContext from "../../contexts/LoginContext";
 
 function UserProfile() {
   const { dataLogin, setDataLogin } = useContext(LoginContext);
-
   const [passwordInput, setPasswordInput] = useState(false);
-  /* eslint-disable */
-  const [passwordConfirm, setPasswordConfirmed] = useState(false);
-
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
   const deleteUser = (e) => {
     e.preventDefault();
-    const data = { password };
     axios
       .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`, {
-        data,
         headers: { "Content-Type": "application/json" },
+        data: JSON.stringify({ password, id: dataLogin.id }),
       })
-      .then((res) => {
-        console.warn(res.data, "ACHTUNG MATE");
+      .then(() => {
         localStorage.removeItem("token");
         setDataLogin(undefined);
         navigate("/");
@@ -94,7 +88,7 @@ function UserProfile() {
             </div>
 
             {passwordInput ? (
-              <form onSubmit={setPasswordConfirmed}>
+              <form>
                 <div>
                   <label htmlFor="password" className="ml-1 text-red-500">
                     Veuillez confirmer avec votre mot de passe :
@@ -116,7 +110,7 @@ function UserProfile() {
                     </button>
                     <button
                       type="button"
-                      onClick={(e) => deleteUser(e, dataLogin.id)}
+                      onClick={(e) => deleteUser(e)}
                       className="w-1/3 mx-auto bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-4 rounded-md"
                     >
                       Confirmer

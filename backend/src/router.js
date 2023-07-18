@@ -97,6 +97,7 @@ router.put("/users/:id", userControllers.edit);
 router.put("/users/:id/edit", hashPassword, userControllers.editAll);
 router.delete(
   "/users/:id",
+  userControllers.verifyUserBeforeDelete,
   verifyPasswordBeforeDelete,
   userControllers.destroy
 );

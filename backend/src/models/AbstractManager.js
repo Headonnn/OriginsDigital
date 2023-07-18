@@ -8,14 +8,18 @@ class AbstractManager {
       .query(`SELECT * FROM ${this.table} WHERE id = ?`, [id])
       .catch((error) => {
         console.error(error);
-        throw new Error("Failed to retrieve data from the database.");
+        throw new Error(
+          "AbstractManager level, Failed to retrieve data from the database."
+        );
       });
   }
 
   findAll() {
     return this.database.query(`SELECT * FROM ${this.table}`).catch((error) => {
       console.error(error);
-      throw new Error("Failed to retrieve data from the database.");
+      throw new Error(
+        "AbstractManager level, Failed to retrieve data from the database."
+      );
     });
   }
 
@@ -24,7 +28,9 @@ class AbstractManager {
       .query(`DELETE FROM ${this.table} WHERE id = ?`, [id])
       .catch((error) => {
         console.error(error);
-        throw new Error("Failed to delete data from the database.");
+        throw new Error(
+          "AbstractManager level, Failed to delete data from the database."
+        );
       });
   }
 
