@@ -10,7 +10,7 @@ function ManageHomePageAdmin() {
   const [sections, setSections] = useState([]);
   const [vis, setVis] = useState("all");
   const handleVis = (e) => {
-    setVis(e.target.id);
+    setVis(e.target.value);
   };
   const uploadSections = () => {
     fetch(`http://localhost:5002/sections`)
@@ -218,41 +218,20 @@ function ManageHomePageAdmin() {
                   ))}
               </div>
             </div>
-            <div className="text-white border-2 p-2 mt-10 w-1/4 h-full">
-              <h1>Visibilité : </h1>
+            <div className="text-black p-2 mt-10 w-1/4 h-full">
+              <h1 className="text-white">Visible par : </h1>
 
-              <label className="flex justify-between mb-2 items-center">
-                Tous les utilisateurs
-                <input
-                  type="radio"
-                  id="all"
-                  name="visibility"
-                  onChange={handleVis}
-                  checked={vis === "all"}
-                />
-              </label>
-
-              <label className="flex justify-between  mb-2 items-center">
-                Utilisateurs connectés{" "}
-                <input
-                  type="radio"
-                  id="connected"
-                  name="visibility"
-                  onChange={handleVis}
-                  checked={vis === "connected"}
-                />
-              </label>
-
-              <label className="flex justify-between  mb-2 items-center">
-                Utilisateurs déconnectés{" "}
-                <input
-                  type="radio"
-                  id="disconnected"
-                  name="visibility"
-                  onChange={handleVis}
-                  checked={vis === "disconnected"}
-                />
-              </label>
+              <select name="visibility" onChange={handleVis}>
+                <option id="all" value="all">
+                  Tous les utilisateurs
+                </option>
+                <option id="connected" value="connected">
+                  Utilisateurs connectés
+                </option>
+                <option id="disconnected" value="disconnected">
+                  Utilisateurs déconnectés
+                </option>
+              </select>
             </div>
           </div>
         </div>
