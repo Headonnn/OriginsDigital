@@ -17,7 +17,7 @@ function AddVideoCarousel({ vidCarousel, setVidCarousel, filtre }) {
     }
     return (
       <tr
-        className="hover:bg-gray-50  hover:text-black transition"
+        className="hover:bg-gray-50 hover:text-black transition"
         key={video.id}
       >
         <td>{video.id}</td>
@@ -37,7 +37,7 @@ function AddVideoCarousel({ vidCarousel, setVidCarousel, filtre }) {
   });
 
   return (
-    <div className="    w-full gap-2">
+    <div className="w-full gap-2">
       <form>
         <table className=" text-left w-full text-sm">
           <thead>

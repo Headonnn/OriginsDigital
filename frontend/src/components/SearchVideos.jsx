@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function SearchVideos({ handleSearchChange }) {
   return (
     <div className="flex flex-col md:flex-row items-center md:gap-12 text-black ">
-      <div className="w-80 my-8">
+      <div className="md:w-80 w-full md:my-8 my-2">
         <div className="flex items-center w-full h-10 focus-within:shadow-lg bg-white overflow-hidden">
           <div className="grid place-items-center h-full w-12 bg-white">
             <svg
