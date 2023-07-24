@@ -70,7 +70,7 @@ function UpdateUserProfile() {
       <NavBar />
 
       {dataLogin?.id && (
-        <div className=" flex gap-8 flex-col border border-white px-10 py-8 mx-auto sm:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+        <div className=" flex gap-8 flex-col border border-white px-10 py-8 mx-auto max-w-sm md:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
           <button
             type="button"
             onClick={() => navigate("../userprofile")}
@@ -85,7 +85,7 @@ function UpdateUserProfile() {
           <form onSubmit={updateUser}>
             <div>
               <label htmlFor="email" className="text-gray-300">
-                Prénom
+                Rappelez-nous votre prénom ?
               </label>
               <input
                 onChange={handleInput}
@@ -99,7 +99,7 @@ function UpdateUserProfile() {
             </div>
             <div>
               <label htmlFor="email" className="text-gray-300">
-                Email
+                Rappelez-nous votre email ?
               </label>
               <input
                 onChange={handleInput}
