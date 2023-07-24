@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
+import { FaCheck, FaTimes } from "react-icons/fa";
 import axios from "axios";
 import NavBar from "./NavBar/NavBar";
 import LoginContext from "../../contexts/LoginContext";
@@ -29,7 +30,7 @@ function UserProfile() {
     <>
       <NavBar />
 
-      <div className="flex gap-8 flex-col border border-white px-10 py-8 mx-auto sm:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+      <div className="flex gap-8 flex-col border border-white px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
         <h2 className="text-white text-xl text-center">Votre profil</h2>
         {dataLogin ? (
           <>
@@ -104,16 +105,30 @@ function UserProfile() {
                     <button
                       type="button"
                       onClick={() => setPasswordInput(!passwordInput)}
-                      className="w-1/3 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md"
+                      className="hidden sm:block mx-auto bg-gradient-to-r text-center md:w-1/3 from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-2 sm:px-4 rounded-md"
                     >
                       Annuler
                     </button>
                     <button
                       type="button"
+                      onClick={() => setPasswordInput(!passwordInput)}
+                      className="block sm:hidden mx-auto bg-gradient-to-r text-center md:w-1/3 from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-5 rounded-xl"
+                    >
+                      <FaTimes />
+                    </button>
+                    <button
+                      type="button"
                       onClick={(e) => deleteUser(e)}
-                      className="w-1/3 mx-auto bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-4 rounded-md"
+                      className="hidden sm:block mx-auto bg-gradient-to-r text-center md:w-1/3 from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-1 sm:px-4 rounded-md"
                     >
                       Confirmer
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => deleteUser(e)}
+                      className="block sm:hidden mx-auto bg-gradient-to-r text-center text-xl from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-5 rounded-xl"
+                    >
+                      <FaCheck />
                     </button>
                   </div>
                 </div>

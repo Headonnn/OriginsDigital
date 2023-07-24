@@ -44,7 +44,7 @@ function CreateAccountForm() {
     <>
       <NavBar />
       <div className="loginid-container bg-black min-h-screen p-5 relative overflow-hidden text-white">
-        <div className="flex flex-col items-center border border-white px-10 py-8 mx-auto sm:max-w-md my-10 text-white rounded-[31px]">
+        <div className="flex flex-col items-center border border-white px-10 py-8 mx-auto max-w-md my-10 text-white rounded-[31px]">
           <div className="flex items-center gap-12 pb-6">
             <h1 className="text-xl">Création de votre compte</h1>
           </div>
