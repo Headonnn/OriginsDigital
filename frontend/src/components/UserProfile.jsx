@@ -105,28 +105,28 @@ function UserProfile() {
                     <button
                       type="button"
                       onClick={() => setPasswordInput(!passwordInput)}
-                      className="hidden sm:block mx-auto bg-gradient-to-r text-center md:w-1/3 from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-2 sm:px-4 rounded-md"
+                      className="hidden md:block mx-auto bg-gradient-to-r text-center md:w-1/3 from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-2 sm:px-4 rounded-md"
                     >
                       Annuler
                     </button>
                     <button
                       type="button"
                       onClick={() => setPasswordInput(!passwordInput)}
-                      className="block sm:hidden mx-auto bg-gradient-to-r text-center md:w-1/3 from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-5 rounded-xl"
+                      className="block md:hidden mx-auto text-center text-xl md:w-1/3 text-white py-3 px-3 border-2 border-blue-500 hover:border-blue-700 rounded-full "
                     >
                       <FaTimes />
                     </button>
                     <button
                       type="button"
                       onClick={(e) => deleteUser(e)}
-                      className="hidden sm:block mx-auto bg-gradient-to-r text-center md:w-1/3 from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-1 sm:px-4 rounded-md"
+                      className="hidden md:block mx-auto bg-gradient-to-r text-center md:w-1/3 from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-1 sm:px-4 rounded-md"
                     >
                       Confirmer
                     </button>
                     <button
                       type="button"
                       onClick={(e) => deleteUser(e)}
-                      className="block sm:hidden mx-auto bg-gradient-to-r text-center text-xl from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white py-2 px-5 rounded-xl"
+                      className="block md:hidden mx-auto text-center text-xl md:w-1/3 text-white py-3 px-3 border-2 border-red-500 hover:border-red-700 rounded-full "
                     >
                       <FaCheck />
                     </button>
@@ -139,7 +139,7 @@ function UserProfile() {
                 <button
                   type="button"
                   onClick={() => setPasswordInput(!passwordInput)}
-                  className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide py-1 px-3 transition"
+                  className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white rounded-xl tracking-wide py-1 px-3 transition"
                 >
                   Supprimer
                 </button>
