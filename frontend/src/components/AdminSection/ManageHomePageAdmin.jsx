@@ -73,7 +73,7 @@ function ManageHomePageAdmin() {
       <NavBar />
       <div className="max-w-screen-lg mx-auto my-12 ">
         <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
-          <div className="flex justify-between items-center md:w-3/4 w-11/12 pb-4">
+          <div className="flex justify-between items-center md:w-3/4 w-11/12 pb-12">
             <div className="flex justify-center">
               <button
                 type="button"
@@ -94,31 +94,49 @@ function ManageHomePageAdmin() {
               Gérer la page d'accueil
             </h2>
           </div>
-          <div className="flex items-center w-full justify-end">
-            <button
-              type="button"
-              className="hidden md:block border hover:bg-white tracking-wide hover:text-black w-1/4 py-2 px-3 transition"
-            >
-              <Link to="/admin/section/access">Ajouter une section</Link>
-            </button>
-            <button
-              type="button"
-              className="md:hidden border  hover:bg-white tracking-wide hover:text-black py-2 px-2 transition"
-            >
-              <Link to="/admin/section/access">
-                <AiOutlinePlus />
-              </Link>
-            </button>
+          <div className="flex items-end w-full justify-between">
+            <div className="text-black ">
+              <h1 className="text-white">Visible par : </h1>
+
+              <select name="visibility" onChange={handleVis}>
+                <option id="all" value="all">
+                  Tous les utilisateurs
+                </option>
+                <option id="connected" value="connected">
+                  Utilisateurs connectés
+                </option>
+                <option id="disconnected" value="disconnected">
+                  Utilisateurs déconnectés
+                </option>
+              </select>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-2 px-3 transition"
+              >
+                <Link to="/admin/section/access">Ajouter une section</Link>
+              </button>
+              <button
+                type="button"
+                className="md:hidden border  hover:bg-white tracking-wide hover:text-black py-2 px-2 transition"
+              >
+                <Link to="/admin/section/access">
+                  <AiOutlinePlus />
+                </Link>
+              </button>
+            </div>
           </div>
 
-          <h3 className="text-white w-full   font-poppins pt-6 ">
-            Modifiez la structure de la page d'accueil :
+          <h3 className="text-white w-full text-sm md:text-lg pt-12 ">
+            <span className="font-semibold">Drag and drop :</span> modifiez la
+            structure de la page d'accueil.
           </h3>
           <div className="flex gap-10">
-            <div className="mt-10 flex w-2/3">
+            <div className="mt-10 flex w-full md:w-2/3">
               <div className=" w-full">
-                <div className="flex items-center  ">
-                  <div className="bg-white text-black h-10 px-4 py-2 w-[100%] rounded-md mb-1">
+                <div className="flex items-center mr-8 ">
+                  <div className="bg-white text-black h-10 px-4 py-2 w-full rounded-md mb-1">
                     Hero
                   </div>
 
@@ -217,21 +235,6 @@ function ManageHomePageAdmin() {
                     </div>
                   ))}
               </div>
-            </div>
-            <div className="text-black p-2 mt-10 w-1/4 h-full">
-              <h1 className="text-white">Visible par : </h1>
-
-              <select name="visibility" onChange={handleVis}>
-                <option id="all" value="all">
-                  Tous les utilisateurs
-                </option>
-                <option id="connected" value="connected">
-                  Utilisateurs connectés
-                </option>
-                <option id="disconnected" value="disconnected">
-                  Utilisateurs déconnectés
-                </option>
-              </select>
             </div>
           </div>
         </div>
