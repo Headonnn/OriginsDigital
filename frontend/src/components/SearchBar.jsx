@@ -6,7 +6,7 @@ function SearchBar({ handleSearchChange, handleChangeCategory }) {
   const { categorie } = useContext(VideoContext);
 
   return (
-    <div className="flex flex-col md:flex-row md:justify-between items-center  mb-8 mt-12 ">
+    <div className="flex flex-col md:flex-row md:justify-between items-center  mb-8 mt-12 gap-8 ">
       <div className="w-80 md:w-1/3 ">
         <div className="flex items-center w-full h-10 focus-within:shadow-lg bg-white overflow-hidden">
           <div className="grid place-items-center h-full w-12 bg-white">

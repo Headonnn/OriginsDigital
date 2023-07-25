@@ -12,7 +12,6 @@ function EditUsers() {
     firstname: "",
     lastname: "",
     email: "",
-    password: "",
   });
   const [error, setError] = useState("");
 
@@ -47,7 +46,6 @@ function EditUsers() {
       lastname: users.lastname,
 
       email: users.email,
-      password: users.password,
     };
     axios
       .put(`http://localhost:5002/users/${id}/edit`, data)
@@ -66,7 +64,7 @@ function EditUsers() {
         <div className="h-[60vh] flex items-center justify-center">
           <div className="flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
             <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
-              L'utilisateur a bien été modifiée !
+              L'utilisateur a bien été modifié !
             </p>
             <div className="flex justify-center">
               <button
@@ -144,21 +142,7 @@ function EditUsers() {
                 />
                 <span className="text-orange-600 pb-3">{error}</span>
               </label>
-              <label
-                htmlFor="userPassword"
-                className="text-white flex flex-col"
-              >
-                Mot de passe
-                <input
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
-                  name="password"
-                  type="password"
-                  placeholder="Votre mot de passe"
-                  value={users.password}
-                  onChange={handleInput}
-                />
-                <span className="text-orange-600 pb-3">{error}</span>
-              </label>
+
               <button
                 type="submit"
                 className="w-1/4 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-12"

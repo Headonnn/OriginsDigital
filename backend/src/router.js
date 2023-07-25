@@ -94,7 +94,7 @@ router.get("/favorites/:id", favoritesControllers.read);
 // user routes
 
 router.put("/users/:id", userControllers.edit);
-router.put("/users/:id/edit", hashPassword, userControllers.editAll);
+router.put("/users/:id/edit", userControllers.editAll);
 router.delete(
   "/users/:id",
   userControllers.verifyUserBeforeDelete,

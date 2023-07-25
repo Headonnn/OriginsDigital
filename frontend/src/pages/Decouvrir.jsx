@@ -6,7 +6,11 @@ import {
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
-
+import {
+  AiOutlineCalendar,
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
+} from "react-icons/ai";
 import axios from "axios";
 
 import NavBar from "../components/NavBar/NavBar";
@@ -209,7 +213,7 @@ function Decouvrir() {
           </h2>
         </div>
       ) : (
-        <div className="max-w-2xl mx-auto text-center  text-white my-12">
+        <div className="max-w-2xl mx-auto text-center  text-white mt-12 md:my-12">
           <h2 className="mb-4 text-4xl font-extrabold text-center ">
             Découvrir
           </h2>
@@ -224,25 +228,49 @@ function Decouvrir() {
             />
           </div>
           <div>
-            <div className="flex gap-2 mb-12 ">
+            <div className="flex gap-2 mb-12 ml-8 md:ml-0 ">
               {nouveau ? (
-                <div
-                  className="text-black  border-white bg-white border  rounded-md p-2 cursor-pointer"
-                  onClick={handleNouveau}
-                  onKeyDown={handleNouveau}
-                  role="presentation"
-                >
-                  Les plus récentes
-                </div>
+                <>
+                  <div
+                    className="text-black md:block hidden border-white bg-white border  rounded-md p-2 cursor-pointer"
+                    onClick={handleNouveau}
+                    onKeyDown={handleNouveau}
+                    role="presentation"
+                  >
+                    Les plus récentes
+                  </div>{" "}
+                  <div
+                    className="text-black md:hidden block border-white bg-white border  rounded-md p-2 cursor-pointer"
+                    onClick={handleNouveau}
+                    onKeyDown={handleNouveau}
+                    role="presentation"
+                  >
+                    <div className="flex items-center gap-2 text-xl ">
+                      <AiOutlineCalendar /> <AiOutlineArrowUp />
+                    </div>
+                  </div>
+                </>
               ) : (
-                <div
-                  className="text-white  border-white bg-black border rounded-md p-2 cursor-pointer"
-                  onClick={handleNouveau}
-                  onKeyDown={handleNouveau}
-                  role="presentation"
-                >
-                  Les plus récentes
-                </div>
+                <>
+                  <div
+                    className="text-white  md:block hidden border-white bg-black border rounded-md p-2 cursor-pointer"
+                    onClick={handleNouveau}
+                    onKeyDown={handleNouveau}
+                    role="presentation"
+                  >
+                    Les plus récentes
+                  </div>
+                  <div
+                    className="text-white md:hidden block  border-white bg-black border rounded-md p-2 cursor-pointer"
+                    onClick={handleNouveau}
+                    onKeyDown={handleNouveau}
+                    role="presentation"
+                  >
+                    <div className="flex items-center gap-2  text-xl">
+                      <AiOutlineCalendar /> <AiOutlineArrowUp />
+                    </div>
+                  </div>
+                </>
               )}
               {alphabet ? (
                 <div
@@ -264,23 +292,47 @@ function Decouvrir() {
                 </div>
               )}
               {ancien ? (
-                <div
-                  className="text-black  border-white bg-white border rounded-md p-2 cursor-pointer"
-                  onClick={handleAncien}
-                  onKeyDown={handleAncien}
-                  role="presentation"
-                >
-                  Les plus anciennes
-                </div>
+                <>
+                  <div
+                    className="text-black md:block hidden border-white bg-white border rounded-md p-2 cursor-pointer"
+                    onClick={handleAncien}
+                    onKeyDown={handleAncien}
+                    role="presentation"
+                  >
+                    Les plus anciennes
+                  </div>
+                  <div
+                    className="text-black block md:hidden border-white bg-white border rounded-md p-2 cursor-pointer"
+                    onClick={handleAncien}
+                    onKeyDown={handleAncien}
+                    role="presentation"
+                  >
+                    <div className="flex items-center gap-2 text-xl ">
+                      <AiOutlineCalendar /> <AiOutlineArrowDown />
+                    </div>
+                  </div>
+                </>
               ) : (
-                <div
-                  className="text-white  border-white border rounded-md p-2 cursor-pointer"
-                  onClick={handleAncien}
-                  onKeyDown={handleAncien}
-                  role="presentation"
-                >
-                  Les plus anciennes
-                </div>
+                <>
+                  <div
+                    className="text-white hidden md:block border-white border rounded-md p-2 cursor-pointer"
+                    onClick={handleAncien}
+                    onKeyDown={handleAncien}
+                    role="presentation"
+                  >
+                    Les plus anciennes
+                  </div>
+                  <div
+                    className="text-white block md:hidden border-white border rounded-md p-2 cursor-pointer"
+                    onClick={handleAncien}
+                    onKeyDown={handleAncien}
+                    role="presentation"
+                  >
+                    <div className="flex items-center gap-2 text-xl ">
+                      <AiOutlineCalendar /> <AiOutlineArrowDown />
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           </div>

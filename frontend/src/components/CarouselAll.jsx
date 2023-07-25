@@ -96,7 +96,7 @@ function CarouselAll({ dataSection }) {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
       axios
         .post(`http://localhost:5002/favorites/add`, {
-          userId: 2,
+          userId: dataLogin.id,
           videoId: clickedVideo,
         })
         .then(() => {
@@ -105,7 +105,9 @@ function CarouselAll({ dataSection }) {
         .catch((err) => console.error(err));
     } else {
       axios
-        .delete(`http://localhost:5002/favorites/2/${clickedVideo}`)
+        .delete(
+          `http://localhost:5002/favorites/${dataLogin.id}/${clickedVideo}`
+        )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
