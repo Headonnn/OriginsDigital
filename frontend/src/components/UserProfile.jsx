@@ -33,8 +33,10 @@ function UserProfile() {
     <>
       <NavBar />
 
-      <div className="flex gap-8 flex-col border border-white px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-        <h2 className="text-white text-xl text-center">Votre profil</h2>
+      <div className="flex gap-8 flex-col border-white px-10 mx-auto max-w-xs md:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+        <h2 className=" text-2xl md:text-4xl font-extrabold text-center mb-10 ">
+          Votre profil
+        </h2>
         {dataLogin ? (
           <>
             <div className="flex justify-between items-center">
@@ -78,17 +80,8 @@ function UserProfile() {
                 <h3 className="text-gray-300">Mot de passe :</h3>
                 <p className="text-white">* * * * * * * *</p>
               </div>
-              {/* {dataLogin.id && (
-                <NavLink to={`/updateuserprofile/${dataLogin.id}/edit`}>
-                  <button
-                    type="button"
-                    className="hidden md:block border hover:bg-white tracking-wide text-white hover:text-black py-1 px-3 transition"
-                  >
-                    [WIP]
-                  </button>
-                </NavLink>
-              )}
-              <SlPencil className="md:hidden cursor-pointer my-4 mr-3 w-6 h-6" /> */}
+
+
             </div>
 
             {passwordInput ? (

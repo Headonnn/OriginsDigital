@@ -168,10 +168,8 @@ function CarouselAll({ dataSection }) {
                         className="md:h-40 md:w-96 h-40 w-full"
                       />
 
-                      <div className="flex flex-col justify-between absolute  bg-black hover:h-full hover:justify-center p-1 duration-200 transform bottom-0 bg-opacity-60 text-white w-full h-1/2">
-                        <div className="md:text-base text-xs pl-1 text-ellipsis">
-                          {video.title}
-                        </div>
+                      <div className="flex flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
+                        <div className="text-md pl-1">{video.title}</div>
 
                         {!video.is_freemium && !dataLogin ? (
                           <div className=" flex items-center text-2xl  w-1/2 gap-4 px-2 py-1 rounded-xl transition">
