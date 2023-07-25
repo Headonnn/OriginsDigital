@@ -95,13 +95,13 @@ router.get("/favorites/:id", favoritesControllers.read);
 
 router.put("/users/:id", userControllers.edit);
 router.put("/users/:id/edit", hashPassword, userControllers.editAll);
+router.delete("/users/:id", userControllers.destroy);
 router.delete(
-  "/users/:id",
+  "/users/delete/:id",
   userControllers.verifyUserBeforeDelete,
   verifyPasswordBeforeDelete,
   userControllers.destroy
 );
-
 // Video routes
 
 router.put("/videos/:id/edit", videoControllers.edit);

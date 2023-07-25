@@ -4,6 +4,7 @@ import LoginContext from "../../../contexts/LoginContext";
 import BurgerMenu from "./BurgerMenu";
 import logolarge from "../../assets/images/Logo_Origins-digital_White.png";
 
+
 function Header() {
   const location = useLocation();
 

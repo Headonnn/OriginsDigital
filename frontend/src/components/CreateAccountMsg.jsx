@@ -7,13 +7,13 @@ function CreateAccountMsg() {
     <>
       <NavBar />
 
-      <div className="flex flex-col items-center border border-white px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 text-center text-white rounded-[31px]">
+      <div className="flex flex-col items-center px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 text-center text-white">
         <h2 className="flex items-center gap-12 pb-6">Félicitations !</h2>
         <p className="pb-8">Votre compte à été créé avec succès.</p>
         <NavLink to="/login">
           <button
             type="button"
-            className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-3"
+            className="w-full mx-auto border-2 border-white text-white py-2 px-4  my-3"
           >
             Se connecter
           </button>
