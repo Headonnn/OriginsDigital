@@ -167,10 +167,10 @@ function CarouselAll({ dataSection }) {
                       <img
                         src={video.thumbnail}
                         alt={video.title}
-                        className="md:h-40 md:w-96 h-40 w-full"
+                        className="md:h-40 md:w-96 h-28 w-full"
                       />
 
-                      <div className="flex flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
+                      <div className="md:flex hidden flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
                         <div className="text-md pl-1">{video.title}</div>
 
                         {!video.is_freemium && !dataLogin ? (
