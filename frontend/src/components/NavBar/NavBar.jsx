@@ -3,7 +3,6 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import LoginContext from "../../../contexts/LoginContext";
 import BurgerMenu from "./BurgerMenu";
 import logolarge from "../../assets/images/Logo_Origins-digital_White.png";
-import IconDarkMode from "../IconDarkMode"; // Importez le composant IconDarkMode
 
 function Header() {
   const location = useLocation();
@@ -82,9 +81,6 @@ function Header() {
           }
         >
           <NavLink to="/faq">FAQ</NavLink>
-        </li>
-        <li>
-          <IconDarkMode />
         </li>
       </ul>
 
