@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     if (!dataLogin) {
       const token = JSON.parse(localStorage.getItem("token"));
-      console.log("tok", token)
+
       if (!token) {
         return;
       }
