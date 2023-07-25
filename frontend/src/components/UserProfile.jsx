@@ -14,10 +14,13 @@ function UserProfile() {
   const deleteUser = (e) => {
     e.preventDefault();
     axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`, {
-        headers: { "Content-Type": "application/json" },
-        data: JSON.stringify({ password, id: dataLogin.id }),
-      })
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/users/delete/${dataLogin.id}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          data: JSON.stringify({ password, id: dataLogin.id }),
+        }
+      )
       .then(() => {
         localStorage.removeItem("token");
         setDataLogin(undefined);
@@ -75,7 +78,7 @@ function UserProfile() {
                 <h3 className="text-gray-300">Mot de passe :</h3>
                 <p className="text-white">* * * * * * * *</p>
               </div>
-              {dataLogin.id && (
+              {/* {dataLogin.id && (
                 <NavLink to={`/updateuserprofile/${dataLogin.id}/edit`}>
                   <button
                     type="button"
@@ -85,7 +88,7 @@ function UserProfile() {
                   </button>
                 </NavLink>
               )}
-              <SlPencil className="md:hidden cursor-pointer my-4 mr-3 w-6 h-6" />
+              <SlPencil className="md:hidden cursor-pointer my-4 mr-3 w-6 h-6" /> */}
             </div>
 
             {passwordInput ? (
@@ -139,7 +142,7 @@ function UserProfile() {
                 <button
                   type="button"
                   onClick={() => setPasswordInput(!passwordInput)}
-                  className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white rounded-xl tracking-wide py-1 px-3 transition"
+                  className="hidden md:block border border-red-800 hover:bg-red-600 text-red-800 hover:text-white tracking-wide py-1 px-3 transition"
                 >
                   Supprimer
                 </button>

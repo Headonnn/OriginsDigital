@@ -203,13 +203,13 @@ function Decouvrir() {
     <div>
       <NavBar />
       {isMaListe ? (
-        <div className="max-w-2xl mx-auto text-center  text-white my-12">
+        <div className="max-w-2xl mx-auto text-center text-white my-12">
           <h2 className="mb-4 text-4xl font-extrabold text-center ">
             Ma liste
           </h2>
         </div>
       ) : (
-        <div className="max-w-2xl mx-auto text-center  text-white my-12">
+        <div className="max-w-2xl mx-auto text-center text-white my-12">
           <h2 className="mb-4 text-4xl font-extrabold text-center ">
             Découvrir
           </h2>
