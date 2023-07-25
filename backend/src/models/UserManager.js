@@ -23,6 +23,15 @@ class UserManager extends AbstractManager {
     );
   }
 
+  modifyUser(user) {
+    const { firstname, email, id } = user;
+
+    return this.database.query(
+      `UPDATE ${this.table} SET firstname=?, email=? WHERE id=?`,
+      [firstname, email, id]
+    );
+  }
+
   update(user) {
     const { id, isAdmin } = user;
 

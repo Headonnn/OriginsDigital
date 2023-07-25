@@ -9,11 +9,14 @@ import UploadWidget from "./UploadWidget";
 
 function EditVideo() {
   const navigate = useNavigate();
+  const [isUploaded, setIsUploaded] = useState(false);
   const { categorie } = useContext(VideoContext);
   const [isClicked, setIsClicked] = useState(false);
+  const [isChosen, setIsChosen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [videoFile, setVideoFile] = useState("");
   const [thumbnailFile, setThumbnailFile] = useState("");
+
   const { id } = useParams();
   const [video, setVideo] = useState({
     title: "",
@@ -58,6 +61,7 @@ function EditVideo() {
         }
       });
   }, [id]);
+
   useEffect(() => {
     setVideoFile(video.url);
     setThumbnailFile(video.thumbnail);
@@ -184,8 +188,11 @@ function EditVideo() {
                 name="url"
                 id="videoLink"
                 setVideoFile={setVideoFile}
+                isUploaded={isUploaded}
+                setIsUploaded={setIsUploaded}
+                setIsChosen={setIsChosen}
+                isChosen={isChosen}
               />
-
               <label htmlFor="videoTitle" className="text-white flex flex-col">
                 Titre*
                 <input
@@ -197,7 +204,6 @@ function EditVideo() {
                   onChange={handleInput}
                 />
               </label>
-
               <label
                 htmlFor="videoCategories"
                 className="text-white flex flex-col mb-4"
@@ -216,7 +222,6 @@ function EditVideo() {
                   aria-label="Catégories"
                 />
               </label>
-
               <label
                 htmlFor="videoDescription"
                 className="text-white flex flex-col"
@@ -230,20 +235,23 @@ function EditVideo() {
                   onChange={handleInput}
                 />
               </label>
-
               <label
                 htmlFor="videoThumbnail"
                 className="text-white flex flex-col"
               >
-                Thumbail*
-                <UploadWidget
-                  accept="image/png, image/jpeg"
-                  name="thumbnail"
-                  id="videoThumbnail"
-                  setThumbnailFile={setThumbnailFile}
-                />
+                {" "}
               </label>
-
+              Thumbail*
+              <UploadWidget
+                accept="image/png, image/jpeg"
+                name="thumbnail"
+                id="videoThumbnail"
+                setThumbnailFile={setThumbnailFile}
+                isUploaded={isUploaded}
+                setIsUploaded={setIsUploaded}
+                setIsChosen={setIsChosen}
+                isChosen={isChosen}
+              />
               <label
                 htmlFor="togglePremium"
                 className="text-white flex items-center gap-8 mt-6"
@@ -258,9 +266,9 @@ function EditVideo() {
                   aria-label="Toggle Premium"
                 />
               </label>
-
               <button
                 type="submit"
+                disabled={!isUploaded}
                 className="w-1/4 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-12"
               >
                 Modifier

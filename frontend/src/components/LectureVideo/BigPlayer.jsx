@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import ReactPlayer from "react-player";
-
 import { BsArrowLeft } from "react-icons/bs";
 import { useParams, useNavigate } from "react-router-dom";
 import VideoContext from "../../../contexts/VideoContext";
@@ -18,7 +17,9 @@ function BigPlayer() {
     []
   );
   return (
-    <div className="player-wrapper relative">
+    <div className="flex justify-center player-wrapper relative ">
+      {" "}
+      {/* Ajoutez la classe mx-auto ici */}
       <div
         onClick={() => navigate(-1)}
         onKeyDown={() => navigate(-1)}
@@ -27,7 +28,6 @@ function BigPlayer() {
       >
         <BsArrowLeft size={30} />
       </div>
-
       {dataDesc && (
         <ReactPlayer url={dataDesc.url} controls width="100vw" height="100vh" />
       )}
