@@ -33,7 +33,6 @@ function EditVideo() {
     console.warn("value:", value);
     setCategories(value);
   };
-  const [error, setError] = useState("");
 
   const toggleFreemium = () => {
     setVideo((vid) => ({
@@ -95,10 +94,7 @@ function EditVideo() {
   };
   const updateVideo = async (e) => {
     e.preventDefault();
-    if (!video.title || !video.url || !video.thumbnail) {
-      setError("*Ce champ est obligatoire");
-      return;
-    }
+
     const date = new Date(video.date);
     const data = {
       title: video.title,
@@ -200,7 +196,6 @@ function EditVideo() {
                   value={video.title}
                   onChange={handleInput}
                 />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
 
               <label

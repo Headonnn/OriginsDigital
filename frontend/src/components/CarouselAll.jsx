@@ -25,7 +25,6 @@ function CarouselAll({ dataSection }) {
         .get(`http://localhost:5002/favorites/${dataLogin.id}`)
         .then((res) => {
           setDataFavorites(res.data);
-          console.warn(res.data);
         })
         .catch((err) => {
           if (err.response) {
@@ -42,7 +41,6 @@ function CarouselAll({ dataSection }) {
 
   useEffect(() => {
     fetchFavorites();
-    console.warn(dataVideo);
   }, []);
   useEffect(() => {
     if (window.innerWidth < 768) {

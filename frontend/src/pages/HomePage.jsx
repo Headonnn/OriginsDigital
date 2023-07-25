@@ -20,7 +20,6 @@ function HomePage() {
       .get(`http://localhost:5002/sections`)
       .then((res) => {
         setDataSection(res.data);
-        console.warn("sections : ", res.data);
       })
       .catch((err) => {
         if (err.response) {
