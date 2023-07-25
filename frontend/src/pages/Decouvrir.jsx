@@ -304,10 +304,11 @@ function Decouvrir() {
           .map((video) => {
             return (
               <div
-                className={`${video.is_freemium && !dataLogin
-                  ? "opacity-60 relative"
-                  : "relative"
-                  }`}
+                className={`${
+                  video.is_freemium && !dataLogin
+                    ? "opacity-60 relative"
+                    : "relative"
+                }`}
                 key={video.id}
               >
                 <div className="w-60 hover:scale-110 transition text-white ">
