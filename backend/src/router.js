@@ -7,6 +7,7 @@ const {
   verifyPassword,
   verifyPasswordAndGenerateToken,
   verifyPasswordBeforeDelete,
+  verifyToken,
 } = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
@@ -47,11 +48,6 @@ router.get("/categories/:id", categoryControllers.read);
 
 router.get("/sections", sectionControllers.browse);
 router.get("/sections/ordre", sectionControllers.browseordre);
-router.put("/sections/:id", sectionControllers.edit);
-router.put("/sections/:id/visibility", sectionControllers.editVis);
-router.post("/sections/custom", sectionControllers.addcustom);
-router.post("/sections/category", sectionControllers.addcategory);
-router.delete("/sections/:id", sectionControllers.destroy);
 
 // video_carousel routes
 
@@ -63,34 +59,23 @@ router.get("/carousel_custom", carouselCustomControllers.browse);
 router.get("/carousel_custom/:id", carouselCustomControllers.read);
 
 router.post("/carousel_custom", carouselCustomControllers.add);
-router.delete("/carousel_custom/:id", carouselCustomControllers.destroy);
 
 // carousel_category routes
 
 router.get("/carousel_category", carouselCategoryControllers.browse);
 router.get("/carousel_category/:id", carouselCategoryControllers.read);
 
-router.post("/carousel_category", carouselCategoryControllers.add);
-router.delete("/carousel_category/:id", carouselCategoryControllers.destroy);
-
 // video_category routes
-router.delete("/videos_category/:id", videoCategoryControllers.destroy);
-router.get("/videos_category/:id", videoCategoryControllers.read);
-router.post("/videos_category", videoCategoryControllers.post);
+
 router.get(
   "/videos_category/get_category/:id",
   videoCategoryControllers.findAll
 );
-
-// favorites routes
-
-router.post("/favorites/add", favoritesControllers.add);
-router.delete("/favorites/:userid/:videoid", favoritesControllers.destroy);
-router.get("/favorites/:id", favoritesControllers.read);
+router.get("/videos_category/:id", videoCategoryControllers.read);
 
 // SECURE ROUTES________________________________________________________________
 
-// router.use(verifyToken);
+router.use(verifyToken);
 
 // user routes
 
@@ -119,6 +104,11 @@ router.post("/videos", videoControllers.add);
 router.delete("/videos/:id/delete", videoControllers.destroy);
 router.put("/videos/:id/hero", videoControllers.editHero);
 
+// video_category routes
+
+router.post("/videos_category", videoCategoryControllers.post);
+router.delete("/videos_category/:id", videoCategoryControllers.destroy);
+
 // Category routes
 
 router.put("/categories/:id/edit", categoryControllers.edit);
@@ -126,10 +116,11 @@ router.post("/categories", categoryControllers.add);
 router.delete("/categories/:id/delete", categoryControllers.destroy);
 
 // Section routes
-
 router.put("/sections/:id", sectionControllers.edit);
+router.put("/sections/:id/visibility", sectionControllers.editVis);
 router.post("/sections/custom", sectionControllers.addcustom);
 router.post("/sections/category", sectionControllers.addcategory);
+router.delete("/sections/:id", sectionControllers.destroy);
 
 // Video Carousel route
 
@@ -140,9 +131,18 @@ router.delete("/videos_carousel/:id", videoCarouselControllers.destroy);
 
 router.post("/carousel_custom", carouselCustomControllers.add);
 router.put("/carousel_custom/:id", carouselCustomControllers.edit);
+router.delete("/carousel_custom/:id", carouselCustomControllers.destroy);
 
 // Carousel Category route
 
 router.post("/carousel_category", carouselCategoryControllers.add);
 router.put("/carousel_category/:id", carouselCategoryControllers.edit);
 module.exports = router;
+router.post("/carousel_category", carouselCategoryControllers.add);
+router.delete("/carousel_category/:id", carouselCategoryControllers.destroy);
+
+// favorites routes
+
+router.post("/favorites/add", favoritesControllers.add);
+router.delete("/favorites/:userid/:videoid", favoritesControllers.destroy);
+router.get("/favorites/:id", favoritesControllers.read);
