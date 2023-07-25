@@ -88,7 +88,7 @@ function Header() {
         </li>
       </ul>
 
-      <div className="flex items-center gap-8">
+      <div className="flex flex-row items-center gap-8">
         {dataLogin ? (
           <ul>
             <li className="relative hidden lg:block tracking-wide transition">

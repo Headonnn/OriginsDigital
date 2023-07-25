@@ -8,11 +8,22 @@ import SearchVideos from "../SearchVideos";
 function ManageHero() {
   const navigate = useNavigate();
   const { dataVideo } = useContext(VideoContext);
-  const [inHero, setInHero] = useState(
-    dataVideo.filter((e) => e.is_in_hero === 1)[0].id
-  );
+  const [inHero, setInHero] = useState("")
+
   const [search, setSearch] = useState("");
   const [filtre, setFiltre] = useState([]);
+
+  const checkHero = () => {
+
+
+    if (dataVideo.length !== 0) {
+
+      setInHero(dataVideo.filter((e) => e.is_in_hero === 1)[0].id)
+    }
+
+
+  }
+  useEffect(() => { checkHero() }, [dataVideo])
   const handleSearchChange = (ev) => {
     setSearch(ev.target.value);
   };
@@ -24,34 +35,16 @@ function ManageHero() {
     const filteredVideo = dataTemp.filter((el) =>
       el.title.toLowerCase().includes(search.toLowerCase())
     );
+
     setFiltre(filteredVideo);
-  }, [search, dataVideo]);
-  const videoDetails = filtre.map((video) => {
-    return (
-      <tr
-        className="hover:bg-gray-50  hover:text-black transition"
-        key={video.id}
-      >
-        <td>{video.id}</td>
-        <td>{video.title}</td>
-        <td className="text-sm text-right">
-          <input
-            type="radio"
-            id={video.id}
-            checked={video.id === inHero}
-            name={video.title}
-            onChange={() => handleHero(video.id)}
-          />
-        </td>
-        <td />
-      </tr>
-    );
-  });
+
+  }, [search, dataVideo, inHero]);
+
+
 
   const handleValidate = async () => {
     await axios.put(
-      `http://Localhost:5002/videos/${
-        dataVideo.filter((e) => e.is_in_hero === 1)[0].id
+      `http://Localhost:5002/videos/${dataVideo.filter((e) => e.is_in_hero === 1)[0].id
       }/hero`,
       { isHero: false }
     );
@@ -60,7 +53,9 @@ function ManageHero() {
     });
     navigate(-1);
   };
+
   return (
+
     <>
       <NavBar />
       <div className="p-5 pt-20 pb-20">
@@ -92,7 +87,27 @@ function ManageHero() {
                     <th className="px-6 py-4 text-lg">Titre</th>
                   </tr>
                 </thead>
-                <tbody className="">{videoDetails}</tbody>
+                <tbody className="">{filtre.map((video) => {
+                  return (
+                    <tr
+                      className="hover:bg-gray-50  hover:text-black transition"
+                      key={video.id}
+                    >
+                      <td>{video.id}</td>
+                      <td>{video.title}</td>
+                      <td className="text-sm text-right">
+                        <input
+                          type="radio"
+                          id={video.id}
+                          checked={video.id === inHero}
+                          name={video.title}
+                          onChange={() => handleHero(video.id)}
+                        />
+                      </td>
+                      <td />
+                    </tr>
+                  );
+                })}</tbody>
               </table>
             </form>
           </div>
@@ -108,7 +123,9 @@ function ManageHero() {
         </div>
       </div>
     </>
+
   );
+
 }
 
 export default ManageHero;

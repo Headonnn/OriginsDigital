@@ -304,11 +304,10 @@ function Decouvrir() {
           .map((video) => {
             return (
               <div
-                className={`${
-                  video.is_freemium && !dataLogin
-                    ? "opacity-60 relative"
-                    : "relative"
-                }`}
+                className={`${video.is_freemium && !dataLogin
+                  ? "opacity-60 relative"
+                  : "relative"
+                  }`}
                 key={video.id}
               >
                 <div className="w-60 hover:scale-110 transition text-white ">
@@ -321,7 +320,7 @@ function Decouvrir() {
                   <div className="flex flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
                     <div className="text-md pl-1">{video.title}</div>
 
-                    {video.is_freemium || dataLogin ? (
+                    {!video.is_freemium || dataLogin ? (
                       <div className=" flex items-center text-2xl   w-1/2 gap-4 px-2 py-1 rounded-xl transition">
                         <Link to={`/description/${video.id - 1}`}>
                           <BsInfoCircle className="hover:bg-white hover:text-black cursor-pointer hover:rounded-2xl" />
