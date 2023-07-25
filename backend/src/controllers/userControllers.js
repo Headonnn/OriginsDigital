@@ -32,7 +32,6 @@ const edit = (req, res) => {
   const user = req.body;
 
   user.id = parseInt(req.params.id, 10);
-
   models.user
     .update(user)
     .then(([result]) => {
@@ -50,9 +49,7 @@ const edit = (req, res) => {
 
 const editAll = (req, res) => {
   const user = req.body;
-
   user.id = parseInt(req.params.id, 10);
-
   models.user
     .updateAll(user)
     .then(([result]) => {
@@ -60,6 +57,23 @@ const editAll = (req, res) => {
         res.sendStatus(404);
       } else {
         res.status(200).send(user);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const editByUser = (req, res) => {
+  const user = req.body;
+  models.user
+    .modifyUser(user)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.status(200).send("modification effectuée");
       }
     })
     .catch((err) => {
@@ -99,9 +113,7 @@ const destroy = (req, res) => {
 
 const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
   const { email } = req.body;
-
   models.user
-
     .findByMail(email)
     .then(([user]) => {
       if (user[0] != null) {
@@ -119,9 +131,8 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     });
 };
 
-const verifyUserBeforeDelete = (req, res, next) => {
+const verifyUser = (req, res, next) => {
   res.locals.variable = req.body;
-
   models.user
     .findByID(res.locals.variable.id)
     .then(([user]) => {
@@ -145,8 +156,9 @@ module.exports = {
   read,
   edit,
   editAll,
+  editByUser,
   add,
   destroy,
   getUserByEmailWithPasswordAndPassToNext,
-  verifyUserBeforeDelete,
+  verifyUser,
 };

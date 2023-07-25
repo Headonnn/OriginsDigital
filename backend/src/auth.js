@@ -18,8 +18,6 @@ const hashPassword = async (req, res, next) => {
 
     const hashedPassword = await argon2.hash(password, hashingOptions);
 
-    // console.log(hashedPassword);
-
     req.body.hashedPassword = hashedPassword;
     delete req.body.password;
 
@@ -31,7 +29,28 @@ const hashPassword = async (req, res, next) => {
   }
 };
 
-const verifyPassword = async (req, res) => {
+const verifyPassword = async (req, res, next) => {
+  try {
+    const { password } = req.body;
+    const { hashedPassword } = req.user;
+    if (!hashedPassword || !password) {
+      return res.status(400).send("Error Auth.VerifyPassword: Invalid request");
+    }
+    const isVerified = await argon2.verify(hashedPassword, password);
+
+    if (isVerified) {
+      next();
+    } else {
+      return res.status(401).send("Invalid password");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("VerifyPassword Internal server error");
+  }
+  return null;
+};
+
+const verifyPasswordAndGenerateToken = async (req, res) => {
   try {
     const { password } = req.body;
     const { hashedPassword } = req.user;
@@ -39,7 +58,7 @@ const verifyPassword = async (req, res) => {
     if (!hashedPassword || !password) {
       return res
         .status(400)
-        .send("Error Auth.VerifyPassword, invalid requestS");
+        .send("Error Auth.VerifyPasswordandGenerateToken, invalid requestS");
     }
 
     const isVerified = await argon2.verify(hashedPassword, password);
@@ -59,7 +78,9 @@ const verifyPassword = async (req, res) => {
     return null;
   } catch (err) {
     console.error(err);
-    res.status(500).send("VerifyPassword Internal servor error");
+    res
+      .status(500)
+      .send("VerifyPasswordandGenerateToken Internal servor error");
     return null;
   }
 };
@@ -116,6 +137,7 @@ const verifyPasswordBeforeDelete = async (req, res, next) => {
 
 module.exports = {
   hashPassword,
+  verifyPasswordAndGenerateToken,
   verifyPassword,
   verifyToken,
   verifyPasswordBeforeDelete,
