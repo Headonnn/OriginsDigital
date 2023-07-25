@@ -80,8 +80,6 @@ function UserProfile() {
                 <h3 className="text-gray-300">Mot de passe :</h3>
                 <p className="text-white">* * * * * * * *</p>
               </div>
-
-
             </div>
 
             {passwordInput ? (

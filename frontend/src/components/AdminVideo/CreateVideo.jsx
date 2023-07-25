@@ -14,6 +14,10 @@ function CreateVideo() {
   const [isClicked, setIsClicked] = useState(false);
   const [videoFile, setVideoFile] = useState("");
   const [thumbnailFile, setThumbnailFile] = useState("");
+  const [vidUploaded, setVidUploaded] = useState(false);
+  const [thumbUploaded, setThumbUploaded] = useState(false);
+  const [videoSelected, setVideoSelected] = useState("");
+  const [fileSelected, setFileSelected] = useState("");
 
   const [video, setVideo] = useState({
     title: "",
@@ -39,7 +43,9 @@ function CreateVideo() {
   };
   const saveVideo = async (e) => {
     e.preventDefault();
-
+    if (!vidUploaded || !thumbUploaded) {
+      return;
+    }
     const data = {
       title: video.title,
       url: videoFile,
@@ -144,6 +150,14 @@ function CreateVideo() {
                 name="url"
                 id="videoLink"
                 setVideoFile={setVideoFile}
+                thumbUploaded={thumbUploaded}
+                setThumbUploaded={setThumbUploaded}
+                vidUploaded={vidUploaded}
+                setVidUploaded={setVidUploaded}
+                fileSelected={fileSelected}
+                setFileSelected={setFileSelected}
+                videoSelected={videoSelected}
+                setVideoSelected={setVideoSelected}
               />
 
               <label htmlFor="videoTitle" className="text-white flex flex-col ">
@@ -203,6 +217,14 @@ function CreateVideo() {
                   name="thumbnail"
                   id="videoThumbnail"
                   setThumbnailFile={setThumbnailFile}
+                  thumbUploaded={thumbUploaded}
+                  setThumbUploaded={setThumbUploaded}
+                  vidUploaded={vidUploaded}
+                  setVidUploaded={setVidUploaded}
+                  fileSelected={fileSelected}
+                  setFileSelected={setFileSelected}
+                  videoSelected={videoSelected}
+                  setVideoSelected={setVideoSelected}
                 />
               </label>
 
