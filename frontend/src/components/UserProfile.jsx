@@ -14,10 +14,13 @@ function UserProfile() {
   const deleteUser = (e) => {
     e.preventDefault();
     axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`, {
-        headers: { "Content-Type": "application/json" },
-        data: JSON.stringify({ password, id: dataLogin.id }),
-      })
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/users/delete/${dataLogin.id}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          data: JSON.stringify({ password, id: dataLogin.id }),
+        }
+      )
       .then(() => {
         localStorage.removeItem("token");
         setDataLogin(undefined);
@@ -77,6 +80,8 @@ function UserProfile() {
                 <h3 className="text-gray-300">Mot de passe :</h3>
                 <p className="text-white">* * * * * * * *</p>
               </div>
+
+
             </div>
 
             {passwordInput ? (

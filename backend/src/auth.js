@@ -39,7 +39,7 @@ const verifyPassword = async (req, res) => {
     if (!hashedPassword || !password) {
       return res
         .status(400)
-        .send("Invalid request a l'étape 1 du verifypassword.");
+        .send("Error Auth.VerifyPassword, invalid requestS");
     }
 
     const isVerified = await argon2.verify(hashedPassword, password);
@@ -55,7 +55,7 @@ const verifyPassword = async (req, res) => {
 
       return null;
     }
-    res.status(401).send("verifypassword, error tirlipinpon");
+    res.status(401).send("Error Auth VerifyPassword");
     return null;
   } catch (err) {
     console.error(err);
@@ -97,18 +97,18 @@ const verifyPasswordBeforeDelete = async (req, res, next) => {
     if (!hashedPassword || !password) {
       return res
         .status(400)
-        .send("Invalid request a l'étape 1 du verifypasswordbeforedelete.");
+        .send("Auth.VerifyPasswordBeforeDelete invalid request");
     }
     const isVerified = await argon2.verify(hashedPassword, password);
     if (isVerified) {
       next();
     } else {
-      res.status(401).send("can't verify the password before nuking");
+      res.status(401).send("Error, can't verify the user password");
       return null;
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send("verifypasswordbeforedelete internal servor error");
+    res.status(500).send("Auth, internal servor error");
     return null;
   }
   return null;
