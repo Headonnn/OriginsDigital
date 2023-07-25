@@ -108,10 +108,11 @@ function AddCarouselCategory() {
               <div className="flex flex-col">
                 <label htmlFor="inputFieldName">Nombre max de vidéos :</label>
                 <input
-                  type="text"
+                  type="number"
                   name="max_number"
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   onChange={handleInput}
+                  required
                 />
               </div>
 
