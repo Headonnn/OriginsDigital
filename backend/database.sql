@@ -239,76 +239,76 @@ VALUES (
         0
     ), (
         'Wingsuit en montagne',
-        'https://www.youtube.com/watch?v=YL9sNrOlK-I&ab_channel=RedBull',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690289094/fmnbhiiydmwwzcopaqgx.mp4',
         'Fred Fugen etVince Reffet, AKA les Soul Flyers, ont decidé  de tenter en wingsuit de prendre un avion.',
-        'https://img.redbull.com/images/c_crop,w_3840,h_1920,x_0,y_61,f_auto,q_auto/c_scale,w_1200/redbullcom/2020/2/12/p4tnkcwg0h9vmjigqnw9/fred-fugen-vince-reffet',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690289226/p4uvlcp9nx5psfhayihz.png',
         '2023-06-23',
         1,
         0
     ), (
         'Wingsuit à Chamonix',
-        'https://www.youtube.com/watch?v=kooYQ0IOnoM&ab_channel=GoPro',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690289616/reeytdyniipwoybl4lei.mp4',
         ' Fred Fugen, Vincent "Veush" Cotte, et Aurélien "Bras Noir Chatard fracassent le record du monde de proximity-flight en wingsuit, depuis les cimes du Mont-Blanc',
-        'https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2022/11/4/mocmtryyx7uzwfrzmli1/soul-flyers-wingsuit-mont-blanc',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690289664/d7qt8ygggdqsebpbnxku.png',
         '2023-06-22',
         1,
         0
     ), (
         'Wingsuit & pyramides',
-        'https://www.youtube.com/watch?v=wj_ZEDISBnA&ab_channel=RedBull',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690289796/bzwugmm0mombj0ztomee.mp4',
         ' Fred Fugen, Vincent Cotte et Mike Swanson testent leur nouvelle wingsuit en Egypte',
-        'https://laughingsquid.com/wp-content/uploads/2022/01/Wingsuit-Flying-Super-Close-To-The-Pyramids-Of-Giza.jpg?w=1024',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690289802/a9nersh6zt7ayiktuffg.png',
         '2023-06-20',
         1,
         0
     ), (
-        'Patrouille de France et deux jetmens',
-        'https://www.youtube.com/watch?v=pNaZCDhvh88&ab_channel=AIRBORNE-FILMS',
-        'La Patrouille de France et les trois Jetman Yves Rossy, Vincent Reffet et Fred Fugen volent ensemble dans une chorégraphie aérienne encore jamais vue.',
-        'https://i.gzn.jp/img/2016/12/01/alpha-jetman/00.jpg',
+        'Freediving is fun',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690290133/ibas1pra1foxixwv60i4.mp4',
+        'Comment faire des bulles sans respirer.',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690290145/pv3k0qyglubwfj2ygc1k.jpg',
         '2023-06-23',
         1,
         0
     ), (
         'Surf & Tahiti',
-        'https://www.youtube.com/watch?v=PRPxTztXoOo&ab_channel=RedBullSurfing',
-        ' Teahupoo accueille des surfeurs du monde entier pour profiter de la saison des vagues.',
-        'https://img.redbull.com/images/c_crop,w_2000,h_1000,x_0,y_333,f_auto,q_auto/c_scale,w_1200/redbullcom/2015/05/23/1331724747726_8/jerome-sahyoun-at-teahupo-o',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690290318/g5ztocrfeuwne5pfddkn.mp4',
+        'Teahupoo accueille des surfeurs du monde entier pour profiter de la saison des vagues.',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690290346/dtymec7dw0uhqs3feoi5.jpg',
         '2023-06-20',
         0,
         0
     ), (
         'Forgiving Pipeline sur Oahu',
-        'https://www.youtube.com/watch?v=vtHUFwXnV2E&ab_channel=RedBullSurfing',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690290479/yphbqvyhqaerrweefkf1.mp4',
         'Amber Mozo suit les traces de son père photographe, disparu dans le tube de Forgiving Pipeline, légendaire spot sur la côte nord à Oahu.',
-        'https://gathsports.com/wp-content/uploads/2020/05/Schermata-2020-05-06-alle-5.29.39-PM-1400x757.jpeg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690290532/os8qyiks9tsflzga1uoa.jpg',
         '2023-06-23',
         1,
         0
     ), (
         'En apnée sous la banquise',
-        'https://www.youtube.com/watch?v=aCkt-WI0n3g&ab_channel=TheAtlantic',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690290772/ljbwnyevuhijqf2kwnf3.mp4',
         ' Johanna Nordblad, plongeuse finlandaise, explore les paysages arctiques en apnée',
-        'https://canadiangeographic.ca/wp-content/uploads/2022/02/coombs_freediving_under_ice-1024x671.jpg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690290780/vkyaaxfhpuyddrc8hhpp.jpg',
         '2023-06-20',
         1,
         0
     ), (
         'Run de ski le plus dangereux',
-        'https://www.youtube.com/watch?v=fbqHK8i-HdA&ab_channel=RedBullSnow',
+        'https://res.cloudinary.com/dgux3vxri/video/upload/v1690291016/qqgexewfahpyothgnjzb.mp4',
         ' Markus Eder présente son court-métrage perso, filmé et monté par ses soins, narrant sa descente en ski dans les Alpes',
-        'https://www.skieur.com/media/2021/novembre/Markus%20Eder.jpg',
+        'https://res.cloudinary.com/dgux3vxri/image/upload/v1690291031/u5m7o8cve64esaoioxiw.jpg',
         '2023-06-21',
         1,
         0
     );
 
 INSERT INTO category (name)
-VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés"), ("Escalade"), ("Vidéos gratuites");
+VALUES ('Skate'), ('Voltige'), ('Surf'), ('Wingsuit'), ('Apnée'), ('Arts martiaux'), ("Nouveautés"), ("Escalade"), ("Vidéos gratuites"), ("Ski");
 
 INSERT INTO
     video_category (video_id, category_id)
-VALUES (1, 4), (3, 6), (9, 8), (5, 3), (7, 5), (2, 6), (8, 6), (6, 1), (10, 1), (11, 1), (12, 1), (13, 4), (14, 4), (15, 4), (16, 3), (17, 3), (18, 5);
+VALUES (1, 4), (4, 1), (3, 6), (9, 8), (5, 3), (7, 5), (2, 6), (8, 6), (6, 1), (10, 1), (11, 1), (12, 1), (13, 4), (14, 4), (15, 4), (16, 5), (17, 3), (18, 3), (20, 10), (19, 5);
 
 INSERT INTO
     carousel_custom (name)
