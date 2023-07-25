@@ -79,7 +79,6 @@ CREATE TABLE
     `advert` (
         id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
         title VARCHAR(150) NOT NULL,
-        section_id INT NOT NULL,
         description VARCHAR(500) NOT NULL,
         image VARCHAR(100) NOT NULL
     );

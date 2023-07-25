@@ -17,7 +17,9 @@ function BlockFAQ({ question, reponse }) {
           type="button"
           className="flex items-center justify-between w-full px-4 py-5 sm:p-6"
         >
-          <span className="flex text-md font-semibold">{question}</span>
+          <span className="flex text-md md:text-lg font-semibold">
+            {question}
+          </span>
 
           <svg
             className={`${

@@ -1,7 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-function AddVideo({ vidCarousel, setVidCarousel, filtre }) {
+function AddVideoCarousel({ vidCarousel, setVidCarousel, filtre }) {
   const handleAdd = (e) => {
     const target = e.target.id;
     const { checked } = e.target;
@@ -52,11 +52,11 @@ function AddVideo({ vidCarousel, setVidCarousel, filtre }) {
     </div>
   );
 }
-AddVideo.propTypes = {
+AddVideoCarousel.propTypes = {
   vidCarousel: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
   setVidCarousel: PropTypes.func.isRequired,
   filtre: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.bool, PropTypes.number, PropTypes.string)
   ),
 };
-export default AddVideo;
+export default AddVideoCarousel;

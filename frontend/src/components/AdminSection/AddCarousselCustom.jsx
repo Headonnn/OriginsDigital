@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
+import SearchVideos from "../SearchVideos";
+import AddVideoCarousel from "./AddVideoCarousel";
+import VideoContext from "../../../contexts/VideoContext";
 
-import NavBar from "../components/NavBar/NavBar";
-import SearchVideos from "../components/SearchVideos";
-import AddVideo from "../components/AdminSection/AddVideo";
-import VideoContext from "../../contexts/VideoContext";
-
-function AdminCarousselCustom() {
+function AddCarousselCustom() {
   const { dataVideo } = useContext(VideoContext);
   const navigate = useNavigate();
 
@@ -17,6 +14,7 @@ function AdminCarousselCustom() {
 
   const [carousel, setCarousel] = useState({
     name: "",
+    visibility: "all",
   });
 
   const [vidCarousel, setVidCarousel] = useState(undefined);
@@ -162,7 +160,7 @@ function AdminCarousselCustom() {
             <h1 className="text-white   font-poppins mt-6  ">Videos :</h1>
           </div>
           <SearchVideos handleSearchChange={handleSearchChange} />
-          <AddVideo
+          <AddVideoCarousel
             vidCarousel={vidCarousel}
             filtre={filtre}
             setVidCarousel={setVidCarousel}
@@ -182,4 +180,4 @@ function AdminCarousselCustom() {
   );
 }
 
-export default AdminCarousselCustom;
+export default AddCarousselCustom;

@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-import VideoContext from "../../contexts/VideoContext";
-import NavBar from "../components/NavBar/NavBar";
+import VideoContext from "../../../contexts/VideoContext";
+import NavBar from "../NavBar/NavBar";
 
-function AdminCarouselCategory() {
+function AddCarouselCategory() {
   const navigate = useNavigate();
   const { categorie } = useContext(VideoContext);
 
@@ -104,10 +102,11 @@ function AdminCarouselCategory() {
               <div className="flex flex-col">
                 <label htmlFor="inputFieldName">Nombre max de vidéos :</label>
                 <input
-                  type="text"
+                  type="number"
                   name="max_number"
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   onChange={handleInput}
+                  required
                 />
               </div>
 
@@ -151,4 +150,4 @@ function AdminCarouselCategory() {
   );
 }
 
-export default AdminCarouselCategory;
+export default AddCarouselCategory;

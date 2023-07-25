@@ -6,9 +6,9 @@ function SearchBar({ handleSearchChange, handleChangeCategory }) {
   const { categorie } = useContext(VideoContext);
 
   return (
-    <div className="flex flex-col md:flex-row items-center md:gap-12 justify-center py-12">
-      <div className="w-80 md:w-1/3 my-8">
-        <div className="flex items-center w-full h-10 rounded-xl focus-within:shadow-lg bg-white overflow-hidden">
+    <div className="flex flex-col md:flex-row md:justify-between items-center  mb-8 mt-12 ">
+      <div className="w-80 md:w-1/3 ">
+        <div className="flex items-center w-full h-10 focus-within:shadow-lg bg-white overflow-hidden">
           <div className="grid place-items-center h-full w-12 bg-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ function SearchBar({ handleSearchChange, handleChangeCategory }) {
         </div>
       </div>
       <select
-        className="h-10 rounded-xl focus:ring-0 cursor-pointer "
+        className="h-10 focus:ring-0 cursor-pointer "
         onChange={handleChangeCategory}
       >
         <option value="">Catégories</option>

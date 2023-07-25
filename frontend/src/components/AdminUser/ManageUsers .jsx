@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import { TfiExport } from "react-icons/tfi";
+import { BsArrowReturnLeft } from "react-icons/bs";
+import { AiOutlinePlus } from "react-icons/ai";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
@@ -155,42 +157,60 @@ function ManageUsers() {
   return (
     <div>
       <NavBar />
-      <div className="p-5 ">
-        <div className="bg-gradient-to-br from-blue-900 my-10 to-022340 mx-auto flex flex-col px-6 py-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-          <div className="flex justify-between items-center pb-5">
-            <button
-              type="button"
-              onClick={() => navigate("/admin/")}
-              className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
-            >
-              Retour
-            </button>
-
-            <h2 className="text-2xl">Gestion des utilisateurs</h2>
-            <div>
+      <div className="max-w-screen-lg mx-auto ">
+        <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+          <div className="flex justify-between items-center mb-4 md:w-2/3 w-4/5">
+            <div className="flex justify-center">
               <button
                 type="button"
-                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-6 transition"
+                onClick={() => navigate("/admin/")}
+                className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
+              >
+                Retour
+              </button>
+              <button
+                type="button"
+                onClick={() => navigate("/admin/")}
+                className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+              >
+                <BsArrowReturnLeft />
+              </button>
+            </div>
+            <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
+              Gestion des utilisateurs
+            </h2>
+          </div>
+          <div>
+            <div className="flex gap-2 md:flex-col justify-end md:items-end">
+              <button
+                type="button"
+                className="hidden md:block border hover:bg-white tracking-wide hover:text-black w-1/4 py-2 px-3 transition"
               >
                 <Link to="/admin/users/add_user">Ajouter un utilisateur</Link>
               </button>
+              <button
+                type="button"
+                className="md:hidden border  hover:bg-white tracking-wide hover:text-black py-2 px-2 transition"
+              >
+                <Link to="/admin/users/add_user">
+                  <AiOutlinePlus />
+                </Link>
+              </button>
+
+              <CSVLink
+                {...csvReport}
+                className=" flex items-center gap-2 border hover:bg-white tracking-wide hover:text-black py-2 px-2 text-sm transition"
+              >
+                <TfiExport />
+                <p className="hidden md:block">Export csv</p>
+              </CSVLink>
             </div>
-          </div>
-          <div className="flex justify-end pb-20">
-            <CSVLink
-              {...csvReport}
-              className=" flex items-center gap-2 border hover:bg-white tracking-wide hover:text-black rounded-lg py-1 px-3 text-sm transition"
-            >
-              <TfiExport />
-              <p>Export csv</p>
-            </CSVLink>
           </div>
           <div className="flex justify-center items-center">
             <table className=" w-full border-collapse text-left text-sm">
               <thead>
                 <tr>
                   <th className="py-4 text-lg">ID</th>
-
                   <th className="py-4 text-lg">Email</th>
                   <th className="py-4 text-lg text-center">Admin</th>
                 </tr>

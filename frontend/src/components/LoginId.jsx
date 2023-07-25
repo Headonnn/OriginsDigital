@@ -7,14 +7,19 @@ import LoginContext from "../../contexts/LoginContext";
 
 function LoginId() {
   const [passwordVisible, setPasswordVisible] = useState(false);
+
   const togglePasswordVisibility = () => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
+
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
 
   const [loginError, setLoginError] = useState(false);
+
   const resetPage = () => {
     setLoginError(false);
     navigate("/login");
@@ -54,10 +59,10 @@ function LoginId() {
   };
 
   return (
- <>
+    <>
       {loginError ? (
-        <div className="h-[60vh] flex items-center justify-center">
-          <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
+        <div className="h-[60vh] flex items-center justify-center px-4 mx-auto mb-20 max-w-screen-md">
+          <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
               Vos identifiants sont incorrects
             </p>
@@ -66,7 +71,7 @@ function LoginId() {
                 <button
                   type="button"
                   onClick={resetPage}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                  className="border hover:bg-white tracking-wide text-white hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour
                 </button>
@@ -75,70 +80,71 @@ function LoginId() {
           </div>
         </div>
       ) : (
-    <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-      <h2 className="text-white text-xl text-center mt-15">Connexion</h2>
-      <div className="rounded-lg p-4 mt-16">
-        <form onSubmit={handleLogin}>
-          <div className="relative">
-            <input
-              type="email"
-              className="text-black rounded-md px-3 py-3 mb-4 border-black  w-full md:w-96 pr-10"
-              placeholder="votre adresse mail"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-          </div>
-          <div className="relative">
-            <input
-              type={passwordVisible ? "text" : "password"}
-              className="text-black rounded-md px-3 py-3 border border-black w-full md:w-106 pr-10"
-              placeholder="votre mot de passe"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            {passwordVisible ? (
-              <IoEyeSharp
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 text-blue-900 w-6 h-6 cursor-pointer"
-                onClick={togglePasswordVisibility}
-              />
-            ) : (
-              <IoEyeOffSharp
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 text-blue-900 w-6 h-6 cursor-pointer"
-                onClick={togglePasswordVisibility}
-              />
-            )}
-          </div>
-          <p className="text-white text-sm font-light font-poppins mt-2">
-            Mot de passe oublié ? Cliquez{" "}
-            <span className="underline font-bold duration-200 hover:text-orange-600">
-              ici
-            </span>
-            .
-          </p>
-          <div className="flex flex-col space-y-2 mt-16 w-full">
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-red-600 to-orange-500 text-white placeholder-white text-md rounded-md px-3 py-3 border border-black  w-full md:w-106 pr-10"
-            >
-              S'identifier
-            </button>
-
-            <p className="mt-4 text-sm text-center">
-              Première visite sur Origins Digital ?{" "}
-              <NavLink to="/createaccountform">
-                <span className="font-bold duration-200 hover:text-orange-600">
-                  Inscrivez-vous
+        <div className="flex flex-col items-center px-10 md:px-10 py-8 mx-auto my-10 text-white rounded-[31px]">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-center ">
+            Connexion
+          </h2>
+          <div className="rounded-lg p-4 mt-12">
+            <form onSubmit={handleLogin}>
+              <div className="relative">
+                <input
+                  type="email"
+                  className="text-black rounded-md px-3 py-3 mb-4 border-black  w-full md:w-96 pr-10"
+                  placeholder="votre adresse mail"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                />
+              </div>
+              <div className="relative">
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  className="text-black rounded-md px-3 py-3 border border-black w-full md:w-106 pr-10"
+                  placeholder="votre mot de passe"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                />
+                {passwordVisible ? (
+                  <IoEyeSharp
+                    className="absolute top-1/2 right-2 transform -translate-y-1/2 text-blue-900 w-6 h-6 cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  />
+                ) : (
+                  <IoEyeOffSharp
+                    className="absolute top-1/2 right-2 transform -translate-y-1/2 text-blue-900 w-6 h-6 cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  />
+                )}
+              </div>
+              <p className="text-white text-sm font-light font-poppins mt-2 ml-1">
+                Mot de passe oublié ? Cliquez{" "}
+                <span className="underline font-bold duration-200 hover:text-orange-600">
+                  ici
                 </span>
-              </NavLink>
-            </p>
+                .
+              </p>
+              <div className="flex flex-col space-y-2 mt-16 w-full">
+                <button
+                  type="submit"
+                  className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-3"
+                >
+                  S'identifier
+                </button>
+
+                <p className="mt-4 text-sm text-center">
+                  Première visite sur Origins Digital ?{" "}
+                  <NavLink to="/createaccountform">
+                    <span className="font-bold duration-200 hover:text-orange-600">
+                      Inscrivez-vous
+                    </span>
+                  </NavLink>
+                </p>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
-     )}
+        </div>
+      )}
       ;
     </>
-           
   );
 }
 

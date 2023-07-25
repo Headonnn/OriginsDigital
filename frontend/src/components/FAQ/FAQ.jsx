@@ -30,7 +30,7 @@ function FAQ() {
     <>
       <NavBar />
 
-      <section className="px-4 mx-auto mb-20 max-w-screen-md">
+      <section className="px-4 mx-auto mb-20 max-w-screen-md mt-12">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-2xl mx-auto text-center  text-white ">
             <h2 className="mb-4 text-4xl font-extrabold text-center ">FAQ</h2>
@@ -47,13 +47,6 @@ function FAQ() {
               />
             );
           })}
-
-          {/*   <p className="text-center text-white textbase mt-9">
-            Vous n'avez pas trouvé la réponse à votre question ?{" "}
-            <span className="font-medium text-[#E52460] transition-all duration-200 hover:text-[#bb1e50] focus:text-[#bb1e50] hover:underline">
-             <NavLink to="/contact">Contactez notre support</NavLink> 
-            </span>
-          </p> */}
         </div>
       </section>
     </>

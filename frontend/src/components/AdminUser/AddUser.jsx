@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BsArrowReturnLeft } from "react-icons/bs";
 import NavBar from "../NavBar/NavBar";
 
 function AddUsers() {
@@ -47,15 +48,15 @@ function AddUsers() {
 
       {isClicked ? (
         <div className="h-[60vh] flex items-center justify-center">
-          <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
-            <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
+          <div className="flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
+            <p className="pt-8 pb-16 text-lg md:text-2xl ">
               L'utilisateur a bien été crée !
             </p>
             <div className="flex justify-center">
               <button
                 type="button"
                 onClick={() => navigate("../admin/user_list")}
-                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                className="border text-white tracking-wide py-1 px-3 text-sm md:px-6  md:text-lg transition"
               >
                 Retour
               </button>
@@ -63,39 +64,30 @@ function AddUsers() {
           </div>
         </div>
       ) : (
-        <div className="min-h-screen p-5 pt-20 pb-20">
-          <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-            <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
-              <div>
-                <h2 className="text-lg md:text-2xl">Ajouter un utilisateur</h2>
-              </div>
-              <div>
+        <div className="max-w-screen-lg mx-auto ">
+          <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+            <div className="flex justify-between items-center mb-4 md:w-2/3 w-4/5">
+              <div className="flex justify-center px-3">
                 <button
                   type="button"
-                  onClick={() => navigate(-1)}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                  onClick={() => navigate("/admin/user_list")}
+                  className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour
                 </button>
+                <button
+                  type="button"
+                  onClick={() => navigate("/admin/user_list")}
+                  className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+                >
+                  <BsArrowReturnLeft />
+                </button>
               </div>
+              <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
+                Ajouter un utilisateur
+              </h2>
             </div>
-            <form
-              className="mt-6 flex flex-col px-3 md:px-6"
-              onSubmit={updateUser}
-            >
-              {/* <label htmlFor="Username" className="text-white flex flex-col">
-                Username*
-                <input
-                  type="text"
-                  name="username"
-                  className="bg-white text-black w-full h-10 px-4 py-2 rounded-md mb-4"
-                  placeholder="Votre username"
-                  value={users.username}
-                  onChange={handleInput}
-                />
-                <span className="text-orange-600 pb-3">{error}</span>
-              </label> */}
-
+            <form className="mt-6 flex flex-col px-3" onSubmit={updateUser}>
               <label htmlFor="userEmail" className="text-white flex flex-col">
                 Email*
                 <input

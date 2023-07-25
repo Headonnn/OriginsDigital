@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Select from "react-tailwindcss-select";
+import { BsArrowReturnLeft } from "react-icons/bs";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
 import UploadWidget from "./UploadWidget";
@@ -32,7 +33,6 @@ function EditVideo() {
     console.warn("value:", value);
     setCategories(value);
   };
-  const [error, setError] = useState("");
 
   const toggleFreemium = () => {
     setVideo((vid) => ({
@@ -94,10 +94,7 @@ function EditVideo() {
   };
   const updateVideo = async (e) => {
     e.preventDefault();
-    if (!video.title || !video.url || !video.thumbnail) {
-      setError("*Ce champ est obligatoire");
-      return;
-    }
+
     const date = new Date(video.date);
     const data = {
       title: video.title,
@@ -139,15 +136,15 @@ function EditVideo() {
 
       {isClicked ? (
         <div className="h-[60vh] flex items-center justify-center">
-          <div className="bg-gradient-to-br from-blue-900 flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
-            <p className="text-white pt-8 pb-16 text-lg md:text-2xl ">
+          <div className="flex flex-col items-center justify-center py-16 px-8 max-w-md text-white rounded-[31px]">
+            <p className="pt-8 pb-16 text-lg md:text-2xl ">
               La vidéo a bien été modifiée !
             </p>
             <div className="flex justify-center">
               <button
                 type="button"
                 onClick={() => navigate("/admin/video_list")}
-                className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6  md:text-lg transition"
+                className="border text-white tracking-wide py-1 px-3 text-sm md:px-6  md:text-lg transition"
               >
                 Retour
               </button>
@@ -155,26 +152,30 @@ function EditVideo() {
           </div>
         </div>
       ) : (
-        <div className="loginid-container bg-black min-h-screen p-5 pt-20 pb-20 relative overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-900 mx-auto flex flex-col py-6 sm:w-10/12 lg:w-9/12 xl:w-10/12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
-            <div className="px-7 max-w-md md:w-auto md:max-w-none md:h-[6rem] md:px-6 md:py-6 flex items-center justify-between ">
-              <div>
-                <h2 className="text-lg md:text-2xl">Modifier une vidéo</h2>
-              </div>
-              <div>
+        <div className="max-w-screen-lg mx-auto ">
+          <div className="flex flex-col px-6 my-12 shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white">
+            <div className="flex justify-between items-center md:w-2/3 w-4/5">
+              <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={() => navigate(-1)}
-                  className="border hover:bg-white tracking-wide hover:text-black rounded-xl py-2 px-3 text-sm md:px-6 md:text-lg transition"
+                  onClick={() => navigate("/admin/video_list")}
+                  className="hidden md:block border hover:bg-white tracking-wide hover:text-black py-1 px-3 text-sm md:px-6  md:text-lg transition"
                 >
                   Retour
                 </button>
+                <button
+                  type="button"
+                  onClick={() => navigate("/admin/video_list")}
+                  className="md:hidden text-white  hover:bg-white border hover:text-black duration-200 border-white p-2 focus:outline-none"
+                >
+                  <BsArrowReturnLeft />
+                </button>
               </div>
+              <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
+                Modifier une vidéo
+              </h2>
             </div>
-            <form
-              className="mt-6 flex flex-col px-3 md:px-6"
-              onSubmit={updateVideo}
-            >
+            <form className="mt-6 flex flex-col" onSubmit={updateVideo}>
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Lien de la vidéo*
               </label>
@@ -195,7 +196,6 @@ function EditVideo() {
                   value={video.title}
                   onChange={handleInput}
                 />
-                <span className="text-orange-600 pb-3">{error}</span>
               </label>
 
               <label
