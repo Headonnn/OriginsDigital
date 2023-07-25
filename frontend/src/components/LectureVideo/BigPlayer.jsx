@@ -17,7 +17,9 @@ function BigPlayer() {
     []
   );
   return (
-    <div className="flex justify-center player-wrapper relative "> {/* Ajoutez la classe mx-auto ici */}
+    <div className="flex justify-center player-wrapper relative ">
+      {" "}
+      {/* Ajoutez la classe mx-auto ici */}
       <div
         onClick={() => navigate(-1)}
         onKeyDown={() => navigate(-1)}
@@ -26,7 +28,6 @@ function BigPlayer() {
       >
         <BsArrowLeft size={30} />
       </div>
-
       {dataDesc && (
         <ReactPlayer url={dataDesc.url} controls width="100vw" height="100vh" />
       )}

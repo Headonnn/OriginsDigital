@@ -5,6 +5,7 @@ const router = express.Router();
 const {
   hashPassword,
   verifyPassword,
+  verifyPasswordAndGenerateToken,
   verifyPasswordBeforeDelete,
 } = require("./auth");
 
@@ -27,7 +28,7 @@ router.post("/users", hashPassword, userControllers.add);
 router.post(
   "/users/login",
   userControllers.getUserByEmailWithPasswordAndPassToNext,
-  verifyPassword
+  verifyPasswordAndGenerateToken
 );
 
 // Video routes
@@ -94,11 +95,16 @@ router.get("/favorites/:id", favoritesControllers.read);
 // user routes
 
 router.put("/users/:id", userControllers.edit);
-router.put("/users/:id/edit", hashPassword, userControllers.editAll);
+router.put(
+  "/users/:id/edit",
+  userControllers.verifyUser,
+  verifyPassword,
+  userControllers.editByUser
+);
 router.delete("/users/:id", userControllers.destroy);
 router.delete(
   "/users/delete/:id",
-  userControllers.verifyUserBeforeDelete,
+  userControllers.verifyUser,
   verifyPasswordBeforeDelete,
   userControllers.destroy
 );
