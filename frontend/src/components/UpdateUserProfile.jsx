@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
+
 import LoginContext from "../../contexts/LoginContext";
 import NavBar from "./NavBar/NavBar";
 
@@ -8,8 +9,6 @@ function UpdateUserProfile() {
   const { dataLogin, setDataLogin } = useContext(LoginContext);
 
   const { id } = useParams();
-
-  const navigate = useNavigate();
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -62,12 +61,30 @@ function UpdateUserProfile() {
         setIsClicked(!isClicked);
         localStorage.removeItem("token");
         setDataLogin(undefined);
-        navigate("/login");
       })
       .catch((err) => console.error(err, "ha c'est ballot"));
   };
 
-  return (
+  return isClicked ? (
+    <>
+      <NavBar />
+
+      <div className="flex flex-col items-center px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 text-center text-white">
+        <h2 className="flex items-center gap-12 pb-6">Félicitations !</h2>
+        <p className="pb-8">
+          Votre compte à été modifié avec succès. Veuillez vous reconnecter.
+        </p>
+        <NavLink to="/login">
+          <button
+            type="button"
+            className="w-full mx-auto border-2 border-white text-white py-2 px-4  my-3"
+          >
+            Se connecter
+          </button>
+        </NavLink>
+      </div>
+    </>
+  ) : (
     <>
       <NavBar />
 
@@ -143,4 +160,3 @@ function UpdateUserProfile() {
 }
 
 export default UpdateUserProfile;
-
