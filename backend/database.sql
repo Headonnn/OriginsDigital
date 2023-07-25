@@ -124,12 +124,6 @@ VALUES (
         'Thomasovich',
         '1'
     ), (
-        'emilie@emilie.com',
-        '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZnpmemZlemFkYXpkZA$V1qAnJDyMuuWG7g9yoGYXA',
-        'Emilie',
-        'Nathan',
-        '1'
-    ), (
         'jeremy@jeremy.com',
         '$argon2id$v=19$m=16,t=2,p=1$emVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$VCzq45PL9t8khtc44Kk5iw',
         'Jeremy',
@@ -228,7 +222,7 @@ VALUES (
         1,
         0
     ), (
-        'Faire du skateboard dans un aéroport désert',
+        'Skateboard is fun',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689258350/qf7bk2olbn3ifxl6t8ep.mp4',
         'Competition de skateboard au Louis Armstrong International Airport à New Orleans',
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689258431/ouebx6i0lcmhcw3rugz5.jpg',
@@ -236,7 +230,7 @@ VALUES (
         1,
         0
     ), (
-        'Le Go Skateboarding Day à Santiago, au Chili',
+        'Skateboarding à Santiago',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689258643/zdqpk2i5ouqwgmcjqnl6.mp4',
         'Douze-mille skateboarders se rassemblent à Santiago pour une manif en faveur de leur sport',
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689258800/bgnkiuossvmwvhwzoxtr.jpg',
@@ -244,7 +238,7 @@ VALUES (
         1,
         0
     ), (
-        'Petite session de wingsuit en montagne',
+        'Wingsuit en montagne',
         'https://www.youtube.com/watch?v=YL9sNrOlK-I&ab_channel=RedBull',
         'Fred Fugen etVince Reffet, AKA les Soul Flyers, ont decidé  de tenter en wingsuit de prendre un avion.',
         'https://img.redbull.com/images/c_crop,w_3840,h_1920,x_0,y_61,f_auto,q_auto/c_scale,w_1200/redbullcom/2020/2/12/p4tnkcwg0h9vmjigqnw9/fred-fugen-vince-reffet',
@@ -252,7 +246,7 @@ VALUES (
         1,
         0
     ), (
-        'Record du monde de rase-motte en wingsuit à Chamonix',
+        'Wingsuit à Chamonix',
         'https://www.youtube.com/watch?v=kooYQ0IOnoM&ab_channel=GoPro',
         ' Fred Fugen, Vincent "Veush" Cotte, et Aurélien "Bras Noir Chatard fracassent le record du monde de proximity-flight en wingsuit, depuis les cimes du Mont-Blanc',
         'https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2022/11/4/mocmtryyx7uzwfrzmli1/soul-flyers-wingsuit-mont-blanc',
@@ -260,7 +254,7 @@ VALUES (
         1,
         0
     ), (
-        'A la découverte des pyramides',
+        'Wingsuit & pyramides',
         'https://www.youtube.com/watch?v=wj_ZEDISBnA&ab_channel=RedBull',
         ' Fred Fugen, Vincent Cotte et Mike Swanson testent leur nouvelle wingsuit en Egypte',
         'https://laughingsquid.com/wp-content/uploads/2022/01/Wingsuit-Flying-Super-Close-To-The-Pyramids-Of-Giza.jpg?w=1024',
@@ -268,7 +262,7 @@ VALUES (
         1,
         0
     ), (
-        'Petite rencontre entre la Patrouille de France et deux jetmens',
+        'Patrouille de France et deux jetmens',
         'https://www.youtube.com/watch?v=pNaZCDhvh88&ab_channel=AIRBORNE-FILMS',
         'La Patrouille de France et les trois Jetman Yves Rossy, Vincent Reffet et Fred Fugen volent ensemble dans une chorégraphie aérienne encore jamais vue.',
         'https://i.gzn.jp/img/2016/12/01/alpha-jetman/00.jpg',
@@ -276,7 +270,7 @@ VALUES (
         1,
         0
     ), (
-        'Surf sur les vagues massives de Tahiti',
+        'Surf & Tahiti',
         'https://www.youtube.com/watch?v=PRPxTztXoOo&ab_channel=RedBullSurfing',
         ' Teahupoo accueille des surfeurs du monde entier pour profiter de la saison des vagues.',
         'https://img.redbull.com/images/c_crop,w_2000,h_1000,x_0,y_333,f_auto,q_auto/c_scale,w_1200/redbullcom/2015/05/23/1331724747726_8/jerome-sahyoun-at-teahupo-o',
@@ -284,7 +278,7 @@ VALUES (
         0,
         0
     ), (
-        'Le spot le plus léthal au monde, Forgiving Pipeline sur Oahu',
+        'Forgiving Pipeline sur Oahu',
         'https://www.youtube.com/watch?v=vtHUFwXnV2E&ab_channel=RedBullSurfing',
         'Amber Mozo suit les traces de son père photographe, disparu dans le tube de Forgiving Pipeline, légendaire spot sur la côte nord à Oahu.',
         'https://gathsports.com/wp-content/uploads/2020/05/Schermata-2020-05-06-alle-5.29.39-PM-1400x757.jpeg',
@@ -300,7 +294,7 @@ VALUES (
         1,
         0
     ), (
-        'Le run de ski le plus dangereux',
+        'Run de ski le plus dangereux',
         'https://www.youtube.com/watch?v=fbqHK8i-HdA&ab_channel=RedBullSnow',
         ' Markus Eder présente son court-métrage perso, filmé et monté par ses soins, narrant sa descente en ski dans les Alpes',
         'https://www.skieur.com/media/2021/novembre/Markus%20Eder.jpg',

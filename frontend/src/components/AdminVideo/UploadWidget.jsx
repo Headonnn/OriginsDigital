@@ -2,10 +2,21 @@ import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function UploadWidget({ accept, name, id, setThumbnailFile, setVideoFile }) {
+function UploadWidget({
+  accept,
+  name,
+  id,
+  setThumbnailFile,
+  setVideoFile,
+  isUploaded,
+  setIsUploaded,
+  setIsChosen,
+  isChosen,
+}) {
   const [fileSelected, setFileSelected] = useState("");
   const [urlFile, setUrlFile] = useState("");
   const [loading, setLoading] = useState("");
+
   console.warn(urlFile);
   const uploadFile = () => {
     const formData = new FormData();
@@ -19,12 +30,12 @@ function UploadWidget({ accept, name, id, setThumbnailFile, setVideoFile }) {
         setUrlFile(res.data.url);
         if (id === "videoThumbnail") {
           setThumbnailFile(res.data.url);
-
           setLoading("envoyé !");
+          setIsUploaded(!isUploaded);
         } else {
           setVideoFile(res.data.url);
-
           setLoading("envoyé !");
+          setIsUploaded(!isUploaded);
         }
       })
       .catch((error) => {
@@ -44,8 +55,10 @@ function UploadWidget({ accept, name, id, setThumbnailFile, setVideoFile }) {
         accept={accept}
         name={name}
         id={id}
+        onClick={() => setIsChosen(true)}
       />
-      {loading === "" ? (
+
+      {isChosen && loading === "" ? (
         <button
           className="border hover:bg-white tracking-wide hover:text-black  py-1 px-3 text-sm md:px-6  md:text-lg transition"
           onClick={uploadFile}
@@ -69,6 +82,10 @@ UploadWidget.propTypes = {
   accept: PropTypes.string.isRequired,
   setThumbnailFile: PropTypes.func.isRequired,
   setVideoFile: PropTypes.func.isRequired,
+  setIsUploaded: PropTypes.func.isRequired,
+  setIsChosen: PropTypes.func.isRequired,
+  isChosen: PropTypes.bool.isRequired,
+  isUploaded: PropTypes.bool.isRequired,
 };
 
 export default UploadWidget;

@@ -57,14 +57,6 @@ function AddSection() {
                   Caroussel de catégorie
                 </button>
               </Link>
-              <Link to="pub" className="flex justify-center my-2">
-                <button
-                  type="button"
-                  className="text-sm md:text-lg  font-semibold duration-300 mb-6 w-full bg-black  text-white border border-gray-200 py-6 px-8 shadow-lg cursor-pointer hover:bg-gray-50 focus:outline-none hover:text-black"
-                >
-                  Pub
-                </button>
-              </Link>
             </div>
           </div>
         </div>
