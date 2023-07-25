@@ -135,7 +135,7 @@ function DescriptionVideo() {
           </h6>
         </div>
       </div>
-      <div className="flex justify-around items-center ">
+      <div className="flex justify-between items-center ">
         <div className="flex items-center mb-9">
           <Link to={`/watch/${params.id}`}>
             <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
@@ -151,25 +151,26 @@ function DescriptionVideo() {
           onClick={() => handleAddToList(parseInt(params.id, 10) + 1)}
           type="button"
         >
-          {!dataFavorites.includes(parseInt(params.id, 10) + 1) ? (
-            <>
-              <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-                <BsPlusLg /> Ajouter à ma liste
-              </div>
-              <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-                <BsPlusLg />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-                <BsCheckLg /> Supprimer de ma liste
-              </div>
-              <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
-                <BsCheckLg />
-              </div>
-            </>
-          )}
+          {dataLogin &&
+            (!dataFavorites.includes(parseInt(params.id, 10) + 1) ? (
+              <>
+                <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                  <BsPlusLg /> Ajouter à ma liste
+                </div>
+                <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                  <BsPlusLg />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                  <BsCheckLg /> Supprimer de ma liste
+                </div>
+                <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                  <BsCheckLg />
+                </div>
+              </>
+            ))}
         </button>
         <div className="flex items-center mb-9">
           <button

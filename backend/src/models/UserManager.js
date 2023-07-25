@@ -15,11 +15,11 @@ class UserManager extends AbstractManager {
   }
 
   updateAll(user) {
-    const { firstname, email, hashedPassword, id } = user;
+    const { firstname, email, id } = user;
 
     return this.database.query(
-      `UPDATE ${this.table} SET firstname=?, email=?, hashedPassword=? WHERE id=?`,
-      [firstname, email, hashedPassword, id]
+      `UPDATE ${this.table} SET firstname=?, email=? WHERE id=?`,
+      [firstname, email, id]
     );
   }
 

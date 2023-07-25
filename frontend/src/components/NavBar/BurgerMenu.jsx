@@ -15,7 +15,7 @@ function BurgerMenu() {
   };
 
   return (
-    <div className="z-50">
+    <div className="z-40">
       <nav className="lg:hidden pr-3 ">
         {openMenu === false ? (
           <GiHamburgerMenu
@@ -31,7 +31,9 @@ function BurgerMenu() {
           />
         )}
         {openMenu === true && (
-          <div className="w-full absolute top-24 right-0 py-4 px-4 bg-black transition animate-fade-down animate-once animate-duration-200 animate-ease-linear animate-normal">
+
+          <div className="w-full absolute top-22 right-0 py-4 px-4 bg-black transition animate-fade-down animate-once animate-duration-200 animate-ease-linear animate-normal">
+
             <ul className="">
               <li className="p-2 hover:text-orange-600 duration-200 font-medium">
                 <NavLink to="/decouvrir">Découvrir</NavLink>

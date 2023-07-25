@@ -100,7 +100,7 @@ function ManageHomePageAdmin() {
 
               <select name="visibility" onChange={handleVis}>
                 <option id="all" value="all">
-                  Tous les utilisateurs
+                  ...
                 </option>
                 <option id="connected" value="connected">
                   Utilisateurs connectés

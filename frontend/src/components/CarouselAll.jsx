@@ -96,7 +96,7 @@ function CarouselAll({ dataSection }) {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
       axios
         .post(`http://localhost:5002/favorites/add`, {
-          userId: 2,
+          userId: dataLogin.id,
           videoId: clickedVideo,
         })
         .then(() => {
@@ -105,7 +105,9 @@ function CarouselAll({ dataSection }) {
         .catch((err) => console.error(err));
     } else {
       axios
-        .delete(`http://localhost:5002/favorites/2/${clickedVideo}`)
+        .delete(
+          `http://localhost:5002/favorites/${dataLogin.id}/${clickedVideo}`
+        )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
@@ -165,10 +167,10 @@ function CarouselAll({ dataSection }) {
                       <img
                         src={video.thumbnail}
                         alt={video.title}
-                        className="md:h-40 md:w-96 h-40 w-full"
+                        className="md:h-40 md:w-96 h-28 w-full"
                       />
 
-                      <div className="flex flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
+                      <div className="md:flex hidden flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
                         <div className="text-md pl-1">{video.title}</div>
 
                         {!video.is_freemium && !dataLogin ? (

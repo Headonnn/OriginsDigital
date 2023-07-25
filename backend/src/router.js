@@ -80,6 +80,8 @@ router.use(verifyToken);
 // user routes
 
 router.put("/users/:id", userControllers.edit);
+
+
 router.put(
   "/users/:id/edit",
   userControllers.verifyUser,
@@ -87,6 +89,7 @@ router.put(
   userControllers.editByUser
 );
 router.delete("/users/:id", userControllers.destroy);
+
 router.delete(
   "/users/delete/:id",
   userControllers.verifyUser,
