@@ -7,7 +7,7 @@ function CreateAccountMsg() {
     <>
       <NavBar />
 
-      <div className="flex flex-col items-center border border-white px-10 py-8 mx-auto sm:max-w-md my-10 text-white rounded-[31px]">
+      <div className="flex flex-col items-center border border-white px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 text-center text-white rounded-[31px]">
         <h2 className="flex items-center gap-12 pb-6">Félicitations !</h2>
         <p className="pb-8">Votre compte à été créé avec succès.</p>
         <NavLink to="/login">

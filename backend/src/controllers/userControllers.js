@@ -70,8 +70,6 @@ const editAll = (req, res) => {
 
 const add = (req, res) => {
   const user = req.body;
-  console.warn(user);
-
   models.user
     .insert(user)
     .then(([result]) => {
