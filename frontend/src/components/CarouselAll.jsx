@@ -11,7 +11,6 @@ import {
   BsCheckCircle,
 } from "react-icons/bs";
 import LoginContext from "../../contexts/LoginContext";
-
 import VideoContext from "../../contexts/VideoContext";
 
 function CarouselAll({ dataSection }) {
@@ -20,6 +19,7 @@ function CarouselAll({ dataSection }) {
   const { dataLogin } = useContext(LoginContext);
   const navigate = useNavigate();
   const [mobile, setMobile] = useState(false);
+
   const fetchFavorites = () => {
     if (dataLogin) {
       axios
@@ -43,6 +43,7 @@ function CarouselAll({ dataSection }) {
   useEffect(() => {
     fetchFavorites();
   }, []);
+
   useEffect(() => {
     if (window.innerWidth < 768) {
       setMobile(true);
