@@ -80,7 +80,7 @@ function DescriptionVideo() {
     setDataDesc(
       dataVideo.filter((e) => e.id === parseInt(params.id, 10) + 1)[0]
     );
-  }, []);
+  }, [dataLogin, dataVideo]);
   useEffect(() => {
     axios
       .get(
@@ -92,15 +92,11 @@ function DescriptionVideo() {
         setCateg(res.data);
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [dataLogin]);
 
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-
-  if (!dataVideo || !dataDesc) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div>
@@ -108,13 +104,13 @@ function DescriptionVideo() {
         {/* Titre */}
         <div className="text-white mb-8">
           <h1 className="text-2xl md:text-3xl font-bold mt-10">
-            {dataDesc.title}
+            {dataDesc && dataDesc.title}
           </h1>
         </div>
         {/* Description */}
         <div className="text-white mb-1">
           <h2 className="text-base md:text-lg overflow-y-auto">
-            {dataDesc.description}
+            {dataDesc && dataDesc.description}
           </h2>
         </div>
         {/* Catégorie */}
@@ -122,7 +118,9 @@ function DescriptionVideo() {
           Catégorie :{" "}
           {categ.map((e) => {
             return (
-              <h4 className="text-sm md:text-base font-medium">{e.name} </h4>
+              <h4 key={e.name} className="text-sm md:text-base font-medium">
+                {e.name}{" "}
+              </h4>
             );
           })}
         </div>
@@ -130,18 +128,17 @@ function DescriptionVideo() {
         {/* Date de publication */}
         <div className="text-white mb-[1rem]">
           <h6 className="text-sm md:text-base font-medium mb-6">
-            Date de publication :{" "}
-            {dataDesc.date && dataDesc.date.substring(0, 10)}
+            Date de publication : {dataDesc && dataDesc.date.substring(0, 10)}
           </h6>
         </div>
       </div>
       <div className="flex justify-between items-center ">
         <div className="flex items-center mb-9">
           <Link to={`/watch/${params.id}`}>
-            <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+            <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
               <BsFillPlayFill /> Lecture
             </div>
-            <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+            <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
               <BsFillPlayFill />
             </div>
           </Link>
@@ -154,10 +151,10 @@ function DescriptionVideo() {
           {dataLogin &&
             (!dataFavorites.includes(parseInt(params.id, 10) + 1) ? (
               <>
-                <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white rounded-xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                <div className=" hidden sm:flex items-center gap-[16px] border bg-black text-white  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
                   <BsPlusLg /> Ajouter à ma liste
                 </div>
-                <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
+                <div className="sm:hidden flex items-center gap-[16px] border bg-black text-white  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition">
                   <BsPlusLg />
                 </div>
               </>
@@ -178,7 +175,7 @@ function DescriptionVideo() {
             className={` ${
               isClicked
                 ? "hidden"
-                : "hidden sm:flex items-center gap-[16px] border rounded-xl mb-[16px] p-[12px] cursor-pointer bg-black text-white hover:bg-white hover:text-black"
+                : "hidden sm:flex items-center gap-[16px] border mb-[16px] p-[12px] cursor-pointer bg-black text-white hover:bg-white hover:text-black"
             }`}
             onClick={handleClick}
             onKeyDown={handleClick}
@@ -191,18 +188,18 @@ function DescriptionVideo() {
             className={` ${
               isClicked
                 ? "hidden"
-                : "sm:hidden flex items-center gap-[16px] border bg-black text-white rounded-2xl mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition"
+                : "sm:hidden flex items-center gap-[16px] border bg-black text-white  mb-[16px] p-[12px] cursor-pointer hover:bg-white hover:text-black transition"
             }`}
             onClick={handleClick}
             onKeyDown={handleClick}
           >
             <BsShareFill />
           </button>
-          <button
-            type="button"
+          <div
+            role="presentation"
             className={` ${
               isClicked
-                ? "sm:flex items-center gap-[16px] border rounded-xl mb-[8px] sm:mb-[16px] p-[5px] sm:p-[8px] cursor-pointer animate-fade-down animate-once animate-duration-500 animate-ease-linear animate-normal"
+                ? "sm:flex items-center gap-[16px] border  mb-[8px] sm:mb-[16px] p-[5px] sm:p-[8px] cursor-pointer animate-fade-down animate-once animate-duration-500 animate-ease-linear animate-normal"
                 : "hidden"
             }`}
             onClick={handleClick}
@@ -220,7 +217,7 @@ function DescriptionVideo() {
             <WhatsappShareButton url={currentPageUrl}>
               <WhatsappIcon size={28} round />
             </WhatsappShareButton>
-          </button>
+          </div>
         </div>
       </div>
     </div>

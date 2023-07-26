@@ -97,7 +97,7 @@ function Header() {
                 Bonjour {dataLogin.firstname} !
               </button>
               {isDropdownOpen && (
-                <div className="absolute duration-300 bg-black w-50 top-12">
+                <div className="absolute duration-300 bg-black w-50 md:w-52 top-12">
                   <NavLink to="/userprofile">
                     <p className=" hidden lg:block hover:text-orange-600 pl-2 transition my-2">
                       Mon compte
