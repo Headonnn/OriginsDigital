@@ -17,10 +17,8 @@ function UploadWidget({
   videoSelected,
   setVideoSelected,
 }) {
-  const [urlFile, setUrlFile] = useState("");
   const [loading, setLoading] = useState("");
 
-  console.warn(urlFile);
   const uploadFile = () => {
     const formData = new FormData();
     if (id === "videoThumbnail") {
@@ -35,7 +33,6 @@ function UploadWidget({
     axios
       .post("http://api.cloudinary.com/v1_1/dgux3vxri/upload", formData)
       .then((res) => {
-        setUrlFile(res.data.url);
         if (id === "videoThumbnail") {
           setThumbnailFile(res.data.url);
           setLoading("envoyé !");
@@ -93,8 +90,8 @@ UploadWidget.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   accept: PropTypes.string.isRequired,
-  setThumbnailFile: PropTypes.func.isRequired,
-  setVideoFile: PropTypes.func.isRequired,
+  setThumbnailFile: PropTypes.func,
+  setVideoFile: PropTypes.func,
   thumbUploaded: PropTypes.bool.isRequired,
   setThumbUploaded: PropTypes.func.isRequired,
   vidUploaded: PropTypes.bool.isRequired,

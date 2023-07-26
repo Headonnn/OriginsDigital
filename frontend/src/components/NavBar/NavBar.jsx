@@ -25,7 +25,7 @@ function Header() {
   };
 
   return (
-    <nav className="flex justify-between items-center text-white inset-x-0 md:h24 h-18 bg-black shadow-[0px_20px_20px_10px_#00000024]-md">
+    <nav className="flex justify-between items-center text-white inset-x-0 md:h-24 h-18 bg-black shadow-[0px_20px_20px_10px_#00000024]-md">
       <ul className="flex items-center gap-12">
         <li>
           <Link to="/">
@@ -97,7 +97,7 @@ function Header() {
                 Bonjour {dataLogin.firstname} !
               </button>
               {isDropdownOpen && (
-                <div className="absolute duration-300 bg-black w-56 top-12">
+                <div className="absolute duration-300 bg-black w-50 top-12">
                   <NavLink to="/userprofile">
                     <p className=" hidden lg:block hover:text-orange-600 pl-2 transition my-2">
                       Mon compte

@@ -13,6 +13,7 @@ function EditCarousel() {
   const [sections, setSections] = useState([]);
   const [carousel, setCarousel] = useState({
     name: "",
+    visibility: "",
   });
   const [search, setSearch] = useState("");
   const [filtre, setFiltre] = useState([]);
@@ -171,7 +172,6 @@ function EditCarousel() {
                   name="name"
                   className="bg-white text-black w-full  h-10 px-4 py-2 rounded-md mb-1"
                   placeholder="nom du carousel"
-                  aria-label=""
                   onChange={handleInput}
                   value={carousel.name}
                 />

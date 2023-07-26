@@ -61,10 +61,7 @@ function Decouvrir() {
     if (dataLogin) {
       axios
         .get(`http://localhost:5002/favorites/${dataLogin.id}`)
-        .then((res) => {
-          setDataFavorites(res.data);
-          console.warn(res.data);
-        })
+        .then((res) => setDataFavorites(res.data))
         .catch((err) => {
           if (err.response) {
             if (err.response.status === 404) {

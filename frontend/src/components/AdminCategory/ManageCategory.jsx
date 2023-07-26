@@ -26,10 +26,7 @@ function ManageCategory() {
 
     axios
       .delete(`http://localhost:5002/categories/${id}/delete`)
-      .then((res) => {
-        console.warn(res);
-        updateCategoryList();
-      })
+      .then(() => updateCategoryList())
       .catch((error) => console.error(error));
   };
 

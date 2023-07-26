@@ -29,10 +29,10 @@ function CarouselAll({ dataSection }) {
         .catch((err) => {
           if (err.response) {
             if (err.response.status === 404) {
-              console.error("pas de favorites pour cet user");
+              console.warn("pas de favorites pour cet user");
             }
             if (err.response.status === 500) {
-              console.error(err);
+              console.warn(err);
             }
           }
         });
@@ -223,10 +223,16 @@ function CarouselAll({ dataSection }) {
 }
 
 CarouselAll.propTypes = {
-  dataSection: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.number.isRequired, PropTypes.string.isRequired)
-      .isRequired
-  ).isRequired,
+  dataSection: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.arrayOf(PropTypes.string),
+    carousel: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      max_number: PropTypes.number,
+    }),
+    videos: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+  }).isRequired,
 };
 
 export default CarouselAll;

@@ -39,15 +39,12 @@ function ManageVideos() {
 
     axios
       .delete(`http://localhost:5002/videos/${id}/delete`)
-      .then((res) => {
-        console.warn(res.data);
-        updateVideoList();
-      })
+      .then(() => updateVideoList())
       .catch((error) => console.error(error));
   };
 
   const isFreemium = (id) => {
-    const updatedSatutFreemium = dataVideo.map((video) => {
+    dataVideo.map((video) => {
       if (video.id === id) {
         const videoStatutFreemium = !video.is_freemium;
         const updatedVideo = {
@@ -58,16 +55,12 @@ function ManageVideos() {
           .put(`http://localhost:5002/videos/${id}/is_freemium`, {
             isFreemium: videoStatutFreemium,
           })
-          .then((res) => {
-            console.warn(res.data);
-          })
           .catch((error) => console.error(error));
 
         return updatedVideo;
       }
       return video;
     });
-    console.warn(updatedSatutFreemium);
   };
 
   const videoDetails = filtre.map((video) => {
