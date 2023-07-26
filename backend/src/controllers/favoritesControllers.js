@@ -39,7 +39,7 @@ const read = (req, res) => {
     .findByUser(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.status(404);
+        console.warn("Pas encore de favoris :)");
       } else {
         res.send(rows.map((e) => Object.values(e)[0]));
       }
