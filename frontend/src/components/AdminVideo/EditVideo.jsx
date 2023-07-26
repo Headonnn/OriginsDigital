@@ -102,7 +102,7 @@ function EditVideo() {
   const updateVideo = async (e) => {
     e.preventDefault();
 
-    if ((!vidUploaded && videoSelected) || (!thumbUploaded && fileSelected)) {
+    if ((!thumbUploaded && videoSelected) || (!vidUploaded && fileSelected)) {
       return;
     }
     const date = new Date(video.date);
