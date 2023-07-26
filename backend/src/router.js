@@ -57,8 +57,6 @@ router.get("/videos_carousel/:id", videoCarouselControllers.read);
 router.get("/carousel_custom", carouselCustomControllers.browse);
 router.get("/carousel_custom/:id", carouselCustomControllers.read);
 
-router.post("/carousel_custom", carouselCustomControllers.add);
-
 // carousel_category routes
 
 router.get("/carousel_category", carouselCategoryControllers.browse);
@@ -79,7 +77,6 @@ router.get("/videos_category/:id", videoCategoryControllers.read);
 // user routes
 
 router.put("/users/:id", userControllers.edit);
-
 router.put(
   "/users/:id/edit",
   userControllers.verifyUser,
@@ -87,7 +84,6 @@ router.put(
   userControllers.editByUser
 );
 router.delete("/users/:id", userControllers.destroy);
-
 router.delete(
   "/users/delete/:id",
   userControllers.verifyUser,

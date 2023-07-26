@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import NavBar from "../components/NavBar/NavBar";
-import LoginContext from "../../contexts/LoginContext";
 
 function AdminMode() {
-  const { dataLogin } = useContext(LoginContext);
-
-  return dataLogin?.is_admin ? (
+  return (
     <div>
       <NavBar />
       <section className="px-6 md:px-8 lg:px-8 max-w-7xl">
@@ -60,26 +57,6 @@ function AdminMode() {
         </div>
       </section>
     </div>
-  ) : (
-    <>
-      <NavBar />
-      <div className="min-h-screen p-5 relative overflow-hidden">
-        <div className="relative flex flex-col items-center px-10 py-16 mx-auto sm:max-w-md my-10 text-white">
-          <h2 className="text-3xl flex justify-center md:text-3xl pb-8 font-bold mt-10">
-            ACCES REFUSE
-          </h2>
-          <p className="pb-8">Vous n'êtes pas admin</p>
-          <NavLink to="/">
-            <button
-              type="button"
-              className="border hover:bg-white tracking-wide lg:block hidden hover:text-black py-2 px-6 transition"
-            >
-              j'avoue
-            </button>
-          </NavLink>
-        </div>
-      </div>
-    </>
   );
 }
 

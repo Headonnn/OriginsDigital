@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import AdminProtected from "./AdminProtected";
+import UserProtected from "./UserProtected";
 import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 import AdminMode from "../pages/AdminMode";
@@ -32,43 +34,177 @@ import FAQ from "../components/FAQ/FAQ";
 function Router() {
   return (
     <Routes>
+      {/*  OPEN Routes */}
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/accountcreation" element={<AccountCreation />} />
-      <Route path="/admin" element={<AdminMode />} />
-      <Route path="/admin/video_list" element={<ListVideo />} />
-      <Route path="/admin/category_list" element={<ManageCategory />} />
-      <Route path="/admin/add_category" element={<AddCategory />} />
-      <Route path="/admin/category/:id/edit" element={<EditCategories />} />
-      <Route path="/admin/section" element={<ManageHomePageAdmin />} />
-      <Route path="/admin/add_video" element={<CreateVideo />} />
-      <Route path="/admin/videos/:id/edit" element={<EditVideo />} />
+      <Route path="/faq" element={<FAQ />} />
       <Route path="/decouvrir" element={<Decouvrir />} />
       <Route path="/description/:id" element={<VideoDescription />} />
       <Route path="/watch/:id" element={<Watch />} />
       <Route path="/createaccountform" element={<CreateAccountForm />} />
       <Route path="/createaccountmsg" element={<CreateAccountMsg />} />
-      <Route path="/admin/section/access" element={<AddSection />} />
-      <Route path="/admin/users/:id/edit" element={<EditUsers />} />
-      <Route path="/admin/users/add_user" element={<AddUsers />} />
-      <Route path="/ma_liste" element={<Decouvrir />} />
-      <Route path="/userprofile" element={<UserProfile />} />
+      {/*  USER Routes */}
+      <Route
+        path="/ma_liste"
+        element={
+          <UserProtected>
+            <Decouvrir />
+          </UserProtected>
+        }
+      />
+      <Route
+        path="/userprofile"
+        element={
+          <UserProtected>
+            <UserProfile />
+          </UserProtected>
+        }
+      />
       <Route
         path="/updateuserprofile/:id/edit"
-        element={<UpdateUserProfile />}
+        element={
+          <UserProtected>
+            <UpdateUserProfile />
+          </UserProtected>
+        }
       />
-      <Route path="/admin/caroussel/custom" element={<AddCarousselCustom />} />
-      <Route path="/admin/user_list" element={<ManageUsers />} />
+      {/*  ADMIN Routes */}
+      <Route
+        path="/admin"
+        element={
+          <AdminProtected>
+            <AdminMode />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/video_list"
+        element={
+          <AdminProtected>
+            <ListVideo />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/category_list"
+        element={
+          <AdminProtected>
+            <ManageCategory />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/add_category"
+        element={
+          <AdminProtected>
+            <AddCategory />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/category/:id/edit"
+        element={
+          <AdminProtected>
+            <EditCategories />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/section"
+        element={
+          <AdminProtected>
+            <ManageHomePageAdmin />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/add_video"
+        element={
+          <AdminProtected>
+            <CreateVideo />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/videos/:id/edit"
+        element={
+          <AdminProtected>
+            <EditVideo />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/section/access"
+        element={
+          <AdminProtected>
+            <AddSection />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/users/:id/edit"
+        element={
+          <AdminProtected>
+            <EditUsers />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/users/add_user"
+        element={
+          <AdminProtected>
+            <AddUsers />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/caroussel/custom"
+        element={
+          <AdminProtected>
+            <AddCarousselCustom />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/user_list"
+        element={
+          <AdminProtected>
+            <ManageUsers />
+          </AdminProtected>
+        }
+      />
       <Route
         path="/admin/caroussel/category"
-        element={<AddCarouselCategory />}
+        element={
+          <AdminProtected>
+            <AddCarouselCategory />
+          </AdminProtected>
+        }
       />
-      <Route path="/admin/hero" element={<ManageHero />} />
-      <Route path="/faq" element={<FAQ />} />
-      <Route path="/admin/edit/carousel/:id" element={<EditCarousel />} />
+      <Route
+        path="/admin/hero"
+        element={
+          <AdminProtected>
+            <ManageHero />
+          </AdminProtected>
+        }
+      />
+      <Route
+        path="/admin/edit/carousel/:id"
+        element={
+          <AdminProtected>
+            <EditCarousel />
+          </AdminProtected>
+        }
+      />
       <Route
         path="/admin/edit/carousel_cat/:id"
-        element={<EditCarouselCategory />}
+        element={
+          <AdminProtected>
+            <EditCarouselCategory />
+          </AdminProtected>
+        }
       />
     </Routes>
   );
