@@ -26,7 +26,7 @@ function AddCategory() {
       name: categories.name,
     };
     axios
-      .post(`http://localhost:5002/categories`, data)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/categories`, data)
       .then((res) => {
         console.warn(res);
         setIsClicked(!isClicked);

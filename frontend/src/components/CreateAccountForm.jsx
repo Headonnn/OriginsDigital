@@ -29,7 +29,7 @@ function CreateAccountForm() {
     };
 
     axios
-      .post(`http://localhost:5002/users`, data)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/users`, data)
       .then(() => {
         setIsClicked(!isClicked);
       })

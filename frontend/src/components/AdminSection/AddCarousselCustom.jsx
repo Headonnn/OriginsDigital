@@ -47,14 +47,14 @@ function AddCarousselCustom() {
     };
     let section = { carousel_custom_id: null, ordre: null };
     await axios
-      .post(`http://localhost:5002/carousel_custom`, data)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/carousel_custom`, data)
       .then((res) => {
         section = { ...section, carousel_custom_id: res.data.insertId };
       })
       .catch((err) => console.warn(err));
 
     await axios
-      .get(`http://localhost:5002/sections/ordre`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/sections/ordre`)
       .then((res) => {
         section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
       })
@@ -69,7 +69,7 @@ function AddCarousselCustom() {
       visibility: carousel.visibility,
     };
     await axios
-      .post(`http://localhost:5002/sections/custom`, dataSec)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/sections/custom`, dataSec)
 
       .catch((err) => console.warn(err));
     let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
@@ -83,7 +83,7 @@ function AddCarousselCustom() {
 
     vidToPost.forEach((el) => {
       axios
-        .post(`http://localhost:5002/videos_carousel`, el)
+        .post(`${import.meta.env.VITE_BACKEND_URL}/videos_carousel`, el)
         .then((res) => {
           console.warn(res.data);
         })

@@ -34,7 +34,7 @@ function AddUsers() {
     };
 
     axios
-      .post(`http://localhost:5002/users`, data)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/users`, data)
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);

@@ -32,7 +32,7 @@ function ManageUsers() {
 
   const updateUserList = () => {
     axios
-      .get("http://localhost:5002/users")
+      .get(`${import.meta.env.VITE_BACKEND_URL}users`)
       .then((res) => setDataUser(res.data))
       .catch((err) => console.error(err));
   };
@@ -45,7 +45,7 @@ function ManageUsers() {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:5002/users/${id}`)
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)
       .then((res) => {
         console.warn(res.data);
         updateUserList();
@@ -62,7 +62,7 @@ function ManageUsers() {
           is_admin: newAdminStatus,
         };
         axios
-          .put(`http://localhost:5002/users/${id}`, {
+          .put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, {
             isAdmin: newAdminStatus,
           })
           .then((res) => {

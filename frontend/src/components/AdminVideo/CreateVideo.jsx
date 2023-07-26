@@ -55,7 +55,7 @@ function CreateVideo() {
 
     let videoID = 0;
     await axios
-      .post(`http://localhost:5002/videos`, data)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/videos`, data)
       .then((res) => {
         videoID = res.data.insertId;
         setIsClicked(!isClicked);
@@ -64,7 +64,7 @@ function CreateVideo() {
 
     categories.map((cat) =>
       axios
-        .post(`http://localhost:5002/videos_category`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/videos_category`, {
           categoryId: cat.id,
           videoId: videoID,
         })
@@ -82,7 +82,7 @@ function CreateVideo() {
           is_freemium: videoStatutFreemium,
         };
         axios
-          .put(`http://localhost:5002/videos/${id}/is_freemium`, {
+          .put(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/is_freemium`, {
             isFreemium: videoStatutFreemium,
           })
           .then((res) => {

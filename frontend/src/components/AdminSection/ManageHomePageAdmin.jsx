@@ -13,7 +13,7 @@ function ManageHomePageAdmin() {
     setVis(e.target.value);
   };
   const uploadSections = () => {
-    fetch(`http://localhost:5002/sections`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/sections`)
       .then((res) => res.json())
       .then((result) => setSections(result))
       .catch((error) => console.error(error));
@@ -25,12 +25,20 @@ function ManageHomePageAdmin() {
     e.preventDefault();
     if (carouselCustomId) {
       axios
-        .delete(`http://localhost:5002/carousel_custom/${carouselCustomId}`)
+        .delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/carousel_custom/${carouselCustomId}`
+        )
         .then(() => uploadSections())
         .catch((err) => console.error(err));
     } else {
       axios
-        .delete(`http://localhost:5002/carousel_category/${carouselCategoryId}`)
+        .delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/carousel_category/${carouselCategoryId}`
+        )
         .then(() => uploadSections())
         .catch((err) => console.error(err));
     }
@@ -54,7 +62,9 @@ function ManageHomePageAdmin() {
   useEffect(() => {
     sections.forEach((e, index) => {
       axios
-        .put(`http://localhost:5002/sections/${e.id}`, { ordre: index + 1 })
+        .put(`${import.meta.env.VITE_BACKEND_URL}/sections/${e.id}`, {
+          ordre: index + 1,
+        })
         .catch((err) => console.error(err));
     });
   }, [sections]);

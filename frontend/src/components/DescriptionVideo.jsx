@@ -33,7 +33,7 @@ function DescriptionVideo() {
   const fetchFavorites = () => {
     if (dataLogin) {
       axios
-        .get(`http://localhost:5002/favorites/${dataLogin.id}`)
+        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
         .then((res) => {
           setDataFavorites(res.data);
           console.warn(res.data);
@@ -53,7 +53,7 @@ function DescriptionVideo() {
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
       axios
-        .post(`http://localhost:5002/favorites/add`, {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
           userId: dataLogin.id,
           videoId: clickedVideo,
         })
@@ -64,7 +64,9 @@ function DescriptionVideo() {
     } else {
       axios
         .delete(
-          `http://localhost:5002/favorites/${dataLogin.id}/${clickedVideo}`
+          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+            dataLogin.id
+          }/${clickedVideo}`
         )
         .then(() => {
           let tmp = [...dataFavorites];
@@ -84,7 +86,7 @@ function DescriptionVideo() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5002/videos_category/get_category/${
+        `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${
           parseInt(params.id, 10) + 1
         }`
       )

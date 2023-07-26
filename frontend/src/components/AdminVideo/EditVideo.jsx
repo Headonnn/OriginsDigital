@@ -49,7 +49,7 @@ function EditVideo() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5002/videos/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}`)
       .then((res) => {
         setVideo(res.data);
       })
@@ -73,7 +73,7 @@ function EditVideo() {
   const fetchData = async () => {
     try {
       const data = await axios.get(
-        `http://localhost:5002/videos_category/get_category/${id}`
+        `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${id}`
       );
 
       const newCate = data.data.map((cat) => {
@@ -116,19 +116,19 @@ function EditVideo() {
       date: date.toISOString().slice(0, 19).replace("T", " "),
     };
     await axios
-      .put(`http://localhost:5002/videos/${id}/edit`, data)
+      .put(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/edit`, data)
       .then(() => setIsClicked(!isClicked))
       .catch((err) => console.error(err));
 
     await axios
-      .delete(`http://localhost:5002/videos_category/${id}`)
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/videos_category/${id}`)
 
       .catch((err) => console.error(err));
 
     if (categories) {
       categories.forEach((cat) => {
         axios
-          .post(`http://localhost:5002/videos_category`, {
+          .post(`${import.meta.env.VITE_BACKEND_URL}/videos_category`, {
             categoryId: cat.id,
             videoId: id,
           })

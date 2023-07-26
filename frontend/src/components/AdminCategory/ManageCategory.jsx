@@ -12,7 +12,7 @@ function ManageCategory() {
 
   const updateCategoryList = () => {
     axios
-      .get("http://localhost:5002/categories")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((res) => setCategorie(res.data))
       .catch((err) => console.error(err));
   };
@@ -25,7 +25,7 @@ function ManageCategory() {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:5002/categories/${id}/delete`)
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}/delete`)
       .then(() => updateCategoryList())
       .catch((error) => console.error(error));
   };

@@ -40,7 +40,9 @@ function EditCarousel() {
   const params = useParams();
   const fetchSections = async () => {
     try {
-      const data = await axios.get(`http://localhost:5002/sections`);
+      const data = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/sections`
+      );
       const section = data.data.filter(
         (e) => e.carousel.id === parseInt(params.id, 10)
       )[0];

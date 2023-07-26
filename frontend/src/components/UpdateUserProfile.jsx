@@ -15,7 +15,7 @@ function UpdateUserProfile() {
   useEffect(() => {
     if (dataLogin) {
       axios
-        .get(`http://localhost:5002/users/${dataLogin.id}`)
+        .get(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`)
         .then((res) => setDataLogin(res.data))
         .catch((err) => {
           if (err.response) {

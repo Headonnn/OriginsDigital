@@ -39,14 +39,17 @@ function ManageHero() {
 
   const handleValidate = async () => {
     await axios.put(
-      `http://Localhost:5002/videos/${
+      `${import.meta.env.VITE_BACKEND_URL}/videos/${
         dataVideo.filter((e) => e.is_in_hero === 1)[0].id
       }/hero`,
       { isHero: false }
     );
-    await axios.put(`http://Localhost:5002/videos/${inHero}/hero`, {
-      isHero: true,
-    });
+    await axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/videos/${inHero}/hero`,
+      {
+        isHero: true,
+      }
+    );
     navigate(-1);
   };
 

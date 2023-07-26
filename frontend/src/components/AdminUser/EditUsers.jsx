@@ -17,7 +17,7 @@ function EditUsers() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5002/users/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)
       .then((res) => setUsers(res.data))
       .catch((err) => {
         if (err.response) {
@@ -48,7 +48,7 @@ function EditUsers() {
       email: users.email,
     };
     axios
-      .put(`http://localhost:5002/users/${id}/edit`, data)
+      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}/edit`, data)
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);

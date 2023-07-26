@@ -7,7 +7,7 @@ function SearchBar({ handleSearchChange, handleChangeCategory }) {
   const [categ, setCateg] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5002/categories")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((res) => setCateg(res.data))
       .catch((err) => console.error(err));
   }, []);

@@ -25,7 +25,7 @@ function ManageVideos() {
   }, [search, dataVideo]);
   const updateVideoList = () => {
     axios
-      .get("http://localhost:5002/videos")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
       .then((res) => setDataVideo(res.data))
       .catch((err) => console.error(err));
   };
@@ -38,7 +38,7 @@ function ManageVideos() {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:5002/videos/${id}/delete`)
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/delete`)
       .then(() => updateVideoList())
       .catch((error) => console.error(error));
   };
@@ -52,7 +52,7 @@ function ManageVideos() {
           is_freemium: videoStatutFreemium,
         };
         axios
-          .put(`http://localhost:5002/videos/${id}/is_freemium`, {
+          .put(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/is_freemium`, {
             isFreemium: videoStatutFreemium,
           })
           .catch((error) => console.error(error));

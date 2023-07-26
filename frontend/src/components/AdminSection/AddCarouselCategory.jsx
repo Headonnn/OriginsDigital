@@ -29,14 +29,14 @@ function AddCarouselCategory() {
     };
     let section = { carousel_category_id: null, ordre: null };
     await axios
-      .post(`http://localhost:5002/carousel_category`, data)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/carousel_category`, data)
       .then((res) => {
         section = { ...section, carousel_category_id: res.data.insertId };
       })
       .catch((err) => console.warn(err));
 
     await axios
-      .get(`http://localhost:5002/sections/ordre`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/sections/ordre`)
       .then((res) => {
         section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
       })
@@ -52,7 +52,7 @@ function AddCarouselCategory() {
     };
 
     await axios
-      .post(`http://localhost:5002/sections/category`, dataSec)
+      .post(`${import.meta.env.VITE_BACKEND_URL}/sections/category`, dataSec)
 
       .catch((err) => console.warn(err));
 

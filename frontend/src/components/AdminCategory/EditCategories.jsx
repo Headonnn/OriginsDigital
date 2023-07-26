@@ -15,7 +15,7 @@ function EditCategories() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5002/categories/${id}`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}`)
       .then((res) => setCategories(res.data))
       .catch((err) => {
         if (err.response) {
@@ -43,7 +43,7 @@ function EditCategories() {
       name: categories.name,
     };
     axios
-      .put(`http://localhost:5002/categories/${id}/edit`, data)
+      .put(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}/edit`, data)
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);

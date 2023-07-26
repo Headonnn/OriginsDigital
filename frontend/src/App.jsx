@@ -13,21 +13,21 @@ function App() {
   const [dataLogin, setDataLogin] = useState(undefined);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/videos`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/videos`)
       .then((res) => res.json())
       .then((result) => setDataVideo(result))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/categories`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((res) => res.json())
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5002/users`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/users`)
       .then((res) => res.json())
       .then((result) => setDataUser(result))
       .catch((error) => console.error(error));

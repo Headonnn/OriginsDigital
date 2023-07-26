@@ -10,14 +10,14 @@ function HomePage() {
   const { setDataVideo } = useContext(VideoContext);
   const { dataLogin } = useContext(LoginContext);
   useEffect(() => {
-    fetch(`http://localhost:5002/videos`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/videos`)
       .then((res) => res.json())
       .then((result) => setDataVideo(result))
       .catch((error) => console.error(error));
   }, []);
   useEffect(() => {
     axios
-      .get(`http://localhost:5002/sections`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/sections`)
       .then((res) => {
         setDataSection(res.data);
       })

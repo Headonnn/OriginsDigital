@@ -20,7 +20,9 @@ function EditCarouselCategory() {
   };
   const fetchSections = async () => {
     try {
-      const data = await axios.get(`http://localhost:5002/sections`);
+      const data = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/sections`
+      );
       const section = data.data.filter(
         (e) => e.carousel.id === parseInt(params.id, 10)
       )[0];
@@ -54,7 +56,10 @@ function EditCarouselCategory() {
     };
 
     await axios
-      .put(`http://localhost:5002/carousel_category/${params.id}`, data)
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/carousel_category/${params.id}`,
+        data
+      )
 
       .catch((err) => console.warn(err));
 
@@ -62,7 +67,12 @@ function EditCarouselCategory() {
       visibility: carousel.visibility,
     };
     await axios
-      .put(`http://localhost:5002/sections/${sections.id}/visibility/`, dataVis)
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/sections/${
+          sections.id
+        }/visibility/`,
+        dataVis
+      )
 
       .catch((err) => console.warn(err));
     navigate("/admin/section");
