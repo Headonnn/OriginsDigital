@@ -38,10 +38,8 @@ const read = (req, res) => {
   models.favorites
     .findByUser(req.params.id)
     .then(([rows]) => {
-      if (rows[0] == null) {
-
-        console.warn("Pas encore de favoris :)");
-
+      if (rows.length === 0) {
+        res.send("Pas encore de favoris :)");
       } else {
         res.send(rows.map((e) => Object.values(e)[0]));
       }
