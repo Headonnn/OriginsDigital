@@ -134,12 +134,7 @@ function CarouselAll({ dataSection }) {
         >
           {dataSection &&
             dataVideo
-              .filter((e, i) => {
-                if (dataSection.carousel.max_number) {
-                  return i < dataSection.carousel.max_number;
-                }
-                return e;
-              })
+
               .filter((e) => {
                 if (dataSection.name) {
                   if (dataSection.name[0] === "Nouveautés") {
@@ -152,6 +147,12 @@ function CarouselAll({ dataSection }) {
                 return dataSection.videos
                   .map((el) => Object.values(el)[0])
                   .includes(e.id);
+              })
+              .filter((e, i) => {
+                if (dataSection.carousel.max_number) {
+                  return i <= dataSection.carousel.max_number;
+                }
+                return e;
               })
               .map((video) => {
                 return (

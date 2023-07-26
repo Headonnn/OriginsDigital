@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import VideoContext from "../../contexts/VideoContext";
+
+import axios from "axios";
 
 function SearchBar({ handleSearchChange, handleChangeCategory }) {
-  const { categorie } = useContext(VideoContext);
-
+  const [categ, setCateg] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5002/categories")
+      .then((res) => setCateg(res.data))
+      .catch((err) => console.error(err));
+  }, []);
   return (
     <div className="flex flex-col md:flex-row md:justify-between items-center  mb-8 mt-12 gap-8 ">
       <div className="w-80 md:w-1/3 ">
@@ -40,7 +46,7 @@ function SearchBar({ handleSearchChange, handleChangeCategory }) {
         onChange={handleChangeCategory}
       >
         <option value="">Catégories</option>
-        {categorie.map((category) => (
+        {categ.map((category) => (
           <option key={category.id} value={category.id}>
             {category.name}
           </option>
