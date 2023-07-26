@@ -96,7 +96,6 @@ router.get("/favorites/:id", favoritesControllers.read);
 
 router.put("/users/:id", userControllers.edit);
 
-
 router.put(
   "/users/:id/edit",
   userControllers.verifyUser,

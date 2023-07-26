@@ -143,4 +143,3 @@ function UpdateUserProfile() {
 }
 
 export default UpdateUserProfile;
-

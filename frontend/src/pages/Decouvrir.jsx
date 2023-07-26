@@ -213,9 +213,7 @@ function Decouvrir() {
           </h2>
         </div>
       ) : (
-
         <div className="max-w-2xl mx-auto text-center  text-white mt-12 md:my-12">
-
           <h2 className="mb-4 text-4xl font-extrabold text-center ">
             Découvrir
           </h2>
@@ -341,7 +339,7 @@ function Decouvrir() {
         </div>
       )}
 
-      <div className="flex justify-center gap-8 flex-wrap mt-8 mb-20">
+      <div className="flex justify-center gap-8 px-4 text-center flex-wrap mt-8 mb-20">
         {isFiltered.length === 0 && (
           <div className="text-white">
             Aucune vidéo ne correspond à vos critères de recherche
