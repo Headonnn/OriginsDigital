@@ -107,15 +107,26 @@ function EditCarousel() {
     const dataVis = { visibility: carousel.visibility };
     await axios
       .put(
-        `http://localhost:5002/carousel_custom/${sections.carousel.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/carousel_custom/${
+          sections.carousel.id
+        }`,
         data
       )
       .catch((err) => console.error(err));
     await axios
-      .put(`http://localhost:5002/sections/${sections.id}/visibility`, dataVis)
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/sections/${
+          sections.id
+        }/visibility`,
+        dataVis
+      )
       .catch((err) => console.error(err));
     await axios
-      .delete(`http://localhost:5002/videos_carousel/${sections.carousel.id}`)
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/videos_carousel/${
+          sections.carousel.id
+        }`
+      )
       .catch((err) => console.error(err));
 
     let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
@@ -129,7 +140,7 @@ function EditCarousel() {
 
     vidToPost.forEach((el) => {
       axios
-        .post(`http://localhost:5002/videos_carousel`, el)
+        .post(`${import.meta.env.VITE_BACKEND_URL}/videos_carousel`, el)
         .then((res) => {
           console.warn(res.data);
         })

@@ -154,12 +154,14 @@ function Decouvrir() {
       filtreCategorie === "7"
     ) {
       axios
-        .get(`http://localhost:5002/videos`)
+        .get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
         .then((result) => setCateg(result.data))
         .catch((error) => console.error(error));
     } else {
       axios
-        .get(`http://localhost:5002/videos/filtre/${filtreCategorie}`)
+        .get(
+          `${import.meta.env.VITE_BACKEND_URL}/videos/filtre/${filtreCategorie}`
+        )
         .then((result) => {
           setCateg(result.data);
         })
