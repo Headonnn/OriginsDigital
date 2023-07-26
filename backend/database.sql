@@ -148,7 +148,7 @@ VALUES (
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689235053/piwqu7vizrodkj1vnzvw.jpg',
         '2023-03-09',
         1,
-        1
+        0
     ), (
         'Tae Kwon Do démonstration',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689235658/ykljf7yxechxpewxrf5i.mp4',
@@ -204,7 +204,7 @@ VALUES (
         'https://res.cloudinary.com/dgux3vxri/image/upload/v1689238550/fuj6betcr1kh8zttsdly.jpg',
         '2023-06-13',
         0,
-        0
+        1
     ), (
         'Alex Honnold en Free Solo',
         'https://res.cloudinary.com/dgux3vxri/video/upload/v1689253780/zoiu11a9ckgnnijr6ckc.mp4',
@@ -312,11 +312,11 @@ VALUES (1, 4), (4, 1), (3, 6), (9, 8), (5, 3), (7, 5), (2, 6), (8, 6), (6, 1), (
 
 INSERT INTO
     carousel_custom (name)
-VALUES ("Videos mises en avant"), ("Selection custom");
+VALUES ("Selection du moment"), ("Videos mises en avant");
 
 INSERT INTO
     carousel_category (max_number, category_id)
-VALUES (100, 1);
+VALUES (100, 1), (100, 9), (100, 6);
 
 INSERT INTO
     `section` (
@@ -328,18 +328,30 @@ INSERT INTO
     )
 VALUES (
         1,
-        "all",
-        "carouselNouv",
+        "disconnected",
+        "free",
+        2,
+        NULL
+    ), (
+        2,
+        "connected",
+        "Sélection du moment",
         NULL,
         1
-    ), (2, "all", "carouselAll", 1, NULL), (
+    ), (
         3,
         "all",
-        "carouselCustom",
+        "Videos mises en avant",
         NULL,
         2
+    ), (4, "all", "skate", 1, NULL), (
+        5,
+        "all",
+        "Art martiaux",
+        3,
+        NULL
     );
 
 INSERT INTO
     video_carousel (video_id, carousel_id)
-VALUES (1, 1), (5, 1), (6, 1), (3, 2), (5, 2), (8, 2);
+VALUES (1, 1), (5, 1), (6, 1), (2, 1), (3, 1), (4, 1), (16, 2), (10, 2), (8, 2), (17, 2), (18, 2);

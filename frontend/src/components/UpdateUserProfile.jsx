@@ -1,15 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import LoginContext from "../../contexts/LoginContext";
 import NavBar from "./NavBar/NavBar";
 
 function UpdateUserProfile() {
   const { dataLogin, setDataLogin } = useContext(LoginContext);
-
-  const { id } = useParams();
-
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -62,26 +61,37 @@ function UpdateUserProfile() {
         setIsClicked(!isClicked);
         localStorage.removeItem("token");
         setDataLogin(undefined);
-        navigate("/login");
       })
       .catch((err) => console.error(err, "ha c'est ballot"));
   };
 
-  return (
+  return isClicked ? (
+    <>
+      <NavBar />
+
+      <div className="flex flex-col items-center px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 text-center text-white">
+        <h2 className="flex items-center gap-12 pb-6">Félicitations !</h2>
+        <p className="pb-8">
+          Votre compte à été modifié avec succès. Veuillez vous reconnecter.
+        </p>
+        <NavLink to="/login">
+          <button
+            type="button"
+            className="w-full mx-auto border-2 border-white text-white py-2 px-4  my-3"
+          >
+            Se connecter
+          </button>
+        </NavLink>
+      </div>
+    </>
+  ) : (
     <>
       <NavBar />
 
       {dataLogin?.id && (
-        <div className=" flex gap-8 flex-col border border-white px-10 py-8 mx-auto max-w-sm md:max-w-md my-10 text-white">
-          {/* <button
-            type="button"
-            onClick={() => navigate("../userprofile")}
-            className="border hover:bg-white tracking-wide text-white hover:text-black py-1 px-3 transition"
-          >
-            Retour
-          </button> */}
-          <h2 className=" text-white text-xl text-center">
-            Mettez votre profil à jour :
+        <div className="flex gap-8 flex-col border-white px-10 mx-auto max-w-xs md:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+          <h2 className=" text-2xl md:text-4xl font-extrabold text-center mb-10 ">
+            Modifier votre profil
           </h2>
           {dataLogin && (
             <form onSubmit={updateUser}>
@@ -134,6 +144,13 @@ function UpdateUserProfile() {
                   Je valide
                 </button>
               </div>
+              <button
+                type="button"
+                onClick={() => navigate("../userprofile")}
+                className="border w-full hover:bg-white tracking-wide text-white hover:text-black py-1 px-3 transition"
+              >
+                Annuler
+              </button>
             </form>
           )}
         </div>

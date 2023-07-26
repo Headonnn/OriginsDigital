@@ -7,7 +7,6 @@ function CreateAccountForm() {
   const [isClicked, setIsClicked] = useState(false);
 
   const [user, setUser] = useState({
-    username: "",
     email: "",
     firstname: "",
     lastname: "",
@@ -23,7 +22,6 @@ function CreateAccountForm() {
     e.preventDefault();
 
     const data = {
-      username: user.username,
       email: user.email,
       firstname: user.firstname,
       lastname: user.lastname,
@@ -44,27 +42,11 @@ function CreateAccountForm() {
     <>
       <NavBar />
       <div className="loginid-container bg-black min-h-screen p-5 relative overflow-hidden text-white">
-        <div className="flex flex-col items-center border border-white px-8 py-8 mx-auto max-w-md my-10 text-white">
+        <div className="flex flex-col items-center border border-white px-5 py-5 mx-auto max-w-md my-10 text-white">
           <div className="flex items-center gap-12 pb-6">
             <h1 className="text-xl">Création de votre compte</h1>
           </div>
           <form onSubmit={saveUser}>
-            <div>
-              <label htmlFor="email" className="text-md">
-                Username
-              </label>
-              <div className="py-2">
-                <input
-                  onChange={handleInput}
-                  value={user.username}
-                  name="username"
-                  type="text"
-                  required
-                  className="w-full rounded-lg text-blue-800"
-                />
-              </div>
-            </div>
-
             <div>
               <label htmlFor="Prénom" className="text-md ">
                 Prénom
