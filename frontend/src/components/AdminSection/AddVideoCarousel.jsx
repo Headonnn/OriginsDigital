@@ -15,6 +15,7 @@ function AddVideoCarousel({ vidCarousel, setVidCarousel, filtre }) {
       selected = selected.map((el) => parseInt(el[0], 10));
       check = !!selected.includes(video.id);
     }
+
     return (
       <tr
         className="hover:bg-gray-50 hover:text-black transition"
@@ -53,10 +54,17 @@ function AddVideoCarousel({ vidCarousel, setVidCarousel, filtre }) {
   );
 }
 AddVideoCarousel.propTypes = {
-  vidCarousel: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
-  setVidCarousel: PropTypes.func.isRequired,
+  vidCarousel: PropTypes.objectOf(PropTypes.bool.isRequired),
+  setVidCarousel: PropTypes.func,
   filtre: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.bool, PropTypes.number, PropTypes.string)
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      url: PropTypes.string,
+      thumbnail: PropTypes.string,
+      is_freemium: PropTypes.number,
+      is_in_hero: PropTypes.number,
+    })
   ),
 };
 export default AddVideoCarousel;

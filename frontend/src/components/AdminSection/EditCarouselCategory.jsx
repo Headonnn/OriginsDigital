@@ -106,7 +106,7 @@ function EditCarouselCategory() {
                   value={carousel.category}
                 >
                   {categorie.map((e) => (
-                    <option name="category" value={e.id} id={e.id}>
+                    <option name="category" value={e.id} id={e.id} key={e.id}>
                       {e.name}{" "}
                     </option>
                   ))}

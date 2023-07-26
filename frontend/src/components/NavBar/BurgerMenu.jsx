@@ -31,7 +31,10 @@ function BurgerMenu() {
           />
         )}
         {openMenu === true && (
-          <div className="w-full absolute top-22 right-0 py-4 px-4 bg-black transition animate-fade-down animate-once animate-duration-200 animate-ease-linear animate-normal">
+
+          
+          <div className="w-full absolute md:top-20 right-0 py-4 px-4 bg-black transition">
+
             <ul className="">
               <li className="p-2 hover:text-orange-600 duration-200 font-medium">
                 <NavLink to="/decouvrir">Découvrir</NavLink>
@@ -55,14 +58,14 @@ function BurgerMenu() {
                 <div className="flex flex-col gap-2 ">
                   <button
                     type="button"
-                    className="border w-full md:w-60 hover:bg-gray-300 bg-white text-black rounded-md py-1 transition"
+                    className="border w-full md:w-60 md:mx-auto hover:bg-gray-300 bg-white text-black rounded-md py-1 transition"
                   >
                     <NavLink to="/userprofile">Mon compte</NavLink>
                   </button>
                   <button
                     type="button"
                     onClick={handleLogout}
-                    className="border w-full md:w-60 hover:bg-gray-300  text-white rounded-md py-1 transition"
+                    className="border w-full md:w-60 md:mx-auto hover:bg-gray-300  text-white rounded-md py-1 transition"
                   >
                     <NavLink to="/">Déconnexion</NavLink>
                   </button>

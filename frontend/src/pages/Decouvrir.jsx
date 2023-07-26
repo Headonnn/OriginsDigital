@@ -61,10 +61,7 @@ function Decouvrir() {
     if (dataLogin) {
       axios
         .get(`http://localhost:5002/favorites/${dataLogin.id}`)
-        .then((res) => {
-          setDataFavorites(res.data);
-          console.warn(res.data);
-        })
+        .then((res) => setDataFavorites(res.data))
         .catch((err) => {
           if (err.response) {
             if (err.response.status === 404) {
@@ -339,7 +336,7 @@ function Decouvrir() {
         </div>
       )}
 
-      <div className="flex justify-center gap-8 flex-wrap mt-8 mb-20">
+      <div className="flex justify-center gap-8 px-4 text-center flex-wrap mt-8 mb-20">
         {isFiltered.length === 0 && (
           <div className="text-white">
             Aucune vidéo ne correspond à vos critères de recherche

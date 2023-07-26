@@ -7,7 +7,6 @@ const {
   verifyPassword,
   verifyPasswordAndGenerateToken,
   verifyPasswordBeforeDelete,
-  verifyToken,
 } = require("./auth");
 
 const userControllers = require("./controllers/userControllers");
@@ -73,7 +72,7 @@ router.get("/videos_category/:id", videoCategoryControllers.read);
 
 // SECURE ROUTES________________________________________________________________
 
-router.use(verifyToken);
+// router.use(verifyToken);
 
 // user routes
 

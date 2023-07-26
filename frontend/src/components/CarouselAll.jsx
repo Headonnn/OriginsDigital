@@ -29,10 +29,10 @@ function CarouselAll({ dataSection }) {
         .catch((err) => {
           if (err.response) {
             if (err.response.status === 404) {
-              console.error("pas de favorites pour cet user");
+              console.warn("pas de favorites pour cet user");
             }
             if (err.response.status === 500) {
-              console.error(err);
+              console.warn(err);
             }
           }
         });
@@ -134,12 +134,7 @@ function CarouselAll({ dataSection }) {
         >
           {dataSection &&
             dataVideo
-              .filter((e, i) => {
-                if (dataSection.carousel.max_number) {
-                  return i < dataSection.carousel.max_number;
-                }
-                return e;
-              })
+
               .filter((e) => {
                 if (dataSection.name) {
                   if (dataSection.name[0] === "Nouveautés") {
@@ -152,6 +147,12 @@ function CarouselAll({ dataSection }) {
                 return dataSection.videos
                   .map((el) => Object.values(el)[0])
                   .includes(e.id);
+              })
+              .filter((e, i) => {
+                if (dataSection.carousel.max_number) {
+                  return i <= dataSection.carousel.max_number;
+                }
+                return e;
               })
               .map((video) => {
                 return (
@@ -167,7 +168,7 @@ function CarouselAll({ dataSection }) {
                       <img
                         src={video.thumbnail}
                         alt={video.title}
-                        className="md:h-40 md:w-96 h-28 w-full"
+                        className="md:h-40 md:w-96 h-24 w-full"
                       />
 
                       <div className="md:flex hidden flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
@@ -223,10 +224,16 @@ function CarouselAll({ dataSection }) {
 }
 
 CarouselAll.propTypes = {
-  dataSection: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.number.isRequired, PropTypes.string.isRequired)
-      .isRequired
-  ).isRequired,
+  dataSection: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.arrayOf(PropTypes.string),
+    carousel: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      max_number: PropTypes.number,
+    }),
+    videos: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+  }).isRequired,
 };
 
 export default CarouselAll;

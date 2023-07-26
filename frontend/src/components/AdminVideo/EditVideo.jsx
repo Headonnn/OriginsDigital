@@ -9,14 +9,17 @@ import UploadWidget from "./UploadWidget";
 
 function EditVideo() {
   const navigate = useNavigate();
-  const [isUploaded, setIsUploaded] = useState(false);
+  const [vidUploaded, setVidUploaded] = useState(false);
+  const [thumbUploaded, setThumbUploaded] = useState(false);
   const { categorie } = useContext(VideoContext);
   const [isClicked, setIsClicked] = useState(false);
-  const [isChosen, setIsChosen] = useState(false);
+  const [videoSelected, setVideoSelected] = useState("");
+  const [fileSelected, setFileSelected] = useState("");
   const [categories, setCategories] = useState([]);
   const [videoFile, setVideoFile] = useState("");
   const [thumbnailFile, setThumbnailFile] = useState("");
-
+  const [editVideo, setEditVideo] = useState(false);
+  const [editThumb, setEditThumb] = useState(false);
   const { id } = useParams();
   const [video, setVideo] = useState({
     title: "",
@@ -99,6 +102,9 @@ function EditVideo() {
   const updateVideo = async (e) => {
     e.preventDefault();
 
+    if ((!thumbUploaded && videoSelected) || (!vidUploaded && fileSelected)) {
+      return;
+    }
     const date = new Date(video.date);
     const data = {
       title: video.title,
@@ -111,10 +117,7 @@ function EditVideo() {
     };
     await axios
       .put(`http://localhost:5002/videos/${id}/edit`, data)
-      .then((res) => {
-        console.warn(res.data);
-        setIsClicked(!isClicked);
-      })
+      .then(() => setIsClicked(!isClicked))
       .catch((err) => console.error(err));
 
     await axios
@@ -183,16 +186,43 @@ function EditVideo() {
               <label htmlFor="videoLink" className="text-white flex flex-col">
                 Lien de la vidéo*
               </label>
-              <UploadWidget
-                accept="video/*"
-                name="url"
-                id="videoLink"
-                setVideoFile={setVideoFile}
-                isUploaded={isUploaded}
-                setIsUploaded={setIsUploaded}
-                setIsChosen={setIsChosen}
-                isChosen={isChosen}
-              />
+              <div className="flex justify-between">
+                <div className="truncate mb-4">{video.url}</div>
+                <div
+                  onClick={() => setEditVideo(true)}
+                  onKeyDown={() => setEditVideo(true)}
+                  role="presentation"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-6 w-6 cursor-pointer"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {editVideo && (
+                <UploadWidget
+                  accept="video/*"
+                  name="url"
+                  id="videoLink"
+                  setVideoFile={setVideoFile}
+                  vidUploaded={vidUploaded}
+                  setVidUploaded={setVidUploaded}
+                  videoSelected={videoSelected}
+                  setVideoSelected={setVideoSelected}
+                  fileSelected={fileSelected}
+                  setFileSelected={setFileSelected}
+                />
+              )}
               <label htmlFor="videoTitle" className="text-white flex flex-col">
                 Titre*
                 <input
@@ -242,16 +272,43 @@ function EditVideo() {
                 {" "}
               </label>
               Thumbail*
-              <UploadWidget
-                accept="image/png, image/jpeg"
-                name="thumbnail"
-                id="videoThumbnail"
-                setThumbnailFile={setThumbnailFile}
-                isUploaded={isUploaded}
-                setIsUploaded={setIsUploaded}
-                setIsChosen={setIsChosen}
-                isChosen={isChosen}
-              />
+              <div className="flex justify-between">
+                <div className="truncate mb-4">{video.thumbnail}</div>
+                <div
+                  onClick={() => setEditThumb(true)}
+                  onKeyDown={() => setEditThumb(true)}
+                  role="presentation"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-6 w-6 cursor-pointer"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {editThumb && (
+                <UploadWidget
+                  accept="image/png, image/jpeg"
+                  name="thumbnail"
+                  id="videoThumbnail"
+                  setThumbnailFile={setThumbnailFile}
+                  thumbUploaded={thumbUploaded}
+                  setThumbUploaded={setThumbUploaded}
+                  fileSelected={fileSelected}
+                  setFileSelected={setFileSelected}
+                  videoSelected={videoSelected}
+                  setVideoSelected={setVideoSelected}
+                />
+              )}
               <label
                 htmlFor="togglePremium"
                 className="text-white flex items-center gap-8 mt-6"
@@ -268,7 +325,6 @@ function EditVideo() {
               </label>
               <button
                 type="submit"
-                disabled={!isUploaded}
                 className="w-1/4 mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-12"
               >
                 Modifier

@@ -26,18 +26,12 @@ function ManageHomePageAdmin() {
     if (carouselCustomId) {
       axios
         .delete(`http://localhost:5002/carousel_custom/${carouselCustomId}`)
-        .then((res) => {
-          console.warn(res.data);
-          uploadSections();
-        })
+        .then(() => uploadSections())
         .catch((err) => console.error(err));
     } else {
       axios
         .delete(`http://localhost:5002/carousel_category/${carouselCategoryId}`)
-        .then((res) => {
-          console.warn(res.data);
-          uploadSections();
-        })
+        .then(() => uploadSections())
         .catch((err) => console.error(err));
     }
   };
@@ -61,9 +55,6 @@ function ManageHomePageAdmin() {
     sections.forEach((e, index) => {
       axios
         .put(`http://localhost:5002/sections/${e.id}`, { ordre: index + 1 })
-        .then((res) => {
-          console.warn(res.data);
-        })
         .catch((err) => console.error(err));
     });
   }, [sections]);
