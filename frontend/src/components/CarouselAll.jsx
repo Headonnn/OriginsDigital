@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import {
@@ -18,6 +18,7 @@ function CarouselAll({ dataSection }) {
   const [dataFavorites, setDataFavorites] = useState([]);
   const { dataVideo } = useContext(VideoContext);
   const { dataLogin } = useContext(LoginContext);
+  const navigate = useNavigate();
   const [mobile, setMobile] = useState(false);
   const fetchFavorites = () => {
     if (dataLogin) {
@@ -167,8 +168,21 @@ function CarouselAll({ dataSection }) {
                       <img
                         src={video.thumbnail}
                         alt={video.title}
-                        className="md:h-40 md:w-96 h-24 w-full"
+                        className="md:h-40 hidden md:block md:w-96 h-24 w-full"
                       />
+                      <div
+                        role="presentation"
+                        onClick={() => navigate(`/description/${video.id - 1}`)}
+                        onKeyDown={() =>
+                          navigate(`/description/${video.id - 1}`)
+                        }
+                      >
+                        <img
+                          src={video.thumbnail}
+                          alt={video.title}
+                          className="md:h-40 md:hidden md:w-96 h-24 w-full cursor-pointer"
+                        />
+                      </div>
 
                       <div className="md:flex hidden flex-col justify-between absolute bg-black bottom-0  p-1 bg-opacity-60 text-white w-full h-3/5">
                         <div className="text-md pl-1">{video.title}</div>
