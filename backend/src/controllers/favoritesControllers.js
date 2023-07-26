@@ -24,7 +24,6 @@ const destroy = (req, res) => {
     .destroy(fav)
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        console.warn("hgdjhgdjah");
         res.sendStatus(404);
       } else {
         res.sendStatus(204);
@@ -40,7 +39,7 @@ const read = (req, res) => {
     .findByUser(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.sendStatus(404);
+        res.status(404);
       } else {
         res.send(rows.map((e) => Object.values(e)[0]));
       }

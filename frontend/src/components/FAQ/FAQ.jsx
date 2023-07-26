@@ -44,6 +44,7 @@ function FAQ() {
               <BlockFAQ
                 question={blockFaq.question}
                 reponse={blockFaq.reponse}
+                key={blockFaq.reponse}
               />
             );
           })}

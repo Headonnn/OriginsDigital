@@ -117,10 +117,7 @@ function EditVideo() {
     };
     await axios
       .put(`http://localhost:5002/videos/${id}/edit`, data)
-      .then((res) => {
-        console.warn(res.data);
-        setIsClicked(!isClicked);
-      })
+      .then(() => setIsClicked(!isClicked))
       .catch((err) => console.error(err));
 
     await axios
