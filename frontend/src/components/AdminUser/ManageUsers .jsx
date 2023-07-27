@@ -40,7 +40,7 @@ function ManageUsers() {
 
   useEffect(() => {
     updateUserList();
-  }, [dataLogin]);
+  }, [dataLogin, dataUser]);
 
   const deleteUser = (e, id) => {
     e.preventDefault();
