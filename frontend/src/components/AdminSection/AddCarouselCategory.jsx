@@ -83,7 +83,7 @@ function AddCarouselCategory() {
             </div>
             <div>
               <h2 className=" text-2xl md:text-4xl font-extrabold text-center ">
-                Carousel personnalisé
+                Carousel par catégorie
               </h2>
             </div>
           </div>

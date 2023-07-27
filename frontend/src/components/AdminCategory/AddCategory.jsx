@@ -89,6 +89,7 @@ function AddCategory() {
                   placeholder="Le nom de votre catégorie"
                   value={categories.name}
                   onChange={handleInput}
+                  required
                 />
                 <span className="text-orange-600 pb-3">{error}</span>
               </label>
