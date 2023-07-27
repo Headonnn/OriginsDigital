@@ -160,8 +160,10 @@ function ManageHomePageAdmin() {
                       className="flex items-center mt-4  cursor-grab "
                       draggable
                       onDragStart={() => handleDragStart(index)}
+                      onTouchStart={() => handleDragStart(index)}
                       onDragEnter={() => handleDragEnter(index)}
                       onDragEnd={handleSort}
+                      onTouchEnd={handleSort}
                       onDragOver={(e) => e.preventDefault}
                       key={section.id}
                     >

@@ -135,6 +135,7 @@ function AddCarousselCustom() {
                   aria-label=""
                   value={carousel.name}
                   onChange={handleInput}
+                  required
                 />
               </div>
             </div>

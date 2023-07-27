@@ -97,6 +97,7 @@ function AddUsers() {
                   placeholder="Votre email"
                   value={users.email}
                   onChange={handleInput}
+                  required
                 />
                 <span className="text-orange-600 pb-3">{error}</span>
               </label>
@@ -110,6 +111,7 @@ function AddUsers() {
                   placeholder="Votre prénom"
                   value={users.firstname}
                   onChange={handleInput}
+                  required
                 />
               </label>
 
@@ -125,6 +127,7 @@ function AddUsers() {
                   placeholder="Votre nom de famille"
                   value={users.lastname}
                   onChange={handleInput}
+                  required
                 />
                 <span className="text-orange-600 pb-3">{error}</span>
               </label>
@@ -140,6 +143,7 @@ function AddUsers() {
                   placeholder="Votre mot de passe"
                   value={users.password}
                   onChange={handleInput}
+                  required
                 />
                 <span className="text-orange-600 pb-3">{error}</span>
               </label>
