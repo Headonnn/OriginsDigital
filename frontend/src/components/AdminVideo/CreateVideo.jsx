@@ -211,22 +211,22 @@ function CreateVideo() {
                 htmlFor="videoThumbnail"
                 className="text-white flex flex-col"
               >
-                Thumbnail*
-                <UploadWidget
-                  accept="image/png, image/jpeg"
-                  name="thumbnail"
-                  id="videoThumbnail"
-                  setThumbnailFile={setThumbnailFile}
-                  thumbUploaded={thumbUploaded}
-                  setThumbUploaded={setThumbUploaded}
-                  vidUploaded={vidUploaded}
-                  setVidUploaded={setVidUploaded}
-                  fileSelected={fileSelected}
-                  setFileSelected={setFileSelected}
-                  videoSelected={videoSelected}
-                  setVideoSelected={setVideoSelected}
-                />
+                Thumbnail*{" "}
               </label>
+              <UploadWidget
+                accept="image/png, image/jpeg"
+                name="thumbnail"
+                id="videoThumbnail"
+                setThumbnailFile={setThumbnailFile}
+                thumbUploaded={thumbUploaded}
+                setThumbUploaded={setThumbUploaded}
+                vidUploaded={vidUploaded}
+                setVidUploaded={setVidUploaded}
+                fileSelected={fileSelected}
+                setFileSelected={setFileSelected}
+                videoSelected={videoSelected}
+                setVideoSelected={setVideoSelected}
+              />
 
               <label
                 htmlFor="togglePremium"

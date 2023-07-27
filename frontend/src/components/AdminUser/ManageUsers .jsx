@@ -7,10 +7,11 @@ import { BsArrowReturnLeft } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
+import LoginContext from "../../../contexts/LoginContext";
 
 function ManageUsers() {
   const { dataUser, setDataUser } = useContext(VideoContext);
-
+  const { dataLogin } = useContext(LoginContext);
   const navigate = useNavigate();
 
   // export CSV
@@ -32,14 +33,14 @@ function ManageUsers() {
 
   const updateUserList = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}users`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
       .then((res) => setDataUser(res.data))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
     updateUserList();
-  }, [dataUser]);
+  }, [dataLogin]);
 
   const deleteUser = (e, id) => {
     e.preventDefault();

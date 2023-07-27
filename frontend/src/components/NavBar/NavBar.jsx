@@ -91,7 +91,7 @@ function Header() {
               <button
                 type="button"
                 onClick={handleClickMyProfile}
-                className="border hover:bg-white duration-300 tracking-wide lg:block hidden hover:text-black py-2 px-6 transition"
+                className="border hover:bg-white tracking-wide lg:block hidden hover:text-black py-1 px-6 transition"
               >
                 {" "}
                 Bonjour {dataLogin.firstname} !

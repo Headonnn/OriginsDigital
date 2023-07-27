@@ -114,13 +114,7 @@ function LoginId() {
                   />
                 )}
               </div>
-              <p className="text-white text-sm font-light font-poppins mt-2 ml-1">
-                Mot de passe oublié ? Cliquez{" "}
-                <span className="underline font-bold duration-200 hover:text-orange-600">
-                  ici
-                </span>
-                .
-              </p>
+
               <div className="flex flex-col space-y-2 mt-16 w-full">
                 <button
                   type="submit"

@@ -41,107 +41,85 @@ function CreateAccountForm() {
   ) : (
     <>
       <NavBar />
-      <div className="loginid-container bg-black min-h-screen p-5 relative overflow-hidden text-white">
-        <div className="flex flex-col items-center border border-white px-5 py-5 mx-auto max-w-md my-10 text-white">
-          <div className="flex items-center gap-12 pb-6">
-            <h1 className="text-xl">Création de votre compte</h1>
-          </div>
-          <form onSubmit={saveUser}>
-            <div>
-              <label htmlFor="Prénom" className="text-md ">
-                Prénom
-              </label>
-              <div className="py-2">
-                <input
-                  onChange={handleInput}
-                  value={user.firstname}
-                  name="firstname"
-                  type="text"
-                  required
-                  className="w-full rounded-lg text-blue-800"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="Nom" className="text-md">
-                Nom
-              </label>
-              <div className="py-2">
-                <input
-                  onChange={handleInput}
-                  value={user.lastname}
-                  id="Nom"
-                  name="lastname"
-                  type="text"
-                  required
-                  className="w-full rounded-lg text-blue-800"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="mail" className="text-md">
-                E-mail
-              </label>
-              <div className="py-2">
-                <input
-                  onChange={handleInput}
-                  value={user.email}
-                  id="e-mail"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full rounded-lg text-blue-800"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="password" className="text-md">
-                Password
-              </label>
-              <div className="py-2">
-                <input
-                  onChange={handleInput}
-                  value={user.password}
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="w-full rounded-lg text-blue-800"
-                />
-              </div>
-            </div>
+      <div className="flex gap-8 flex-col border-white px-10 mx-auto max-w-xs md:max-w-md my-10 rounded-[31px]shadow-[inset0-2px_4px_rgba(0,0,0,0.6)] text-white rounded-[31px]">
+        <h2 className=" text-2xl md:text-4xl font-extrabold text-center mb-10 ">
+          Inscription
+        </h2>
 
-            {/* <div className="flex pt-4 items-center">
+        <form onSubmit={saveUser}>
+          <div>
+            <label htmlFor="Prénom" className="text-md ">
+              Prénom
+            </label>
+            <div className="py-2">
               <input
-                id="terms-and-privacy"
-                name="terms-and-privacy"
-                type="checkbox"
+                onChange={handleInput}
+                value={user.firstname}
+                name="firstname"
+                type="text"
+                required
+                className="w-full rounded-lg text-blue-800"
               />
-              <label htmlFor="terms-and-privacy" className="ml-2 mt-2 text-sm">
-                J'ai lu et j'accepte les
-                <a href="/" className="text-indigo-300 hover:text-indigo-500">
-                  {" "}
-                  Conditions{" "}
-                </a>
-                et la
-                <a href="/" className="text-indigo-300 hover:text-indigo-500">
-                  {" "}
-                  Politique de Confidentialité{" "}
-                </a>
-                .
-              </label>
-            </div> */}
-
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-3"
-              >
-                Je m'inscris
-              </button>
             </div>
-          </form>
-        </div>
+          </div>
+          <div>
+            <label htmlFor="Nom" className="text-md">
+              Nom
+            </label>
+            <div className="py-2">
+              <input
+                onChange={handleInput}
+                value={user.lastname}
+                id="Nom"
+                name="lastname"
+                type="text"
+                required
+                className="w-full rounded-lg text-blue-800"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="mail" className="text-md">
+              E-mail
+            </label>
+            <div className="py-2">
+              <input
+                onChange={handleInput}
+                value={user.email}
+                id="e-mail"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-lg text-blue-800"
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="password" className="text-md">
+              Password
+            </label>
+            <div className="py-2">
+              <input
+                onChange={handleInput}
+                value={user.password}
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="w-full rounded-lg text-blue-800"
+              />
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <button
+              type="submit"
+              className="w-full mx-auto bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white py-2 px-4 rounded-md my-3"
+            >
+              Je m'inscris
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );

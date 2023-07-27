@@ -15,7 +15,7 @@ CREATE TABLE
         url VARCHAR(500) NOT NULL,
         description VARCHAR(500) NOT NULL,
         thumbnail VARCHAR(500) NOT NULL,
-        date DATE,
+        date DATE DEFAULT NULL,
         length TIME,
         is_freemium TINYINT DEFAULT 0,
         is_in_hero TINYINT DEFAULT 0

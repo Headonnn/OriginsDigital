@@ -27,15 +27,14 @@ class VideoManager extends AbstractManager {
       url,
       description,
       thumbnail,
-      date,
       length,
       is_freemium: isFreemium,
       is_in_hero: isInHero,
     } = video;
 
     return this.database.query(
-      `INSERT INTO ${this.table} (title, url, description, thumbnail, date, length, is_freemium, is_in_hero) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-      [title, url, description, thumbnail, date, length, isFreemium, isInHero]
+      `INSERT INTO ${this.table} (title, url, description, thumbnail, date, length, is_freemium, is_in_hero) VALUES (?, ?, ?, ?, CURDATE(), ?, ?, ?)`,
+      [title, url, description, thumbnail, length, isFreemium, isInHero]
     );
   }
 
