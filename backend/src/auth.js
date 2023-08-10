@@ -52,9 +52,7 @@ const verifyPassword = async (req, res, next) => {
 
 const generateToken = (req, res, next) => {
   const payload = { cargo: req.user };
-  const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: "1h",
-  });
+  const token = jwt.sign(payload, process.env.JWT_SECRET);
   res.status(200).send({ token });
   next();
 };
@@ -76,9 +74,7 @@ const verifyPasswordAndGenerateToken = async (req, res) => {
       const user = { ...req.user };
       delete user.hashedPassword;
       const payload = { cargo: req.user };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign(payload, process.env.JWT_SECRET);
       res.status(200).send({ token });
 
       return null;
