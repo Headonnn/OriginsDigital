@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import ApiContext from "../../contexts/ApiContext";
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
 import VideoContext from "../../contexts/VideoContext";
@@ -16,8 +16,7 @@ function HomePage() {
       .catch((error) => console.error(error));
   }, []);
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/sections`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/sections`)
       .then((res) => {
         setDataSection(res.data);
       })

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 
 function ManageHomePageAdmin() {
@@ -24,21 +24,19 @@ function ManageHomePageAdmin() {
   const handleDelete = (e, carouselCustomId, carouselCategoryId) => {
     e.preventDefault();
     if (carouselCustomId) {
-      axios
-        .delete(
-          `${
-            import.meta.env.VITE_BACKEND_URL
-          }/carousel_custom/${carouselCustomId}`
-        )
+      ApiContext.delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/carousel_custom/${carouselCustomId}`
+      )
         .then(() => uploadSections())
         .catch((err) => console.error(err));
     } else {
-      axios
-        .delete(
-          `${
-            import.meta.env.VITE_BACKEND_URL
-          }/carousel_category/${carouselCategoryId}`
-        )
+      ApiContext.delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/carousel_category/${carouselCategoryId}`
+      )
         .then(() => uploadSections())
         .catch((err) => console.error(err));
     }
@@ -61,11 +59,9 @@ function ManageHomePageAdmin() {
   };
   useEffect(() => {
     sections.forEach((e, index) => {
-      axios
-        .put(`${import.meta.env.VITE_BACKEND_URL}/sections/${e.id}`, {
-          ordre: index + 1,
-        })
-        .catch((err) => console.error(err));
+      ApiContext.put(`${import.meta.env.VITE_BACKEND_URL}/sections/${e.id}`, {
+        ordre: index + 1,
+      }).catch((err) => console.error(err));
     });
   }, [sections]);
 

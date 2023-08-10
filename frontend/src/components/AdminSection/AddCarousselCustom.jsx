@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 import SearchVideos from "../SearchVideos";
 import AddVideoCarousel from "./AddVideoCarousel";
@@ -46,15 +46,16 @@ function AddCarousselCustom() {
       name: carousel.name,
     };
     let section = { carousel_custom_id: null, ordre: null };
-    await axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/carousel_custom`, data)
+    await ApiContext.post(
+      `${import.meta.env.VITE_BACKEND_URL}/carousel_custom`,
+      data
+    )
       .then((res) => {
         section = { ...section, carousel_custom_id: res.data.insertId };
       })
       .catch((err) => console.warn(err));
 
-    await axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/sections/ordre`)
+    await ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/sections/ordre`)
       .then((res) => {
         section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
       })
@@ -68,10 +69,10 @@ function AddCarousselCustom() {
       title: carousel.name,
       visibility: carousel.visibility,
     };
-    await axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/sections/custom`, dataSec)
-
-      .catch((err) => console.warn(err));
+    await ApiContext.post(
+      `${import.meta.env.VITE_BACKEND_URL}/sections/custom`,
+      dataSec
+    ).catch((err) => console.warn(err));
     let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
     selected = selected.map((el) => parseInt(el[0], 10));
     let vidToPost = [];
@@ -82,8 +83,7 @@ function AddCarousselCustom() {
     }));
 
     vidToPost.forEach((el) => {
-      axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/videos_carousel`, el)
+      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/videos_carousel`, el)
         .then((res) => {
           console.warn(res.data);
         })

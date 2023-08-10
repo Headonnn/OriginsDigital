@@ -3,13 +3,13 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import axios from "axios";
 import {
   BsInfoCircle,
   BsPlayCircle,
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
+import ApiContext from "../../contexts/ApiContext";
 import LoginContext from "../../contexts/LoginContext";
 import VideoContext from "../../contexts/VideoContext";
 
@@ -22,8 +22,9 @@ function CarouselAll({ dataSection }) {
 
   const fetchFavorites = () => {
     if (dataLogin) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
+      ApiContext.get(
+        `${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`
+      )
         .then((res) => {
           setDataFavorites(res.data);
         })
@@ -96,22 +97,20 @@ function CarouselAll({ dataSection }) {
 
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
-      axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
-          userId: dataLogin.id,
-          videoId: clickedVideo,
-        })
+      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
+        userId: dataLogin.id,
+        videoId: clickedVideo,
+      })
         .then(() => {
           setDataFavorites([...dataFavorites, clickedVideo]);
         })
         .catch((err) => console.error(err));
     } else {
-      axios
-        .delete(
-          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
-            dataLogin.id
-          }/${clickedVideo}`
-        )
+      ApiContext.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+          dataLogin.id
+        }/${clickedVideo}`
+      )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);

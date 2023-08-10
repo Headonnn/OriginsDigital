@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 
 function AddCategory() {
@@ -25,8 +25,7 @@ function AddCategory() {
     const data = {
       name: categories.name,
     };
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/categories`, data)
+    ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/categories`, data)
       .then((res) => {
         console.warn(res);
         setIsClicked(!isClicked);

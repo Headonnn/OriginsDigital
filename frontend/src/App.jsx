@@ -14,34 +14,32 @@ function App() {
   const [dataUser, setDataUser] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/videos`)
-      .then((res) => res.json())
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
       .then((result) => setDataVideo(result))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/categories`)
-      .then((res) => res.json())
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((result) => setCategorie(result))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/users`)
-      .then((res) => res.json())
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/users`)
       .then((result) => setDataUser(result))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
     if (!dataLogin) {
-      const token = JSON.parse(localStorage.getItem("token"));
-      ApiContext.defaults.headers.common.Authorization = token;
+      const token = localStorage.getItem("token");
+
+      ApiContext.defaults.headers.common.Authorization = `Bearer ${token}`;
       if (!token) {
         return;
       }
-      const decoded = jwtDecode(token.token);
+      const decoded = jwtDecode(token);
       setDataLogin(decoded.cargo);
     }
   }, []);

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
 import UploadWidget from "./UploadWidget";
@@ -54,8 +54,7 @@ function CreateVideo() {
     };
 
     let videoID = 0;
-    await axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/videos`, data)
+    await ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/videos`, data)
       .then((res) => {
         videoID = res.data.insertId;
         setIsClicked(!isClicked);
@@ -63,13 +62,10 @@ function CreateVideo() {
       .catch((err) => console.warn(err));
 
     categories.map((cat) =>
-      axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/videos_category`, {
-          categoryId: cat.id,
-          videoId: videoID,
-        })
-
-        .catch((err) => console.warn(err))
+      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/videos_category`, {
+        categoryId: cat.id,
+        videoId: videoID,
+      }).catch((err) => console.warn(err))
     );
   };
 
@@ -81,10 +77,12 @@ function CreateVideo() {
           ...vid,
           is_freemium: videoStatutFreemium,
         };
-        axios
-          .put(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/is_freemium`, {
+        ApiContext.put(
+          `${import.meta.env.VITE_BACKEND_URL}/videos/${id}/is_freemium`,
+          {
             isFreemium: videoStatutFreemium,
-          })
+          }
+        )
           .then((res) => {
             console.warn(res.data);
           })

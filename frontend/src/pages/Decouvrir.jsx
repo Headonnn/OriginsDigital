@@ -11,7 +11,7 @@ import {
   AiOutlineArrowDown,
   AiOutlineArrowUp,
 } from "react-icons/ai";
-import axios from "axios";
+import ApiContext from "../../contexts/ApiContext";
 
 import NavBar from "../components/NavBar/NavBar";
 import SearchBar from "../components/SearchBar";
@@ -59,8 +59,9 @@ function Decouvrir() {
   };
   const fetchFavorites = () => {
     if (dataLogin) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
+      ApiContext.get(
+        `${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`
+      )
         .then((res) => setDataFavorites(res.data))
         .catch((err) => {
           if (err.response) {
@@ -76,22 +77,20 @@ function Decouvrir() {
   };
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
-      axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
-          userId: dataLogin.id,
-          videoId: clickedVideo,
-        })
+      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
+        userId: dataLogin.id,
+        videoId: clickedVideo,
+      })
         .then(() => {
           setDataFavorites([...dataFavorites, clickedVideo]);
         })
         .catch((err) => console.error(err));
     } else {
-      axios
-        .delete(
-          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
-            dataLogin.id
-          }/${clickedVideo}`
-        )
+      ApiContext.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+          dataLogin.id
+        }/${clickedVideo}`
+      )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
@@ -153,15 +152,13 @@ function Decouvrir() {
       filtreCategorie === "9" ||
       filtreCategorie === "7"
     ) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
+      ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
         .then((result) => setCateg(result.data))
         .catch((error) => console.error(error));
     } else {
-      axios
-        .get(
-          `${import.meta.env.VITE_BACKEND_URL}/videos/filtre/${filtreCategorie}`
-        )
+      ApiContext.get(
+        `${import.meta.env.VITE_BACKEND_URL}/videos/filtre/${filtreCategorie}`
+      )
         .then((result) => {
           setCateg(result.data);
         })

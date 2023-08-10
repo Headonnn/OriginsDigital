@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import axios from "axios";
+import ApiContext from "../../contexts/ApiContext";
 import LoginContext from "../../contexts/LoginContext";
 import NavBar from "./NavBar/NavBar";
 
@@ -13,8 +13,7 @@ function UpdateUserProfile() {
   const [isClicked, setIsClicked] = useState(false);
 
   const fetchUser = () => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`)
       .then((res) => {
         setDataLogin(res.data);
       })
@@ -57,23 +56,23 @@ function UpdateUserProfile() {
       id,
     };
 
-    axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/users/${data && data.id}/edit`,
-        data
-      )
+    ApiContext.put(
+      `${import.meta.env.VITE_BACKEND_URL}/users/${data && data.id}/edit`,
+      data
+    )
       .then(() => {
-        axios
-          .get(`${import.meta.env.VITE_BACKEND_URL}/users/${data.id}/modify`)
-          .then((response) => {
-            if (response.status === 200) {
-              localStorage.setItem("token", JSON.stringify(response.data));
-              const decoded = jwtDecode(response.data.token);
-              setDataLogin(decoded.cargo);
-            } else {
-              throw new Error("throw-error level, Error during login attempt");
-            }
-          });
+        ApiContext.get(
+          `${import.meta.env.VITE_BACKEND_URL}/users/${data.id}/modify`
+        ).then((response) => {
+          if (response.status === 200) {
+            localStorage.setItem("token", response.data.token);
+            ApiContext.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+            const decoded = jwtDecode(localStorage.getItem("token"));
+            setDataLogin(decoded);
+          } else {
+            throw new Error("throw-error level, Error during login attempt");
+          }
+        });
         setIsClicked(!isClicked);
       })
       .catch((err) => console.error(err));

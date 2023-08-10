@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import axios from "axios";
+import ApiContext from "../../contexts/ApiContext";
 
 function SearchBar({ handleSearchChange, handleChangeCategory }) {
   const [categ, setCateg] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((res) => setCateg(res.data))
       .catch((err) => console.error(err));
   }, []);
