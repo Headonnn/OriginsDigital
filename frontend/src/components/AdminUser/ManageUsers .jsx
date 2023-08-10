@@ -18,7 +18,6 @@ function ManageUsers() {
 
   const headers = [
     { label: "ID", key: "id" },
-
     { label: "E-Mail", key: "email" },
     { label: "Prénom", key: "firstname" },
     { label: "Nom", key: "lastname" },

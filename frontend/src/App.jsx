@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/users`)
-      .then((result) => setDataUser(result))
+      .then((result) => setDataUser(result.data))
       .catch((error) => console.error(error));
   }, []);
 
