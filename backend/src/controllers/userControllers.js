@@ -28,6 +28,23 @@ const read = (req, res) => {
     });
 };
 
+const readById = (req, res, next) => {
+  models.user
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.status(404).send("error 404");
+      } else {
+        req.user = rows[0];
+        next();
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("error const read userCont");
+    });
+};
+
 const edit = (req, res) => {
   const user = req.body;
 
@@ -154,6 +171,7 @@ const verifyUser = (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readById,
   edit,
   editAll,
   editByUser,

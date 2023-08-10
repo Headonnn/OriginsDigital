@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 import axios from "axios";
-
 import LoginContext from "../../contexts/LoginContext";
 import NavBar from "./NavBar/NavBar";
 
@@ -12,21 +12,26 @@ function UpdateUserProfile() {
 
   const [isClicked, setIsClicked] = useState(false);
 
+  const fetchUser = () => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`)
+      .then((res) => {
+        setDataLogin(res.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          if (err.response.status === 404) {
+            console.error("PB UseEff UpdateUser");
+          }
+          if (err.response.status === 500) {
+            console.error(err);
+          }
+        }
+      });
+  };
   useEffect(() => {
     if (dataLogin) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/users/${dataLogin.id}`)
-        .then((res) => setDataLogin(res.data))
-        .catch((err) => {
-          if (err.response) {
-            if (err.response.status === 404) {
-              console.error("PB UseEff UpdateUser");
-            }
-            if (err.response.status === 500) {
-              console.error(err);
-            }
-          }
-        });
+      fetchUser();
     }
   }, [id]);
 
@@ -46,6 +51,7 @@ function UpdateUserProfile() {
 
     const data = {
       firstname: user.firstname || dataLogin.firstname,
+      lastname: user.lastname || dataLogin.lastname,
       email: user.email || dataLogin.email,
       password: user.password,
       id,
@@ -56,13 +62,21 @@ function UpdateUserProfile() {
         `${import.meta.env.VITE_BACKEND_URL}/users/${data && data.id}/edit`,
         data
       )
-      .then((res) => {
-        setDataLogin(res.data);
+      .then(() => {
+        axios
+          .get(`${import.meta.env.VITE_BACKEND_URL}/users/${data.id}/modify`)
+          .then((response) => {
+            if (response.status === 200) {
+              localStorage.setItem("token", JSON.stringify(response.data));
+              const decoded = jwtDecode(response.data.token);
+              setDataLogin(decoded.cargo);
+            } else {
+              throw new Error("throw-error level, Error during login attempt");
+            }
+          });
         setIsClicked(!isClicked);
-        localStorage.removeItem("token");
-        setDataLogin(undefined);
       })
-      .catch((err) => console.error(err, "ha c'est ballot"));
+      .catch((err) => console.error(err));
   };
 
   return isClicked ? (
@@ -71,15 +85,13 @@ function UpdateUserProfile() {
 
       <div className="flex flex-col items-center px-10 py-8 mx-auto max-w-xs md:max-w-md my-10 text-center text-white">
         <h2 className="flex items-center gap-12 pb-6">Félicitations !</h2>
-        <p className="pb-8">
-          Votre compte à été modifié avec succès. Veuillez vous reconnecter.
-        </p>
-        <NavLink to="/login">
+        <p className="pb-8">Votre compte à été modifié avec succès.</p>
+        <NavLink to="/userprofile">
           <button
             type="button"
             className="w-full mx-auto border-2 border-white text-white py-2 px-4  my-3"
           >
-            Se connecter
+            Retour
           </button>
         </NavLink>
       </div>
@@ -103,6 +115,19 @@ function UpdateUserProfile() {
                   onChange={handleInput}
                   defaultValue={dataLogin.firstname}
                   name="firstname"
+                  type="text"
+                  required
+                  className="w-full text-blue-800 mb-5"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="text-gray-300">
+                  Rappelez-nous votre nom ?
+                </label>
+                <input
+                  onChange={handleInput}
+                  defaultValue={dataLogin.lastname}
+                  name="lastname"
                   type="text"
                   required
                   className="w-full text-blue-800 mb-5"

@@ -40,10 +40,12 @@ function UserProfile() {
 
         <div className="flex justify-between items-center">
           <div>
-            <h3 className="text-gray-300">Prénom, nom :</h3>
-            <p className="text-white">
-              {dataLogin.firstname} {dataLogin.lastname}
-            </p>
+            <h3 className="text-gray-300">Prénom :</h3>
+            <p className="text-white">{dataLogin.firstname}</p>
+          </div>
+          <div>
+            <h3 className="text-gray-300">Nom :</h3>
+            <p className="text-white">{dataLogin.lastname}</p>
           </div>
           {dataLogin.id && (
             <NavLink to={`/updateuserprofile/${dataLogin.id}/edit`}>

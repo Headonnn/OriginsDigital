@@ -4,13 +4,14 @@ import LoginContext from "../contexts/LoginContext";
 import VideoContext from "../contexts/VideoContext";
 import Router from "./navigation/Router";
 import Footer from "./components/Footer";
+import ApiContext from "../contexts/ApiContext";
 
 function App() {
+  const [dataLogin, setDataLogin] = useState(undefined);
   const [dataVideo, setDataVideo] = useState([]);
   const [categorie, setCategorie] = useState([]);
   const [videoCategorie, setVideoCategorie] = useState([]);
   const [dataUser, setDataUser] = useState([]);
-  const [dataLogin, setDataLogin] = useState(undefined);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/videos`)
@@ -36,7 +37,7 @@ function App() {
   useEffect(() => {
     if (!dataLogin) {
       const token = JSON.parse(localStorage.getItem("token"));
-
+      ApiContext.defaults.headers.common.Authorization = token;
       if (!token) {
         return;
       }

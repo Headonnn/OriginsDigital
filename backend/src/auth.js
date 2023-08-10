@@ -50,6 +50,15 @@ const verifyPassword = async (req, res, next) => {
   return null;
 };
 
+const generateToken = (req, res, next) => {
+  const payload = { cargo: req.user };
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: "1000",
+  });
+  res.status(200).send({ token });
+  next();
+};
+
 const verifyPasswordAndGenerateToken = async (req, res) => {
   try {
     const { password } = req.body;
@@ -141,4 +150,5 @@ module.exports = {
   verifyPassword,
   verifyToken,
   verifyPasswordBeforeDelete,
+  generateToken,
 };
