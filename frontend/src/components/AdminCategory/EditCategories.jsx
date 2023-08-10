@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 
 function EditCategories() {
@@ -14,8 +14,7 @@ function EditCategories() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}`)
       .then((res) => setCategories(res.data))
       .catch((err) => {
         if (err.response) {
@@ -42,8 +41,10 @@ function EditCategories() {
     const data = {
       name: categories.name,
     };
-    axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}/edit`, data)
+    ApiContext.put(
+      `${import.meta.env.VITE_BACKEND_URL}/categories/${id}/edit`,
+      data
+    )
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);

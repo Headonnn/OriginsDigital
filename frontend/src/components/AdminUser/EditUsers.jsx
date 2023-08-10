@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 
 function EditUsers() {
@@ -16,8 +16,7 @@ function EditUsers() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)
       .then((res) => setUsers(res.data))
       .catch((err) => {
         if (err.response) {
@@ -47,8 +46,7 @@ function EditUsers() {
 
       email: users.email,
     };
-    axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}/edit`, data)
+    ApiContext.put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}/edit`, data)
       .then((res) => {
         console.warn(res.data);
         setIsClicked(!isClicked);

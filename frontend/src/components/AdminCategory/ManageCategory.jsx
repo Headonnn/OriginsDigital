@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
+import ApiContext from "../../../contexts/ApiContext";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
@@ -11,8 +11,7 @@ function ManageCategory() {
   const navigate = useNavigate();
 
   const updateCategoryList = () => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((res) => setCategorie(res.data))
       .catch((err) => console.error(err));
   };
@@ -24,8 +23,9 @@ function ManageCategory() {
   const deleteCategory = (e, id) => {
     e.preventDefault();
 
-    axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/categories/${id}/delete`)
+    ApiContext.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/categories/${id}/delete`
+    )
       .then(() => updateCategoryList())
       .catch((error) => console.error(error));
   };

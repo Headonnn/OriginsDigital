@@ -6,7 +6,6 @@ import {
   BsPlusLg,
   BsCheckLg,
 } from "react-icons/bs";
-import axios from "axios";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -17,6 +16,7 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
+import ApiContext from "../../contexts/ApiContext";
 import VideoContext from "../../contexts/VideoContext";
 import LoginContext from "../../contexts/LoginContext";
 
@@ -32,8 +32,9 @@ function DescriptionVideo() {
 
   const fetchFavorites = () => {
     if (dataLogin) {
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
+      ApiContext.get(
+        `${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`
+      )
         .then((res) => {
           setDataFavorites(res.data);
           console.warn(res.data);
@@ -52,22 +53,20 @@ function DescriptionVideo() {
   };
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
-      axios
-        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
-          userId: dataLogin.id,
-          videoId: clickedVideo,
-        })
+      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
+        userId: dataLogin.id,
+        videoId: clickedVideo,
+      })
         .then(() => {
           setDataFavorites([...dataFavorites, clickedVideo]);
         })
         .catch((err) => console.error(err));
     } else {
-      axios
-        .delete(
-          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
-            dataLogin.id
-          }/${clickedVideo}`
-        )
+      ApiContext.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+          dataLogin.id
+        }/${clickedVideo}`
+      )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
@@ -84,12 +83,11 @@ function DescriptionVideo() {
     );
   }, [dataLogin, dataVideo]);
   useEffect(() => {
-    axios
-      .get(
-        `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${
-          parseInt(params.id, 10) + 1
-        }`
-      )
+    ApiContext.get(
+      `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${
+        parseInt(params.id, 10) + 1
+      }`
+    )
       .then((res) => {
         setCateg(res.data);
       })

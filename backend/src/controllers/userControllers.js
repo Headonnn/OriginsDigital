@@ -135,6 +135,7 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
     .then(([user]) => {
       if (user[0] != null) {
         req.user = user[0];
+
         next();
       } else {
         res.status(500).send("error 401 userController getuserbymailmachin");

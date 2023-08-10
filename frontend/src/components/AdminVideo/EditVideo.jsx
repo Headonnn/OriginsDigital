@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Select from "react-tailwindcss-select";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
 import UploadWidget from "./UploadWidget";
@@ -48,8 +48,7 @@ function EditVideo() {
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}`)
+    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}`)
       .then((res) => {
         setVideo(res.data);
       })
@@ -72,7 +71,7 @@ function EditVideo() {
 
   const fetchData = async () => {
     try {
-      const data = await axios.get(
+      const data = await ApiContext.get(
         `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${id}`
       );
 
@@ -115,24 +114,23 @@ function EditVideo() {
       is_in_hero: video.is_in_hero,
       date: date.toISOString().slice(0, 19).replace("T", " "),
     };
-    await axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/edit`, data)
+    await ApiContext.put(
+      `${import.meta.env.VITE_BACKEND_URL}/videos/${id}/edit`,
+      data
+    )
       .then(() => setIsClicked(!isClicked))
       .catch((err) => console.error(err));
 
-    await axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/videos_category/${id}`)
-
-      .catch((err) => console.error(err));
+    await ApiContext.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/videos_category/${id}`
+    ).catch((err) => console.error(err));
 
     if (categories) {
       categories.forEach((cat) => {
-        axios
-          .post(`${import.meta.env.VITE_BACKEND_URL}/videos_category`, {
-            categoryId: cat.id,
-            videoId: id,
-          })
-          .catch((err) => console.warn(err));
+        ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/videos_category`, {
+          categoryId: cat.id,
+          videoId: id,
+        }).catch((err) => console.warn(err));
       });
     }
   };

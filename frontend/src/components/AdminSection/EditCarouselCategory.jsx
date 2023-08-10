@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import axios from "axios";
+import ApiContext from "../../../contexts/ApiContext";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
@@ -20,7 +20,7 @@ function EditCarouselCategory() {
   };
   const fetchSections = async () => {
     try {
-      const data = await axios.get(
+      const data = await ApiContext.get(
         `${import.meta.env.VITE_BACKEND_URL}/sections`
       );
       const section = data.data.filter(
@@ -55,26 +55,18 @@ function EditCarouselCategory() {
       maxNumber: carousel.max_number,
     };
 
-    await axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/carousel_category/${params.id}`,
-        data
-      )
-
-      .catch((err) => console.warn(err));
+    await ApiContext.put(
+      `${import.meta.env.VITE_BACKEND_URL}/carousel_category/${params.id}`,
+      data
+    ).catch((err) => console.warn(err));
 
     const dataVis = {
       visibility: carousel.visibility,
     };
-    await axios
-      .put(
-        `${import.meta.env.VITE_BACKEND_URL}/sections/${
-          sections.id
-        }/visibility/`,
-        dataVis
-      )
-
-      .catch((err) => console.warn(err));
+    await ApiContext.put(
+      `${import.meta.env.VITE_BACKEND_URL}/sections/${sections.id}/visibility/`,
+      dataVis
+    ).catch((err) => console.warn(err));
     navigate("/admin/section");
   };
 

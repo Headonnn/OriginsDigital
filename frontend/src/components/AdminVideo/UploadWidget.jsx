@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
+import ApiContext from "../../../contexts/ApiContext";
 
 function UploadWidget({
   accept,
@@ -30,8 +30,7 @@ function UploadWidget({
     formData.append("upload_preset", "erowiy6p");
     setLoading("chargement...");
 
-    axios
-      .post("http://api.cloudinary.com/v1_1/dgux3vxri/upload", formData)
+    ApiContext.post("http://api.cloudinary.com/v1_1/dgux3vxri/upload", formData)
       .then((res) => {
         if (id === "videoThumbnail") {
           setThumbnailFile(res.data.url);

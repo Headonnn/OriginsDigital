@@ -53,7 +53,7 @@ const verifyPassword = async (req, res, next) => {
 const generateToken = (req, res, next) => {
   const payload = { cargo: req.user };
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: "1000",
+    expiresIn: "1h",
   });
   res.status(200).send({ token });
   next();
@@ -77,7 +77,7 @@ const verifyPasswordAndGenerateToken = async (req, res) => {
       delete user.hashedPassword;
       const payload = { cargo: req.user };
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: "1000",
+        expiresIn: "1h",
       });
       res.status(200).send({ token });
 
@@ -97,13 +97,16 @@ const verifyPasswordAndGenerateToken = async (req, res) => {
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization");
+
     if (!authorizationHeader) {
       throw new Error("Authorization header is missing");
     }
     const [type, token] = authorizationHeader.split(" ");
+
     if (type !== "Bearer") {
       throw new Error("Authorization header has an incorrect type");
     }
+
     const payload = jwt.verify(token, process.env.JWT_SECRET);
     req.payload = payload;
     next();

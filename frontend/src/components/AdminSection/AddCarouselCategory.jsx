@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { BsArrowReturnLeft } from "react-icons/bs";
+import ApiContext from "../../../contexts/ApiContext";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 
@@ -28,15 +28,16 @@ function AddCarouselCategory() {
       maxNumber: carousel.max_number,
     };
     let section = { carousel_category_id: null, ordre: null };
-    await axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/carousel_category`, data)
+    await ApiContext.post(
+      `${import.meta.env.VITE_BACKEND_URL}/carousel_category`,
+      data
+    )
       .then((res) => {
         section = { ...section, carousel_category_id: res.data.insertId };
       })
       .catch((err) => console.warn(err));
 
-    await axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/sections/ordre`)
+    await ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/sections/ordre`)
       .then((res) => {
         section = { ...section, ordre: res.data[0][res.data.length].ordre + 1 };
       })
@@ -51,10 +52,10 @@ function AddCarouselCategory() {
       visibility: carousel.visibility,
     };
 
-    await axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/sections/category`, dataSec)
-
-      .catch((err) => console.warn(err));
+    await ApiContext.post(
+      `${import.meta.env.VITE_BACKEND_URL}/sections/category`,
+      dataSec
+    ).catch((err) => console.warn(err));
 
     navigate("/admin/section");
   };
