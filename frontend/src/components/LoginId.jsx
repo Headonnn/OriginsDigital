@@ -44,7 +44,7 @@ function LoginId() {
           localStorage.setItem("token", response.data.token);
           ApiContext.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
           const decoded = jwtDecode(localStorage.getItem("token"));
-          setDataLogin(decoded);
+          setDataLogin(decoded.cargo);
 
           navigate("/");
         } else {

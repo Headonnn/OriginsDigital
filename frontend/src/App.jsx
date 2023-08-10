@@ -15,19 +15,19 @@ function App() {
 
   useEffect(() => {
     ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
-      .then((result) => setDataVideo(result))
+      .then((result) => setDataVideo(result.data))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
     ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
-      .then((result) => setCategorie(result))
+      .then((result) => setCategorie(result.data))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
     ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/users`)
-      .then((result) => setDataUser(result))
+      .then((result) => setDataUser(result.data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -39,8 +39,10 @@ function App() {
       if (!token) {
         return;
       }
+
       const decoded = jwtDecode(token);
-      setDataLogin(decoded.cargo);
+
+      setDataLogin(decoded);
     }
   }, []);
 
