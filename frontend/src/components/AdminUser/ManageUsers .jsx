@@ -54,7 +54,7 @@ function ManageUsers() {
   };
 
   const toggleAdmin = (id) => {
-    const updatedUsers = dataUser.map((userItem) => {
+    dataUser.map((userItem) => {
       if (userItem.id === id) {
         const newAdminStatus = !userItem.is_admin;
         const updatedUser = {
@@ -65,16 +65,12 @@ function ManageUsers() {
           .put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, {
             isAdmin: newAdminStatus,
           })
-          .then((res) => {
-            console.warn(res.data);
-          })
           .catch((error) => console.error(error));
 
         return updatedUser;
       }
       return userItem;
     });
-    console.warn(updatedUsers);
   };
 
   const userDetails = dataUser.map((user) => {
