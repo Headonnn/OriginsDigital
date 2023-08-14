@@ -8,6 +8,7 @@ import api from "../contexts/api";
 
 function App() {
   const [dataLogin, setDataLogin] = useState(undefined);
+  const { href } = window.location;
   const [dataVideo, setDataVideo] = useState([]);
   const [categorie, setCategorie] = useState([]);
   const [videoCategorie, setVideoCategorie] = useState([]);
@@ -35,18 +36,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!dataLogin) {
-      const token = localStorage.getItem("token");
-      api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      if (!token) {
-        return;
-      }
-
+    const token = localStorage.getItem("token");
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    if (token) {
       const decoded = jwtDecode(token);
-
-      setDataLogin(decoded);
+      setDataLogin(decoded.cargo);
+    } else {
+      setDataLogin(undefined);
     }
-  }, []);
+  }, [href]);
 
   const contextValue = useMemo(
     () => ({
