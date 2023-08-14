@@ -41,8 +41,10 @@ function App() {
       if (!token) {
         return;
       }
+
       const decoded = jwtDecode(token);
-      setDataLogin(decoded.cargo);
+
+      setDataLogin(decoded);
     }
   }, []);
 
