@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 
 function SearchBar({ handleSearchChange, handleChangeCategory }) {
   const [categ, setCateg] = useState([]);
   useEffect(() => {
-    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
+    api
+      .get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
       .then((res) => setCateg(res.data))
       .catch((err) => console.error(err));
   }, []);

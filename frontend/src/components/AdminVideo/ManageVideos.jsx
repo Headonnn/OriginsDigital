@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import ApiContext from "../../../contexts/ApiContext";
+import api from "../../../contexts/api";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 import SearchVideos from "../SearchVideos";
@@ -24,7 +24,8 @@ function ManageVideos() {
     setFiltre(filteredVideo);
   }, [search, dataVideo]);
   const updateVideoList = () => {
-    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
+    api
+      .get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
       .then((res) => setDataVideo(res.data))
       .catch((err) => console.error(err));
   };
@@ -36,7 +37,8 @@ function ManageVideos() {
   const deleteVideo = (e, id) => {
     e.preventDefault();
 
-    ApiContext.delete(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/delete`)
+    api
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/delete`)
       .then(() => updateVideoList())
       .catch((error) => console.error(error));
   };
@@ -49,12 +51,11 @@ function ManageVideos() {
           ...video,
           is_freemium: videoStatutFreemium,
         };
-        ApiContext.put(
-          `${import.meta.env.VITE_BACKEND_URL}/videos/${id}/is_freemium`,
-          {
+        api
+          .put(`${import.meta.env.VITE_BACKEND_URL}/videos/${id}/is_freemium`, {
             isFreemium: videoStatutFreemium,
-          }
-        ).catch((error) => console.error(error));
+          })
+          .catch((error) => console.error(error));
 
         return updatedVideo;
       }

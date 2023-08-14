@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { IoEyeSharp, IoEyeOffSharp } from "react-icons/io5";
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 import LoginContext from "../../contexts/LoginContext";
 
 function LoginId() {
@@ -29,20 +29,21 @@ function LoginId() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    ApiContext.post(
-      `${import.meta.env.VITE_BACKEND_URL}/users/login`,
-      {
-        email,
-        password,
-      },
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    )
+    api
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/users/login`,
+        {
+          email,
+          password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem("token", response.data.token);
-          ApiContext.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+          api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
           const decoded = jwtDecode(localStorage.getItem("token"));
           setDataLogin(decoded);
 

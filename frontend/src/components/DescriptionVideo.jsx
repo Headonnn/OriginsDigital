@@ -16,7 +16,7 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 import VideoContext from "../../contexts/VideoContext";
 import LoginContext from "../../contexts/LoginContext";
 
@@ -32,9 +32,8 @@ function DescriptionVideo() {
 
   const fetchFavorites = () => {
     if (dataLogin) {
-      ApiContext.get(
-        `${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`
-      )
+      api
+        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
         .then((res) => {
           setDataFavorites(res.data);
           console.warn(res.data);
@@ -53,20 +52,22 @@ function DescriptionVideo() {
   };
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
-      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
-        userId: dataLogin.id,
-        videoId: clickedVideo,
-      })
+      api
+        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
+          userId: dataLogin.id,
+          videoId: clickedVideo,
+        })
         .then(() => {
           setDataFavorites([...dataFavorites, clickedVideo]);
         })
         .catch((err) => console.error(err));
     } else {
-      ApiContext.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/favorites/${
-          dataLogin.id
-        }/${clickedVideo}`
-      )
+      api
+        .delete(
+          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+            dataLogin.id
+          }/${clickedVideo}`
+        )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
@@ -83,11 +84,12 @@ function DescriptionVideo() {
     );
   }, [dataLogin, dataVideo]);
   useEffect(() => {
-    ApiContext.get(
-      `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${
-        parseInt(params.id, 10) + 1
-      }`
-    )
+    api
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/videos_category/get_category/${
+          parseInt(params.id, 10) + 1
+        }`
+      )
       .then((res) => {
         setCateg(res.data);
       })

@@ -11,8 +11,7 @@ import {
   AiOutlineArrowDown,
   AiOutlineArrowUp,
 } from "react-icons/ai";
-import ApiContext from "../../contexts/ApiContext";
-
+import api from "../../contexts/api";
 import NavBar from "../components/NavBar/NavBar";
 import SearchBar from "../components/SearchBar";
 import VideoContext from "../../contexts/VideoContext";
@@ -59,9 +58,8 @@ function Decouvrir() {
   };
   const fetchFavorites = () => {
     if (dataLogin) {
-      ApiContext.get(
-        `${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`
-      )
+      api
+        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
         .then((res) => setDataFavorites(res.data))
         .catch((err) => {
           if (err.response) {
@@ -77,20 +75,22 @@ function Decouvrir() {
   };
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
-      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
-        userId: dataLogin.id,
-        videoId: clickedVideo,
-      })
+      api
+        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
+          userId: dataLogin.id,
+          videoId: clickedVideo,
+        })
         .then(() => {
           setDataFavorites([...dataFavorites, clickedVideo]);
         })
         .catch((err) => console.error(err));
     } else {
-      ApiContext.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/favorites/${
-          dataLogin.id
-        }/${clickedVideo}`
-      )
+      api
+        .delete(
+          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+            dataLogin.id
+          }/${clickedVideo}`
+        )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
@@ -152,13 +152,15 @@ function Decouvrir() {
       filtreCategorie === "9" ||
       filtreCategorie === "7"
     ) {
-      ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
+      api
+        .get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
         .then((result) => setCateg(result.data))
         .catch((error) => console.error(error));
     } else {
-      ApiContext.get(
-        `${import.meta.env.VITE_BACKEND_URL}/videos/filtre/${filtreCategorie}`
-      )
+      api
+        .get(
+          `${import.meta.env.VITE_BACKEND_URL}/videos/filtre/${filtreCategorie}`
+        )
         .then((result) => {
           setCateg(result.data);
         })

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import ApiContext from "../../../contexts/ApiContext";
+import api from "../../../contexts/api";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
 import SearchVideos from "../SearchVideos";
@@ -40,7 +40,7 @@ function EditCarousel() {
   const params = useParams();
   const fetchSections = async () => {
     try {
-      const data = await ApiContext.get(
+      const data = await api.get(
         `${import.meta.env.VITE_BACKEND_URL}/sections`
       );
       const section = data.data.filter(
@@ -105,21 +105,29 @@ function EditCarousel() {
     e.preventDefault();
     const data = { name: carousel.name };
     const dataVis = { visibility: carousel.visibility };
-    await ApiContext.put(
-      `${import.meta.env.VITE_BACKEND_URL}/carousel_custom/${
-        sections.carousel.id
-      }`,
-      data
-    ).catch((err) => console.error(err));
-    await ApiContext.put(
-      `${import.meta.env.VITE_BACKEND_URL}/sections/${sections.id}/visibility`,
-      dataVis
-    ).catch((err) => console.error(err));
-    await ApiContext.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/videos_carousel/${
-        sections.carousel.id
-      }`
-    ).catch((err) => console.error(err));
+    await api
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/carousel_custom/${
+          sections.carousel.id
+        }`,
+        data
+      )
+      .catch((err) => console.error(err));
+    await api
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/sections/${
+          sections.id
+        }/visibility`,
+        dataVis
+      )
+      .catch((err) => console.error(err));
+    await api
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/videos_carousel/${
+          sections.carousel.id
+        }`
+      )
+      .catch((err) => console.error(err));
 
     let selected = Object.entries(vidCarousel).filter((el) => el[1] === true);
     selected = selected.map((el) => parseInt(el[0], 10));
@@ -131,7 +139,8 @@ function EditCarousel() {
     }));
 
     vidToPost.forEach((el) => {
-      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/videos_carousel`, el)
+      api
+        .post(`${import.meta.env.VITE_BACKEND_URL}/videos_carousel`, el)
         .then((res) => {
           console.warn(res.data);
         })

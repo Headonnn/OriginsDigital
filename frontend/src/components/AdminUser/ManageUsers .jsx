@@ -4,7 +4,7 @@ import { CSVLink } from "react-csv";
 import { TfiExport } from "react-icons/tfi";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
-import ApiContext from "../../../contexts/ApiContext";
+import api from "../../../contexts/api";
 import VideoContext from "../../../contexts/VideoContext";
 import NavBar from "../NavBar/NavBar";
 import LoginContext from "../../../contexts/LoginContext";
@@ -31,7 +31,8 @@ function ManageUsers() {
   };
 
   const updateUserList = () => {
-    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/users`)
+    api
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)
       .then((res) => setDataUser(res.data))
       .catch((err) => console.error(err));
   };
@@ -43,7 +44,8 @@ function ManageUsers() {
   const deleteUser = (e, id) => {
     e.preventDefault();
 
-    ApiContext.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)
+    api
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`)
       .then((res) => {
         console.warn(res.data);
         updateUserList();
@@ -59,9 +61,10 @@ function ManageUsers() {
           ...userItem,
           is_admin: newAdminStatus,
         };
-        ApiContext.put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, {
-          isAdmin: newAdminStatus,
-        })
+        api
+          .put(`${import.meta.env.VITE_BACKEND_URL}/users/${id}`, {
+            isAdmin: newAdminStatus,
+          })
           .then((res) => {
             console.warn(res.data);
           })

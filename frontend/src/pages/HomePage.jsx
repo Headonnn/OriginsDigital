@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 import Hero from "../components/Hero";
 import CarouselAll from "../components/CarouselAll";
 import VideoContext from "../../contexts/VideoContext";
@@ -16,7 +16,8 @@ function HomePage() {
       .catch((error) => console.error(error));
   }, []);
   useEffect(() => {
-    ApiContext.get(`${import.meta.env.VITE_BACKEND_URL}/sections`)
+    api
+      .get(`${import.meta.env.VITE_BACKEND_URL}/sections`)
       .then((res) => {
         setDataSection(res.data);
       })

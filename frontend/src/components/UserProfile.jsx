@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
 import { FaCheck, FaTimes } from "react-icons/fa";
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 import NavBar from "./NavBar/NavBar";
 import LoginContext from "../../contexts/LoginContext";
 
@@ -13,13 +13,14 @@ function UserProfile() {
   const navigate = useNavigate();
   const deleteUser = (e) => {
     e.preventDefault();
-    ApiContext.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/users/delete/${dataLogin.id}`,
-      {
-        headers: { "Content-Type": "application/json" },
-        data: JSON.stringify({ password, id: dataLogin.id }),
-      }
-    )
+    api
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/users/delete/${dataLogin.id}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          data: JSON.stringify({ password, id: dataLogin.id }),
+        }
+      )
       .then(() => {
         localStorage.removeItem("token");
         setDataLogin(undefined);

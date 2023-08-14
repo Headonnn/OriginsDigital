@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsArrowReturnLeft } from "react-icons/bs";
-import ApiContext from "../../../contexts/ApiContext";
+import api from "../../../contexts/api";
 import NavBar from "../NavBar/NavBar";
 import VideoContext from "../../../contexts/VideoContext";
 import SearchVideos from "../SearchVideos";
@@ -38,18 +38,15 @@ function ManageHero() {
   }, [search, dataVideo, inHero]);
 
   const handleValidate = async () => {
-    await ApiContext.put(
+    await api.put(
       `${import.meta.env.VITE_BACKEND_URL}/videos/${
         dataVideo.filter((e) => e.is_in_hero === 1)[0].id
       }/hero`,
       { isHero: false }
     );
-    await ApiContext.put(
-      `${import.meta.env.VITE_BACKEND_URL}/videos/${inHero}/hero`,
-      {
-        isHero: true,
-      }
-    );
+    await api.put(`${import.meta.env.VITE_BACKEND_URL}/videos/${inHero}/hero`, {
+      isHero: true,
+    });
     navigate(-1);
   };
 

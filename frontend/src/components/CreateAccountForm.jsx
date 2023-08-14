@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 import CreateAccountMsg from "./CreateAccountMsg";
 import NavBar from "./NavBar/NavBar";
 
@@ -28,7 +28,8 @@ function CreateAccountForm() {
       password: user.password,
     };
 
-    ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/users`, data)
+    api
+      .post(`${import.meta.env.VITE_BACKEND_URL}/users`, data)
       .then(() => {
         setIsClicked(!isClicked);
       })

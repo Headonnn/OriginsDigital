@@ -9,7 +9,7 @@ import {
   BsPlusCircle,
   BsCheckCircle,
 } from "react-icons/bs";
-import ApiContext from "../../contexts/ApiContext";
+import api from "../../contexts/api";
 import LoginContext from "../../contexts/LoginContext";
 import VideoContext from "../../contexts/VideoContext";
 
@@ -22,9 +22,8 @@ function CarouselAll({ dataSection }) {
 
   const fetchFavorites = () => {
     if (dataLogin) {
-      ApiContext.get(
-        `${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`
-      )
+      api
+        .get(`${import.meta.env.VITE_BACKEND_URL}/favorites/${dataLogin.id}`)
         .then((res) => {
           setDataFavorites(res.data);
         })
@@ -97,20 +96,22 @@ function CarouselAll({ dataSection }) {
 
   const handleAddToList = (clickedVideo) => {
     if (!dataFavorites.includes(parseInt(clickedVideo, 10))) {
-      ApiContext.post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
-        userId: dataLogin.id,
-        videoId: clickedVideo,
-      })
+      api
+        .post(`${import.meta.env.VITE_BACKEND_URL}/favorites/add`, {
+          userId: dataLogin.id,
+          videoId: clickedVideo,
+        })
         .then(() => {
           setDataFavorites([...dataFavorites, clickedVideo]);
         })
         .catch((err) => console.error(err));
     } else {
-      ApiContext.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/favorites/${
-          dataLogin.id
-        }/${clickedVideo}`
-      )
+      api
+        .delete(
+          `${import.meta.env.VITE_BACKEND_URL}/favorites/${
+            dataLogin.id
+          }/${clickedVideo}`
+        )
         .then(() => {
           let tmp = [...dataFavorites];
           tmp = tmp.filter((vid) => vid !== clickedVideo);
