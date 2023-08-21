@@ -17,14 +17,14 @@ function App() {
   useEffect(() => {
     api
       .get(`${import.meta.env.VITE_BACKEND_URL}/videos`)
-      .then((result) => setDataVideo(result))
+      .then((result) => setDataVideo(result.data))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
     api
       .get(`${import.meta.env.VITE_BACKEND_URL}/categories`)
-      .then((result) => setCategorie(result))
+      .then((result) => setCategorie(result.data))
       .catch((error) => console.error(error));
   }, []);
 

@@ -16,8 +16,8 @@ function CreateVideo() {
   const [thumbnailFile, setThumbnailFile] = useState("");
   const [vidUploaded, setVidUploaded] = useState(false);
   const [thumbUploaded, setThumbUploaded] = useState(false);
-  const [videoSelected, setVideoSelected] = useState("");
-  const [fileSelected, setFileSelected] = useState("");
+  const [videoSelected, setVideoSelected] = useState({});
+  const [thumbnailSelected, setThumbnailSelected] = useState({});
 
   const [video, setVideo] = useState({
     title: "",
@@ -153,8 +153,8 @@ function CreateVideo() {
                 setThumbUploaded={setThumbUploaded}
                 vidUploaded={vidUploaded}
                 setVidUploaded={setVidUploaded}
-                fileSelected={fileSelected}
-                setFileSelected={setFileSelected}
+                thumbnailSelected={thumbnailSelected}
+                setThumbnailSelected={setThumbnailSelected}
                 videoSelected={videoSelected}
                 setVideoSelected={setVideoSelected}
               />
@@ -207,7 +207,7 @@ function CreateVideo() {
               </label>
 
               <label
-                htmlFor="videoThumbnail"
+                htmlFor="thumbnailFile"
                 className="text-white flex flex-col"
               >
                 Thumbnail*{" "}
@@ -215,14 +215,14 @@ function CreateVideo() {
               <UploadWidget
                 accept="image/png, image/jpeg"
                 name="thumbnail"
-                id="videoThumbnail"
+                id="thumbnailFile"
                 setThumbnailFile={setThumbnailFile}
                 thumbUploaded={thumbUploaded}
                 setThumbUploaded={setThumbUploaded}
                 vidUploaded={vidUploaded}
                 setVidUploaded={setVidUploaded}
-                fileSelected={fileSelected}
-                setFileSelected={setFileSelected}
+                thumbnailSelected={thumbnailSelected}
+                setThumbnailSelected={setThumbnailSelected}
                 videoSelected={videoSelected}
                 setVideoSelected={setVideoSelected}
               />

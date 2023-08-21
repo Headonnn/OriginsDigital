@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import api from "../../../contexts/api";
+import axios from "axios";
 
 function UploadWidget({
   accept,
@@ -12,8 +12,8 @@ function UploadWidget({
   setThumbUploaded,
   vidUploaded,
   setVidUploaded,
-  fileSelected,
-  setFileSelected,
+  thumbnailSelected,
+  setThumbnailSelected,
   videoSelected,
   setVideoSelected,
 }) {
@@ -21,19 +21,19 @@ function UploadWidget({
 
   const uploadFile = () => {
     const formData = new FormData();
-    if (id === "videoThumbnail") {
-      formData.append("file", videoSelected);
+    if (id === "thumbnailFile") {
+      formData.append("file", thumbnailSelected);
     } else {
-      formData.append("file", fileSelected);
+      formData.append("file", videoSelected);
     }
 
     formData.append("upload_preset", "erowiy6p");
     setLoading("chargement...");
 
-    api
+    axios
       .post("http://api.cloudinary.com/v1_1/dgux3vxri/upload", formData)
       .then((res) => {
-        if (id === "videoThumbnail") {
+        if (id === "thumbnailFile") {
           setThumbnailFile(res.data.url);
           setLoading("envoyé !");
           setThumbUploaded(!thumbUploaded);
@@ -55,10 +55,10 @@ function UploadWidget({
         className="bg-white text-black w-3/4 pl-1 py-2 rounded-md"
         multiple={false}
         onChange={(e) => {
-          if (id !== "videoThumbnail") {
-            setFileSelected(e.target.files[0]);
-          } else {
+          if (id !== "thumbnailFile") {
             setVideoSelected(e.target.files[0]);
+          } else {
+            setThumbnailSelected(e.target.files[0]);
           }
         }}
         accept={accept}
@@ -66,8 +66,8 @@ function UploadWidget({
         id={id}
       />
 
-      {((id !== "videoThumbnail" && fileSelected) ||
-        (id === "videoThumbnail" && videoSelected)) &&
+      {((id !== "thumbnailFile" && videoSelected) ||
+        (id === "thumbnailFile" && thumbnailSelected)) &&
       loading === "" ? (
         <button
           className="border hover:bg-white tracking-wide hover:text-black  py-1 px-3 text-sm md:px-6  md:text-lg transition"
@@ -96,9 +96,9 @@ UploadWidget.propTypes = {
   setThumbUploaded: PropTypes.func.isRequired,
   vidUploaded: PropTypes.bool.isRequired,
   setVidUploaded: PropTypes.func.isRequired,
-  fileSelected: PropTypes.string.isRequired,
-  setFileSelected: PropTypes.func.isRequired,
-  videoSelected: PropTypes.string.isRequired,
+  thumbnailSelected: PropTypes.objectOf(PropTypes.object()),
+  setThumbnailSelected: PropTypes.func.isRequired,
+  videoSelected: PropTypes.objectOf(PropTypes.object()),
   setVideoSelected: PropTypes.func.isRequired,
 };
 
